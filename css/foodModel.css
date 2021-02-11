@@ -1,0 +1,112 @@
+#foodModel_headingImg{
+    height: 180px;;
+    width:100%;
+    opacity: .8;
+}
+
+#foodModel_heading_Div {
+    position:absolute;
+    top: 60px;
+    left: 30px;
+}
+
+#foodModel_heading_h5{
+    font-family: 'Oswald', sans-serif;
+    font-weight:bold;
+    color: #5c0099;
+}
+
+#foodModel_heading_p{
+    color:white;
+    font-size:11px;
+}
+
+#foodModel_heading2{
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight:bold;
+    color: #a31aff;
+    margin-bottom: 15px;
+}
+
+#foodModel_mainPara{
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight:bold;
+    font-size: 12px;
+}
+
+#foodModel_cardMain{
+
+}
+
+#foodModel_card {
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 80%;
+    border-radius: 5px;
+    margin-left: 30px ;
+    margin-bottom: 20px;
+}
+  
+#foodModel_card:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#foodModel_img {
+    border-radius: 5px 5px 0 0;
+    height: 200px;
+    width: auto;
+}
+
+#foodModel_cardHeading{
+    font-family: 'Oswald', sans-serif;
+    color: #b84dff;
+    margin-top: 10px;
+}
+
+#foodModel_cardPara{
+    font-size: 11px;
+    font-weight:bold;
+    color: #666666;
+}
+
+#foodModel_cardVotes{
+    font-family: 'Oswald', sans-serif;
+    color: #ff66ff;
+    text-align: center;
+    font-weight: bold;
+}
+
+#foodModel_cardButton{
+    width: 100%;
+    margin-top:0px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-weight: bold;
+    background-color:#ffd633;
+    margin-bottom: 10px;
+}
+
+@media screen and (min-width: 766px) {
+    #foodModel_cardMain{
+        margin-left: 70px;
+    }
+
+    #foodModel_heading_Div {
+        top: 50px;
+        left: 160px;
+    }
+
+    #foodModel_heading_h5{
+        font-size: 40px;
+    }
+
+    #foodModel_heading_p{
+        font-size:20px;
+    }
+
+    #foodModel_heading2{
+        font-size:  20px;
+    }
+  }
