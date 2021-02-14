@@ -60,7 +60,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }      
     
-    $sql="select * from videos where cu_id=$token";
+    $sql="select v.* from videos v, contest_users cu where cu.id=$token and cu.u_id=v.u_id";
     if($result=$conn->query($sql))
     {
         if($result->num_rows)

@@ -20,11 +20,21 @@ function check_page($id,$conn)
 
  
 //check user authpage
-function user_auth($page,$type)
+function user_auth()
 {
-    if($page!=$type)
-        header("location:logout");
-   
+    if (!isset($_SESSION['signed_in']))
+    {
+        if($_SERVER['REQUEST_URI']!='/login')
+        {
+            $_SESSION['page']=$_SERVER['REQUEST_URI'];   
+        }
+        return false; 
+    }
+    else
+    {
+        session_regenerate_id(true);
+        return true;
+    }
 }
 
 
@@ -49,9 +59,9 @@ function master_admin_login($email,$password,$conn,$path)
     return true;
 }
 //user login
-   function user_login($email,$password,$conn,$user,$path)
+   function user_login($email,$password,$conn,$path)
     {
-         $sql="select email from users where email='$email' and password='$password' and type=$user";
+         $sql="select email from users where email='$email' and password='$password'";
         $res=$conn->query($sql);
         if($res->num_rows > 0)
         {
@@ -675,7 +685,7 @@ function upload_images($files,$conn,$table,$id_col,$column,$id,$images,$url)
                 $newFileName=$filename.time().".".$ext;
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                    $sql="insert into $table($id_col, $column) values($id,$url.'/$newFileName')";
+                    $sql="insert into $table($id_col, $column) values($id,'$url./$newFileName')";
                     if($conn->query($sql)===true)
                     {
                         $status=true;
@@ -702,6 +712,7 @@ function upload_images($files,$conn,$table,$id_col,$column,$id,$images,$url)
 }
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {
+    print_r($_FILES);
 	if(isset($_FILES[$images]))
     {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4");
@@ -713,10 +724,10 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
             if(in_array(strtolower($ext),$extension)) 
             {
                 $filename=basename($file_name,$ext);
-                $newFileName=$filename.time().".".$ext;
+                 $newFileName=$filename.time().".".$ext;
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                    $sql="insert into $table($id_col, $column) values($id,'$url./$newFileName')";
+                    $sql="update $table set  $column='$url./$newFileName' where $id_col=$id ";
                     if($conn->query($sql)===true)
                     {
                         $status=true;

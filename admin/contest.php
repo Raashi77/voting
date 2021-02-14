@@ -41,7 +41,7 @@
                 $title="Upcoming Contest";
                 break;
             case "4": 
-                echo $sql="SELECT * from contest where end_date < '$date'";
+                $sql="SELECT * from contest where end_date < '$date'";
                 $title="Completed Contest";
                 break;
             default:

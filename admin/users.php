@@ -200,7 +200,7 @@
                                             else if($detail['status']==2) 
                                             {       
                                         ?>
-                                            <button  class="btn btn-dark" type="submit" name="unblock" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-primary" type="submit" name="unblock" value="<?=$detail['id']?>">
                                                 <i class="fa fa-check"></i> Unblock
                                             </button>
                                         <?php

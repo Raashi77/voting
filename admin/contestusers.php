@@ -70,15 +70,15 @@
         $token = $_GET['token'];
         switch ($token) {
             case '1':
-                $sql="SELECT * from contest_users";
+                $sql="SELECT cu.*, c.name as cname from contest_users cu, contest c where cu.c_id=c.id";
                 $title ="All";
                 break;
             case  "2":
-                $sql="SELECT * from contest_users where status=2 ";
+                $sql="SELECT cu.*, c.name as cname from contest_users cu, contest c where cu.c_id=c.id where status=2 ";
                 $title ="Blocked";
                 break; 
             case "3": 
-                $sql="SELECT * from contest_users where status=1";
+                $sql="SELECT cu.*, c.name as cname from contest_users cu, contest c where cu.c_id=c.id where status=1";
                 $title="Unblocked";
                 break;
             default:
@@ -154,6 +154,7 @@
                              <th>Email</th>
                              <th>Votes</th>
                              <th>IP Address</th>
+                             <th>Contest</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -173,6 +174,7 @@
                                          <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
                                          <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
                                          <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
+                                         <td style="  text-align: center; " id="cname<?=$i?>"><?=$detail['cname'];?></td>
                                          <td>
                                         <form method="post">
                                             <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
@@ -191,7 +193,7 @@
                                             else if($detail['status']==2) 
                                             {       
                                         ?>
-                                            <button  class="btn btn-dark" type="submit" name="unblock" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-success" type="submit" name="unblock" value="<?=$detail['id']?>">
                                                 <i class="fa fa-check"></i> Unblock
                                             </button>
                                         <?php
