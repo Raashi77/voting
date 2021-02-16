@@ -46,7 +46,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     $errorMember=$conn->error;
                 }
             }
-            
         }
         else
         {
@@ -138,13 +137,15 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             }
         ?>
         </div>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="video_form">
             <div class="row">
                 <div class="col-md-12"> 
                     <div class="form-group">
                         <label>Add Videos</label><br>  
-                        <button type="button" class="btn btn-success" onclick="addFilesField()"><i class="fa fa-plus"></i></button>
-                    </div> 
+                        <button type="button" class="btn btn-success" onclick="$('#projectfile').click()"><i class="fa fa-plus"></i></button>
+                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
+                        <input type="hidden" name ="add" value="dsbhvfs"/>
+                     </div> 
                 </div>
             </div>
             <div class="row">
@@ -154,7 +155,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 </div>
             </div>
             
-            <button type="submit" name="add" class="btn btn-primary">Add</button>
+            <!-- <button type="submit" name="add" class="btn btn-primary">Add</button> -->
         </form>
     </section>
   </div>
@@ -171,6 +172,11 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     {
         
         disableVideoDelete(videoCounter);
+        $("#projectfile").change(function(e)
+        {
+             
+            $("#video_form").submit();
+        })
     })
     function addFilesField()
     {
