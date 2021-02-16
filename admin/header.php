@@ -20,6 +20,10 @@ if($res->num_rows > 0)
  
 $MASTER_ID=$MASTER_DATA['id']; 
 
+$NAME=explode(' ',$MASTER_DATA['name']);
+ $FNAME=$NAME[0];
+ $LNAME=$NAME[1];
+
 //user_auth($type,$subadmin);
 
 ?>
@@ -73,7 +77,26 @@ $MASTER_ID=$MASTER_DATA['id'];
 .btn-dark:hover {
     color:white;
 }
-
+.profileImage {
+  width: 60px;
+  height: 48;
+  background: #25383C;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+}
+.profileImageUser {
+  width: 60px;
+  height: 48;
+  background: #25383C;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%; 
+}
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;

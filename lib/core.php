@@ -61,24 +61,30 @@ function master_admin_login($email,$password,$conn,$path)
 //user login
    function user_login($email,$password,$conn,$path)
     {
-         $sql="select email from users where email='$email' and password='$password'";
+         $sql="select status, email from users where email='$email' and password='$password'";
         $res=$conn->query($sql);
         if($res->num_rows > 0)
         {
-          $_SESSION['signed_in']=$email;
-            setcookie("new",$email, time() + (86400 * 80), "/");   
-			setcookie("pass",$password, time() + (86400 * 80), "/");  
-            
-            if(isset($_SESSION['page']))
+            $row=$res->fetch_assoc();
+            if($row['status']==1)
             {
-                $page_url=$_SESSION['page'];
-                unset($_SESSION['page']);
-                header("location: home");
+                $_SESSION['signed_in']=$email;
+                setcookie("new",$email, time() + (86400 * 80), "/");   
+                setcookie("pass",$password, time() + (86400 * 80), "/");  
+                
+                if(isset($_SESSION['page']))
+                {
+                    $page_url=$_SESSION['page'];
+                    unset($_SESSION['page']);
+                    header("location: home");
+                }
+                else
+                {
+                header("location: $path"); 
+                }
             }
             else
-            {
-              header("location: $path"); 
-            }
+            return false;
         }
         else
         return false;

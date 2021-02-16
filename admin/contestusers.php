@@ -5,29 +5,14 @@
  
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if(isset($_POST['delete']))
+        if(isset($_POST['remove']))
         {
-            $id=$_POST['delete'];
+            $id=$_POST['remove'];
             $sql = "delete from contest_users where id=$id"; 
             if($conn->query($sql))
             {
-                $sql="delete from videos where cu_id=$id";
-                if($conn->query($sql))
-                {
-                    $sql="delete from voters where cu_id=$id";
-                    if($conn->query($sql))
-                    {
-                        $resMember=true;
-                    }
-                    else
-                    {
-                        $errorMember=$conn->error;
-                    }
-                }
-                else
-                {
-                    $errorMember=$conn->error;
-                }
+                
+                $errorMember=$conn->error;
             } 
             else
             {
@@ -70,15 +55,15 @@
         $token = $_GET['token'];
         switch ($token) {
             case '1':
-                $sql="SELECT u.name,u.email,u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and u.id=cu.u_id";
+                $sql="SELECT u.name,u.email, cu.status, u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and u.id=cu.u_id";
                 $title ="All";
                 break;
             case  "2":
-                $sql="SELECT u.name,u.email,u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and status=2 and u.id=cu.u_id ";
+                $sql="SELECT u.name,u.email, cu.status, u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and cu.status=2 and u.id=cu.u_id ";
                 $title ="Blocked";
                 break; 
             case "3": 
-                $sql="SELECT u.name,u.email,u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id where status=1 and u.id=cu.u_id";
+                $sql="SELECT u.name,u.email, cu.status, u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and cu.status=1 and u.id=cu.u_id";
                 $title="Unblocked";
                 break;
             default:
@@ -178,8 +163,8 @@
                                          <td>
                                         <form method="post">
                                             <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
-                                            <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Delete
+                                            <button  class="btn btn-danger" type="submit" name="remove" value="<?=$detail['id']?>">
+                                                <i class="fa fa-trash-o"></i> Remove Participant
                                             </button>
                                         <?php
                                             if($detail['status']==1) 

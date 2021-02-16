@@ -1,14 +1,18 @@
- 
+<?php
+ $name=explode(' ',$MASTER_DATA['name']);
+ $fname=$name[0];
+ $lname=$name[1];
+ ?>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
    <!-- sidebar: style can be found in sidebar.less -->
    <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-         <div class="image">
+      <div class="image">
             <form enctype="multipart/form-data" action="image_upload_demo_submit.php" method="post" name="image_upload_form" id="image_upload_form">
-               <div id="imgArea" class="pull-left image">
-                  <img src="<?=$USER_DATA['user_pic']?>" width="48" height="48" >
+               <div id="imgArea" class="pull-left image"> 
+                  <div class="profileImage"><?=ucfirst($FNAME[0]).ucfirst($LNAME[0])?></div>
                   <div class="progressBar">
                      <div class="bar"></div>
                      <div class="percent">0%</div>
@@ -20,8 +24,8 @@
             </form>
          </div>
          <div class="pull-left info">
-            <p>USER Admin</p>
-             <p><?=ucfirst($USER_DATA['name']);?></p>
+            <p style="margin-left: 5px; margin-top: 7px;">USER</p>
+             <p style="margin-left: 5px;"><?=ucfirst($USER_DATA['name']);?></p>
          </div>
       </div>
       <!-- /.search form -->
@@ -44,11 +48,10 @@
             </a>
             
             <ul class="treeview-menu">
-               <li><a href="contest?token=1"><i class="fa fa-circle-o"></i>All contest</a></li>
-               <li><a href="contest?token=2"><i class="fa fa-circle-o"></i>Ongoing</a></li>
-               <li><a href="contest?token=3"><i class="fa fa-circle-o"></i>Upcoming </a></li>
-               <li><a href="contest?token=4"><i class="fa fa-circle-o"></i>Completed</a></li>
-               <li><a href="contest?token=5"><i class="fa fa-circle-o"></i>Enrolled</a></li>
+               <li><a href="contest?token=1"><i class="fa fa-circle-o"></i>Ongoing</a></li>
+               <li><a href="contest?token=2"><i class="fa fa-circle-o"></i>Upcoming </a></li>
+               <li><a href="contest?token=3"><i class="fa fa-circle-o"></i>Completed</a></li>
+               <li><a href="contest?token=4"><i class="fa fa-circle-o"></i>Enrolled</a></li>
             </ul>
          </li>
          

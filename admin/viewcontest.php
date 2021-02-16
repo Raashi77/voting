@@ -15,22 +15,35 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             $contest=$row;
         }
     }
-    if(isset($_POST['delete_user']))
+    if(isset($_POST['remove']))
     {
-        $id=$_POST['delete_user'];
+        $id=$_POST['remove'];
         $sql = "delete from contest_users where id=$id";
         
         if($conn->query($sql))
         {
-            $sql="delete from videos where cu_id='$id'";
+           $resMember=true;
+        }
+        else
+        {
+            $errorMember=$conn->error;
+        }
+    }  
+    if(isset($_POST['delete_voter']))
+    {
+        $id=$_POST['delete_voter'];
+        $sql = "delete from voters where id=$id";
+        if($conn->query($sql))
+        {
+            $sql = "update contest_users cu, voters v set cu.votes=CAST(cu.votes as UNSIGNED)-1 where v.cu_id=cu.id";
             if($conn->query($sql))
             {
                 $resMember=true;
-            } 
+            }
             else
             {
                 $errorMember=$conn->error;
-            }  
+            }
         }
         else
         {
@@ -88,7 +101,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }    
 
-    $sql="select u.* from contest_users u where u.c_id='$token'";
+    $sql="select u.email, u.name, u.ip_address, cu.votes, cu.id, cu.status from contest_users cu, users u where cu.c_id='$token' and cu.u_id=u.id";
     if($result=$conn->query($sql))
     {
         if($result->num_rows)
@@ -110,7 +123,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }
 
-    $sql="select v.*, u.name as contestant from voters v, users u where v.c_id='$token' and v.u_id=u.id";
+    $sql="select v.*, u.name as contestant from voters v, contest_users cu, users u where v.c_id='$token' and v.cu_id=cu.id and cu.u_id=u.id";
     if($result=$conn->query($sql))
     {
         if($result->num_rows)
@@ -122,7 +135,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }
 
-    $sql="SELECT * FROM contest_users WHERE c_id=1 and votes=(SELECT MAX(votes) FROM contest_users)";
+    $sql="SELECT u.name, u.email, u.ip_address, cu.votes FROM contest_users cu, users u WHERE cu.c_id='$token' and cu.u_id=u.id and cu.votes=(SELECT MAX(votes) FROM contest_users where c_id='$token')";
     if($result=$conn->query($sql))
     {
           
@@ -231,6 +244,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                              <th>Name</th>
                              <th>Email</th>
                              <th>IP Address</th>
+                             <th>Votes</th>
                              <th>Action</th>
                         </tr>
                     </thead>
@@ -249,10 +263,12 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
                                          <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
                                          <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
+                                         <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
                                          <td>
                                         <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete_user" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Delete
+                                        <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
+                                            <button  class="btn btn-danger" type="submit" name="remove" value="<?=$detail['id']?>">
+                                                <i class="fa fa-trash-o"></i> Remove Participant
                                             </button>
                                         <?php
                                             if($detail['status']==1) 
@@ -347,7 +363,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         </div> 
 
         <br>
-        <h2>Winner</h2>
+        <h2>Top Participant(s)</h2>
         <br>
         <div class="box">
               <div class="box-body">
@@ -398,7 +414,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="col-md-5"> 
                     <div class="form-group">
                     <form method="post">
-                        <label>Project Manager</label><br> 
                         <select name="win" id="win" class="form-control">
                         <?php
                             if(isset($users))

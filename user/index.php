@@ -6,14 +6,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if(isset($_POST['login']))
     {
-          $email=$conn->real_escape_string(strtolower(trim($_POST['email'])));
-          $password=md5($_POST['password']);
+        $email=$conn->real_escape_string(strtolower(trim($_POST['email'])));
+        $password=md5($_POST['password']);
         if(!user_login($email,$password,$conn,"dashboard"))
         {
            $error= "invalid user & Password";
-        }else
+        }
+        else
         {
-            
+
         }
     }
 }

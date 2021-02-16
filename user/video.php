@@ -7,9 +7,7 @@ require_once 'left-navbar.php';
 
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
-    $token=$_GET['token'];      
-    
-    
+    $token=$_GET['token'];
     if(isset($_POST['add']))
     {
         $sql="insert into videos(c_id, u_id, status) values('$token', '$USER_ID', 1)";
@@ -23,28 +21,14 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             {
                 $resSubject = "files_left";
             }
-            $sql="SELECT * from contest_users where c_id='$token' and u_id='$USER_ID'";
-            $result =  $conn->query($sql);
-            if($result->num_rows)
+            $sql = "insert into contest_users(c_id, u_id, status) values('$token', '$USER_ID', 1)";
+            if($conn->query($sql))
             {
-                $row = $result->fetch_assoc();
-                    $check = $row;
-            }
-            if(isset($check))
-            {
-                $resMember=true;
+                $resMember=true;   
             }
             else
             {
-                $sql = "insert into contest_users(c_id, u_id, name, email, status) values('$token', '$USER_ID', '$USER_NAME', '$USER_EMAIL', 1)";
-                if($conn->query($sql))
-                {
-                    $resMember=true;   
-                }
-                else
-                {
-                    $errorMember=$conn->error;
-                }
+                $errorMember=$conn->error;
             }
         }
         else
@@ -62,7 +46,17 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 $videos[] = $row;
             }
         }
-    } 
+    }
+    $sql="select count(id) as count from videos where c_id=$token and u_id='$USER_ID'";
+    if($result=$conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            $row=$result->fetch_assoc();
+                $v_count = $row['count'];
+        }
+    }
+
 }
 
          
@@ -111,7 +105,15 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         ?>
                     <div id="data<?=$counter?>">
                     <iframe width="560" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <button type="button" class="btn btn-danger" onclick="deleteFile(<?=$data['id']?>,'data<?=$counter?>', '<?=$data['video']?>')"><i class="fa fa-trash"></i></button>
+                    <?php
+                    if($v_count>1)
+                    {
+                    ?>
+                        <button type="button" class="btn btn-danger deleteBtn" onclick="deleteFile(<?=$data['id']?>,'data<?=$counter?>', '<?=$data['video']?>')"><i class="fa fa-trash"></i></button>
+                    <?php
+                    }
+                    ?>
+                   
                     </div>
         <?php
         $counter++;
@@ -146,7 +148,13 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
   ?>
 
 <script>
+    var videoCounter = parseInt('<?=$counter?>');
     var counter=1;
+    $(function()
+    {
+        
+        disableVideoDelete(videoCounter);
+    })
     function addFilesField()
     {
         var inhtml  = `<div class="row" style="margin-top:20px">    
@@ -164,8 +172,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 
     function removeField(id)
     {
-            $("#"+id).parent().parent().remove();
-            
+        $("#"+id).parent().parent().remove();
     }
 
     function deleteFile(id,divId, video)
@@ -184,6 +191,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 if(data.trim()=="ok")
                 {
                     $("#"+divId).remove();  
+                    videoCounter--;
+                    disableVideoDelete(videoCounter);
                 }else
                 {
                     console.log(data);
@@ -195,5 +204,13 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             }
         
         })
+    }
+
+   function  disableVideoDelete(counter)
+    {
+        if(counter==1)
+        {
+            $(".deleteBtn").remove()
+        }
     }
 </script>

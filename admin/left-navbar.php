@@ -1,4 +1,8 @@
- 
+<?php
+ $name=explode(' ',$MASTER_DATA['name']);
+ $fname=$name[0];
+ $lname=$name[1];
+ ?>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
    <!-- sidebar: style can be found in sidebar.less -->
@@ -7,8 +11,8 @@
       <div class="user-panel">
          <div class="image">
             <form enctype="multipart/form-data" action="image_upload_demo_submit.php" method="post" name="image_upload_form" id="image_upload_form">
-               <div id="imgArea" class="pull-left image">
-                  <img src="<?=$MASTER_DATA['user_pic']?>" width="48" height="48" >
+               <div id="imgArea" class="pull-left image"> 
+                  <div class="profileImage"><?=ucfirst($FNAME[0]).ucfirst($LNAME[0])?></div>
                   <div class="progressBar">
                      <div class="bar"></div>
                      <div class="percent">0%</div>
@@ -20,8 +24,8 @@
             </form>
          </div>
          <div class="pull-left info">
-            <p>Master Admin</p>
-             <p><?=ucfirst($MASTER_DATA['name']);?></p>
+            <p style="margin-left: 5px; margin-top: 7px;">Master Admin</p>
+             <p style="margin-left: 5px;"><?=ucfirst($MASTER_DATA['name']);?></p>
          </div>
       </div>
       <!-- /.search form -->

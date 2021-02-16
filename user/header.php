@@ -21,6 +21,9 @@ if($res->num_rows > 0)
 $USER_ID=$USER_DATA['id']; 
 $USER_NAME=$USER_DATA['name']; 
 $USER_EMAIL=$USER_DATA['email']; 
+$NAME=explode(' ',$USER_NAME);
+ $FNAME=$NAME[0];
+ $LNAME=$NAME[1];
 
 //user_auth($type,$subadmin);
 
@@ -30,7 +33,7 @@ $USER_EMAIL=$USER_DATA['email'];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | PW</title>
+  <title>User Panel </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -74,6 +77,26 @@ $USER_EMAIL=$USER_DATA['email'];
 }
 .btn-dark:hover {
     color:white;
+}
+.profileImage {
+  width: 60px;
+  height: 48;
+  background: #25383C;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+}
+.profileImageUser {
+  width: 60px;
+  height: 48;
+  background: #25383C;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%; 
 }
 
 .autocomplete-items div {

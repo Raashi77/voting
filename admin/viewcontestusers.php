@@ -19,34 +19,27 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             $errorMember=$conn->error;
         }  
     }  
-
-    if(isset($_POST['block_voter']))
+    if(isset($_POST['delete_voter']))
     {
-        $id=$_POST['block_voter'];
-        $sql = "update voters set status=2 where id=$id";
+        $id=$_POST['delete_voter'];
+        $sql = "delete from voters where id=$id";
         if($conn->query($sql))
         {
-            $resMember=true;   
+            $sql = "update contest_users cu, voters v set cu.votes=CAST(cu.votes as UNSIGNED)-1 where v.cu_id=cu.id";
+            if($conn->query($sql))
+            {
+                $resMember=true;
+            }
+            else
+            {
+                $errorMember=$conn->error;
+            }
         }
         else
         {
             $errorMember=$conn->error;
         }
-    }  
-
-    if(isset($_POST['unblock_voter']))
-    {
-        $id=$_POST['unblock_voter'];
-        $sql = "update voters set status=1 where id=$id";
-        if($conn->query($sql))
-        {
-            $resMember=true;   
-        }
-        else
-        {
-            $errorMember=$conn->error;
-        }
-    }  
+    } 
 
     $sql="select * from voters where cu_id=$token";
     if($result=$conn->query($sql))
@@ -72,7 +65,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }      
 
-    $sql="select * from contest_users where id='$token'";
+    $sql="select u.name, u.email, u.ip_address, cu.votes, cu.id from contest_users cu, users u where cu.id='$token' and cu.u_id=u.id";
     if($result=$conn->query($sql))
     {
         if($result->num_rows)
@@ -176,6 +169,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                              <th>S.No.</th>
                              <th>Name</th>
                              <th>Email</th>
+                             <th>IP Address</th>
                              <th>Action</th>
                         </tr>
                     </thead>
@@ -193,6 +187,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
                                          <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
+                                         <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
                                          <td>
                                         <form method="post">
                                             <button  class="btn btn-danger" type="submit" name="delete_voter" value="<?=$detail['id']?>">
