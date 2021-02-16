@@ -26,6 +26,7 @@
     if(isset($_GET['token'])&&!empty($_GET['token']))
     {
         $date=date('Y-m-d');
+        $time = date('H:i');
         $token = $_GET['token'];
         switch ($token) {
             case '1':
@@ -33,7 +34,7 @@
                 $title ="All Contest";
                 break;
             case  "2":
-                $sql="SELECT * from contest where (start_date = '$date' and start_time <= '$time') or (start_date < '$date' and end_date > '$date') or (end_date = '$date' and end_time >= $time')";
+                echo $sql="SELECT * from contest where (start_date = '$date' and start_time <= '$time') or (start_date < '$date' and end_date > '$date') or (end_date = '$date' and end_time >= '$time')";
                 $title ="Ongoing Contests";
                 break; 
             case "3": 

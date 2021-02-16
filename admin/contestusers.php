@@ -70,15 +70,15 @@
         $token = $_GET['token'];
         switch ($token) {
             case '1':
-                $sql="SELECT cu.*, c.name as cname from contest_users cu, contest c where cu.c_id=c.id";
+                $sql="SELECT u.name,u.email,u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and u.id=cu.u_id";
                 $title ="All";
                 break;
             case  "2":
-                $sql="SELECT cu.*, c.name as cname from contest_users cu, contest c where cu.c_id=c.id where status=2 ";
+                $sql="SELECT u.name,u.email,u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and status=2 and u.id=cu.u_id ";
                 $title ="Blocked";
                 break; 
             case "3": 
-                $sql="SELECT cu.*, c.name as cname from contest_users cu, contest c where cu.c_id=c.id where status=1";
+                $sql="SELECT u.name,u.email,u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id where status=1 and u.id=cu.u_id";
                 $title="Unblocked";
                 break;
             default:
