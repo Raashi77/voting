@@ -21,15 +21,32 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             {
                 $resSubject = "files_left";
             }
-            $sql = "insert into contest_users(c_id, u_id, status) values('$token', '$USER_ID', 1)";
-            if($conn->query($sql))
+            $sql="select * from contest_users cu where cu.c_id='$token' and cu.u_id='$USER_ID'";
+            if($result=$conn->query($sql))
             {
-                $resMember=true;   
+                if($result->num_rows)
+                {
+                    $row=$result->fetch_assoc();
+                        $check = $row;
+                }
+            }
+            if(isset($check))
+            {
+
             }
             else
             {
-                $errorMember=$conn->error;
+                $sql = "insert into contest_users(c_id, u_id, status) values('$token', '$USER_ID', 1)";
+                if($conn->query($sql))
+                {
+                    $resMember=true;   
+                }
+                else
+                {
+                    $errorMember=$conn->error;
+                }
             }
+            
         }
         else
         {
