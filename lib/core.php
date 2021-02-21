@@ -716,9 +716,52 @@ function upload_images($files,$conn,$table,$id_col,$column,$id,$images,$url)
         return $status;
     }
 }
+function upload_images2($files,$conn,$table,$id_col,$column,$id,$images,$path)
+{
+     
+	if(isset($_FILES[$images]))
+    {
+        $extension=array("jpeg","jpg","png","gif","pdf","PDF");
+        foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
+        {
+            $file_name=$_FILES[$images]["name"][$key];
+            $file_tmp=$_FILES[$images]["tmp_name"][$key];
+            $ext=pathinfo($file_name,PATHINFO_EXTENSION);
+        
+            if(in_array($ext,$extension)) 
+            {
+                $filename=basename($file_name,$ext);
+                $newFileName=$filename.time().".".$ext;
+                if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
+                {
+                     $sql="update $table set $column='$path/$newFileName' where $id_col=$id";
+                    if($conn->query($sql)===true)
+                    {
+                        $status=true;
+                    }
+                    else
+                    {
+                          $conn->error;
+                        $status=false;
+                        break;
+                    }
+                }
+                else
+                {
+                    $status=false;
+                    break;
+                }
+            }
+            else 
+            {
+                array_push($error,"$file_name, ");
+            }
+        }
+        return $status;
+    }
+}
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {
-    print_r($_FILES);
 	if(isset($_FILES[$images]))
     {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4");

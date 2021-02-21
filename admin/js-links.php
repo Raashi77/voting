@@ -23,6 +23,9 @@
 
 <!--CKEditor-->
 <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+<!-- index -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  
 <script>
   $(function () {

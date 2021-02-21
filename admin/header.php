@@ -35,7 +35,7 @@ $NAME=explode(' ',$MASTER_DATA['name']);
   <title>Admin Panel | PW</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -56,8 +56,9 @@ $NAME=explode(' ',$MASTER_DATA['name']);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />    
   <!-- Google Font -->
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<style>
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
+    </head>
+<style>
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -105,7 +106,8 @@ $NAME=explode(' ',$MASTER_DATA['name']);
 }
 .card .nav.flex-column>li {
     border-bottom: 1px solid rgba(0,0,0,.125);
-    margin: 0;}
+    margin: 0;
+}
 .float-right {
     float: right!important;
 }

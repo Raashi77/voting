@@ -16,10 +16,19 @@
             $start_time=$_POST['start_time'];
             $end_time=$_POST['end_time'];
             $prize=$_POST['prize'];
-            $sql="insert into contest(name, description, start_date, start_time, end_date, end_time, prize, status) values('$name', '$description', 'start_date', '$start_time', '$end_date', '$end_time', '$prize', '1')";
+            $sql="insert into contest(name, description, start_date, start_time, end_date, end_time, prize, status) values('$name', '$description', '$start_date', '$start_time', '$end_date', '$end_time', '$prize', '1')";
             if($conn->query($sql))
             {
-               $resMember = "true";
+                $insert_id = $conn->insert_id;
+                $sql="insert into index_changes(c_id, title, subtitle, title_color, subtitle_color, header_image, body_title, body_title_color, body_subtitle, body_subtitle_color, btn_color, votes_color, name_color) values('$insert_id', 'VOTE FOR OUR NEWEST FLAVOUR!', 'Enter for a chance to win a years supply of ice cream !', '#5c0099', 'white', 'http://localhost/voting/admin/uploads/headingImg1.1613795167.jpg', 'CHOOSE YOUR FAVOURITE FLAVOUR !', '#a31aff', 'Calling all ice cream lovers! Heres your chance to pick the Icecream Shoppes next feature flavour.Choose one of the options below below to cast your vote - one lucky winner will recieve a years supply of Icecream hoppe ice cream. You can vote once a day. So dont forget to come back to this page and vote again to get more entries! GOOD LUCK!', 'black', '#ffd633', '#ff66ff', '#b84dff')";
+                if($conn->query($sql))
+                {
+                    $resMember=true;
+                }
+                else
+                {
+                    $errorMember=$conn->error;
+                }
             }
             else
             {

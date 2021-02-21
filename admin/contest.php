@@ -152,6 +152,7 @@
                                             <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
+                                            <a href="index_changes?token=<?=$detail['id']?>" class="btn btn-warning"> <i class="fa fa-eye">Edit Layout</i> </a>
                                         </form>
                                         </td>
                                     </tr>
