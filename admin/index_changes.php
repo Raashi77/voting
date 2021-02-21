@@ -4,7 +4,7 @@ require_once '../lib/core.php';
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
     $token=$_GET['token'];
-    $sql="select cu.*, v.video, u.name from contest_users cu, videos v, users u where cu.c_id='$token' and v.c_id='$token' and cu.u_id=v.u_id";
+    $sql="select cu.*, v.video, u.name from contest_users cu, videos v, users u where cu.c_id='$token' and v.c_id='$token' and cu.u_id=u.id and v.u_id=u.id";
     $result =  $conn->query($sql);
     if($result->num_rows)
     {
@@ -80,17 +80,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 $changes = $row;
         }
     }
-    $sql="select * from btn_color";
-    if($result =  $conn->query($sql))
-    {
-        if($result->num_rows)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                $btn[] = $row;
-            }    
-        }
-    }
 }
 
 ?>
@@ -109,12 +98,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <style>
-            .btn-success{
-                background color: green;
-                color: white;
-            }
-        </style>
     </head>
     
     <body>
