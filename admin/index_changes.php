@@ -44,7 +44,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         $body_title_color=$_POST['body_title_color'];
         $body_subtitle=$_POST['body_subtitle'];
         $body_subtitle_color=$_POST['body_subtitle_color'];
-        $sql="update index_changes set body_title='$body_title',body_title_color='$body_title_color',body_subtitle='$body_subtitle',body_subtitle_color='$body_subtitle_color' where c_id='$token'";
+        echo $sql="update index_changes set body_title='$body_title',body_title_color='$body_title_color',body_subtitle='$body_subtitle',body_subtitle_color='$body_subtitle_color' where c_id='$token'";
         if($conn->query($sql))
         {
             $resMember = true;
@@ -114,7 +114,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             
             <h6 id="foodModel_heading2" style="color:<?=$changes['body_title_color']?>"><?=$changes['body_title']?></h6>
             <div class="container" style="margin-bottom:30px;">
-                <p id="foodModel_mainPara" style="<?=$changes['body_subtitle_color']?>"><?=$changes['body_subtitle']?></p>
+                <p id="foodModel_mainPara" style="color: <?=$changes['body_subtitle_color']?>"><?=$changes['body_subtitle']?></p>
                 
                 <button title="" class="btn btn-primary" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button> 
                 
