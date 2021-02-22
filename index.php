@@ -1,5 +1,46 @@
 <?php
 require_once "lib/core.php";
+
+if(isset($_POST['vote']))
+{
+    $cu_id=$_POST['vote'];
+    $email=$_POST['email'];
+    $ip_address=get_client_ip();
+    if(isset($_GET['token'])&&!empty($_GET['token']))
+    {
+        $token=$_GET['token'];
+    }
+    $sql="select * from voters where cu_id='$cu_id' and c_id='$token' and ip_address='$ip_address'";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows>0)
+        {
+            $errorMember="You Have Already Voted";
+        }
+        else
+        {
+            $sql="insert into voters(email, ip_address, c_id, cu_id, status) values('$email', '$ip_address', '$token', '$cu_id', 1)";
+            if($conn->query($sql))
+            {
+                $resMember = true;
+            }
+            else
+            {
+                $errorMember=$conn->error;
+            }
+            $sql="update contest_users set votes=votes+1 where c_id='$token' and id='$cu_id'";
+            if($conn->query($sql))
+            {
+                $resMember = true;
+            }
+            else
+            {
+                $errorMember=$conn->error;
+            }
+        }
+    } 
+}
+
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
     $token=$_GET['token'];
@@ -23,6 +64,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }
 }
+
 ?>
 <html>
     <head>
@@ -42,7 +84,17 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     </head>
     
     <body>
+    
         <div>
+        <?php
+            if(isset($errorMember))
+            {
+        ?>
+                    <div class="alert alert-danger"><strong>Error! </strong><?=$errorMember?></div> 
+        <?php
+                    
+                }
+        ?>
             <img id="foodModel_headingImg" src="<?=$changes['header_image']?>" >
             <div id="foodModel_heading_Div">
                 <h5 id="foodModel_heading_h5" style="color: <?=$changes['title_color']?>;"> <?=$changes['title']?> </h5> 
@@ -71,13 +123,18 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     <div class="col-md-3" id="foodModel_card">
                         <img id="foodModel_img" src="images/icecream1.jpg" style="width:100%">
                         <div class="container">
-                        <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>"><?=$data['name']?></b></h6> 
-                        <p id="foodModel_cardPara" style="width:20%;"><?=$data['description']?></p> 
-                        <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;"><?=$data['votes']?></h6>
-                        <div class="input-group input-group-sm mb-3">
-                            <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                        <button id="foodModel_cardButton" type="button" class=" foodModel_cardButton form-control" style="width:10%;background-color:<?=$changes['btn_color']?>">Vote</button>
+                            <h6 id="foodModel_cardHeading">
+                                <b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>"><?=$data['name']?></b>
+                            </h6> 
+                            <p id="foodModel_cardPara" style="width:20%;"><?=$data['description']?></p> 
+                            <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;"><?=$data['votes']?>
+                            </h6>
+                            <form method="post">
+                                <div class="input-group input-group-sm mb-3">
+                                    <input type="email" name="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                </div>
+                                <button id="foodModel_cardButton" type="submit" name="vote" class=" foodModel_cardButton form-control" value="<?=$data['id']?>" style="width:10%;background-color:<?=$changes['btn_color']?>">Vote</button>
+                            </form>
                         </div>
                     </div>
         <?php
