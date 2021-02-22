@@ -16,10 +16,10 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     
     if(isset($_POST['edit_header']))
     {
-        $title=$_POST['title'];
-        $title_color=$_POST['title_color'];
-        $subtitle=$_POST['sub_title'];
-        $subtitle_color=$_POST['sub_title_color'];
+        $title=$conn->real_escape_string($_POST['title']);
+        $title_color=$conn->real_escape_string($_POST['title_color']);
+        $subtitle=$conn->real_escape_string($_POST['sub_title']);
+        $subtitle_color=$conn->real_escape_string($_POST['sub_title_color']);
         $sql="update index_changes set title='$title',subtitle='$subtitle',title_color='$title_color',subtitle_color='$subtitle_color' where c_id='$token'";
         if($conn->query($sql))
         {
@@ -40,10 +40,10 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     }
     if(isset($_POST['edit_body']))
     {
-        $body_title=$_POST['body_title'];
-        $body_title_color=$_POST['body_title_color'];
-        $body_subtitle=$_POST['body_subtitle'];
-        $body_subtitle_color=$_POST['body_subtitle_color'];
+        $body_title=$conn->real_escape_string($_POST['body_title']);
+        $body_title_color=$conn->real_escape_string($_POST['body_title_color']);
+        $body_subtitle=$conn->real_escape_string($_POST['body_subtitle']);
+        $body_subtitle_color=$conn->real_escape_string($_POST['body_subtitle_color']);
         echo $sql="update index_changes set body_title='$body_title',body_title_color='$body_title_color',body_subtitle='$body_subtitle',body_subtitle_color='$body_subtitle_color' where c_id='$token'";
         if($conn->query($sql))
         {
@@ -57,9 +57,9 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 
     if(isset($_POST['edit_basic_theme']))
     {
-        $name_color=$_POST['name_color'];
-        $btn_color=$_POST['btn_color'];
-        $vote_color=$_POST['vote_color'];
+        $name_color=$conn->real_escape_string($_POST['name_color']);
+        $btn_color=$conn->real_escape_string($_POST['btn_color']);
+        $vote_color=$conn->real_escape_string($_POST['vote_color']);
         $sql="update index_changes set name_color='$name_color', btn_color='$btn_color', votes_color='$vote_color' where c_id='$token'";
         if($conn->query($sql))
         {
@@ -85,7 +85,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 ?>
 <html>
     <head>
-        <title>Index</title>
+        <title>Contest Design</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">   
@@ -135,7 +135,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                         <div class="container">
                         <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>"><?=$data['name']?></b></h6> 
                         <p id="foodModel_cardPara" style="width:20%;"><?=$data['description']?></p> 
-                        <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;"><?=$data['votes']?></h6>
+                        <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;"><?=$data['votes']?></h6>
                         <div class="input-group input-group-sm mb-3">
                             <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
@@ -155,7 +155,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="container">
                   <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>">LONDON FOG</b></h6> 
                   <p id="foodModel_cardPara" style="width:20%;">A mix of Ear! Grey tea and creamy vanilla. Has a distinct black tea flavour while still being bright and slighty floral.</p> 
-                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;">1,977 Votes</h6>
+                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;">1,977 Votes</h6>
                   <div class="input-group input-group-sm mb-3">
                     <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
@@ -167,7 +167,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="container">
                   <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>">LONDON FOG</b></h6> 
                   <p id="foodModel_cardPara" style="width:20%;">A mix of Ear! Grey tea and creamy vanilla. Has a distinct black tea flavour while still being bright and slighty floral.</p> 
-                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;">1,977 Votes</h6>
+                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;">1,977 Votes</h6>
                   <div class="input-group input-group-sm mb-3">
                     <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
@@ -179,7 +179,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="container">
                   <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>">LONDON FOG</b></h6> 
                   <p id="foodModel_cardPara" style="width:20%;">A mix of Ear! Grey tea and creamy vanilla. Has a distinct black tea flavour while still being bright and slighty floral.</p> 
-                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;">1,977 Votes</h6>
+                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;">1,977 Votes</h6>
                   <div class="input-group input-group-sm mb-3">
                     <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
@@ -193,7 +193,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="container">
                   <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>">LONDON FOG</b></h6> 
                   <p id="foodModel_cardPara" style="width:20%;">A mix of Ear! Grey tea and creamy vanilla. Has a distinct black tea flavour while still being bright and slighty floral.</p> 
-                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;">1,977 Votes</h6>
+                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;">1,977 Votes</h6>
                   <div class="input-group input-group-sm mb-3">
                     <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
@@ -205,7 +205,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="container">
                   <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>">LONDON FOG</b></h6> 
                   <p id="foodModel_cardPara" style="width:20%;">A mix of Ear! Grey tea and creamy vanilla. Has a distinct black tea flavour while still being bright and slighty floral.</p> 
-                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;">1,977 Votes</h6>
+                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;">1,977 Votes</h6>
                   <div class="input-group input-group-sm mb-3">
                     <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
@@ -217,7 +217,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <div class="container">
                   <h6 id="foodModel_cardHeading"><b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>">LONDON FOG</b></h6> 
                   <p id="foodModel_cardPara" style="width:20%;">A mix of Ear! Grey tea and creamy vanilla. Has a distinct black tea flavour while still being bright and slighty floral.</p> 
-                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['vote_color']?>;">1,977 Votes</h6>
+                  <h6 id="foodModel_cardVotes" class="votecolor" style="margin-right: 82%; color:<?=$changes['votes_color']?>;">1,977 Votes</h6>
                   <div class="input-group input-group-sm mb-3">
                     <input type="email" class="form-control" placeholder="Email" style="width:20%;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
@@ -393,7 +393,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                 <div class="col-md-6"> 
                                     <div class="form-group">
                                         <label>Vote Color</label><br>   
-                                        <input type="color"  id="vote_color" name="vote_color" value="<?=$changes['vote_color']?>" class="form-control"  required>  
+                                        <input type="color"  id="vote_color" name="vote_color" value="<?=$changes['votes_color']?>" class="form-control"  required>  
                                     </div> 
                                 </div>
                             </div> 
