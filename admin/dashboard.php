@@ -65,7 +65,7 @@ if($result=$conn->query($sql))
 
 $date=date('Y-m-d');
 $time = date('H:i');
-$sql="SELECT * from contest where (start_date = '$date' and start_time > '$time') or (start_date > '$date')";
+$sql="SELECT * from contest where (start_date = '$date' and start_time <= '$time') or (start_date < '$date' and end_date > '$date') or (end_date = '$date' and end_time >= '$time')";
 if($result=$conn->query($sql))
 {
     if($result->num_rows>0)
@@ -169,7 +169,7 @@ if($result=$conn->query($sql))
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header border-transparent" style="background-color: #343a40;">
-                        <h3 class="card-title" style="color: white;">Upcoming Contests</h3>
+                        <h3 class="card-title" style="color: white;">OnGoing Contests</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
