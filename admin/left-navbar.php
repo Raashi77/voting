@@ -10,18 +10,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
          <div class="image">
-            <form enctype="multipart/form-data" action="image_upload_demo_submit.php" method="post" name="image_upload_form" id="image_upload_form">
+           
                <div id="imgArea" class="pull-left image"> 
                   <div class="profileImage"><?=ucfirst($FNAME[0]).ucfirst($LNAME[0])?></div>
-                  <div class="progressBar">
-                     <div class="bar"></div>
-                     <div class="percent">0%</div>
-                  </div>
-                  <div id="imgChange"><span><i class="fa fa-edit"></i></span>
-                     <input type="file" accept="image/*" name="image_upload_file" id="image_upload_file">
-                  </div>
+                  
                </div>
-            </form>
          </div>
          <div class="pull-left info">
             <p style="margin-left: 5px; margin-top: 7px;">Master Admin</p>
