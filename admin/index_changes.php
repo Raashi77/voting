@@ -44,7 +44,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         $body_title_color=$conn->real_escape_string($_POST['body_title_color']);
         $body_subtitle=$conn->real_escape_string($_POST['body_subtitle']);
         $body_subtitle_color=$conn->real_escape_string($_POST['body_subtitle_color']);
-        echo $sql="update index_changes set body_title='$body_title',body_title_color='$body_title_color',body_subtitle='$body_subtitle',body_subtitle_color='$body_subtitle_color' where c_id='$token'";
+        $sql="update index_changes set body_title='$body_title',body_title_color='$body_title_color',body_subtitle='$body_subtitle',body_subtitle_color='$body_subtitle_color' where c_id='$token'";
         if($conn->query($sql))
         {
             $resMember = true;

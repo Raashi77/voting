@@ -49,7 +49,7 @@
          </li>
          <li class="treeview">
             <a href="#">
-            <i class="fa fa-users"></i>
+            <i class="fa fa-user-plus"></i>
             <span>Users</span>
             <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
@@ -77,7 +77,11 @@
                <li><a href="contestusers?token=3"><i class="fa fa-circle-o"></i>Unblocked </a></li>
             </ul>
          </li>
-
+         <li>
+           <a href="songs">
+                <i class="fa fa-music"></i><span>Songs</span>
+            </a>
+         </li>
          <li>
            <a href="logout">
                 <i class="fa fa-sign-out"></i><span>Logout</span>

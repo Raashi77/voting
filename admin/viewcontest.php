@@ -29,6 +29,20 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             $errorMember=$conn->error;
         }
     }  
+    if(isset($_POST['delete_song']))
+    {
+        $id=$_POST['delete_song'];
+        $sql = "delete from contest_songs where id=$id";
+        
+        if($conn->query($sql))
+        {
+           $resMember=true;
+        }
+        else
+        {
+            $errorMember=$conn->error;
+        }
+    }  
     if(isset($_POST['delete_voter']))
     {
         $id=$_POST['delete_voter'];
@@ -131,6 +145,17 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             while($row=$result->fetch_assoc())
             {
                 $voters[] = $row;
+            }
+        }
+    }
+    $sql="select * from contest_songs where c_id='$token'";
+    if($result=$conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            while($row=$result->fetch_assoc())
+            {
+                $songs[] = $row;
             }
         }
     }
@@ -341,6 +366,60 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                          <td>
                                         <form method="post">
                                             <button  class="btn btn-danger" type="submit" name="delete_voter" value="<?=$detail['id']?>">
+                                                <i class="fa fa-trash-o"></i> Delete
+                                            </button>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                 
+                            <?php
+                                $i++;
+                                    
+                                            
+                                }
+                            }
+                         ?>
+          
+                    </tbody>
+                </table>
+                       
+            </div>
+            <!-- /.box-footer-->
+        </div> 
+        
+        <br>
+        <h2>Songs</h2>
+      
+        <a href="contestsongadd?token=<?=$token?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        <br>
+        
+        <div class="box">
+              <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead style="background-color: #212529; color: white;">
+                        <tr>
+                             <th>S.No.</th>
+                             <th>Name</th>
+                             <th>Song</th>
+                             <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+ 
+                    
+                     <?php 
+                            if (isset($songs)) 
+                            {
+                                $i = 1;
+                                foreach ($songs as $detail) 
+                                {     
+                     ?> 
+                                     <tr> 
+                                         <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
+                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
+                                         <td><td><audio controls="controls" src="<?=$detail['song']?>"></audio></td></td>
+                                        <form method="post">
+                                            <button  class="btn btn-danger" type="submit" name="delete_song" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
                                         </form>

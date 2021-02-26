@@ -3,43 +3,26 @@
     require_once 'navbar.php';
     require_once 'left-navbar.php';
     
-    if(isset($_GET['token'])&&!empty($_GET['token']))
+    $date=date('Y-m-d');
+    $time = date('H:i');
+    $sql="SELECT c.* from contest c where (c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')";
+    $result =  $conn->query($sql);
+    if($result->num_rows)
     {
-        $date=date('Y-m-d');
-        $time = date('H:i');
-        $token = $_GET['token'];
-        switch ($token) 
+        while($row = $result->fetch_assoc())
         {
-            case "2": 
-                $sql="SELECT c.* from contest c where ((c.start_date = '$date' and c.start_time > '$time') or (c.start_date > '$date')) group by c.id";
-                $title="Upcoming Contest";
-                break;
-            case "3": 
-                $sql="SELECT c.* from contest c, contest_users cu where c.end_date < '$date' and cu.c_id=c.id and cu.u_id='$USER_ID' group by c.id";
-                $title="Completed Contest";
-                break;
-            case "4": 
-                $sql="SELECT c.* from contest c, contest_users cu where cu.c_id=c.id and cu.u_id='$USER_ID' group by c.id";
-                $title="Enrolled Contest";
-                break;
-            default:
-                $title="INVALID REQUEST";
-                break;
+            $contest[] = $row;
         }
-        
-        $result =  $conn->query($sql);
-        if($result->num_rows)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                $contest[] = $row;
-            }
-        }
-
     }
-    else
+
+    echo $sql="SELECT c.* from contest c, contest_users cu where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and cu.c_id=c.id and cu.u_id='$USER_ID'";
+    $result =  $conn->query($sql);
+    if($result->num_rows)
     {
-        $title="INVALID REQUEST";
+        while($row = $result->fetch_assoc())
+        {
+            $notenroll[] = $row;
+        }
     }
 
 ?>
@@ -55,8 +38,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="font-weight: 900;">
-            <?=$title?>
-            <?php print_r($on_contest); ?>
+        Ongoing Contests
+        <?php print_r($notenroll); ?>
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -120,6 +103,30 @@
                                          <td style="  text-align: center; " id="end_time<?=$i?>"><?=$detail['end_time'];?></td>
                                          <td style="  text-align: center; " id="prize<?=$i?>"><?=$detail['prize'];?></td>
                                          <td>
+                                        <form method="post">
+                                            <?php
+                                            if(isset($notenroll))
+                                            {
+                                                foreach($notenroll as $data)
+                                                {
+                                                    if($data[id]==$detail['id'])
+                                                    {
+                                                        ?>
+                                                        <a href="#" class="btn btn-success"> <i class="fa fa-check ">Enroll</i> </a>
+                                                        <a href="video?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-check ">Video</i> </a>
+                                                        <?php
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                ?>
+                                                <a href="video?token=<?=$detail['id']?>" class="btn btn-success"> <i class="fa fa-check ">Enrolled</i> </a>
+                                                <?php
+                                            }
+                                            ?>
+                                        </form>
+                                        </td>
                                     </tr>
                                  
                             <?php

@@ -5,10 +5,10 @@
  
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if(isset($_POST['remove']))
+        if(isset($_POST['delete']))
         {
-            $id=$_POST['remove'];
-            $sql = "delete from contest_users where id=$id"; 
+            $id=$_POST['delete'];
+            $sql = "delete from songs where id=$id"; 
             if($conn->query($sql))
             {
                 
@@ -23,7 +23,7 @@
         if(isset($_POST['block']))
         {
             $id=$_POST['block'];
-            $sql = "update contest_users set status=2 where id=$id";
+            $sql = "update songs set status=2 where id=$id";
             if($conn->query($sql))
             {
                 $resMember=true;   
@@ -37,7 +37,7 @@
         if(isset($_POST['unblock']))
         {
             $id=$_POST['unblock'];
-            $sql = "update contest_users set status=1 where id=$id";
+            $sql = "update songs set status=1 where id=$id";
             if($conn->query($sql))
             {
                 $resMember=true;   
@@ -49,34 +49,14 @@
         }  
     }
     
-    
-    if(isset($_GET['token'])&&!empty($_GET['token']))
+    $sql="SELECT * from songs";
+    if($result =  $conn->query($sql))
     {
-        $token = $_GET['token'];
-        switch ($token) {
-            case '1':
-                $sql="SELECT u.name,u.email, cu.status, u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and u.id=cu.u_id";
-                $title ="All";
-                break;
-            case  "2":
-                $sql="SELECT u.name,u.email, cu.status, u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and cu.status=2 and u.id=cu.u_id ";
-                $title ="Blocked";
-                break; 
-            case "3": 
-                $sql="SELECT u.name,u.email, cu.status, u.ip_address, cu.votes,c.name as cname,cu.id from contest_users cu, contest c,users u where cu.c_id=c.id and cu.status=1 and u.id=cu.u_id";
-                $title="Unblocked";
-                break;
-            default:
-                $title="INVALID REQUEST";
-                break;
-        }
-        
-        $result =  $conn->query($sql);
         if($result->num_rows)
         {
             while($row = $result->fetch_assoc())
             {
-                $contest_users[] = $row;
+                $songs[] = $row;
             }
         }
 
@@ -99,11 +79,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="font-weight: 900;">
-            <?=$title?>
+            Songs
         </h1>
         <ol class="breadcrumb">
             <li>
                 <div class="pull-right">
+                    <a href="songadd" class="btn btn-primary"><i class="fa fa-plus"></i></a>
                     <a href="" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Rebuild"><i class="fa fa-refresh"></i></a>
                 </div>
             </li>
@@ -136,10 +117,7 @@
                         <tr>
                              <th>S.No.</th>
                              <th>Name</th>
-                             <th>Email</th>
-                             <th>Votes</th>
-                             <th>IP Address</th>
-                             <th>Contest</th>
+                             <th>Song</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -147,24 +125,20 @@
  
                     
                      <?php 
-                            if (isset($contest_users)) 
+                            if (isset($songs)) 
                             {
                                 $i = 1;
-                                foreach ($contest_users as $detail) 
+                                foreach ($songs as $detail) 
                                 {     
                      ?> 
                                      <tr> 
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
-                                         <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
-                                         <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
-                                         <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
-                                         <td style="  text-align: center; " id="cname<?=$i?>"><?=$detail['cname'];?></td>
+                                         <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
                                          <td>
                                         <form method="post">
-                                            <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
-                                            <button  class="btn btn-danger" type="submit" name="remove" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Remove Participant
+                                            <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
+                                                <i class="fa fa-trash-o"></i> Delete
                                             </button>
                                         <?php
                                             if($detail['status']==1) 
@@ -217,4 +191,5 @@
 <?php
     require_once 'js-links.php';
 ?>
+
 
