@@ -3,69 +3,23 @@
     require_once 'navbar.php';
     require_once 'left-navbar.php';
  
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        if(isset($_POST['delete']))
+      
+    if(isset($_GET['token'])&&!empty($_GET['token']))
+    {    
+        $token=$_GET['token'];
+        echo $sql="SELECT s.* from contest_songs cs, songs s where cs.c_id='$token' and cs.s_id=s.id";
+        if($result =  $conn->query($sql))
         {
-            $id=$_POST['delete'];
-            $sql = "delete from songs where id=$id"; 
-            if($conn->query($sql))
+            if($result->num_rows)
             {
-                
-                $resMember=true;
-            } 
-            else
-            {
-                $errorMember=$conn->error;
-            }  
-        }  
+                while($row = $result->fetch_assoc())
+                {
+                    $songs[] = $row;
+                }
+            }
 
-        if(isset($_POST['block']))
-        {
-            $id=$_POST['block'];
-            $sql = "update songs set status=2 where id=$id";
-            if($conn->query($sql))
-            {
-                $resMember=true;   
-            }
-            else
-            {
-                $errorMember=$conn->error;
-            }
-        }  
-
-        if(isset($_POST['unblock']))
-        {
-            $id=$_POST['unblock'];
-            $sql = "update songs set status=1 where id=$id";
-            if($conn->query($sql))
-            {
-                $resMember=true;   
-            }
-            else
-            {
-                $errorMember=$conn->error;
-            }
-        }  
-    }
-    
-    $sql="SELECT * from songs";
-    if($result =  $conn->query($sql))
-    {
-        if($result->num_rows)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                $songs[] = $row;
-            }
         }
-
     }
-    else
-    {
-        $title="INVALID REQUEST";
-    }
- 
 ?>
 
 <style>
@@ -79,7 +33,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="font-weight: 900;">
-            Songs
+            Contest Songs
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -117,8 +71,7 @@
                         <tr>
                              <th>S.No.</th>
                              <th>Name</th>
-                             <th>Song</th>
-                            <th>Action</th>
+                             <th>Songs</th>
                         </tr>
                     </thead>
                      <tbody> 
@@ -135,31 +88,6 @@
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
                                          <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
-                                         <td>
-                                        <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Delete
-                                            </button>
-                                        <?php
-                                            if($detail['status']==1) 
-                                            {       
-                                        ?>
-                                            <button  class="btn btn-warning" type="submit" name="block" value="<?=$detail['id']?>">
-                                                <i class="fa fa-ban"></i> Block
-                                            </button>
-                                        <?php
-                                            }
-                                            else if($detail['status']==2) 
-                                            {       
-                                        ?>
-                                            <button  class="btn btn-success" type="submit" name="unblock" value="<?=$detail['id']?>">
-                                                <i class="fa fa-check"></i> Unblock
-                                            </button>
-                                        <?php
-                                            }
-                                        ?>
-                                        </form>
-                                        </td>
                                     </tr>
                                  
                             <?php

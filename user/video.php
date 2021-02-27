@@ -117,7 +117,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 $counter=0;
                 foreach($videos as $data)
                 {
-
         ?>
                     <div id="data<?=$counter?>">
                     <iframe width="560" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

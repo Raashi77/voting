@@ -48,15 +48,12 @@
             </a>
             
             <ul class="treeview-menu">
-               <li><a href="ongoing_contest"><i class="fa fa-circle-o"></i>Ongoing</a></li>
+               <li><a href="contest?token=1"><i class="fa fa-circle-o"></i>Ongoing</a></li>
                <li><a href="contest?token=2"><i class="fa fa-circle-o"></i>Upcoming </a></li>
                <li><a href="contest?token=3"><i class="fa fa-circle-o"></i>Completed</a></li>
                <li><a href="contest?token=4"><i class="fa fa-circle-o"></i>Enrolled</a></li>
             </ul>
          </li>
-         
-
-         
          <li>
            <a href="logout">
                 <i class="fa fa-sign-out"></i><span>Logout</span>
