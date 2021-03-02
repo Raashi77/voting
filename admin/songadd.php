@@ -39,7 +39,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-          User Details
+          Add Songs
         </h1>
     </section>
     <section class="content">
@@ -93,26 +93,4 @@
 <?php
     require_once 'js-links.php';
 ?>
-
-<script>
-    var counter=1;
-    function addFilesField()
-    {
-        var inhtml  = `<div class="row" style="margin-top:20px">    
-                            <div class="col-md-10">
-                                <input   type="file" id='projectfile${counter}' name="projectFile[]" class="form-control"/>
-                            </div> 
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-danger" onclick="removeField('projectfile${counter}')"><i class="fa fa-trash"></i></button>
-                            </div> 
-                        </div>`;
-        $("#filesDiv").append(inhtml);
-        counter++;
-
-    }
-    function removeField(id)
-    {
-            $("#"+id).parent().parent().remove();
-            
-    }
-</script>
+ 

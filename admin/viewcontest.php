@@ -115,6 +115,25 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
     }    
 
+    if(isset($_POST['add_songs']))
+        {
+            $songs=$_POST['songs'];
+            $sql="insert into contest_songs(c_id, s_id, status) values";
+            foreach($songs as $data)
+            {
+                $sql .= "('$token', '$data',  1),";
+            }
+                  $sql=rtrim($sql, ',');
+            if($conn->query($sql))
+            {
+                $resMember = true;
+            }
+            else
+            {
+                $errorMember = $conn->error;
+            }
+        } 
+
     $sql="select u.email, u.name, u.ip_address, cu.votes, cu.id, cu.status from contest_users cu, users u where cu.c_id='$token' and cu.u_id=u.id";
     if($result=$conn->query($sql))
     {
@@ -148,14 +167,14 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             }
         }
     }
-    $sql="select * from contest_songs where c_id='$token'";
+    $sql="select s.*,cs.id as c_id from contest_songs cs , songs s  where c_id='$token' and cs.s_id=s.id";
     if($result=$conn->query($sql))
     {
         if($result->num_rows)
         {
             while($row=$result->fetch_assoc())
             {
-                $songs[] = $row;
+                $contest_songs[] = $row;
             }
         }
     }
@@ -175,6 +194,21 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                    
 
 }
+
+$sql="select * from songs";
+    if($result = $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $allsongs[]=$row;
+            }
+            
+        }   
+    }
+
+    // print_r($songs);
          
 ?>
 <div class="content-wrapper">
@@ -390,7 +424,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         <br>
         <h2>Songs</h2>
       
-        <a href="contestsongadd?token=<?=$token?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        <button data-toggle="modal" data-target="#modal-default" class="btn btn-primary"><i class="fa fa-plus"></i></button>
         <br>
         
         <div class="box">
@@ -408,19 +442,20 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
  
                     
                      <?php 
-                            if (isset($songs)) 
+                            if (isset($contest_songs)) 
                             {
                                 $i = 1;
-                                foreach ($songs as $detail) 
+                                foreach ($contest_songs as $detail) 
                                 {     
                      ?> 
                                      <tr> 
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                         <td><td><audio controls="controls" src="<?=$detail['song']?>"></audio></td></td>
+                                         <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
+                                         <td>
                                         <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete_song" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Delete
+                                            <button  class="btn btn-danger" type="submit" name="delete_song" value="<?=$detail['c_id']?>">
+                                                <i class="fa fa-trash-o"></i> Remove Song
                                             </button>
                                         </form>
                                         </td>
@@ -522,7 +557,57 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 
 
 <div class="control-sidebar-bg"></div>
-    
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Add Song</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5"> 
+                        <div class="form-group">
+                            <label>Songs</label><br>   
+                            <select class="form-control selectpicker" name="songs[]" id="songs" multiple data-live-search="true">
+                            <?php
+                                if(isset($allsongs))
+                                { 
+                                    foreach($allsongs as $data)
+                                    {
+                                        
+                            ?>
+                                        <option value=<?=$data['id']?> ><?=$data['name']?></option>
+                                        
+
+                                        
+                            <?php
+                                    }
+                                }
+                            ?>
+                                
+                            </select> 
+                        </div> 
+                        
+                    </div>  
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" name="add_songs" class="btn btn-primary" style="margin-top:10" value="">Add</button>
+              
+
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>  
   <?php
     require_once 'js-links.php';
   ?>

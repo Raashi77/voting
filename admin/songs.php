@@ -46,7 +46,51 @@
             {
                 $errorMember=$conn->error;
             }
-        }  
+        } 
+        
+        if(isset($_POST['add']))
+        {
+            $name=$_POST['name'];
+            $sql="insert into songs(name, status) values('$name', '1')";
+            if($conn->query($sql))
+            {
+                $insert_id = $conn->insert_id;
+                if(upload_audio($_FILES,$conn,"songs","id","song",$insert_id,"projectFile",$website_link."/admin/uploads"))
+                {
+                    $resMember = "all_true";
+                }else
+                {
+                    $resMember = "files_left";
+                }
+                 
+            }
+            else
+            {
+                $errorMember=$conn->error;
+            }
+        }
+        
+        if(isset($_POST['edit']))
+        {
+            $name=$_POST['ename'];
+            $id = $_POST['eid'];
+            $sql="update  songs set  name='$name' where id='$id'";
+            if($conn->query($sql))
+            { 
+                if(upload_audio($_FILES,$conn,"songs","id","song",$id,"projectFile",$website_link."/admin/uploads"))
+                {
+                    $resMember = "all_true";
+                }else
+                {
+                    $resMember = "files_left";
+                }
+                 
+            }
+            else
+            {
+                $errorMember=$conn->error;
+            }
+        }
     }
     
     $sql="SELECT * from songs";
@@ -84,7 +128,7 @@
         <ol class="breadcrumb">
             <li>
                 <div class="pull-right">
-                    <a href="songadd" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                    <button data-toggle="modal" data-target="#modal-default" class="btn btn-primary"><i class="fa fa-plus"></i></button>
                     <a href="" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Rebuild"><i class="fa fa-refresh"></i></a>
                 </div>
             </li>
@@ -140,24 +184,10 @@
                                             <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
-                                        <?php
-                                            if($detail['status']==1) 
-                                            {       
-                                        ?>
-                                            <button  class="btn btn-warning" type="submit" name="block" value="<?=$detail['id']?>">
-                                                <i class="fa fa-ban"></i> Block
+                                            <button  class="btn btn-success" onclick="setEditValues(<?=$detail['id']?>,<?=$i?>)" type="button" data-toggle="modal" data-target="#modal-edit" >
+                                                <i class="fa fa-edit"></i> Edit
                                             </button>
-                                        <?php
-                                            }
-                                            else if($detail['status']==2) 
-                                            {       
-                                        ?>
-                                            <button  class="btn btn-success" type="submit" name="unblock" value="<?=$detail['id']?>">
-                                                <i class="fa fa-check"></i> Unblock
-                                            </button>
-                                        <?php
-                                            }
-                                        ?>
+
                                         </form>
                                         </td>
                                     </tr>
@@ -183,7 +213,109 @@
 
 
   <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->       
+       immediately after the control sidebar -->   
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Add Song</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        
+                        <div class="col-md-5"> 
+                            <div class="form-group">
+                                <label>Name</label><br>   
+                                <input type="text"  id="name" name="name" class="form-control" required>  
+                            </div> 
+                        </div>
+
+                    </div> 
+                    <div class="row" style="margin-bottom:20px">    
+                        <div class="col-md-12"> 
+                            <div class="form-group">
+                                <label>Audio File</label><br>  
+                                <button type="button" class="btn btn-success" onclick="$('#projectfile').click()"><i class="fa fa-plus"></i></button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" id="filesDiv"> 
+                                 
+                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="modal-footer">
+                <button type="submit" name="add" class="btn btn-primary" style="margin-top:10" value="">Add</button>
+              
+
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>  
+<div class="modal fade" id="modal-edit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Edit Song</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        
+                        <div class="col-md-5"> 
+                            <div class="form-group">
+                                <label>Name</label><br>   
+                                <input type="text"  id="ename" name="ename" class="form-control" required>  
+                            </div> 
+                        </div>
+
+                    </div> 
+                    <div class="row" style="margin-bottom:20px">    
+                        <div class="col-md-12"> 
+                            <div class="form-group">
+                                <label>Audio File</label><br>  
+                                <button type="button" class="btn btn-success" onclick="$('#projectfile').click()"><i class="fa fa-plus"></i></button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" id="filesDiv"> 
+                        <input type="hidden" id="eid" name="eid"/>
+                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="modal-footer">
+                <button type="submit" name="edit" class="btn btn-primary" style="margin-top:10" value="">Add</button>
+              
+
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>  
+  
 <div class="control-sidebar-bg"></div>
 
   
@@ -192,4 +324,10 @@
     require_once 'js-links.php';
 ?>
 
-
+<script type="text/javascript">
+    function setEditValues(id,counter)
+    {
+        $("#ename").val($("#name"+counter).html());
+        $("#eid").val(id);
+    }
+</script>

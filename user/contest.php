@@ -205,7 +205,57 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->       
 <div class="control-sidebar-bg"></div>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Add Song</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5"> 
+                        <div class="form-group">
+                            <label>Songs</label><br>   
+                            <select class="form-control selectpicker" name="songs[]" id="songs" multiple data-live-search="true">
+                            <?php
+                                if(isset($allsongs))
+                                { 
+                                    foreach($allsongs as $data)
+                                    {
+                                        
+                            ?>
+                                        <option value=<?=$data['id']?> ><?=$data['name']?></option>
+                                        
+
+                                        
+                            <?php
+                                    }
+                                }
+                            ?>
+                                
+                            </select> 
+                        </div> 
+                        
+                    </div>  
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" name="add_songs" class="btn btn-primary" style="margin-top:10" value="">Add</button>
+              
+
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>  
   
 
 <?php
