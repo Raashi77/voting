@@ -41,15 +41,16 @@
 
       }
            
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true
-    })
+    // $('#example1').DataTable()
+    // $('#example2').DataTable({
+    //   'paging'      : true,
+    //   'lengthChange': true,
+    //   'searching'   : true,
+    //   'ordering'    : true,
+    //   'info'        : true,
+    //   'autoWidth'   : true
+    // })
+    $("#image-pc-lib-imageInput").change(insertImage)
   })
 </script>
 
@@ -62,9 +63,6 @@
         data: {val: val}
     });
 });
-</script>
-
-<script>
 
     //file type validation
    
@@ -101,6 +99,73 @@ $('#image_upload_form').ajaxForm({
 
 });
 
+
+function categoryAdd() {
+    $('#btn_add_img').style.visibility = 'hidden';
+    $('#image_plus').style.visibility = 'visible';
+    $('#category').style.visibility = 'visible';
+}
+
+function insertImage() {
+    var fd = new FormData();
+    var files = $('#image-pc-lib-imageInput')[0].files[0];
+    var category ='<?=image_category()?>'
+    fd.append('images', files);
+    fd.append('u_id', '<?=$MASTER_ID?>')
+    fd.append('category', category);
+
+    $.ajax({
+        type: "POST",
+        url: "upload_blog_imageAjax.php",
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            if (data != "error") {
+                if ($("#ajax-added-lib-row").length > 0) {
+                    var inhtml = `<div class="col-md-4 col-sm-4 col-xs-6">
+                                  <a onclick="embbedImage('` + data.trim() + `')">
+                                      <img src="` + data.trim() + `" width="100%"/>
+                                  </a> 
+                              </div>`
+                    $("#ajax-added-lib-row").prepend(inhtml);
+                    console.log(inhtml);
+                } else {
+                    var inhtml = `<div class="row" id="ajax-added-lib-row" style="margin-bottom:20px">
+                                  <div class="col-md-4 col-sm-4 col-xs-6">
+                                      <a onclick="embbedImage('` + data.trim() + `')">
+                                          <img src="` + data.trim() + `" width="100%"/>
+                                      </a> 
+                                  </div>
+                                </div>`
+                    $("#image-pc-lib-body").prepend(inhtml);
+                    console.log(inhtml);
+                }
+            }
+        }
+    });
+}
+
+function deleteLibImage(imageId, divId, imagePath) {
+    $.ajax({
+        type: "POST",
+        url: "upload_blog_imageAjax.php",
+        data: {
+            deleteImage: true,
+            imageId: imageId,
+            imagePath: imagePath
+        },
+        success: function(data) {
+            if (data.trim() == "ok") {
+                if ($("#" + divId).parent().parent().parent().children().length == 1) {
+                    $("#" + divId).parent().parent().parent().remove();
+                } else {
+                    $("#" + divId).parent().remove();
+                }
+            }
+        }
+    });
+}
     
 </script>
 </body>

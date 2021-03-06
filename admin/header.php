@@ -26,6 +26,16 @@ $NAME=explode(' ',$MASTER_DATA['name']);
 
 //user_auth($type,$subadmin);
 
+$sql="select * from gallery g";
+$res=$conn->query($sql);
+if($res->num_rows > 0)
+{
+    while($row=$res->fetch_assoc())
+    {
+        $user_image_gallery[]=$row;
+    } 
+}
+
 ?>
 <!DOCTYPE html>
 <html>

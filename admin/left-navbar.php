@@ -31,6 +31,50 @@
             </a>
          </li>
          
+         
+         <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-rss"></i>
+                    <span>Blogs Management </span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="blog?token=1">
+                            <i class="fa fa-circle"></i>Pending Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog?token=2">
+                            <i class="fa fa-circle"></i>Verified Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog?token=3">
+                            <i class="fa fa-circle"></i>Blocked Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog?token=4">
+                            <i class="fa fa-circle"></i>Rejected Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog?token=5">
+                            <i class="fa fa-circle"></i>Archived Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog_categories">
+                            <i class="fa fa-circle"></i>Blog Categories
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
          <li class="treeview">
             <a href="#">
             <i class="fa fa-tasks"></i>

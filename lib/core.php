@@ -687,7 +687,6 @@ function get_client_ip() {
         $ipaddress = 'UNKNOWN';
     return $ipaddress;
 }
- 
 
 //distance matrix
  

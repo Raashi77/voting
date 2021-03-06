@@ -146,13 +146,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
                                          <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
-                                         <!-- <td>
-                                        <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete_song" value="<?=$detail['c_id']?>">
-                                                <i class="fa fa-trash-o"></i> Remove Song
-                                            </button>
-                                        </form>
-                                        </td> -->
                                     </tr>
                                  
                             <?php

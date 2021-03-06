@@ -48,10 +48,10 @@
             </a>
             
             <ul class="treeview-menu">
-               <li><a href="contest?token=1"><i class="fa fa-circle-o"></i>Ongoing</a></li>
-               <li><a href="contest?token=2"><i class="fa fa-circle-o"></i>Upcoming </a></li>
-               <li><a href="contest?token=3"><i class="fa fa-circle-o"></i>Completed</a></li>
-               <li><a href="contest?token=4"><i class="fa fa-circle-o"></i>Enrolled</a></li>
+               <li><a href="ongoing"><i class="fa fa-circle-o"></i>Ongoing</a></li>
+               <li><a href="upcoming"><i class="fa fa-circle-o"></i>Upcoming </a></li>
+               <li><a href="contest?token=1"><i class="fa fa-circle-o"></i>Completed</a></li>
+               <li><a href="contest?token=2"><i class="fa fa-circle-o"></i>Enrolled</a></li>
             </ul>
          </li>
          <li>
