@@ -127,6 +127,21 @@
             </a>
          </li>
          <li>
+            <a href="about">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> <span>About</span>
+            </a>
+         </li>
+         <li>
+            <a href="features">
+            <i class="fa fa-image" aria-hidden="true"></i> <span>Features</span>
+            </a>
+         </li>
+         <li>
+            <a href="home_slider">
+            <i class="fa fa-image" aria-hidden="true"></i> <span>Home Slider</span>
+            </a>
+         </li>
+         <li>
            <a href="logout">
                 <i class="fa fa-sign-out"></i><span>Logout</span>
             </a>
