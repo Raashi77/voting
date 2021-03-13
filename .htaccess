@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^login$ index.php
+RewriteRule ^contest([\d-]+)/?$ contest?token=$1   [L,QSA]
+RewriteRule ^viewBlog([\d-]+)/?$ view_blog?token=$1   [L,QSA]
+RewriteRule ^([^\.]+)$ $1.php
+ErrorDocument 404 /404.php

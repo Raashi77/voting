@@ -7,25 +7,19 @@
         $email=$_POST['email'];
         $phn=$_POST['phn'];
         $ad=$conn->real_escape_string($_POST['address']);
+        $web_title=$conn->real_escape_string($_POST['web_title']);
         $loc=$conn->real_escape_string($_POST['location']);
         $msg = $conn->real_escape_string($_POST['message']);
-        $about=$conn->real_escape_string($_POST['about']);
+        $about_text=$conn->real_escape_string($_POST['about_text']);
         $about_us=$conn->real_escape_string($_POST['about_us']);
         $facebook=$conn->real_escape_string($_POST['facebook']);
         $twitter=$conn->real_escape_string($_POST['twitter']);
         $insta=$conn->real_escape_string($_POST['instagram']);
-        $img=upload_image($_FILES['images']);
-        $image=upload_image($_FILES['img']);
-        $feature_image=upload_image($_FILES['f_img']);
-        if($img!="err"&&$image!="err"&&$feature_image!="err")
-        {
-        $sql="update web_config set email='$email',phn='$phn',address='$ad',location='$loc',logo='$website_link/admin/uploads/$img', image='$website_link/admin/uploads/$image',feature_image='$website_link/admin/uploads/$feature_image', message='$msg',about='$about', about_us='$about_us', facebook='$facebook', twitter='$twitter',instagram='$insta'"; 
-         
-        }
-        else
-        {
-            $sql="update web_config set email='$email',phn='$phn',address='$ad',location='$loc',message='$msg',about='$about',about_us='$about_us', facebook='$facebook',twitter='$twitter',instagram='$insta'";
-        } 
+        $img=upload_image2($_FILES['images'],$conn,"web_config","logo","1",'images');
+        $image=upload_image2($_FILES['img'],$conn,"web_config","image","1",'img');
+        $feature_image=upload_image2($_FILES['f_img'],$conn,"web_config","feature_image","1",'f_img');
+          $sql="update web_config set email='$email',phn='$phn',address='$ad',location='$loc',message='$msg',about='$about_text',about_us='$about_us', facebook='$facebook',twitter='$twitter',instagram='$insta',web_title='$web_title'";
+   
         if($conn->query($sql))
         {
             $resMember=true;   
@@ -78,6 +72,11 @@
                                 {     
                                     ?>
                         <div class="col-sm-6"><br>
+                            <label>Website Title :</label>
+                            <input type="text" class="form-control" id="" name="web_title" value="<?=$about['web_title']?>">
+
+                        </div>
+                        <div class="col-sm-6"><br>
                             <label>Email :</label>
                             <input type="email" class="form-control" id="" name="email" value="<?=$about['email']?>">
 
@@ -121,7 +120,7 @@
                         <div class="col-sm-12"><br>
                             <label>About</label><br>
                             <textarea style="width: 100%;height:120px;resize:none"
-                                name="about"><?=$about['about']?></textarea>
+                                name="about_text"><?=$about['about']?></textarea>
                         </div>
                         <div class="col-sm-12"><br>
                             <label>Add Logo :</label><br>

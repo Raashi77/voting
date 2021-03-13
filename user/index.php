@@ -40,10 +40,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page" style="background:#3c8dbc;overflow:hidden">
+<body class="hold-transition login-page" style="background:#d32f2f;overflow:hidden">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html" style="color:#fff">User Login</a>
+    <a href="../index" style="color:#fff">User Login</a>
   </div>
     <?php
     if(isset($error))
@@ -73,9 +73,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" name ="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" name ="login" class="btn btn-primary btn-block btn-flat" style='background-color: #d32f2f;border-color:#d32f2f'>Sign In</button>
         </div>
         <!-- /.col -->
+      </div>
+      <div class="row">
+      <div class="col-xs-8">
+          not a member yet? <a href="sign_up" style="color: #d32f2f">Click Here</a>
+      </div> 
       </div>
     </form>
    

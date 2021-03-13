@@ -257,6 +257,43 @@ function upload_image($files)
             return $uploadedFile;
     }
 }
+function upload_image2_cp($files,$nameFileInput)
+{
+     $uploadedFile = 'err';
+    if(!empty($_FILES[$nameFileInput]["type"]))
+    {
+        $fileName = time().'_'.$_FILES[$nameFileInput]['name'];
+        $valid_extensions = array("jpeg", "jpg", "png","pdf","bmp","JPG");
+        $temporary = explode(".", $_FILES[$nameFileInput]["name"]);
+        $file_extension = end($temporary);
+        if((($_FILES[$nameFileInput]["type"] == "image/png") || ($_FILES[$nameFileInput]["type"] == "application/pdf") || ($_FILES[$nameFileInput]["type"] == "image/bmp") || ($_FILES[$nameFileInput]["type"] == "image/jpg") || ($_FILES[$nameFileInput]["type"] == "image/JPG") || ($_FILES[$nameFileInput]["type"] == "image/jpeg")) && in_array($file_extension, $valid_extensions))
+        {
+            $sourcePath = $_FILES[$nameFileInput]['tmp_name'];
+            $targetPath = "uploads/".$fileName;
+            if(move_uploaded_file($sourcePath,$targetPath))
+            {
+                $uploadedFile = $fileName;
+                 return $uploadedFile;
+            }
+            else
+            {
+                $uploadedFile="err";
+                 return $uploadedFile;
+            }
+        }
+        else
+        {
+            $uploadedFile="err";
+            return $uploadedFile;
+        }
+       
+    }
+    else
+    {
+            $uploadedFile="err";
+            return $uploadedFile;
+    }
+}
 
 function upload_image_cp($files,$path)
 {
@@ -836,7 +873,8 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                  $newFileName=$filename.time().".".$ext;
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                    $sql="update $table set  $column='$url./$newFileName' where $id_col=$id ";
+                      $type = $_FILES[$images]["type"][$key];
+                    $sql="update $table set  $column='$url./$newFileName',file_type='$type' where $id_col=$id ";
                     if($conn->query($sql)===true)
                     {
                         $status=true;

@@ -257,17 +257,11 @@ if(isset($_GET['token']) && !empty($_GET['token'])){
                                     if($a == 1)
                                     {?>
 
-                                    <button class="btn btn-info pull-right" type="submit" value="<?=$detail['id']?>"
-                                        name="verify">
-                                        <i class="fa fa-check-circle"></i> Verify
-                                    </button>
+                                    
                                     <a type="button" href="createEditBlog?token=<?= $detail['id'] ?>"
                                         class="btn btn-success"><i class="fa fa-edit"></i>Edit
                                     </a>
-                                    <button onclick="setEditValues(<?=$detail['id']?>)" title="" type='button'
-                                        class="btn btn-warning" data-toggle="modal" data-target="#modal-reject">
-                                        <i class="fa fa-exclamation-triangle"></i> Reject
-                                    </button>
+                                    
                                     <button name="delete" class="btn btn-danger"
                                         onclick="return confirm('Do You Really Want To Delete This?')"
                                         value="<?= $detail['id'] ?>"><i class="fa fa-trash"></i>Delete
@@ -287,10 +281,7 @@ if(isset($_GET['token']) && !empty($_GET['token'])){
                                     <!-- <button class="btn btn-dark" type="submit" name="block" value="<?=$detail['id']?>">
                                         <i class="fa fa-check-circle"></i> Block
                                     </button> -->
-                                    <button onclick="setEditValues(<?=$detail['id']?>)" title="" type='button'
-                                        class="btn btn-warning" data-toggle="modal" data-target="#modal-block">
-                                        <i class="fa fa-ban"></i> block
-                                    </button>
+                                   
                                     <button name="delete" class="btn btn-danger"
                                         onclick="return confirm('Do You Really Want To Delete This?')"
                                         value="<?= $detail['id'] ?>"><i class="fa fa-trash"></i>Delete

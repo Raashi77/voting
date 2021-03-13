@@ -1,6 +1,7 @@
 <?php
 
-    require_once "lib/core.php";
+require_once 'header.php';
+require_once 'navbar.php';  
 
 
 
@@ -47,18 +48,7 @@
 
 
 ?>
-
-<!DOCTYPE html> 
-<html>  
-<head>
-    <meta charset="utf-8" />
-    <title>DuBuddy</title>
-    <meta content="DuBuddy: <?=$token?>" property="og:title" />
-    <meta content="" property="og:image" />
-    <meta content="DuBuddy: <?=$token?>" property="twitter:title" />
-    <meta content="" property="twitter:image" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="dubuddy" name="generator" />
+ 
     <link href="./css/blog_new.css" rel="stylesheet" type="text/css" />
     <script src="./js/webfont/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -75,47 +65,10 @@
             n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
         }(window, document);
     </script>
-   <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-	<link rel="manifest" href="./images/site.webmanifest">
-	<link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
-	<link rel="shortcut icon" href="./images/favicon.ico">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-config" content="./images/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
+ 
     <div class="page-wrapper">
         
-        <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation" data-w-id="68906341-c776-5606-916e-b44fde4e642a" role="banner" class="nav-bar-v1 w-nav">
-            <div class="wrapper nav-bar-v1-wrapper">
-                <a href="#" class="nav-brand-v1 w-nav-brand"><img src="images/dublogo.png" alt="" class="nav-logo" />
-                    <div class="nav-logo-text">DuBuddy</div>
-                </a>
-                <nav role="navigation" class="nav-menu-v1 w-nav-menu">
-                    <!-- <form action="https://reader-template.webflow.io/search" class="search-form w-form">
-                        <input type="search" class="search-form-input w-input" maxlength="256" name="query" placeholder=" Search..." id="search" required="" /><input type="submit" value=" " class="search-button w-button" />
-                    </form>  -->
-                    <div data-hover="1" data-delay="400" class="dropdown w-dropdown">
-                        <div class="nav-link w-dropdown-toggle">
-                            <div>Home</div>
-                        </div>
-                         
-                    </div>
-                    
-                    
-                </nav>
-                 <div class="menu-button w-nav-button">
-                    <div class="menu-icon">
-                        <div class="menu-line-top"></div>
-                        <div class="menu-line-middle"></div>
-                        <div class="menu-line-bottom"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div id="Hero" class="section hero about-hero">
             <div class="wrapper w-container">
                 <div class="page-intro">

@@ -1,5 +1,6 @@
 <?php
-require_once "lib/core.php";
+ require_once 'header.php';
+ require_once 'navbar.php';  
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
 	$token=$_GET['token'];
@@ -42,31 +43,17 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
          } 
      }
 
-?>
+	 $sql="select * from web_config where id=1";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            $row = $result->fetch_assoc();
+                 $web_config = $row;
+        }
+    }
 
-
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8" />
-	<title><?=$blog['title']?></title>
-	<meta content="How you write your advertising copy will be based on where you will place your ad. If it’s a billboard ad, you’ll need a super catchy headline." name="description" />
-	<meta content="<?=$blog['title']?>" property="og:title" />
-	<meta content="How you write your advertising copy will be based on where you will place your ad. If it’s a billboard ad, you’ll need a super catchy headline." property="og:description" />
-	<meta content="<?=$blog['image']?>" property="og:image" />
-	<meta content="<?=$blog['title']?>" property="twitter:title" />
-	<meta content="How you write your advertising copy will be based on where you will place your ad. If it’s a billboard ad, you’ll need a super catchy headline." property="twitter:description" />
-	<meta content="<?=$blog['image']?>" property="twitter:image" />
-	<meta property="og:type" content="website" />
-	<meta content="summary_large_image" name="twitter:card" />
-	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<meta content="dubuddy" name="generator" />
+?> 
 	<link href="./css/blog_new.css" rel="stylesheet" type="text/css" />
 	<script src="./js/webfont/webfont.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -82,21 +69,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 				t = " w-mod-";
 			n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
 		}(window, document);
-	</script>
-	<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-	<link rel="manifest" href="./images/site.webmanifest">
-	<link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
-	<link rel="shortcut icon" href="./images/favicon.ico">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-config" content="./images/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-	<link rel="stylesheet" type="text/css"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
+	</script> 
+ 
 	<div class="page-wrapper">
 		<!-- <div class="subscribe-popup">
 			<div class="popup"><a data-w-id="815c6cd4-8036-9e9d-af11-10e598a3accc" href="#" class="close-button w-inline-block"><img src="images/5d06166e6a93604d0a953a2e_x.svg" alt="" /></a>
@@ -120,13 +94,13 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 			<div data-w-id="8320a785-99cd-bbdc-fd84-db16e1cc82eb" class="popup-overlay"></div>
 		</div> -->
 		<div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation" data-w-id="68906341-c776-5606-916e-b44fde4e642a" role="banner" class="nav-bar-v1 w-nav">
-			<div class="wrapper nav-bar-v1-wrapper"><a href="#" class="nav-brand-v1 w-nav-brand"><img src="images/dublogo.png" alt="" class="nav-logo" />
-					<div class="nav-logo-text">DU Buddy</div>
+			<div class="wrapper nav-bar-v1-wrapper"><a href="#" class="nav-brand-v1 w-nav-brand"><img src="admin/<?=$web_config['logo']?>" alt="" class="nav-logo" />
+					<!-- <div class="nav-logo-text">DU Buddy</div> -->
 				</a>
 				<nav role="navigation" class="nav-menu-v1 w-nav-menu">
 					<div data-hover="1" data-delay="400" class="dropdown w-dropdown">
 						<div class="nav-link w-dropdown-toggle">
-							<div>Home</div>
+							<div><a href="index">Home</a></div>
 						</div>
 					</div>
 				</nav>
@@ -231,21 +205,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 								</div>
 							</div>
 						</div>
-						<div class="post-subscribe">
-							<h4>Join Our Newsletter and Get the Latest<br />Posts to Your Inbox</h4>
-							<div class="w-form">
-								<form id="email-form" name="email-form" data-name="Email Form">
-									<div class="w-layout-grid subscribe-v1-grid"><input type="email" class="input no-margin w-input" maxlength="256" name="Subscribe-v4-Email-2" data-name="Subscribe V 4 Email 2" placeholder="Email Address" id="Subscribe-v4-Email-2" required="" />
-									<input type="button" value="Subscribe" onclick="subscribe1($('#Subscribe-v4-Email-2').val(),'success','error','email-form')" data-wait="Please wait..." class="button w-button" /></div>
-								</form>
-								<div id="success" class="form-success w-form-done">
-									<div>Thank you! Your submission has been received!</div>
-								</div>
-								<div id="error" class="form-error w-form-fail">
-									<div>Oops! Something went wrong while submitting the form.</div>
-								</div>
-							</div>
-						</div>
+						 
 					</div>
 					<div class="sidebar">
 						<div class="sidebar-block">
@@ -296,25 +256,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 								</div>
 							</div>
 						</div>
-						<div class="sidebar-block">
-							<div class="header-block">
-								<h4 class="header">Newsletter</h4>
-								<div class="header-line"></div>
-							</div>
-							<div class="w-form">
-								<form id="wf-form-Sidebar-Subscribe-Form" name="wf-form-Sidebar-Subscribe-Form" data-name="Sidebar Subscribe Form" class="subscribe-v3-form">
-									<div class="subscribe-v3-text">📬 New posts straight to your inbox</div>
-									<div class="w-layout-grid subscribe-v3-grid"><input type="email" class="input w-input" maxlength="256" name="Sidebar-Subscribe-Email" data-name="Sidebar Subscribe Email" placeholder="Email address" id="Sidebar-Subscribe-Email" required="" />
-									<input type="button" value="Subscribe" onclick="subscribe1($('#Sidebar-Subscribe-Email').val(),'success-side','error-side','wf-form-Sidebar-Subscribe-Form')" data-wait="Please wait..." class="button w-button" /></div>
-								</form>
-								<div id="success-side" class="form-success w-form-done">
-									<div>Thank you! Your submission has been received!</div>
-								</div>
-								<div id="error-side" class="form-error w-form-fail">
-									<div>Oops! Something went wrong while submitting the form.</div>
-								</div>
-							</div>
-						</div>
+						 
 					</div>
 				</div>
 			</div>

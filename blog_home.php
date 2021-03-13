@@ -1,5 +1,6 @@
 <?php
-require_once "lib/core.php";
+ require_once 'header.php';
+ require_once 'navbar.php';  
 $sql = "select b.id,b.title,b.image,bc.category as bc_category,bc.color,b.timestamp from blogs as b,blog_categories bc where status=1 and featured=1 and b.category=bc.id order by b.timestamp limit 4";
 $result = $conn->query($sql);
 if ($result->num_rows) {
@@ -46,19 +47,8 @@ if($result->num_rows)
     }
 }
 ?>
-
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <title>DuBuddy Blogs</title>
-    <meta content="DuBuddy Blogs" property="og:title" />
-    <meta content="DuBuddy Blogs" property="twitter:title" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Webflow" name="generator" />
+ 
+    
     <link href="./css/blog_new.css" rel="stylesheet" type="text/css" />
     <script src="./js/webfont/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -78,18 +68,8 @@ if($result->num_rows)
                 .className += t + "touch")
         }(window, document);
     </script>
-    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-	<link rel="manifest" href="./images/site.webmanifest">
-	<link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
-	<link rel="shortcut icon" href="./images/favicon.ico">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-config" content="./images/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
+ 
+ 
     <div class="page-wrapper">
         <!-- <div class="subscribe-popup">
             <div class="popup">
@@ -182,43 +162,10 @@ if($result->num_rows)
                 </div>
             </div>
         </div> -->
-        <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation" data-w-id="68906341-c776-5606-916e-b44fde4e642a" role="banner" class="nav-bar-v1 w-nav">
-            <div class="wrapper nav-bar-v1-wrapper">
-                <a href="#" class="nav-brand-v1 w-nav-brand">
-                    <img src="images/dublogo.png" alt="" class="nav-logo" />
-                    <div class="nav-logo-text">DuBuddy</div>
-                </a>
-                <nav role="navigation" class="nav-menu-v1 w-nav-menu">
-                    <!-- <form action="https://reader-template.webflow.io/search" class="search-form w-form"><input type="search" class="search-form-input w-input" maxlength="256" name="query" placeholder=" Search..." id="search" required="" /><input type="submit" value=" " class="search-button w-button" />
-                    </form> -->
-                    <!-- <a href="https://reader-template.webflow.io/" class="nav-link w-nav-link">Intro</a> -->
-                    <div data-hover="1" data-delay="400" class="dropdown w-dropdown">
-                        <div class="nav-link w-dropdown-toggle">
-                            <div>Home</div>
-                        </div>
-
-                    </div>
-
-                </nav>
-                <!-- <div class="nav-right"><a href="#" data-w-id="68906341-c776-5606-916e-b44fde4e6472"
-                        class="button subscribe-button w-button">Subscribe</a>
-                </div> -->
-                <div class="menu-button w-nav-button">
-                    <div class="menu-icon">
-                        <div class="menu-line-top">
-
-                        </div>
-                        <div class="menu-line-middle">
-
-                        </div>
-                        <div class="menu-line-bottom">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <?php
+        require_once 'header.php';
+        require_once 'navbar.php';  
          if (isset($featuredBlog)) {
         ?>
         <div class="section no-padding">
@@ -229,7 +176,7 @@ if($result->num_rows)
                         foreach ($featuredBlog as $blog) {
                     ?>
                             <div role="listitem" class="full-height w-dyn-item">
-                                <a href="view_blog?token=<?=$blog['id']?>" class="post-card-v3-medium w-inline-block">
+                                <a href="viewBlog<?=$blog['id']?>" class="post-card-v3-medium w-inline-block">
                                     <div class="post-card-content">
                                         <div style="background-color:<?=$blog['color']?>" class="badge"><?=$blog['bc_category']?>
 
@@ -273,34 +220,7 @@ if($result->num_rows)
         <?php
         }
         ?>
-        <div class="section top-section">
-            <div class="wrapper w-container">
-                <div class="subscribe-v2">
-                    <h3 class="subscribe-v2-heading">📬 Join Our Newsletter and Read <br />the New Posts First</h3>
-                    <div class="subscribe-v2-form-block w-form">
-                        <form id="email-form" name="email-form" data-name="Email Form">
-                            <div class="w-layout-grid subscribe-grid-v2">
-                                <input type="email" class="input no-margin w-input" maxlength="256" name="Subscribe-v4-Email-2" data-name="Subscribe V 4 Email 2" placeholder="Email Address" id="Subscribe-v4-Email-2" required="" />
-                                <input type="button" value="Subscribe"  onclick="subscribe1($('#Subscribe-v4-Email-2').val(),'success','error','email-form')" data-wait="Please wait..." class="button w-button" />
-                                <!-- <label id="w-node-_057008cd-e1ba-65d3-dea4-865414d347e3-820c40ef" class="w-checkbox">
-                                <input type="checkbox" id="Checkbox Privacy" name="Checkbox-Privacy" data-name="Checkbox Privacy" required="" class="w-checkbox-input checkbox" />
-                                <span for="Checkbox Privacy-2" class="checkbox-label w-form-label">I&#x27;ve read and accept <a href="#" class="text-link-dark">Privacy Policy</a></span></label> -->
-                            </div>
-                        </form>
-                        <div id="success" class="form-success w-form-done">
-                            <div>Thank you! Your submission has been received!
-
-                            </div>
-                        </div>
-                        <div id="error" class="form-error w-form-fail">
-                            <div>Oops! Something went wrong while submitting the form.
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+         
 
         <?php
             if(isset($recentBlog))
@@ -352,14 +272,14 @@ if($result->num_rows)
 
                                  <div role="listitem" class="w-dyn-item">
                                     <div class="post-card">
-                                        <a href="view_blog?token=<?=$blog['id']?>" class="thumbnail-medium w-inline-block">
+                                        <a href="viewBlog<?=$blog['id']?>" class="thumbnail-medium w-inline-block">
                                             <div style="background-color:<?=$blog['color']?>" class="badge"><?=$blog['bc_category']?>
 
                                             </div>
                                             <div style="background-image:url(<?=$blog['image']?>)" class="thumbnail">
                                             </div>
                                         </a>
-                                        <a href="view_blog?token=<?=$blog['id']?>" class="post-heading-link w-inline-block">
+                                        <a href="viewBlog<?=$blog['id']?>" class="post-heading-link w-inline-block">
                                             <h4 class="post-heading-medium"><?=ucfirst($blog['title'])?></h4>
                                         </a>
                                         <div class="post-info">
@@ -529,13 +449,13 @@ if($result->num_rows)
                                     ?>
                                             <div role="listitem" class="w-dyn-item">
                                                 <div class="post-v3-card">
-                                                    <a href="view_blog?token=<?=$blog['id']?>" class="post-v3-thumbnail w-inline-block">
+                                                    <a href="viewBlog<?=$blog['id']?>" class="post-v3-thumbnail w-inline-block">
                                                         <div class="badge"><?=$blog['bc_category']?>
                                                         </div>
                                                         <div style="background-image:url(<?=$blog['image']?>)" class="thumbnail">
                                                         </div>
                                                     </a>
-                                                    <div class="post-v3-content"><a href="view_blog?token=<?=$blog['id']?>" class="post-heading-link w-inline-block">
+                                                    <div class="post-v3-content"><a href="viewBlog<?=$blog['id']?>" class="post-heading-link w-inline-block">
                                                             <h3 class="post-v3-heading"><?=$blog['title']?></h3>
                                                         </a>
                                                         <div class="post-summary"><?php
@@ -797,59 +717,7 @@ if($result->num_rows)
     <?php
     require_once 'js-links.php';
     ?>
-    <!-- <script src="../../assets.website-files.com/5d04fc355b8916913bbf365a/js/webflow.1186ff1d4.js" -->
-    <!-- type="text/javascript"></script> -->
-    <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-    <script>
-            function subscribe1(email,success,error,form)
-	{
-		  
-		$.ajax({
-        url:"subscribe.php",
-        type:"POST",
-        data:{
-            subscribe1: email,
-            email: email
-        },
-        success:function(data)
-        { 
-				if(data.trim()=="ok")
-				{ 
-
-					$("#"+success).html("Thank you! Your submission has been received!").fadeIn();
-					$("#"+form).fadeOut();	
-					setTimeout(function(){
-						$("#"+success).fadeOut();
-						$("#"+form).fadeIn();	
-					},2000)
-					
-				}else if(data.includes("Duplicate"))
-				{
-					$("#"+success).html("Already Subscribed to Newsletter").fadeIn(); 
-					$("#"+form).fadeOut();	
-					setTimeout(function(){
-						$("#"+success).fadeIn();
-						$("#"+form).fadeOut();	
-					},2000)
-				}else
-				{
-					$("#"+error).fadeIn();
-					$("#"+form).fadeOut();
-					setTimeout(function(){
-						$("#"+error).fadeOut();
-						$("#"+form).fadeIn();	
-					},2000)
-				}
-        },
-        error:function()
-        {
-
-        }
-    
-		})
-	}
-
-    </script>
+     
 </body>
 
 </html>

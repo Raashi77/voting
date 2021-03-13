@@ -4,7 +4,7 @@
     require_once 'left-navbar.php';
     if(isset($_POST['delete']))
         {
-            $id=test_input($_POST['delete']);
+            $id=$conn->real_escape_string   ($_POST['delete']);
            
                 $sql="delete from home_slider where id=$id";
                 if($conn->query($sql))
