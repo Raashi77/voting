@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2021 at 04:30 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.2.30
+-- Generation Time: Mar 13, 2021 at 12:55 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,7 +35,7 @@ CREATE TABLE `blogs` (
   `title` text NOT NULL,
   `long_description` text NOT NULL,
   `short_des` text NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `tags` text NOT NULL,
   `category` bigint(50) NOT NULL,
   `status` int(11) NOT NULL,
@@ -49,17 +50,7 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `name`, `image`, `title`, `long_description`, `short_des`, `timestamp`, `tags`, `category`, `status`, `writer_type`, `reason`, `alloted_to`, `written_by`) VALUES
-(15, 'AYUSH', 'http://localhost/DuBuddy/staff/content/uploads/1607745829.jpeg', 'DU ADMISSION 2020: STEP BY STEP ONLINE ADMISSION PROCEDURE AFTER CHECKING CUTOFFS', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p><img src=\"http://localhost/DuBuddy/admin/uploads/1611286404.jpg\" style=\"margin:10px auto 20px; width:auto\" /></p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.<img src=\"http://localhost/DuBuddy/staff/intern/uploads/1611286690.jpg\" style=\"width:85%\" /></p>\r\n\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n\r\n<p><img src=\"http://localhost/DuBuddy/staff/content/uploads/1607745829.jpeg\" style=\"width:85%\" /></p>\r\n\r\n<h2>Where can I get some?</h2>\r\n\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n', 'raaaaaaaaaa', '2021-02-21 10:47:30', 'tags', 3, 1, 0, '', 0, 3),
-(16, 'hfs', 'http://localhost/DuBuddy/staff/intern/uploads/1608012994.png', 'blog', '&lt;img src=&quot;http://localhost/DuBuddy/staff/intern/uploads/1608012994.png&quot; style=&quot;width:85%&quot; /&gt;', '', '2020-12-25 08:03:07', 'dubuddy', 0, 4, 0, '', 0, 4),
-(17, 'DuBuddy', 'http://localhost/DuBuddy/staff/content/uploads/1607745829.jpeg', 'DU ADMISSION 2020: STEP BY STEP ONLINE ADMISSION PROCEDURE AFTER CHECKING CUTOFFS', '&lt;p&gt;test blog which contains a photo&lt;/p&gt;\r\n\r\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;\r\n\r\n&lt;p&gt;&lt;img src=&quot;http://localhost/DuBuddy/staff/content/uploads/1607745829.jpeg&quot; style=&quot;width:85%&quot; /&gt;&lt;/p&gt;', '', '2020-12-22 14:00:37', 'test,dubuddy', 0, 1, 2, '', 0, 2),
-(18, 'AYUSH', '', 'test', 'hello hello', '', '2021-02-15 08:43:56', 'gsha', 3, 1, 2, '', 0, 3),
-(19, 'AYUSH', '', 'sdfgh', 'ghjxc', '', '2021-02-15 08:41:52', 'sdf', 4, 3, 2, 'fdgh', 0, 3),
-(20, 'gfgbvb', '', 'gnhvbm', 'gfcvgb', 'fcvgbh', '2021-02-21 10:48:30', 'fgh', 4, 1, 0, '', 0, 0),
-(21, 'test', '', 'test t', 'hehgjdsmncx', 'fsgxh', '2021-02-21 14:04:14', '#test#test2', 3, 1, 0, '', 0, 0),
-(22, 'Admin', '', 'content check', 'check', 'checknew', '2021-02-21 14:14:34', 'check', 4, 1, 2, '', 0, 4),
-(23, 'AYUSH', '', 'intern check', 'check', 'check ', '2021-02-21 14:17:47', 'check', 3, 0, 2, '', 0, 3),
-(24, 'test', '', 't2', 'ghsjak', 'hjsdc', '2021-03-06 14:47:56', '#ab#cd', 4, 1, 0, '', 0, 0),
-(25, 'COVID', 'http://localhost/voting/admin/uploads/1615045245.jpg', 'COVID', '<img src=\"http://localhost/voting/admin/uploads/1615045245.jpg\" style=\"display:block; margin:10px auto 20px; max-height:400px; width:auto\" />', 'FGASJh', '2021-03-06 16:21:08', '#ch3ck#test', 4, 1, 0, '', 0, 0);
+(18, 'AYUSH', 'http://localhost/voting/admin/uploads/1615287383.jpg', 'test', '<h2><img src=\"http://localhost/voting/admin/uploads/1615287383.jpg\" style=\"display:block; margin:10px auto 20px; max-height:400px; width:auto\" />What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>\r\n\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n\r\n<h2>Where can I get some?</h2>\r\n\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n', 'test', '2021-03-09 10:56:49', 'gsha', 3, 1, 2, '', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -162,7 +153,7 @@ CREATE TABLE `contest_users` (
 --
 
 INSERT INTO `contest_users` (`id`, `c_id`, `u_id`, `description`, `votes`, `status`) VALUES
-(32, 19, 1, '', 0, 1);
+(32, 19, 1, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +174,7 @@ CREATE TABLE `features` (
 
 INSERT INTO `features` (`id`, `name`, `description`, `icon`) VALUES
 (1, 'Song', 'Simply dummy text of the printing andrety esetting industry. Lorem Ipsum has beeyan the indust standard ', 'fa fa-camera-retro'),
-(2, 'Video Upload', 'Simply dummy text of the printing andrety esetting industry. Lorem Ipsum has beeyan the indust standard unknown', 'fa fa-pencil-square-o'),
+(2, 'Make  Video ', 'Simply dummy text of the printing andrety esetting industry. Lorem Ipsum has beeyan the indust standard unknown', 'fa fa-pencil-square-o'),
 (5, 'Video Downloadd', 'Simply dummy text of the printing andrety esetting industry. Lorem Ipsum has beeyan the indust standard unknownn', 'fa fa-upload');
 
 -- --------------------------------------------------------
@@ -196,7 +187,7 @@ CREATE TABLE `gallery` (
   `id` bigint(50) NOT NULL,
   `u_id` bigint(50) NOT NULL,
   `image` text NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -205,14 +196,10 @@ CREATE TABLE `gallery` (
 --
 
 INSERT INTO `gallery` (`id`, `u_id`, `image`, `time_stamp`, `category`) VALUES
-(25, 2, 'http://localhost/DuBuddy/staff/content/uploads/1607745829.jpeg', '2020-12-12 04:03:49', 'Blogs'),
-(26, 4, 'http://localhost/DuBuddy/staff/intern/uploads/1608012994.png', '2020-12-15 06:16:34', 'Blogs'),
-(27, 1, 'http://localhost/DuBuddy/admin/uploads/1611286404.jpg', '2021-01-22 03:33:24', '[object Object]'),
+(1, 1, 'uploads/1615285879.jpg', '2021-03-09 10:31:19', 'Blogs'),
 (30, 3, 'http://localhost/DuBuddy/staff/intern/uploads/1613378003.png', '2021-02-15 08:33:23', 'Blogs'),
-(31, 3, 'http://localhost/DuBuddy/staff/intern/uploads/1613378419.png', '2021-02-15 08:40:19', 'Blogs'),
 (32, 1, 'http://localhost/DuBuddy/admin/uploads/1613379696.png', '2021-02-15 09:01:36', 'Blogs'),
-(33, 1, 'http://localhost/DuBuddy/admin/uploads/1613379810.png', '2021-02-15 09:03:30', 'Blogs'),
-(35, 1, 'http://localhost/voting/admin/uploads/1615045245.jpg', '2021-03-06 15:40:45', 'Blogs');
+(33, 1, 'http://localhost/voting/admin/uploads/1615287383.jpg', '2021-03-09 10:56:23', 'Blogs');
 
 -- --------------------------------------------------------
 
@@ -235,7 +222,7 @@ CREATE TABLE `home_slider` (
 --
 
 INSERT INTO `home_slider` (`id`, `heading`, `sub_heading`, `image`, `link`, `color`, `sort_order`) VALUES
-(1, 'Slider test', 'voting Contestw', 'http://localhost/voting/admin/uploads/1615053275_Screenshot (469).png', 'view_blog', '#cd0a0a', 1);
+(1, 'Slider test', 'voting Contestw', 'uploads/1615283779_2.jpg', 'view_blog', '#cd0a0a', 1);
 
 -- --------------------------------------------------------
 
@@ -362,6 +349,28 @@ INSERT INTO `users` (`id`, `name`, `mobile`, `email`, `password`, `ip_address`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_queries`
+--
+
+CREATE TABLE `user_queries` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `phone` text NOT NULL,
+  `subject` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_queries`
+--
+
+INSERT INTO `user_queries` (`id`, `name`, `email`, `phone`, `subject`, `message`) VALUES
+(1, 'Pancham Sheoran', 'panchamsheoran@gmail.com', '8109716921', '213', 'rwq');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `videos`
 --
 
@@ -370,15 +379,16 @@ CREATE TABLE `videos` (
   `u_id` bigint(50) NOT NULL,
   `c_id` bigint(50) NOT NULL,
   `video` text NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `file_type` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `videos`
 --
 
-INSERT INTO `videos` (`id`, `u_id`, `c_id`, `video`, `status`) VALUES
-(45, 1, 19, 'http://localhost/voting/user/uploads./VID_81250711_043555_046.1615038525.mp4', 1);
+INSERT INTO `videos` (`id`, `u_id`, `c_id`, `video`, `status`, `file_type`) VALUES
+(45, 1, 19, 'http://localhost/voting/user/uploads./VID_81250711_043555_046.1615038525.mp4', 1, '');
 
 -- --------------------------------------------------------
 
@@ -394,6 +404,13 @@ CREATE TABLE `voters` (
   `ip_address` text NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `voters`
+--
+
+INSERT INTO `voters` (`id`, `email`, `c_id`, `cu_id`, `ip_address`, `status`) VALUES
+(0, '', 19, 32, '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -415,15 +432,16 @@ CREATE TABLE `web_config` (
   `about_us` text NOT NULL,
   `facebook` text NOT NULL,
   `instagram` text NOT NULL,
-  `twitter` text NOT NULL
+  `twitter` text NOT NULL,
+  `web_title` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `web_config`
 --
 
-INSERT INTO `web_config` (`id`, `email`, `phn`, `address`, `location`, `logo`, `image`, `feature_image`, `message`, `about`, `about_us`, `facebook`, `instagram`, `twitter`) VALUES
-(1, 'r@gamil.com', '7302248204', 'miyanwala', 'miyanwala', 'http://localhost/voting/admin/uploads/1615053275_Screenshot (469).png', 'http://localhost/voting/admin/uploads/1615053275_Screenshot (469).png', 'http://localhost/voting/admin/uploads/1615053275_Screenshot (469).png', 'hello test', 'ertyuiklmnbv', ' HD Resulation Lorem Ipsum text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.  Camra Shop Lorem Ipsum text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.', 'facebbook', 'instagram', 'twitter');
+INSERT INTO `web_config` (`id`, `email`, `phn`, `address`, `location`, `logo`, `image`, `feature_image`, `message`, `about`, `about_us`, `facebook`, `instagram`, `twitter`, `web_title`) VALUES
+(1, 'r@gamil.com', '7302248204', 'miyanwala', 'miyanwala', 'uploads/1615452762_logo.png', 'uploads/1615284849_3.jpg', 'uploads/1615284636_4.jpg', 'hello test', 'test', '', 'facebbook', 'instagram', 'twitter', 'Voting');
 
 -- --------------------------------------------------------
 
@@ -509,22 +527,15 @@ ALTER TABLE `songs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `user_queries`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`) USING HASH;
+ALTER TABLE `user_queries`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `videos`
 --
 ALTER TABLE `videos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `voters`
---
-ALTER TABLE `voters`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -534,110 +545,26 @@ ALTER TABLE `web_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `winner`
---
-ALTER TABLE `winner`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `blogs`
---
-ALTER TABLE `blogs`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `blog_categories`
---
-ALTER TABLE `blog_categories`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `contest`
---
-ALTER TABLE `contest`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `contest_songs`
---
-ALTER TABLE `contest_songs`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `contest_users`
---
-ALTER TABLE `contest_users`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `features`
---
-ALTER TABLE `features`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `home_slider`
+-- AUTO_INCREMENT for table `user_queries`
 --
-ALTER TABLE `home_slider`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `index_changes`
---
-ALTER TABLE `index_changes`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `master_admin`
---
-ALTER TABLE `master_admin`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `songs`
---
-ALTER TABLE `songs`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `user_queries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
-
---
--- AUTO_INCREMENT for table `voters`
---
-ALTER TABLE `voters`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `web_config`
---
-ALTER TABLE `web_config`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `winner`
---
-ALTER TABLE `winner`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
