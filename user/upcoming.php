@@ -60,48 +60,62 @@
       
             <div class="box">
               <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
-                    <thead style="background-color: #212529; color: white;">
-                        <tr>
-                             <th>S.No.</th>
-                             <th>Name</th>
-                             <th>Start Date</th>
-                             <th>Start Time</th>
-                             <th>End Date</th>
-                            <th>End Time</th>
-                            <th>Prize</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
- 
-                    
-                     <?php 
+              <table id="example2" class="table table-bordered table-hover">
+                <?php 
                             if (isset($contest)) 
                             {
                                 $i = 1;
                                 foreach ($contest as $detail) 
                                 {     
                      ?> 
-                                     <tr> 
-                                         <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                         <td style="  text-align: center; " id="start_date<?=$i?>"><?=$detail['start_date'];?></td>
-                                         <td style="  text-align: center; " id="start_time<?=$i?>"><?=$detail['start_time'];?></td>
-                                         <td style="  text-align: center; " id="end_date<?=$i?>"><?=$detail['end_date'];?></td>
-                                         <td style="  text-align: center; " id="end_time<?=$i?>"><?=$detail['end_time'];?></td>
-                                         <td style="  text-align: center; " id="prize<?=$i?>"><?=$detail['prize'];?></td>
+                      <tbody> 
+ 
+                    
+                     
+                                    
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: black; color: white;" >S.No</th>
+                                        <th style="  text-align: center; background-color: black; color: white;" id="sno<?=$i?>"><?=$i?></th>  
                                     </tr>
-                                 
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white;" >Name</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="name<?=$i?>"><?=$detail['name'];?></th>  
+                                    </tr>
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white; " >Description</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="description"><?=$detail['description'];?></th>  
+                                    </tr>
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white;" >Start Date</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white; " id="start_date"><?=$detail['start_date'];?></th>  
+                                    </tr>
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white;" >Start Time</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="start_time"><?=$detail['start_time'];?></th>  
+                                    </tr>
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white;" >End Date</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="end_date"><?=$detail['end_date'];?></th>  
+                                    </tr>
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white;" >End Time</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="end_time"><?=$detail['end_time'];?></th>  
+                                    </tr>
+                                    <tr> 
+                                        <th style="  text-align: center; background-color: #212529; color: white;" >Prize</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="prize"><?=$detail['prize'];?></th>  
+                                    </tr>
+                                    </tbody> 
                             <?php
                                 $i++;
-                                    
-                                            
-                                }
+                                               
+                            } 
+                             
                             }
                          ?>
           
-                        </tbody>
-                                </table>
+                        
+                    </table>
                        
                         </div>
             <!-- /.box-footer-->
