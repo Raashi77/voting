@@ -7,7 +7,7 @@
                             <div class="header-top-left">
                                 <ul>
                                     <li><i class="fa fa-phone"></i><a href="tel:+985-2356-14566"><?=$web_config['phn']?></a></li>
-                                    <li><i class="fa fa-envelope-o"></i><a href="mailto:yourmail@gmail.com"><?=$web_config['email']?></a></li>
+                                    <li><i class="fa fa-envelope-o"></i><a href="mailto:<?=$web_config['email']?>"><?=$web_config['email']?></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -63,9 +63,25 @@
                                         </li> -->
                                         <li><a href="blog_home">Blog</a></li>
                                         <li><a href="contact">Contact Us</a></li>
-                                      
-                                        <li> <a href="user/index" class="btn btn-danger" style="color:white">Login</a></li>
-                                    
+                                    <?php
+                                    if(isset($_SESSION['signed_in']))
+                                    {
+                                    ?>
+                                        
+                                        <li><a href="registration" class="btn btn-danger" style="color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
+                                            <ul>
+                                            <li><a href="logout">Log Out</a></li>
+                                            </ul>
+                                        </li>
+                                    <?php
+                                    }
+                                    else
+                                    {
+                                    ?>
+                                        <li> <a href="registration" class="btn btn-danger" style="color:white">Login</a></li>
+                                    <?php
+                                    }
+                                    ?>
                                     </ul>
                                 </nav>
                             </div>

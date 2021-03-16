@@ -1,7 +1,7 @@
 <?php
     session_start();
     // require_once 'PHPMailer/PHPMailerAutoload.php';
-    require_once 'ffmpeg/vendor/autoload.php';
+    
     require_once 'config.php';   
 
 //check page setting
@@ -18,18 +18,6 @@ function check_page($id,$conn)
     }
 }
  
-function convertVideoNsave($vidAddr,$filename)
-{
-    $ffmpeg = FFMpeg\FFMpeg::create(array(
-        'ffmpeg.binaries'  => '../lib/ffmpegBuild/ffmpeg',
-        'ffprobe.binaries' => '../lib/ffmpegBuild/ffprobe',
-        'timeout'          => 3600, // The timeout for the underlying process
-        'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
-    ));
-    $video = $ffmpeg->open($vidAddr); 
-    $video->save(new FFMpeg\Format\Video\X264(), $filename);
-
-}
  
 //check user authpage
 function user_auth()
@@ -73,7 +61,7 @@ function master_admin_login($email,$password,$conn,$path)
 //user login
    function user_login($email,$password,$conn,$path)
     {
-         $sql="select status, email from users where email='$email' and password='$password'";
+        $sql="select status, name, email from users where email='$email' and password='$password'";
         $res=$conn->query($sql);
         if($res->num_rows > 0)
         {
@@ -81,6 +69,7 @@ function master_admin_login($email,$password,$conn,$path)
             if($row['status']==1)
             {
                 $_SESSION['signed_in']=$email;
+                $_SESSION['name']=$row['name'];
                 setcookie("new",$email, time() + (86400 * 80), "/");   
                 setcookie("pass",$password, time() + (86400 * 80), "/");  
                 
@@ -890,12 +879,9 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                    if($ext!="mp4")
-                    {
-                        convertVideoNsave("uploads/".$newFileName,$mp4name.".mp4");
-                    }
+                    
                     $type = $_FILES[$images]["type"][$key];
-                      $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
+                    $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
                     if($conn->query($sql)===true)
                     {
                         $status=true;
