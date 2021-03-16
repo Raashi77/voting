@@ -1,7 +1,7 @@
 <?php
     session_start();
     // require_once 'PHPMailer/PHPMailerAutoload.php';
-    
+    require_once 'ffmpeg/vendor/autoload.php';
     require_once 'config.php';   
 
 //check page setting
@@ -18,7 +18,18 @@ function check_page($id,$conn)
     }
 }
  
- 
+function convertVideoNsave($vidAddr,$filename)
+{
+    $ffmpeg = FFMpeg\FFMpeg::create(array(
+        'ffmpeg.binaries'  => '../lib/ffmpeg_static/fftools/ffmpeg.c',
+        'ffprobe.binaries' => '../lib/ffmpeg_static/fftools/ffprobe.c',
+        'timeout'          => 3600, // The timeout for the underlying process
+        'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+    ));
+    $video = $ffmpeg->open($vidAddr);  
+    $video->save(new FFMpeg\Format\Video\X264(), $filename);
+
+}
 //check user authpage
 function user_auth()
 {
@@ -878,7 +889,11 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                    
+                    if($ext!="mp4")
+                    {
+                        
+                        convertVideoNsave("uploads/".$newFileName,$mp4name.".mp4");
+                    }
                     $type = $_FILES[$images]["type"][$key];
                       $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
                     if($conn->query($sql)===true)
