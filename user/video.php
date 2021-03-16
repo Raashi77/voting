@@ -14,7 +14,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         if($result=$conn->query($sql))
         {
             $insert_id=$conn->insert_id;
-            if(upload_videos($_FILES,$conn,"videos","id","video",$insert_id,"projectFile",$website_link."/user/uploads"))
+            if(upload_videos($_FILES,$conn,"videos","id","video",$insert_id,"projectFile","/user/uploads"))
             {
                 $resSubject = "all_true";
             }else

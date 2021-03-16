@@ -80,9 +80,9 @@
                      ?> 
                       <tbody> 
  
-                                    <tr> 
-                                        <th style="  text-align: center; background-color: black; color: white;" >S.No</th>
-                                        <th style="  text-align: center; background-color: black; color: white;" id="sno<?=$i?>"><?=$i?></th>  
+                                    <tr style="margin-top:10px">  
+                                       
+                                        <th style="  text-align: center; background-color: black; color: white;" colspan="2" id="sno<?=$i?>"><?=$i?></th>  
                                     </tr>
                                     <tr> 
                                         <th style="  text-align: center; background-color: #212529; color: white;" >Name</th>
@@ -94,19 +94,19 @@
                                     </tr>
                                     <tr> 
                                         <th style="  text-align: center; background-color: #212529; color: white;" >Start Date</th>
-                                        <th style="  text-align: center; background-color: #808080; color: white; " id="start_date"><?=$detail['start_date'];?></th>  
+                                        <th style="  text-align: center; background-color: #808080; color: white; " id="start_date"><?=$detail['start_date'];?> - <?=$detail['start_time'];?></th>  
                                     </tr>
                                     <tr> 
-                                        <th style="  text-align: center; background-color: #212529; color: white;" >Start Time</th>
-                                        <th style="  text-align: center; background-color: #808080; color: white;" id="start_time"><?=$detail['start_time'];?></th>  
+                                        <!-- <th style="  text-align: center; background-color: #212529; color: white;" >Start Time</th>
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="start_time"><?=$detail['start_time'];?></th>   -->
                                     </tr>
                                     <tr> 
                                         <th style="  text-align: center; background-color: #212529; color: white;" >End Date</th>
-                                        <th style="  text-align: center; background-color: #808080; color: white;" id="end_date"><?=$detail['end_date'];?></th>  
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="end_date"><?=$detail['end_date'];?>-<?=$detail['end_time'];?></th>  
                                     </tr>
-                                    <tr> 
+                                    <!-- <tr> 
                                         <th style="  text-align: center; background-color: #212529; color: white;" >End Time</th>
-                                        <th style="  text-align: center; background-color: #808080; color: white;" id="end_time"><?=$detail['end_time'];?></th>  
+                                        <th style="  text-align: center; background-color: #808080; color: white;" id="end_time"><?=$detail['end_time'];?></th>   -->
                                     </tr>
                                     <tr> 
                                         <th style="  text-align: center; background-color: #212529; color: white;" >Prize</th>

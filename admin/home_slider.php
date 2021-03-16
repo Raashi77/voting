@@ -25,19 +25,25 @@
         $link=$_POST['link'];
         $sort_order=$_POST['sort_order'];
         $color=$_POST['color'];
-        $image = upload_image($_FILES);
-        if($image!='err')
-        {
-            $sql="insert into home_slider(heading,sub_heading,link,image,color,sort_order) values('$heading','$sub_heading','$link','uploads/$image','$color', $sort_order)";
+        // $image = upload_image($_FILES);
+         
+            $sql="insert into home_slider(heading,sub_heading,link,color,sort_order) values('$heading','$sub_heading','$link','$color', $sort_order)";
             if($conn->query($sql))
             {
-                $resMember=true;   
+                $insert_id = $conn->insert_id;
+                if(upload_videos($_FILES,$conn,"home_slider","id","image",$insert_id,"projectFile",""))
+                {
+                    $resMember = "all_true";
+                }else
+                {
+                    $resMember = "files_left";
+                } 
             }
             else
             {
                 $errorMember=$conn->error;
             }
-        }
+         
         
     }
     if(isset($_POST['edit']))
@@ -47,19 +53,19 @@
         $sub_heading=$conn->real_escape_string($_POST['esub_heading']); 
         $link=$_POST['elink'];
         $color=$_POST['ecolor'];
-        $sort_order = $_POST['esort_order'];
-        $image = upload_image($_FILES);
-        if($image!="err")
-        {
-            $sql="update home_slider set heading='$heading',sub_heading='$sub_heading',link='$link',image='uploads/$image',sort_order='$sort_order', color='$color' where id='$id'";
-        }else
-        {
-            $sql="update home_slider set heading='$heading',sub_heading='$sub_heading',link='$link',sort_order='$sort_order', color='$color' where id='$id'";
-        }
-        
+        $sort_order = $_POST['esort_order']; 
+        $sql="update home_slider set heading='$heading',sub_heading='$sub_heading',link='$link',sort_order='$sort_order', color='$color' where id='$id'"; 
         if($conn->query($sql))
         {
             $resMember=true;   
+
+            if(upload_videos($_FILES,$conn,"home_slider","id","image",$id,"projectFile",""))
+            {
+                $resMember = "all_true";
+            }else
+            {
+                $resMember = "files_left";
+            } 
         }
         else
         {
@@ -121,7 +127,7 @@
                              
                              <th style="  text-align: center;">S.No</th>
                              <th style="  text-align: center;">Heading</th>
-                             <th style="  text-align: center;">Image</th>
+                             <th style="  text-align: center;">Video</th>
                              <th style="  text-align: center;">Link</th>
                              
                              <th style="  text-align: center;">Sort Order</th>
@@ -144,7 +150,8 @@
                                          
                                          <td style="  text-align: center; " id="sno<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="heading<?=$i?>"><?=$d['heading']?></td> 
-                                         <td style="  text-align: center; " id="image<?=$i?>"><img width="100px" height="100px" src="<?=$d['image']?>"/></td>
+                                         <td style="  text-align: center; " id="image<?=$i?>"> <iframe width="100" height="100" src="<?=$d['image']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </td>
                                          <td style="  text-align: center; " id="link<?=$i?>"><?=$d['link']?></td>   
                                          <td style="  text-align: center; " id="sort_order<?=$i?>"><?=$d['sort_order']?></td>   
                                          <td style="  text-align: center; " id="color<?=$i?>"><?=$d['color']?></td>   
@@ -232,8 +239,8 @@
                 </div>
                 <div class="row">   
                     <div class="col-sm-6">
-                        <label >Select Image :</label>
-                        <input type="file" class="form-control" id="" name="images" value="" required>
+                        <label >Select Video :</label>
+                        <input type="file" class="form-control" id="" name="projectFile[]" value="" required>
                     </div>     
                     <div class="col-sm-6">
                         <label >Text Color</label>
@@ -286,8 +293,8 @@
                     </div>
                     <div class="row">
                     <div class="col-sm-6">
-                        <label >Image :</label>
-                        <input type="file" class="form-control"  name="images" value="">
+                        <label >Video :</label>
+                        <input type="file" class="form-control"  name="projectFile[]" value="">
                         <input type="hidden" id="eid" name="eid">
                     </div>       
                     <div class="col-sm-6">

@@ -63,57 +63,60 @@ require_once "navbar.php";
     
 ?>
 
-    
-       
-        <!-- Slider Area Start Here-->
-        <div class="slider-area">
-            <div class="bend niceties preview-2">
-                <div id="ensign-nivoslider" class="slides">
-                <?php
+
+
+<!-- Slider Area Start Here-->
+<div class="slider-area">
+    <div class="bend niceties preview-2">
+        <div id="ensign-nivoslider" class="slides">
+            <?php
                 if(isset($slider))
                 {
                     foreach($slider as $data)
-                    {
+                 {
                 ?>
-                        <img src="admin/<?=$data['image']?>" alt=""  title="#slider-direction-1" />
-                <?php
+                    <video autoplay  muted style="width:100%">
+                        <source src="admin/<?=$data['image']?>" type="<?=$data['file_type']?>">
+                    </video> 
+            <?php
                     }
                 ?>
-                </div>
-                <?php
+        </div>
+        <?php
                     foreach($slider as $data)
                     {
                 ?>
-                <div id="slider-direction-1" class="slider-direction">
-                    <div class="slider-content t-cn s-tb slider-1">
-                        <div class="title-container s-tb-c">
-                            <h1 class="title1" style="color: <?=$data['color']?>"><span><?=$data['heading']?></span></h1>
-                            <div class="title2" style="color: <?=$data['color']?>"><?=$data['sub_heading']?></div>
-                            <div class="slider-botton">
-                                <ul>
-                                    <li class="acitve"><a href="<?=$data['link']?>">Click Here <i class="fa fa-angle-right"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
+        <div id="slider-direction-1" class="slider-direction">
+            <div class="slider-content t-cn s-tb slider-1">
+                <div class="title-container s-tb-c">
+                    <h1 class="title1" style="color: <?=$data['color']?>"><span><?=$data['heading']?></span></h1>
+                    <div class="title2" style="color: <?=$data['color']?>"><?=$data['sub_heading']?></div>
+                    <div class="slider-botton">
+                        <ul>
+                            <li class="acitve"><a href="<?=$data['link']?>">Click Here <i
+                                        class="fa fa-angle-right"></i></a></li>
+                        </ul>
                     </div>
                 </div>
-                <?php
+            </div>
+        </div>
+        <?php
                     }
                 }
                 ?>
-            </div>
-        </div>
-        <!-- Slider Area End Here-->
+    </div>
+</div>
+<!-- Slider Area End Here-->
 
-        <!-- Home Page About Us area start here -->
-        <div class="home-about-area pt-90 pb-90">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md--12 wow fadeInLeft" data-wow-delay="0.2s">
-                        <div class="about-content">
-                            <h3>About <span>US</span></h3>
-                            <p><?=html_entity_decode($web_config['about'])?></p>
-                            <!-- <div class="about-content-list row">
+<!-- Home Page About Us area start here -->
+<div class="home-about-area pt-90 pb-90">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md--12 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-content">
+                    <h3>About <span>US</span></h3>
+                    <p><?=html_entity_decode($web_config['about'])?></p>
+                    <!-- <div class="about-content-list row">
                                 <div class="single-list col-lg-12 col-md-6 col-sm-12 mb-sm-30">
                                     <div class="media">
                                         <div class="pull-left">
@@ -137,20 +140,20 @@ require_once "navbar.php";
                                     </div>
                                 </div>
                             </div> -->
-                        </div>
-                    </div>
-                    <div class="col-lg-6 hidden-md hidden-sm wow fadeInRight" data-wow-delay="0.2s">
-                        <div class="about-featured-image">
-                            <img src="admin/<?=$web_config['image']?>" alt="">
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 hidden-md hidden-sm wow fadeInRight" data-wow-delay="0.2s">
+                <div class="about-featured-image">
+                    <img src="admin/<?=$web_config['image']?>" alt="">
                 </div>
             </div>
         </div>
-        <!-- About Photo Contests End Here -->
+    </div>
+</div>
+<!-- About Photo Contests End Here -->
 
-        <!-- Portfolio One Start Here -->
-        <!-- <div class="portfolio-one-area pb-70 pt-90">
+<!-- Portfolio One Start Here -->
+<!-- <div class="portfolio-one-area pb-70 pt-90">
             <div class="container">
                 <div class="section-title">
                     <h2>Our Photo<span> Gallery</span></h2>
@@ -158,45 +161,45 @@ require_once "navbar.php";
                 <div class="row">
                     <div class="col-md-12">
                 <!-- .gridFilter end-->
-                        <div class="row grid">
-                            <!-- single portfolio start -->
-                            <?php
+<div class="row grid">
+    <!-- single portfolio start -->
+    <?php
                             if(isset($contest))
                             {
                                 foreach($contest as $data)
                                 {
                             ?>
-                            <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item graphics">
-                                <div class="single-portfolio">
-                                    <div class="portfolio-image">
-                                        <img src="<?=$data['header_image']?>" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item graphics">
+        <div class="single-portfolio">
+            <div class="portfolio-image">
+                <img src="<?=$data['header_image']?>" alt="">
+            </div>
+        </div>
+    </div>
+    <?php
                                 }
                             }
                             ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio One End Here -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Portfolio One End Here -->
 
-        <!-- Single Photo Contest Start Here -->
-        <div class="home-single-contest gray-bg pt-90 pb-90">
-            <div class="home-single single-photo-contest-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                             <div class="section-title">
-                                <h2>Our Running <span>Contests</span></h2>
-                            </div>                   
-                            <div class="about-content">
-                                <h2>Running Contests</h2>
-                                <ul class="home-single-slide variation">
-                                <?php
+<!-- Single Photo Contest Start Here -->
+<div class="home-single-contest gray-bg pt-90 pb-90">
+    <div class="home-single single-photo-contest-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-title">
+                        <h2>Our Running <span>Contests</span></h2>
+                    </div>
+                    <div class="about-content">
+                        <h2>Running Contests</h2>
+                        <ul class="home-single-slide variation">
+                            <?php
                                 if(isset($on_contest))
                                 {
                                     foreach($on_contest as $data)
@@ -206,119 +209,121 @@ require_once "navbar.php";
                                         $date2 = $contest['end_date']." ".$contest['end_time'].":00"; 
                                         $diff = abs(strtotime($date2) - strtotime($date1));
                                 ?>
-                                    <li>
-                                        <div class="item">
-                                            <div class="about-image">
-                                                <img src="<?=$data['header_image']?>" alt="">
-                                            </div>
-                                            <div class="about-text">
-                                                <h3><a href="contest.php?token=<?=$data['id']?>"><?=$data['name']?></a></h3> 
-                                                <p><?=$data['description']?></p> 
-                                                <a href="contest<?=$data['id']?>">Visit Contest <i class="fa fa-angle-right"></i></a>
-                                            </div>  
-                                        </div>                                  
-                                    </li>
-                                <?php
+                            <li>
+                                <div class="item">
+                                    <div class="about-image">
+                                        <img src="<?=$data['header_image']?>" alt="">
+                                    </div>
+                                    <div class="about-text">
+                                        <h3><a href="contest.php?token=<?=$data['id']?>"><?=$data['name']?></a></h3>
+                                        <p><?=$data['description']?></p>
+                                        <a href="contest<?=$data['id']?>">Visit Contest <i
+                                                class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
                                     }
                                 }
                                 ?>
-                                </ul>
-                            </div>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
-       </div>
-        <!-- Single Photo Contest End Here -->        
+        </div>
+    </div>
+</div>
+<!-- Single Photo Contest End Here -->
 
-        <!-- Home page core services start here -->
-        <div class="container-fluid acurate">
-            <div class="home-page-core-activities-area">
-                <div class="row acurate">
-                    <div class="col-lg-6 col-md-12 acurate">
-                        <img class="normal" src="admin/<?=$web_config['feature_image']?>" alt="">
-                        <img class="tablate" src="images/activities-bg1.jpg" alt="">
-                    </div>
-                    <div class="col-lg-6 col-md-12 acurate">
-                        <div class="home-activities-area">
-                            <h2>Contest Features</h2>
-                            <?php
+<!-- Home page core services start here -->
+<div class="container-fluid acurate">
+    <div class="home-page-core-activities-area">
+        <div class="row acurate">
+            <div class="col-lg-6 col-md-12 acurate">
+                <img class="normal" src="admin/<?=$web_config['feature_image']?>" alt="">
+                <img class="tablate" src="images/activities-bg1.jpg" alt="">
+            </div>
+            <div class="col-lg-6 col-md-12 acurate">
+                <div class="home-activities-area">
+                    <h2>Contest Features</h2>
+                    <?php
                             if(isset($features))
                             {
                                 foreach($features as $data)
                                 {
                             ?>
-                                    <div class="single-activities">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <a href="#">
-                                                    <i class="<?=$data['icon']?>"></i>
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#"><?=$data['name']?></a></h4>
-                                                <p><?=$data['description']?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <?php
+                    <div class="single-activities">
+                        <div class="media">
+                            <div class="pull-left">
+                                <a href="#">
+                                    <i class="<?=$data['icon']?>"></i>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#"><?=$data['name']?></a></h4>
+                                <p><?=$data['description']?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
                                 }
                             }
                             ?>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- Home page core services end here -->
+    </div>
+</div>
+<!-- Home page core services end here -->
 
-        <!-- Home Blog Start Here -->
-        <div class="fix home-blog-area pb-90 pt-90">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="section-title">
-                            <h2>Recent <span>Blogs</span></h2>
-                        </div>
-                    </div>
+<!-- Home Blog Start Here -->
+<div class="fix home-blog-area pb-90 pt-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="section-title">
+                    <h2>Recent <span>Blogs</span></h2>
                 </div>
-                <div class="blog-slider">
-                <?php
+            </div>
+        </div>
+        <div class="blog-slider">
+            <?php
                 if(isset($blog))
                 {
                     foreach($blog as $data)
                     {
                 ?>
-                        <div class="single-blog-slide">
-                            <div class="images">
-                                <a href="viewBlog<?=$data['id']?>"><img src="<?=$data['image']?>"  style="width:250px!important;height:250px!important"  alt=""></a>
-                            </div>
-                            <div class="blog-informations">
-                                <!-- <ul>
+            <div class="single-blog-slide">
+                <div class="images">
+                    <a href="viewBlog<?=$data['id']?>"><img src="<?=$data['image']?>"
+                            style="width:250px!important;height:250px!important" alt=""></a>
+                </div>
+                <div class="blog-informations">
+                    <!-- <ul>
                                     <li><i class="fa fa-user"></i> By Admin</li>
                                 </ul> -->
-                                <div class="blog-details">
-                                    <h3><a href="viewBlog<?=$data['id']?>"><?=$data['name']?></a></h3>
-                                    <p><?=$data['short_des']?></p>
-                                    <div class="read-more">
-                                        <a href="viewBlog<?=$data['id']?>">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="blog-details">
+                        <h3><a href="viewBlog<?=$data['id']?>"><?=$data['name']?></a></h3>
+                        <p><?=$data['short_des']?></p>
+                        <div class="read-more">
+                            <a href="viewBlog<?=$data['id']?>">Read More</a>
                         </div>
-                <?php
+                    </div>
+                </div>
+            </div>
+            <?php
                     }
                 }
                 ?>
-                    
-                </div>
-            </div>
+
         </div>
-        <!-- Home Blog End Here -->
+    </div>
+</div>
+<!-- Home Blog End Here -->
 
-        <!-- Footer Area Section End Here -->
+<!-- Footer Area Section End Here -->
 
-      <?php
+<?php
       require_once "footer.php";
       require_once "js-links.php";
       ?>

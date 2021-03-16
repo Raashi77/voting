@@ -1,7 +1,8 @@
 <?php
     session_start();
-    require_once'PHPMailer/PHPMailerAutoload.php';
-    require_once'config.php';   
+    // require_once 'PHPMailer/PHPMailerAutoload.php';
+    require_once 'ffmpeg/vendor/autoload.php';
+    require_once 'config.php';   
 
 //check page setting
 function check_page($id,$conn)
@@ -17,7 +18,18 @@ function check_page($id,$conn)
     }
 }
  
+function convertVideoNsave($vidAddr,$filename)
+{
+    $ffmpeg = FFMpeg\FFMpeg::create(array(
+        'ffmpeg.binaries'  => '../lib/ffmpegBuild/ffmpeg',
+        'ffprobe.binaries' => '../lib/ffmpegBuild/ffprobe',
+        'timeout'          => 3600, // The timeout for the underlying process
+        'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+    ));
+    $video = $ffmpeg->open($vidAddr); 
+    $video->save(new FFMpeg\Format\Video\X264(), $filename);
 
+}
  
 //check user authpage
 function user_auth()
@@ -859,22 +871,31 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
 }
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {
+ 
 	if(isset($_FILES[$images]))
     {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4");
         foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
         {
+        
             $file_name=$_FILES[$images]["name"][$key];
             $file_tmp=$_FILES[$images]["tmp_name"][$key];
             $ext=pathinfo($file_name,PATHINFO_EXTENSION); 
             if(in_array(strtolower($ext),$extension)) 
             {
                 $filename=basename($file_name,$ext);
-                 $newFileName=$filename.time().".".$ext;
+                $mp4name  = $filename.time();
+                $newFileName=$mp4name.".".$ext;
+
+
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                      $type = $_FILES[$images]["type"][$key];
-                    $sql="update $table set  $column='$url./$newFileName',file_type='$type' where $id_col=$id ";
+                    if($ext!="mp4")
+                    {
+                        convertVideoNsave("uploads/".$newFileName,$mp4name.".mp4");
+                    }
+                    $type = $_FILES[$images]["type"][$key];
+                      $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
                     if($conn->query($sql)===true)
                     {
                         $status=true;
