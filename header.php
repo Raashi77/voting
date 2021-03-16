@@ -1,8 +1,6 @@
 <?php
     require_once "lib/core.php";
-
-
-
+    $email=$_SESSION['signed_in'];
     $sql="select * from web_config where id=1";
     if($result =  $conn->query($sql))
     {
@@ -12,6 +10,17 @@
                  $web_config = $row;
         }
     }
+    $sql="select * from users where email='$email'";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            $row = $result->fetch_assoc();
+                 $user_details = $row;
+        }
+    }
+
+    $USER_ID=$user_details['id'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">

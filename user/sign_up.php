@@ -5,33 +5,34 @@
     {
         if(isset($_POST['sign_up']))
         {
-            $email=$_POST['email'];
-            $name=$_POST['name'];
-            $mobile=$_POST['mobile'];
-            $ip_address=get_client_ip();
-            $password=md5($_POST['password']);
-            $sql="select * from users where email='$email'";
-            if($result =  $conn->query($sql))
-            {
-                if($result->num_rows>0)
-                {
-                    $errorMember="User with this email id already exist. Try another.";
-                }
-                else
-                {
-                    $sql = "insert into users(name, email,password, mobile, ip_address, status) values('$name', '$email', '$password', '$mobile', '$ip_address', 1)";
-                    if($conn->query($sql))
-                    {
-                        $resMember="User Registered Successfully";   
-                    }
-                    else
-                    {
-                        $errorMember=$conn->error;
-                    }
-                }
-            }    
-            
-        }  
+          $email=$_POST['email'];
+          $name=$_POST['name'];
+          $mobile=$_POST['mobile'];
+          $ip_address=get_client_ip();
+          $password=md5($_POST['password']);
+          $sql="select * from users where email='$email'";
+          if($result =  $conn->query($sql))
+          {
+              if($result->num_rows>0)
+              {
+                  $errorMember="User with this email id already exist. Try another.";
+              }
+              else
+              {
+                  $sql = "insert into users(name, email,password, mobile, ip_address, status) values('$name', '$email', '$password', '$mobile', '$ip_address', 1)";
+                  if($conn->query($sql))
+                  {
+                      $resMember="User Registered Successfully";   
+                  }
+                  else
+                  {
+                      $errorMember=$conn->error;
+                  }
+              }
+          }    
+        } 
+        
+         
     }
  
 ?>

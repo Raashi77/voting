@@ -72,7 +72,7 @@ function master_admin_login($email,$password,$conn,$path)
 //user login
    function user_login($email,$password,$conn,$path)
     {
-         $sql="select status, email from users where email='$email' and password='$password'";
+        $sql="select status, name, email from users where email='$email' and password='$password'";
         $res=$conn->query($sql);
         if($res->num_rows > 0)
         {
@@ -80,6 +80,7 @@ function master_admin_login($email,$password,$conn,$path)
             if($row['status']==1)
             {
                 $_SESSION['signed_in']=$email;
+                $_SESSION['name']=$row['name'];
                 setcookie("new",$email, time() + (86400 * 80), "/");   
                 setcookie("pass",$password, time() + (86400 * 80), "/");  
                 
@@ -895,7 +896,7 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                         convertVideoNsave("uploads/".$newFileName,$mp4name.".mp4");
                     }
                     $type = $_FILES[$images]["type"][$key];
-                      $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
+                    $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
                     if($conn->query($sql)===true)
                     {
                         $status=true;
