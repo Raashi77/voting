@@ -3,7 +3,7 @@ require_once "header.php";
 require_once "navbar.php";
 $date=date('Y-m-d');
 $time = date('H:i');
-$sql="SELECT c.*, i.header_image from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id ";
+$sql="SELECT c.*, i.header_image from contest c, index_changes i,contest_users cu where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id and c.id=cu.c_id and cu.u_id='$USER_ID'";
 if($result =  $conn->query($sql))
 {
     if($result->num_rows)

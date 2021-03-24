@@ -35,13 +35,17 @@
         {
             $email=$conn->real_escape_string(strtolower(trim($_POST['eemail'])));
             $password=md5($_POST['epassword']);
-            if(!user_login($email,$password,$conn,"index2"))
+            if(!user_login($email,$password,$conn,"index"))
             {
               $error= "invalid user & Password";
             }
             else
-            {
-
+            {  
+                ?>
+                    <script type="text/javascript">
+                        window.location.href = 'index';
+                    </script>
+                <?php
             }
         } 
     }

@@ -93,6 +93,7 @@ function master_admin_login($email,$password,$conn,$path)
                 else
                 {
                 header("location: $path"); 
+                return true;
                 }
             }
             else
@@ -743,6 +744,7 @@ function get_client_ip() {
 //Upload multiple images 23/04/20
 function upload_images($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {
+  
 	if(isset($_FILES[$images]))
     {
         $extension=array("jpeg","jpg","png","gif","pdf","PDF");
@@ -871,7 +873,7 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
 }
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {
- 
+     
 	if(isset($_FILES[$images]))
     {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4");
@@ -883,29 +885,29 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
             $ext=pathinfo($file_name,PATHINFO_EXTENSION); 
             if(in_array(strtolower($ext),$extension)) 
             {
-                $filename=basename($file_name,$ext);
+                  $filename=basename($file_name,$ext);
                 $mp4name  = $filename.time();
                 $newFileName=$mp4name.".".$ext;
 
 
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                    if($ext!="mp4")
-                    {
-                        
-                        convertVideoNsave("uploads/".$newFileName,$mp4name.".mp4");
-                    }
-                    $type = $_FILES[$images]["type"][$key];
-                    $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
-                    if($conn->query($sql)===true)
-                    {
-                        $status=true;
-                    }
-                    else
-                    {
-                        $status=false;
-                        break;
-                    }
+                     if($ext=='mp4')
+                     {
+                        $type = $_FILES[$images]["type"][$key];
+                        $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
+                      if($conn->query($sql)===true)
+                      {
+                          $status=$newFileName;
+                      }
+                      else
+                      {
+                          $status=false;
+                          break;
+                      }
+                     }
+                     $status=$newFileName;
+                    
                 }
                 else
                 {

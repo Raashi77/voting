@@ -43,24 +43,7 @@
                                         <li><a href="contest-list">Contests</a></li>
                                          <li><a href="about">About</a></li>
                                        
-                                        <!-- <li class="active"><a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                                            <ul>
-                                                <li><a href="shop.html">Shop</a></li>
-                                                <li><a href="product-details.html">Product Details</a></li>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                                <li><a href="photocontest-list1.html">Photo Contest List 1</a></li>
-                                                <li><a href="photocontest-list2.html">Photo Contest List 2</a></li>
-                                                <li><a href="single-contest1.html">Single Contest 1</a></li>
-                                                <li><a href="single-contest2.html">Single Contest 2</a></li>
-                                                <li><a href="photo-details.html">Photo Details</a></li>
-                                                <li><a href="winners.html">Winners</a></li>
-                                                <li><a href="single-winners.html">Winners Details</a></li>
-                                                <li><a href="upload-photo.html">Upload Photo</a></li>
-                                                <li><a href="registration.html">Registration</a></li>
-                                                <li><a href="404.html">Error Page</a></li>
-                                            </ul>
-                                        </li> -->
+                                        
                                         <li><a href="blog_home">Blog</a></li>
                                         <li><a href="contact">Contact Us</a></li>
                                     <?php
@@ -68,8 +51,9 @@
                                     {
                                     ?>
                                         
-                                        <li><a href="registration" class="btn btn-danger" style="color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
+                                        <li><a href="#" class="btn btn-danger" style="color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
                                             <ul>
+                                            <li><a href="my_contests">My Contests</a></li>
                                             <li><a href="logout">Log Out</a></li>
                                             </ul>
                                         </li>

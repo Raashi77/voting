@@ -7,7 +7,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     $token=$_GET['token'];
     if(isset($_POST['add']))
     {
-        $sql=
+   
         $sql="insert into videos(c_id, u_id, status) values('$token', '$USER_ID', 1)";
         if($result=$conn->query($sql))
         {
@@ -49,7 +49,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         {
             $errorSubject=$conn->error;
         } 
-
+    }
         $sql="select * from contest_songs where c_id='$token'";
         if($result=$conn->query($sql))
         {
@@ -83,9 +83,19 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     $v_count = $row['count'];
             }
         }
-    }
+    
 }
-
+  $sql="SELECT c.*, i.header_image from contest c, index_changes i where c.id=i.c_id and c.id='$token'";
+if($result =  $conn->query($sql))
+{
+    if($result->num_rows)
+    {
+        $row = $result->fetch_assoc();
+       
+            $on_contest = $row;
+        
+    }
+} 
          
 ?>
 <div class="content-wrapper" style="margin-left:20px;">
@@ -108,6 +118,25 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 
             }
         ?>
+        <div class="row">
+        <div class="col-sm-12 col-md-12 mb-50">
+						<div class="single-section text-center">
+							<div class="section-img">
+								<img src="<?=$on_contest['header_image']?>"   alt="single Images" />
+							</div>
+							<h3 class="headding-title"><?=$on_contest['name']?></h3> 
+							<div class="countdown-section">
+								<div class="row">
+									<div class="offset-md-3 offset-sm-3 col-sm-6">
+										<div class="CountDownTimer" data-date="<?php
+                                            echo $on_contest['end_date']." ".$on_contest['end_time'].":00"; 
+                                        ?>"></div>
+									</div>
+								</div>
+							</div> 
+						</div>
+					</div>
+        </div>
          <div class="box">
               <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
@@ -136,11 +165,11 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                     </tr>
                                  
                             <?php
-                                $i++;
+                                $i++;    
                                     
                                             
                                 }
-                            }
+                            } 
                          ?>
           
                     </tbody>
@@ -158,7 +187,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 {
         ?>
                     <div id="data<?=$counter?>">
-                    <iframe width="560" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="400" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <?php
                     if($v_count>1)
                     {
@@ -179,12 +208,21 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             <div class="row">
                 <div class="col-md-12"> 
                     <div class="form-group">
-                        <label>Add Videos</label><br>  
-                        <button type="button" class="btn btn-success" onclick="$('#projectfile').click()"><i class="fa fa-plus"></i></button>
-                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
+                        
+                        <center><button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button></center> 
+                        <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
                         <input type="hidden" name ="add" value="dsbhvfs"/>
                      </div> 
                 </div>
+            </div>
+            <div class="row"  id="formatError" style="display:none">
+                <div class="col-md-12"> 
+                    <div class="form-group"> 
+                         <div class="alert alert-danger">
+                             We suport Mp4 Videos , your video  does not have valid Extension. <button  type="button" onclick="continueUpload()" class="btn btn-primary" >Click Here To convert Video</button>
+                         </div>
+                </div>
+            </div>
             </div>
             <div class="row">
                 <div class="col-md-4" id="filesDiv"> 
@@ -206,41 +244,37 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 <script>
     var videoCounter = parseInt('<?=$counter?>');
     var counter=1;
+    var event;
+
+    function continueUpload()
+    {
+        uploadVideo("redirect",event)
+    }
     $(function()
     {
         
         disableVideoDelete(videoCounter);
         $("#projectfile").change(function(e)
         {
-             
-            $("#video_form").submit();
+            
+             if($(this).val().split('.').pop()!='mp4')
+             {
+                $("#formatError").show();
+                event = e;
+             }else
+             {
+                uploadVideo("redirect",e)
+             }
+            // 
         })
     })
-    function addFilesField()
-    {
-        var inhtml  = `<div class="row" style="margin-top:20px">    
-                            <div class="col-md-10">
-                                <input   type="file" id='projectfile${counter}' name="projectFile[]" class="form-control"/>
-                            </div> 
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-danger" onclick="removeField('projectfile${counter}')"><i class="fa fa-trash"></i></button>
-                            </div> 
-                        </div>`;
-        $("#filesDiv").append(inhtml);
-        counter++;
-
-    }
-
-    function removeField(id)
-    {
-        $("#"+id).parent().parent().remove();
-    }
+    
 
     function deleteFile(id,divId, video)
     {
         $.ajax({
         url:"deleteuservideo.php",
-        type:"POST",
+        type:"POST", 
         data:{
             id:id,
             deleteVideo:video,
@@ -273,5 +307,47 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         {
             $(".deleteBtn").remove()
         }
+    }
+
+    function uploadVideo(mode,file)
+    {
+       
+            $("#upldBtn").html(`Uploading Video <i class="fa fa-spinner fa-spin"></i>`)
+         
+        var formData = new FormData();
+        formData.append("projectFile[]",file.target.files[0]);
+        formData.append("token",'<?=$token?>');
+        formData.append("user_id",'<?=$USER_ID?>')
+         formData.append("add",'<?=$USER_ID?>')
+        $.ajax({
+                url:'uploadVideo_ajax.php',
+                type:'post', 
+                cache: false,
+                contentType: false,
+                processData: false,
+                data:formData,
+                success: function(data)
+                {
+                    $("#upldBtn").html(`Video Uploaded`)
+                        var obj = JSON.parse(data);
+                        if(obj.msg.trim()=='all_true')
+                        {
+                            var filename = obj.filename;
+                            if(mode="redirect")
+                            {
+                                var href  ='https://video.online-convert.com/convert-to-mp4?external_url='+encodeURIComponent('<?=$website_link?>/uploads/'+filename);
+                                console.log(href);
+                            }
+                            else
+                            {
+                                    window.location.reload();
+                            }
+                        }
+                },
+                error: function(data)
+                {
+
+                }
+        })
     }
 </script>

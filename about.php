@@ -25,7 +25,7 @@ $sql="select * from features";
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="header-page-locator">
                             <ul>
-                                <li><a href="index.html">Home /</a> About</li>
+                                <li><a href="index">Home /</a> About</li>
                             </ul>
                         </div>
                     </div>

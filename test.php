@@ -9,28 +9,17 @@
     $signature = md5($signatureData);
 ?>
 
-    <h1>Hello</h1>
+      
+        <iframe width="560" height="315" src="https://video.online-convert.com/convert-to-mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              
 <?php
+
 
     require_once "footer.php";
     require_once "js-links.php";
 ?>
 
 <script type="text/javascript">
-        $.ajax({
-            url: "https://developer-api.media.io/upload",
-            headers: { 'Content-Type': 'application/json','accessKey':'<?=$access?>','signature':'<?=$signature?>','timestamp': parseInt(<?=$t?>)},
-            type:"POST",
-            data:{
-                file:"user/uploads/screen_recorder_video_2020_12_11_11_57_40.1615860198.mp4"
-            },
-            success: function(data){
-                console.log(data);
-            },
-            error: function(data)
-            {
-                console.error(data);
-            } 
-        })
+      
 </script>
  
