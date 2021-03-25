@@ -12,17 +12,19 @@ require_once "navbar.php";
             }
         }
     }
-    // $sql="select header_image from index_changes limit 6";
-    // if($result =  $conn->query($sql))
-    // {
-    //     if($result->num_rows)
-    //     {
-    //         while($row = $result->fetch_assoc())
-    //         {
-    //             $contest[] = $row;
-    //         }
-    //     }
-    // }
+   
+    $sql="select * from videos order by time_stamp desc limit 6";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $videos[] = $row;
+            }
+        }
+    }
+
     $sql="select * from features";
     if($result =  $conn->query($sql))
     {
@@ -108,82 +110,57 @@ require_once "navbar.php";
 </div>
 <!-- Slider Area End Here-->
 
-<!-- Home Page About Us area start here -->
-<div class="home-about-area pt-90 pb-90">
+<div class="fix home-blog-area pb-90 pt-90">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md--12 wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="about-content">
-                    <h3>About <span>US</span></h3>
-                    <p><?=html_entity_decode($web_config['about'])?></p>
-                    <!-- <div class="about-content-list row">
-                                <div class="single-list col-lg-12 col-md-6 col-sm-12 mb-sm-30">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <a href="#"><i class="fa fa-files-o"></i></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><a href="#">HD Resulation</a></h4>
-                                            <p>Lorem Ipsum text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-list col-lg-12 col-md-6 col-sm-12">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <a href="#"><i class="fa fa-camera"></i></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><a href="#">Camra Shop</a></h4>
-                                            <p>Lorem Ipsum text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                </div>
-            </div>
-            <div class="col-lg-6 hidden-md hidden-sm wow fadeInRight" data-wow-delay="0.2s">
-                <div class="about-featured-image">
-                    <img src="admin/<?=$web_config['image']?>" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- About Photo Contests End Here -->
-
-<!-- Portfolio One Start Here -->
-<!-- <div class="portfolio-one-area pb-70 pt-90">
-            <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="section-title">
-                    <h2>Our Photo<span> Gallery</span></h2>
+                    <h2>Video<span>Gallery</span></h2>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                <!-- .gridFilter end-->
-<div class="row grid">
-    <!-- single portfolio start -->
-    <?php
-                            if(isset($contest))
-                            {
-                                foreach($contest as $data)
-                                {
-                            ?>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item graphics">
-        <div class="single-portfolio">
-            <div class="portfolio-image">
-                <img src="<?=$data['header_image']?>" alt="">
             </div>
         </div>
+        <div class="blog-slider">
+            <?php
+                if(isset($videos))
+                {
+                    foreach($videos as $data)
+                    {
+                ?>
+            <div class="single-blog-slide">
+                <div class="images">
+                    <a href="admin/<?=$data['video']?>"> <video src="admin/<?=$data['video']?>" style="width:500px!important;height:300px!important"></video> </a>
+                </div>
+            </div>
+            <?php
+                    }
+                }
+                ?>
+
+        </div>
     </div>
+</div>
+
+
+
+
+<div class="row grid">
     <?php
-                                }
-                            }
-                            ?>
-</div>
-</div>
-</div>
-</div>
+        if(isset($contest))
+        {
+            foreach($contest as $data)
+            {
+    ?>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item graphics">
+            <div class="single-portfolio">
+                <div class="portfolio-image">
+                    <img src="<?=$data['header_image']?>" alt="">
+                </div>
+            </div>
+        </div>
+    <?php
+            }
+        }
+    ?>
 </div>
 <!-- Portfolio One End Here -->
 

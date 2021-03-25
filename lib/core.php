@@ -1,7 +1,7 @@
 <?php
     session_start();
     // require_once 'PHPMailer/PHPMailerAutoload.php';
-    require_once 'ffmpeg/vendor/autoload.php';
+    // require_once 'ffmpeg/vendor/autoload.php';
     require_once 'config.php';   
 
 //check page setting
