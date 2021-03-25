@@ -101,9 +101,13 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     </head>
     
     <body>
+    
         <div>
+        
             <img id="foodModel_headingImg" src="<?=$changes['header_image']?>" >
+            
             <div id="foodModel_heading_Div">
+            <a href="contest?token=1"><button class="btn btn-success">Back</button></a>
                 <h5 id="foodModel_heading_h5" style="color: <?=$changes['title_color']?>;"> <?=$changes['title']?> </h5> 
                 <p id="foodModel_heading_p" style="color: <?=$changes['subtitle_color']?>;"><?=$changes['subtitle']?></p><button title="" class="btn btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-edit"></i></button>
                 
