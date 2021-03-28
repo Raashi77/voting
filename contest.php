@@ -1,6 +1,6 @@
 <?php
-require_once "lib/core.php";
-
+require_once "header.php";
+require_once "navbar.php";
 if(isset($_POST['vote']))
 {
     $cu_id=$_POST['vote'];
@@ -85,10 +85,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 }
 
 ?>
-<html>
-
-<head>
-    <title>Contest</title>
+ 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
     <link rel="stylesheet" href="admin/bower_components/font-awesome/css/font-awesome.min.css">
@@ -101,11 +98,9 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-    <div>
+ 
+ 
+    <div class="fix home-blog-area pb-90 pt-90">
         <?php
             if(isset($errorMember))
             {
@@ -116,9 +111,9 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 }
         ?>
         <img id="foodModel_headingImg" src="<?=$changes['header_image']?>">
-        <div id="foodModel_heading_Div">
-            <h5 id="foodModel_heading_h5" style="color: <?=$changes['title_color']?>;"> <?=$changes['title']?> </h5>
-            <p id="foodModel_heading_p" style="color: <?=$changes['subtitle_color']?>;"><?=$changes['subtitle']?></p>
+        <div id="foodModel_heading_Div" class="fix home-blog-area pb-90 pt-90" >
+            <h5 id="foodModel_heading_h5" style="color:<?=$changes['title_color']?>;"> <?=$changes['title']?> </h5>
+            <p id="foodModel_heading_p" style="color:<?=$changes['subtitle_color']?>;"><?=$changes['subtitle']?></p>
 
         </div>
     </div>
@@ -237,3 +232,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 </body>
 
 </html>
+<?php
+
+require_once "js-links.php";
+?>

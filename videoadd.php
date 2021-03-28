@@ -257,14 +257,15 @@ if($result =  $conn->query($sql))
         $("#projectfile").change(function(e)
         {
             
-             if($(this).val().split('.').pop()!='mp4')
-             {
-                $("#formatError").show();
-                event = e;
-             }else
-             {
-                uploadVideo("redirect",e)
-             }
+            uploadVideo("redirdect",e)
+            //  if($(this).val().split('.').pop()!='mp4')
+            //  {
+            //     $("#formatError").show();
+            //     event = e;
+            //  }else
+            //  {
+            //     uploadVideo("redirect",e)
+            //  }
             // 
         })
     })
@@ -333,7 +334,7 @@ if($result =  $conn->query($sql))
                         if(obj.msg.trim()=='all_true')
                         {
                             var filename = obj.filename;
-                            if(mode="redirect")
+                            if(mode=="redirect")
                             {
                                 var href  ='https://video.online-convert.com/convert-to-mp4?external_url='+encodeURIComponent('<?=$website_link?>/uploads/'+filename);
                                 console.log(href);

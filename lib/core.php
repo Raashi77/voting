@@ -20,15 +20,15 @@ function check_page($id,$conn)
  
 function convertVideoNsave($vidAddr,$filename)
 {
-    $ffmpeg = FFMpeg\FFMpeg::create(array(
-        'ffmpeg.binaries'  => '../lib/ffmpeg_static/fftools/ffmpeg.c',
-        'ffprobe.binaries' => '../lib/ffmpeg_static/fftools/ffprobe.c',
-        'timeout'          => 3600, // The timeout for the underlying process
-        'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
-    ));
-    $video = $ffmpeg->open($vidAddr);  
-    $video->save(new FFMpeg\Format\Video\X264(), $filename);
+     shell_exec("ffmpeg -i $vidAddr -codec copy uploads/$filename.mp4"); 
+     unlink($vidAddr);
+     compressVideoNsave("uploads/$filename.mp4",$filename);
 
+}
+function compressVideoNsave($vidAddr,$filename)
+{
+    shell_exec("ffmpeg -i $vidAddr -c:v libvpx-vp9 -b:v 0.33M -c:a libopus -b:a 96k  uploads/$filename.mp4");
+    unlink($vidAddr);
 }
 //check user authpage
 function user_auth()
@@ -892,10 +892,9 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                     if($ext=='mp4')
-                     {
+                     
                         $type = $_FILES[$images]["type"][$key];
-                        $sql="update $table set  $column='uploads/$newFileName',file_type='$type' where $id_col=$id ";
+                        $sql="update $table set  $column='uploads/$mp4name.mp4',file_type='$type' where $id_col=$id ";
                       if($conn->query($sql)===true)
                       {
                           $status=$newFileName;
@@ -905,6 +904,12 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                           $status=false;
                           break;
                       }
+                      if($ext!='mp4')
+                     {
+                        convertVideoNsave("uploads/$newFileName",$mp4name);
+                     }else
+                     {
+                        compressVideoNsave("uploads/$newFileName",$mp4name);
                      }
                      $status=$newFileName;
                     
