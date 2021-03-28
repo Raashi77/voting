@@ -22,13 +22,19 @@ function convertVideoNsave($vidAddr,$filename)
 {
      shell_exec("ffmpeg -i $vidAddr -codec copy uploads/$filename.mp4"); 
      unlink($vidAddr);
-     compressVideoNsave("uploads/$filename.mp4",$filename);
+     compressVideoNsave("uploads/$filename.mp4",$filename,$filename);
 
 }
-function compressVideoNsave($vidAddr,$filename)
+function compressVideoNsave($vidAddr,$file_name,$newfilename)
 {
-    shell_exec("ffmpeg -i $vidAddr -c:v libvpx-vp9 -b:v 0.33M -c:a libopus -b:a 96k  uploads/$filename.mp4");
-    unlink($vidAddr);
+    shell_exec("ffmpeg -i $vidAddr -c:v libvpx-vp9 -b:v 0.33M -c:a libopus -b:a 96k  uploads/$newfilename.mp4");
+    
+    if($file_name!=$newfilename)
+    {
+         
+        unlink($vidAddr);
+    }
+    
 }
 //check user authpage
 function user_auth()
@@ -873,7 +879,7 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
 }
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {
-     
+    //  print_r($_FILES);
 	if(isset($_FILES[$images]))
     {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4");
@@ -893,14 +899,15 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
                      
-                        $type = $_FILES[$images]["type"][$key];
-                        $sql="update $table set  $column='uploads/$mp4name.mp4',file_type='$type' where $id_col=$id ";
+                          $type = $_FILES[$images]["type"][$key];
+                          $sql="update $table set  $column='uploads/$mp4name.mp4',file_type='$type' where $id_col=$id ";
                       if($conn->query($sql)===true)
                       {
                           $status=$newFileName;
                       }
                       else
                       {
+                            
                           $status=false;
                           break;
                       }
@@ -909,7 +916,7 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                         convertVideoNsave("uploads/$newFileName",$mp4name);
                      }else
                      {
-                        compressVideoNsave("uploads/$newFileName",$mp4name);
+                        compressVideoNsave("uploads/$newFileName",$newFileName,$mp4name);
                      }
                      $status=$newFileName;
                     
