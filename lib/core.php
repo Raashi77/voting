@@ -878,7 +878,7 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
     }
 }
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
-{
+{   
     //  print_r($_FILES);
 	if(isset($_FILES[$images]))
     {

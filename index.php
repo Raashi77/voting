@@ -77,7 +77,7 @@ require_once "navbar.php";
                     foreach($slider as $data)
                  {
                 ?>
-                    <video autoplay  muted style="width:100%">
+                    <video autoplay  muted loop style="width:100%">
                         <source src="admin/<?=$data['image']?>" type="<?=$data['file_type']?>">
                     </video> 
             <?php
@@ -88,20 +88,19 @@ require_once "navbar.php";
                     foreach($slider as $data)
                     {
                 ?>
-        <div id="slider-direction-1" class="slider-direction">
-            <div class="slider-content t-cn s-tb slider-1">
-                <div class="title-container s-tb-c">
-                    <h1 class="title1" style="color: <?=$data['color']?>"><span><?=$data['heading']?></span></h1>
-                    <div class="title2" style="color: <?=$data['color']?>"><?=$data['sub_heading']?></div>
-                    <div class="slider-botton">
-                        <ul>
-                            <li class="acitve"><a href="<?=$data['link']?>">Click Here <i
-                                        class="fa fa-angle-right"></i></a></li>
-                        </ul>
+                    <div id="slider-direction-1" class="slider-direction">
+                        <div class="slider-content t-cn s-tb slider-1">
+                            <div class="title-container s-tb-c">
+                                <h1 class="title1" style="color: <?=$data['color']?>"><span><?=$data['heading']?></span></h1>
+                                <div class="title2" style="color: <?=$data['color']?>"><?=$data['sub_heading']?></div>
+                                <div class="slider-botton">
+                                    <ul>
+                                            <li class="acitve"><a href="<?=$data['link']?>">Click Here <i class="fa fa-angle-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
         <?php
                     }
                 }
