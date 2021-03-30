@@ -44,7 +44,7 @@
             $password=md5($_POST['epassword']);
             if(!user_login($email,$password,$conn,"index"))
             {
-              $error= "invalid user & Password";
+              $errorMember2= "invalid user & Password";
             }
             else
             {  
@@ -87,7 +87,22 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-sm-30">
                     <div class="login-area">
+                    
                         <h2>Login</h2>
+                        <?php
+                            if(isset($resMember))
+                            {
+                                ?>
+                        <div class="alert alert-success"><strong>Success! </strong><?=$resMember?></div>
+                        <?php
+                            }
+                            else if(isset($errorMember2))
+                            {
+                                ?>
+                        <div class="alert alert-danger"><strong>Error! </strong><?=$errorMember?></div>
+                        <?php
+                            }
+                            ?>
                         <form method="post">
                             <fieldset>
                                 <div class="col-sm-12">
@@ -135,7 +150,7 @@
                         <div class="alert alert-success"><strong>Success! </strong><?=$resMember?></div>
                         <?php
                             }
-                            else if(isset($resMember))
+                            else if(isset($errorMember))
                             {
                                 ?>
                         <div class="alert alert-danger"><strong>Error! </strong><?=$errorMember?></div>
