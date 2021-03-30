@@ -3,49 +3,22 @@
     require_once 'navbar.php';
     require_once 'left-navbar.php';
     if(isset($_POST['delete']))
-        {
-            $id=$conn->real_escape_string   ($_POST['delete']);
-           
-                $sql="delete from home_slider where id=$id";
-                if($conn->query($sql))
-                {
-                    $resMember=true;   
-                }
-                else
-                {
-                    $errorMember=$conn->error;
-                }
-
-           
-        }
-    if(isset($_POST['add']))
     {
-        $heading= $conn->real_escape_string($_POST['heading']);
-        $sub_heading=$conn->real_escape_string($_POST['sub_heading']);   
-        $link=$_POST['link'];
-        $sort_order=$_POST['sort_order'];
-        $color=$_POST['color'];
-        // $image = upload_image($_FILES);
-         
-            $sql="insert into home_slider(heading,sub_heading,link,color,sort_order) values('$heading','$sub_heading','$link','$color', $sort_order)";
+        $id=$conn->real_escape_string   ($_POST['delete']);
+        
+            $sql="delete from home_slider where id=$id";
             if($conn->query($sql))
             {
-                $insert_id = $conn->insert_id;
-                if(upload_videos($_FILES,$conn,"home_slider","id","image",$insert_id,"projectFile",""))
-                {
-                    $resMember = "all_true";
-                }else
-                {
-                    $resMember = "files_left";
-                } 
+                $resMember=true;   
             }
             else
             {
                 $errorMember=$conn->error;
             }
-         
+
         
     }
+    
     if(isset($_POST['edit']))
     {
         $id=$_POST['eid'];
@@ -90,9 +63,6 @@
         <ol class="breadcrumb">
             <li>
                 <div class="pull-right">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
-
-                    
                     <a href="" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Rebuild"><i class="fa fa-refresh"></i></a>
                 </div>
             </li>
@@ -129,7 +99,6 @@
                              <th style="  text-align: center;">Heading</th>
                              <th style="  text-align: center;">Video</th>
                              <th style="  text-align: center;">Link</th>
-                             
                              <th style="  text-align: center;">Sort Order</th>
                              <th style="  text-align: center;">Text Color</th>
                             <th>Action</th>
@@ -150,8 +119,7 @@
                                          
                                          <td style="  text-align: center; " id="sno<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="heading<?=$i?>"><?=$d['heading']?></td> 
-                                         <td style="  text-align: center; " id="image<?=$i?>"> <iframe width="100" height="100" src="<?=$d['image']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </td>
+                                         <td style="  text-align: center; " id="image<?=$i?>"> <iframe width="100" height="100" src="<?=$d['image']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
                                          <td style="  text-align: center; " id="link<?=$i?>"><?=$d['link']?></td>   
                                          <td style="  text-align: center; " id="sort_order<?=$i?>"><?=$d['sort_order']?></td>   
                                          <td style="  text-align: center; " id="color<?=$i?>"><?=$d['color']?></td>   
@@ -204,59 +172,7 @@
        immediately after the control sidebar -->       
   <div class="control-sidebar-bg"></div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel"> Add Slider Element :</h3>
-      
-      </div>
-      <div class="modal-body">
-      <form method="post" enctype="multipart/form-data">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                         <label>Heading :</label>
-                        <input type="text" class="form-control" id="" name="heading" value="" required> 
-                    </div>
-                    </div>
-                    <div class="row"> 
-                    <div class="col-sm-12">
-                         <label >Short Description :</label>
-                         <textarea class="form-control" id="" style="resize:none;height:100px" name="sub_heading" required></textarea> 
-                    </div> 
-                </div>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <label >Link :</label>
-                        <input type="text" class="form-control" id="" name="link" value="">
-                        
-                    </div>
-                    <div class="col-sm-4">
-                        <label >Sort Order :</label>
-                        <input type="number" class="form-control" id="" name="sort_order" value=""> 
-                    </div>
-                </div>
-                <div class="row">   
-                    <div class="col-sm-6">
-                        <label >Select Video :</label>
-                        <input type="file" class="form-control" id="" name="projectFile[]" value="" required>
-                    </div>     
-                    <div class="col-sm-6">
-                        <label >Text Color</label>
-                        <input type="color" class="form-control" id="color" name="color" value="" required>
-                    </div>     
-                </div> 
-             </div> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="add">ADD</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+
 <div class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

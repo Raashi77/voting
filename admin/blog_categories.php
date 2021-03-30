@@ -145,7 +145,7 @@
                                         value="<?=$detail['id'] ?>">
                                         <i class="fa fa-edit">Edit</i>
                                     </button>
-                                    <button class="btn btn-danger" type="submit" name="delete"
+                                    <button class="btn btn-danger"  onclick="return confirm('Do You Really Want To Delete This?')" type="submit" name="delete"
                                         value="<?=$detail['id']?>">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>

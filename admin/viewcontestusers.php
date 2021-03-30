@@ -6,19 +6,7 @@ require_once 'left-navbar.php';
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
     $token=$_GET['token'];
-    if(isset($_POST['delete_voter']))
-    {
-        $id=$_POST['delete_voter'];
-        $sql = "delete from voters where id=$id"; 
-        if($conn->query($sql))
-        {
-            $resMember=true;
-        } 
-        else
-        {
-            $errorMember=$conn->error;
-        }  
-    }  
+     
     if(isset($_POST['delete_voter']))
     {
         $id=$_POST['delete_voter'];
@@ -107,8 +95,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             {
         ?>
                 <div class="alert alert-danger"><strong>Error! </strong><?=$errorSubject?></div> 
-        <?php
-                
+        <?php   
             }
         ?>
         <div class="box">
@@ -151,7 +138,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 foreach($videos as $data)
                 {
         ?>
-                    <iframe width="560" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="../<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <button type="button"  onclick="return confirm('Do You Really Want To Delete This?')" class="btn btn-danger deleteBtn" onclick="deleteFile(<?=$data['id']?>,'data<?=$counter?>', '<?=$data['video']?>')"><i class="fa fa-trash"></i></button>
         <?php
                 }
             }
@@ -167,7 +155,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     <thead style="background-color: #212529; color: white;">
                         <tr>
                              <th>S.No.</th>
-                             <th>Name</th>
                              <th>Email</th>
                              <th>IP Address</th>
                              <th>Action</th>
@@ -185,12 +172,11 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                      ?> 
                                      <tr> 
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
                                          <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
                                          <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
                                          <td>
                                         <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete_voter" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-danger"  onclick="return confirm('Do You Really Want To Delete This?')" type="submit" name="delete_voter" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
                                         <?php
@@ -239,3 +225,36 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
   <?php
     require_once 'js-links.php';
   ?>
+
+  <script>
+    function deleteFile(id,divId, video)
+    {
+        $.ajax({
+        url:"deleteuservideo.php",
+        type:"POST", 
+        data:{
+            id:id,
+            deleteVideo:video,
+            video:video
+        },
+            success:function(data)
+            {
+            
+                if(data.trim()=="ok")
+                {
+                    $("#"+divId).remove();  
+                    videoCounter--;
+                    disableVideoDelete(videoCounter);
+                }else
+                {
+                    console.log(data);
+                }
+            },
+            error:function()
+            {
+
+            }
+        
+        })
+    }
+  </script>

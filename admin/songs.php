@@ -181,7 +181,7 @@
                                          <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
                                          <td>
                                         <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-danger"  onclick="return confirm('Do You Really Want To Delete This?')" type="submit" name="delete" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
                                             <button  class="btn btn-success" onclick="setEditValues(<?=$detail['id']?>,<?=$i?>)" type="button" data-toggle="modal" data-target="#modal-edit" >

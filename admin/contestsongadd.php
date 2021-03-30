@@ -97,7 +97,7 @@
                         </div> 
                         
                     </div> 
-                    <button type="submit" name="add" class="btn btn-primary">Add</button>
+                    <button type="submit" name="add"  onclick="return confirm('Are You Sure?')" class="btn btn-primary">Add</button>
                 </div>
             </form>
          

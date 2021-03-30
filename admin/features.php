@@ -179,7 +179,7 @@
                    
                 </div>
                 <div class="modal-footer">
-                <button type="submit" name="edit" class="btn btn-primary" style="margin-top:10" value="">Save</button>
+                <button type="submit" name="edit"  onclick="return confirm('Do You Really Want To Save This?')" class="btn btn-primary" style="margin-top:10" value="">Save</button>
               
 
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>

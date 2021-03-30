@@ -18,7 +18,7 @@
                     $sql = "delete from videos where u_id=$id"; 
                     if($conn->query($sql))
                     {
-                        $sql = "delete from voters where u_id=$id"; 
+                        $sql = "delete v.* from voters v, contest_users cu where cu.id=v.cu_id and cu.u_id='$id'"; 
                         if($conn->query($sql))
                         {
                             $resMember=true;
@@ -185,7 +185,7 @@
                                          <td>
                                         <form method="post">
                                             <a href="useraddedit?token=<?=$detail['id']?>" class="btn btn-success"> <i class="fa fa-edit">Edit</i> </a>
-                                            <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-danger" type="submit"  onclick="return confirm('Do You Really Want To Delete This?')" name="delete" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
                                         <?php

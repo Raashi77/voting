@@ -21,8 +21,15 @@
                 {
                     $sql = "insert into users(name, email,password,  ip_address, status) values('$name', '$email', '$password', '$ip_address', 1)";
                     if($conn->query($sql))
-                    {
-                        $resMember="User Registered Successfully";   
+                    { 
+                        $email=$conn->real_escape_string(strtolower(trim($_POST['email'])));
+                        $password=md5($_POST['password']);
+                        user_login($email,$password,$conn,"index"); 
+                            ?>
+                                <script type="text/javascript">
+                                    window.location.href = 'index';
+                                </script>
+                            <?php
                     }
                     else
                     {

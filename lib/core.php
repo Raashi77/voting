@@ -22,14 +22,14 @@ function convertVideoNsave($vidAddr,$filename)
 {
      shell_exec("ffmpeg -i $vidAddr -codec copy uploads/$filename.mp4"); 
      unlink($vidAddr);
-     compressVideoNsave("uploads/$filename.mp4",$filename,$filename);
+     compressVideoNsave("uploads/$filename.mp4",$filename,$filename,0);
 
 }
-function compressVideoNsave($vidAddr,$file_name,$newfilename)
+function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 {
     shell_exec("ffmpeg -i $vidAddr -c:v libvpx-vp9 -b:v 0.33M -c:a libopus -b:a 96k  uploads/$newfilename.mp4");
     
-    if($file_name!=$newfilename)
+    if($file_name!=$newfilename && $mode == 0)
     {
          
         unlink($vidAddr);
@@ -916,7 +916,7 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                         convertVideoNsave("uploads/$newFileName",$mp4name);
                      }else
                      {
-                        compressVideoNsave("uploads/$newFileName",$newFileName,$mp4name);
+                        compressVideoNsave("uploads/$newFileName",$newFileName,$mp4name, 1);
                      }
                      $status=$newFileName;
                     

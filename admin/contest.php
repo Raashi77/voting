@@ -149,7 +149,7 @@
                                         <form method="post">
                                             <a href="viewcontest?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
                                             <a href="contestaddedit?token=<?=$detail['id']?>" class="btn btn-success" value="<?=$detail['id']?>"> <i class="fa fa-edit">Edit</i> </a>
-                                            <button  class="btn btn-danger" type="submit" name="delete" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-danger" type="submit" name="delete"  onclick="return confirm('Do You Really Want To Delete This?')" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
                                             <a href="index_changes?token=<?=$detail['id']?>" class="btn btn-warning"> <i class="fa fa-eye">Edit Layout</i> </a>

@@ -10,16 +10,23 @@
                  $web_config = $row;
         }
     }
-    $sql="select * from users where email='$email'";
-    if($result =  $conn->query($sql))
+    if(isset($_SESSION['signed_in']))
     {
-        if($result->num_rows)
+        $sql="select * from users where email='$email'";
+        if($result =  $conn->query($sql))
         {
-            $row = $result->fetch_assoc();
-                 $user_details = $row;
+            if($result->num_rows)
+            {
+                $row = $result->fetch_assoc();
+                    $user_details = $row;
+            }
+            else if($result->num_rows==0)
+            {
+                session_destroy();
+                header("location:registration");
+            }
         }
     }
-
     $USER_ID=$user_details['id'];
 ?>
 <!DOCTYPE html>

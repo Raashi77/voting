@@ -50,7 +50,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             $errorSubject=$conn->error;
         } 
     }
-        $sql="select * from contest_songs where c_id='$token'";
+        $sql="select s.* from contest_songs cs, songs s where cs.c_id='$token' and cs.s_id=s.id";
         if($result=$conn->query($sql))
         {
             if($result->num_rows)
@@ -98,6 +98,12 @@ if($result =  $conn->query($sql))
 } 
          
 ?>
+<style>
+    .vidcs
+    {
+        width: min(400, 100%) !important;
+    }
+</style>
 <div class="content-wrapper" style="margin-left:20px;">
 
     <!-- Main content -->
@@ -137,15 +143,16 @@ if($result =  $conn->query($sql))
 						</div>
 					</div>
         </div>
+        <h2>
+        Songs
+        </h2>
          <div class="box">
               <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead style="background-color: #212529; color: white;">
                         <tr>
                              <th>S.No.</th>
-                             <th>Name</th>
                              <th>Song</th>
-                             <!-- <th>Action</th> -->
                         </tr>
                     </thead>
                     <tbody> 
@@ -158,16 +165,13 @@ if($result =  $conn->query($sql))
                                 foreach ($contest_songs as $detail) 
                                 {     
                      ?> 
-                                     <tr> 
-                                         <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                         <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
+                                     <tr > 
+                                         <td style=" text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
+                                         <td><?=$detail['name'];?><br><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
                                     </tr>
                                  
                             <?php
-                                $i++;    
-                                    
-                                            
+                                $i++;             
                                 }
                             } 
                          ?>
@@ -178,6 +182,7 @@ if($result =  $conn->query($sql))
             </div>
             <!-- /.box-footer-->
         </div> 
+        <h2>Videos</h2>
         <div class="box-body">
         <?php
             if(isset($videos))
@@ -187,7 +192,7 @@ if($result =  $conn->query($sql))
                 {
         ?>
                     <div id="data<?=$counter?>">
-                    <iframe width="400" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="vidcs" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <?php
                     if($v_count>1)
                     {

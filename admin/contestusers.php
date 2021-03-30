@@ -12,7 +12,11 @@
             if($conn->query($sql))
             {
                 
-                $errorMember=$conn->error;
+                $sql = "delete v.* from videos v, contest_users cu where v.u_id=cu.u_id and cu.id=$id";
+                if($conn->query($sql))
+                {
+                    $resMember=$conn->error; 
+                } 
             } 
             else
             {
@@ -163,7 +167,7 @@
                                          <td>
                                         <form method="post">
                                             <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
-                                            <button  class="btn btn-danger" type="submit" name="remove" value="<?=$detail['id']?>">
+                                            <button  class="btn btn-danger"  onclick="return confirm('Do You Really Want To Remove This?')" type="submit" name="remove" value="<?=$detail['id']?>">
                                                 <i class="fa fa-trash-o"></i> Remove Participant
                                             </button>
                                         <?php

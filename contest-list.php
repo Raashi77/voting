@@ -54,7 +54,7 @@ if($result =  $conn->query($sql))
                     {
                         foreach($on_contest as $contest)
                         {
-                              $date1 = $contest['start_date']." ".$contest['start_time'].":00";
+                              $date2 = $contest['end_date']." ".$contest['end_time'].":00";
                                 
                             
                 ?>

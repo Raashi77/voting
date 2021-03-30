@@ -24,6 +24,18 @@ require_once "navbar.php";
             }
         }
     }
+    $sql="select c_id from videos v where v.u_id='$USER_ID'";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $joined_contest[] = $row['c_id'];
+            }
+            
+        }
+    }
 
     $sql="select * from features";
     if($result =  $conn->query($sql))
@@ -49,7 +61,7 @@ require_once "navbar.php";
     }
     $date=date('Y-m-d');
     $time = date('H:i');
-    $sql="SELECT c.*, i.header_image from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id limit 8";
+    $sql="SELECT c.*, i.header_image from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id limit 4";
     if($result =  $conn->query($sql))
     {
         if($result->num_rows)
@@ -127,7 +139,7 @@ require_once "navbar.php";
                 ?>
             <div class="single-blog-slide">
                 <div class="images">
-                    <a href="admin/<?=$data['video']?>"> <video src="admin/<?=$data['video']?>" style="width:500px!important;height:300px!important"></video> </a>
+                    <a href="<?=$data['video']?>"> <video src="<?=$data['video']?>" style="width:500px!important;height:300px!important"></video> </a>
                 </div>
             </div>
             <?php
@@ -193,8 +205,33 @@ require_once "navbar.php";
                                     <div class="about-text">
                                         <h3><a href="contest.php?token=<?=$data['id']?>"><?=$data['name']?></a></h3>
                                         <p><?=$data['description']?></p>
-                                        <a href="contest<?=$data['id']?>">Visit Contest <i
-                                                class="fa fa-angle-right"></i></a>
+                                        <a href="contest<?=$data['id']?>">View</a>
+                                        <?php
+                                        if(isset($_SESSION['signed_in']))
+                                        {
+                                            if(in_array($data['id'], $joined_contest))
+                                            {
+                                    ?> 
+                                                <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Add Videos</a>     
+                                    <?php
+                                            }
+                                            else 
+                                            {
+                                    ?>
+                                                <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Join For Free</a>
+                                                   
+                                    <?php
+                                            }
+                                        } 
+                                        else
+                                        {
+                                    ?>
+                                            <a href="registration" class="joni-btn primary-btn">Join For Free</a>
+                                                   
+                                    <?php
+                                        }
+                                    ?>
+                                       
                                     </div>
                                 </div>
                             </li>

@@ -165,14 +165,14 @@
                                 if(isset($contest_details))
                                 {
                         ?>
-                                        <button type="submit" name="edit" class="btn btn-primary" value="">Edit</button>
+                                        <button type="submit"  onclick="return confirm('Do You Really Want To Save This?')" name="edit" class="btn btn-primary" value="">Edit</button>
                             <?php
                                 }
                                 else
                                 {
                             ?>
                                         
-                                        <button type="submit" name="add" class="btn btn-primary" value="">Add</button>
+                                        <button type="submit" name="add"  onclick="return confirm('Are You Sure?')" class="btn btn-primary" value="">Add</button>
                         <?php
                                 }
                         ?>

@@ -66,7 +66,16 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         }
      
     }
- 
+    $sql="select count(id) as count from contest_users where c_id='$token'";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            $row = $result->fetch_assoc();
+                $c_users = $row['count'];
+        }
+    }
+
     $sql="select * from index_changes where c_id='$token'";
     if($result =  $conn->query($sql))
     {
@@ -101,6 +110,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
  
  
     <div class="fix home-blog-area pb-90 pt-90">
+        
+        <img id="foodModel_headingImg" src="<?=$changes['header_image']?>">
         <?php
             if(isset($errorMember))
             {
@@ -110,15 +121,18 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     
                 }
         ?>
-        <img id="foodModel_headingImg" src="<?=$changes['header_image']?>">
         <div id="foodModel_heading_Div" class="fix home-blog-area pb-90 pt-90" >
-            <h5 id="foodModel_heading_h5" style="color:<?=$changes['title_color']?>;"> <?=$changes['title']?> </h5>
+            <h5 id="foodModel_heading_h5" style="color:<?=$changes['title_color']?>;"> <?=$changes['title']?></h5>
             <p id="foodModel_heading_p" style="color:<?=$changes['subtitle_color']?>;"><?=$changes['subtitle']?></p>
 
         </div>
     </div>
+    <?php
+    if($c_users>=1)
+    {
+    ?>
 
-    <div class="container" style="margin-top:30px">
+        <div class="container" style="margin-top:30px">
 
         <h6 id="foodModel_heading2" style="color:<?=$changes['body_title_color']?>"><?=$changes['body_title']?></h6>
         <div class="container" style="margin-bottom:30px;">
@@ -169,7 +183,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                     $active_slide="active";
                                 }
                     ?> 
-                           
+                        
                             <div class="item <?=$active_slide?>">
                                 <video width="100%" height="200" controls>
                                     <source src="<?=$videos['video']?>" type="<?=$videos['file_type']?>"> 
@@ -180,7 +194,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                             $counter++;
                             }
                     ?> 
-                      
+                    
 
                         <!-- <div class="item">
                         <img id="foodModel_img" src="images/icecream1.jpg" style="width:100%">
@@ -225,9 +239,26 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 }
             }
         ?>
-    </div>
+        </div>
 
-    </div>
+        </div>
+
+    <?php
+    }
+    else
+    {
+    ?>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="section-title">
+                    <h2>No Users <span>Till Now</span></h2>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+    
 
 </body>
 

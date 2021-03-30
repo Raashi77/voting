@@ -106,7 +106,27 @@
                                         <li><a href="blog_home">Blog</a></li>
                                         <li><a href="contact">Contact Us</a></li>
                                       
-                                        <li> <a href="user/index" class="btn btn-danger" style="background-color:#d32f2f;color:white">Login</a></li>
+                                        
+                                    <?php
+                                    if(isset($_SESSION['signed_in']))
+                                    {
+                                    ?>
+                                        
+                                        <li><a href="#" class="btn btn-danger" style="background-color:#d32f2f;color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
+                                            <ul>
+                                            <li><a href="my_contests">My Contests</a></li>
+                                            <li><a href="logout">Log Out</a></li>
+                                            </ul>
+                                        </li>
+                                    <?php
+                                    }
+                                    else
+                                    {
+                                    ?>
+                                        <li> <a href="registration" class="btn btn-danger" style="background-color:#d32f2f;color:white">Login</a></li>
+                                    <?php
+                                    }
+                                    ?>
                                     
                                     </ul>
                                 </nav>

@@ -212,7 +212,7 @@ $sql="select * from songs";
          
 ?>
 <div class="content-wrapper">
-<section class="content-header">
+    <section class="content-header">
         <h1>
             Contest Details
         </h1>
@@ -220,70 +220,78 @@ $sql="select * from songs";
             <li>
                 <div class="pull-right">
                     <!-- <button title="" class="btn btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i></button>  -->
-                    <a href="" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Rebuild"><i class="fa fa-refresh"></i></a>
+                    <a href="" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Rebuild"><i
+                            class="fa fa-refresh"></i></a>
                 </div>
             </li>
         </ol>
     </section>
 
     <!-- Main content -->
-      <br>
+    <br>
     <section class="content">
         <?php
             if(isset($resSubject))
             {
         ?>
-                <div class="alert alert-success"><strong>Success!</strong> your request successfully updated.</div> 
+        <div class="alert alert-success"><strong>Success!</strong> your request successfully updated.</div>
         <?php
             }
             else if(isset($errorSubject))
             {
         ?>
-                <div class="alert alert-danger"><strong>Error! </strong><?=$errorSubject?></div> 
+        <div class="alert alert-danger"><strong>Error! </strong><?=$errorSubject?></div>
         <?php
                 
             }
         ?>
-       
-        
+
+
         <div class="box">
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-hover">
                     <tbody>
-                    <?php
+                        <?php
                         if (isset($contest)) 
                         {
                     ?>
-                    
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white;" >Name</th>
-                                <th style="  text-align: center; background-color: #808080; color: white;" id="name<?=$i?>"><?=$contest['name'];?></th>  
-                            </tr>
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white; " >Description</th>
-                                <th style="  text-align: center; background-color: #808080; color: white;" id="description"><?=$contest['description'];?></th>  
-                            </tr>
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white;" >Start Date</th>
-                                <th style="  text-align: center; background-color: #808080; color: white; " id="start_date"><?=$contest['start_date'];?></th>  
-                            </tr>
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white;" >Start Time</th>
-                                <th style="  text-align: center; background-color: #808080; color: white;" id="start_time"><?=$contest['start_time'];?></th>  
-                            </tr>
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white;" >End Date</th>
-                                <th style="  text-align: center; background-color: #808080; color: white;" id="end_date"><?=$contest['end_date'];?></th>  
-                            </tr>
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white;" >End Time</th>
-                                <th style="  text-align: center; background-color: #808080; color: white;" id="end_time"><?=$contest['end_time'];?></th>  
-                            </tr>
-                            <tr> 
-                                <th style="  text-align: center; background-color: #212529; color: white;" >Prize</th>
-                                <th style="  text-align: center; background-color: #808080; color: white;" id="prize"><?=$contest['prize'];?></th>  
-                            </tr>
-                    <?php
+
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white;">Name</th>
+                            <th style="  text-align: center; background-color: #808080; color: white;" id="name<?=$i?>">
+                                <?=$contest['name'];?></th>
+                        </tr>
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white; ">Description</th>
+                            <th style="  text-align: center; background-color: #808080; color: white;" id="description">
+                                <?=$contest['description'];?></th>
+                        </tr>
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white;">Start Date</th>
+                            <th style="  text-align: center; background-color: #808080; color: white; " id="start_date">
+                                <?=$contest['start_date'];?></th>
+                        </tr>
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white;">Start Time</th>
+                            <th style="  text-align: center; background-color: #808080; color: white;" id="start_time">
+                                <?=$contest['start_time'];?></th>
+                        </tr>
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white;">End Date</th>
+                            <th style="  text-align: center; background-color: #808080; color: white;" id="end_date">
+                                <?=$contest['end_date'];?></th>
+                        </tr>
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white;">End Time</th>
+                            <th style="  text-align: center; background-color: #808080; color: white;" id="end_time">
+                                <?=$contest['end_time'];?></th>
+                        </tr>
+                        <tr>
+                            <th style="  text-align: center; background-color: #212529; color: white;">Prize</th>
+                            <th style="  text-align: center; background-color: #808080; color: white;" id="prize">
+                                <?=$contest['prize'];?></th>
+                        </tr>
+                        <?php
                         }
                     ?>
                     </tbody>
@@ -295,221 +303,229 @@ $sql="select * from songs";
         <h2>Participants</h2>
         <br>
         <div class="box">
-              <div class="box-body">
+            <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead style="background-color: #212529; color: white;">
                         <tr>
-                             <th>S.No.</th>
-                             <th>Name</th>
-                             <th>Email</th>
-                             <th>IP Address</th>
-                             <th>Votes</th>
-                             <th>Action</th>
+                            <th>S.No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>IP Address</th>
+                            <th>Votes</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                     <tbody> 
- 
-                    
-                     <?php 
+                    <tbody>
+
+
+                        <?php 
                             if (isset($users)) 
                             {
                                 $i = 1;
                                 foreach ($users as $detail) 
                                 {     
-                     ?> 
-                                     <tr> 
-                                         <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                         <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
-                                         <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
-                                         <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
-                                         <td>
-                                        <form method="post">
-                                        <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i class="fa fa-eye">View</i> </a>
-                                            <button  class="btn btn-danger" type="submit" name="remove" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Remove Participant
-                                            </button>
-                                        <?php
+                     ?>
+                        <tr>
+                            <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td>
+                            <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
+                            <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
+                            <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
+                            <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
+                            <td>
+                                <form method="post">
+                                    <a href="viewcontestusers?token=<?=$detail['id']?>" class="btn btn-primary"> <i
+                                            class="fa fa-eye">View</i> </a>
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Do You Really Want To Delete This?')" type="submit"
+                                        name="remove" value="<?=$detail['id']?>">
+                                        <i class="fa fa-trash-o"></i> Remove Participant
+                                    </button>
+                                    <?php
                                             if($detail['status']==1) 
                                             {       
                                         ?>
-                                            <button  class="btn btn-warning" type="submit" name="block_user" value="<?=$detail['id']?>">
-                                                <i class="fa fa-ban"></i> Block
-                                            </button>
-                                        <?php
+                                    <button class="btn btn-warning" type="submit" name="block_user"
+                                        value="<?=$detail['id']?>">
+                                        <i class="fa fa-ban"></i> Block
+                                    </button>
+                                    <?php
                                             }
                                             else if($detail['status']==2) 
                                             {       
                                         ?>
-                                            <button  class="btn btn-dark" type="submit" name="unblock_user" value="<?=$detail['id']?>">
-                                                <i class="fa fa-check"></i> Unblock
-                                            </button>
-                                        <?php
+                                    <button class="btn btn-dark" type="submit" name="unblock_user"
+                                        value="<?=$detail['id']?>">
+                                        <i class="fa fa-check"></i> Unblock
+                                    </button>
+                                    <?php
                                             }
                                         ?>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                 
-                            <?php
+                                </form>
+                            </td>
+                        </tr>
+
+                        <?php
                                 $i++;
                                     
                                             
                                 }
                             }
                          ?>
-          
-                        </tbody>
-                                </table>
-                       
-                        </div>
+
+                    </tbody>
+                </table>
+
+            </div>
             <!-- /.box-footer-->
-                        </div> 
+        </div>
         <br>
         <h2>Voters</h2>
         <br>
         <div class="box">
-              <div class="box-body">
+            <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead style="background-color: #212529; color: white;">
                         <tr>
-                             <th>S.No.</th>
-                             <th>Name</th>
-                             <th>Email</th>
-                             <th>Contestant</th>
-                             <th>IP Address</th>
-                             <th>Action</th>
+                            <th>S.No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contestant</th>
+                            <th>IP Address</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody> 
- 
-                    
-                     <?php 
+                    <tbody>
+
+
+                        <?php 
                             if (isset($voters)) 
                             {
                                 $i = 1;
                                 foreach ($voters as $detail) 
                                 {     
-                     ?> 
-                                     <tr> 
-                                         <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                         <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
-                                         <td style="  text-align: center; " id="contestant<?=$i?>"><?=$detail['contestant'];?></td>
-                                         <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
-                                         <td>
-                                        <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete_voter" value="<?=$detail['id']?>">
-                                                <i class="fa fa-trash-o"></i> Delete
-                                            </button>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                 
-                            <?php
+                     ?>
+                        <tr>
+                            <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td>
+                            <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
+                            <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
+                            <td style="  text-align: center; " id="contestant<?=$i?>"><?=$detail['contestant'];?></td>
+                            <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
+                            <td>
+                                <form method="post">
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Do You Really Want To Delete This?')" type="submit"
+                                        name="delete_voter" value="<?=$detail['id']?>">
+                                        <i class="fa fa-trash-o"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <?php
                                 $i++;
                                     
                                             
                                 }
                             }
                          ?>
-          
+
                     </tbody>
                 </table>
-                       
+
             </div>
             <!-- /.box-footer-->
-        </div> 
-        
+        </div>
+
         <br>
         <h2>Songs</h2>
-      
-        <button data-toggle="modal" data-target="#modal-default" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+
+        <button data-toggle="modal" data-target="#modal-default" class="btn btn-primary"><i
+                class="fa fa-plus"></i></button>
         <br>
-        
+
         <div class="box">
-              <div class="box-body">
+            <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead style="background-color: #212529; color: white;">
                         <tr>
-                             <th>S.No.</th>
-                             <th>Name</th>
-                             <th>Song</th>
-                             <th>Action</th>
+                            <th>S.No.</th>
+                            <th>Name</th>
+                            <th>Song</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody> 
- 
-                    
-                     <?php 
+                    <tbody>
+
+
+                        <?php 
                             if (isset($contest_songs)) 
                             {
                                 $i = 1;
                                 foreach ($contest_songs as $detail) 
                                 {     
-                     ?> 
-                                     <tr> 
-                                         <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                         <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
-                                         <td>
-                                        <form method="post">
-                                            <button  class="btn btn-danger" type="submit" name="delete_song" value="<?=$detail['c_id']?>">
-                                                <i class="fa fa-trash-o"></i> Remove Song
-                                            </button>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                 
-                            <?php
+                     ?>
+                        <tr id="detail<?=$i?>">
+                            <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td>
+                            <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
+                            <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
+                            <td>
+                                <form method="post">
+                                    <button type="button" class="btn btn-danger deleteBtn"
+                                        onclick="deleteFile(<?=$detail['c_id']?>,'detail<?=$i?>', '<?=$detail['song']?>')"><i
+                                            class="fa fa-trash"></i>Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <?php
                                 $i++;
                                     
                                             
                                 }
                             }
                          ?>
-          
+
                     </tbody>
                 </table>
-                       
+
             </div>
             <!-- /.box-footer-->
-        </div> 
+        </div>
 
         <br>
         <h2>Top Participant(s)</h2>
         <br>
         <div class="box">
-              <div class="box-body">
+            <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead style="background-color: #212529; color: white;">
                         <tr>
-                             <th>S.No.</th>
-                             <th>Name</th>
-                             <th>Email</th>
-                             <th>IP Address</th>
-                             <th>Votes</th>
+                            <th>S.No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>IP Address</th>
+                            <th>Votes</th>
                         </tr>
                     </thead>
-                    <tbody> 
- 
-                    
-                     <?php 
+                    <tbody>
+
+
+                        <?php 
                             if (isset($winner)) 
                             {
                                 $i = 1;
                                 foreach ($winner as $detail) 
                                 {     
-                     ?> 
-                                    <tr> 
-                                        <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                        <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td> 
-                                        <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
-                                        <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
-                                        <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
-                                    </tr>
-                                 
-                            <?php
+                     ?>
+                        <tr>
+                            <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td>
+                            <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
+                            <td style="  text-align: center; " id="email<?=$i?>"><?=$detail['email'];?></td>
+                            <td style="  text-align: center; " id="ip_address<?=$i?>"><?=$detail['ip_address'];?></td>
+                            <td style="  text-align: center; " id="votes<?=$i?>"><?=$detail['votes'];?></td>
+                        </tr>
+
+                        <?php
                                 $i++;
                                     
                                             
@@ -517,19 +533,19 @@ $sql="select * from songs";
                             }
                          ?>
                     </tbody>
-                </table> 
+                </table>
             </div>
         </div>
         <br>
         <h2>Select Winner</h2>
         <br>
-    
-            <div class="row">
-                <div class="col-md-5"> 
-                    <div class="form-group">
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
                     <form method="post">
                         <select name="win" id="win" class="form-control">
-                        <?php
+                            <?php
                             if(isset($users))
                             {
                                 foreach($users as $data)
@@ -540,18 +556,19 @@ $sql="select * from songs";
                                         $selected="selected";   
                                     }
                         ?>
-                                    <option value="<?=$data['u_id']?>" <?=$selected?>><?=$data['name']?> - <?=$data['votes']?> votes</option>
-                        <?php
+                            <option value="<?=$data['u_id']?>" <?=$selected?>><?=$data['name']?> - <?=$data['votes']?>
+                                votes</option>
+                            <?php
                                     
                                 }
                             }
-                        ?>  
+                        ?>
                         </select>
                         <button name="save" class="btn btn-primary" style="margin-top: 10px;">Save</button>
-                    </form> 
-                    </div> 
+                    </form>
                 </div>
-            </div> 
+            </div>
+        </div>
     </section>
 </div>
 
@@ -569,36 +586,38 @@ $sql="select * from songs";
 
             <form method="post" enctype="multipart/form-data">
                 <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-5"> 
-                        <div class="form-group">
-                            <label>Songs</label><br>   
-                            <select class="form-control selectpicker" name="songs[]" id="songs" multiple data-live-search="true">
-                            <?php
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Songs</label><br>
+                                <select class="form-control selectpicker" name="songs[]" id="songs" multiple
+                                    data-live-search="true">
+                                    <?php
                                 if(isset($allsongs))
                                 { 
                                     foreach($allsongs as $data)
                                     {
                                         
                             ?>
-                                        <option value=<?=$data['id']?> ><?=$data['name']?></option>
-                                        
+                                    <option value=<?=$data['id']?>><?=$data['name']?></option>
 
-                                        
-                            <?php
+
+
+                                    <?php
                                     }
                                 }
                             ?>
-                                
-                            </select> 
-                        </div> 
-                        
-                    </div>  
-                </div>
+
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                <button type="submit" name="add_songs" class="btn btn-primary" style="margin-top:10" value="">Add</button>
-              
+                    <button type="submit" name="add_songs" class="btn btn-primary" style="margin-top:10"
+                        value="">Add</button>
+
 
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
                 </div>
@@ -607,7 +626,35 @@ $sql="select * from songs";
 
     </div>
     <!-- /.modal-content -->
-</div>  
-  <?php
+</div>
+<?php
     require_once 'js-links.php';
   ?>
+<script>
+function deleteFile(id, divId, song) {
+    if (confirm('Do You Really Want To Delete')) {
+        $.ajax({
+            url: "deletesong.php",
+            type: "POST",
+            data: {
+                id: id,
+                deleteSong: song,
+                song: song
+            },
+            success: function(data) {
+
+                if (data.trim() == "ok") {
+                    $("#" + divId).remove();
+                } else {
+                    console.log(data);
+                }
+            },
+            error: function() {
+
+            }
+
+        })
+    }
+
+}
+</script>

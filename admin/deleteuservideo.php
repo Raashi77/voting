@@ -1,5 +1,5 @@
 <?php
-    require_once 'lib/core.php'; 
+    require_once '../lib/core.php'; 
    
     if(isset($_POST['deleteVideo']))
     {
