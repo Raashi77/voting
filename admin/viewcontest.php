@@ -467,7 +467,7 @@ $sql="select * from songs";
                         <tr id="detail<?=$i?>">
                             <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td>
                             <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
-                            <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
+                            <td><audio controls="controls" src="./<?=$detail['song']?>"></audio></td>
                             <td>
                                 <form method="post">
                                     <button type="button" class="btn btn-danger deleteBtn"
