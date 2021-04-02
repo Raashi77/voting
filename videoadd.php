@@ -331,6 +331,9 @@ if($result =  $conn->query($sql))
                 cache: false,
                 contentType: false,
                 processData: false,
+                uploadProgress: function (event, position, total, percentComplete){	
+                  console.log(percentComplete);
+                },
                 data:formData,
                 success: function(data)
                 {
