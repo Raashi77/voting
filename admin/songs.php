@@ -55,7 +55,7 @@
             if($conn->query($sql))
             {
                 $insert_id = $conn->insert_id;
-                if(upload_audio($_FILES,$conn,"songs","id","song",$insert_id,"projectFile",$website_link."/admin/uploads"))
+                if(upload_audio($_FILES,$conn,"songs","id","song",$insert_id,"projectFile","/uploads"))
                 {
                     $resMember = "all_true";
                 }else
@@ -77,7 +77,7 @@
             $sql="update  songs set  name='$name' where id='$id'";
             if($conn->query($sql))
             { 
-                if(upload_audio($_FILES,$conn,"songs","id","song",$id,"projectFile",$website_link."/admin/uploads"))
+                if(upload_audio($_FILES,$conn,"songs","id","song",$id,"projectFile","/uploads"))
                 {
                     $resMember = "all_true";
                 }else
@@ -178,7 +178,7 @@
                                      <tr> 
                                          <td style="  text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
                                          <td style="  text-align: center; " id="name<?=$i?>"><?=$detail['name'];?></td>
-                                         <td><audio controls="controls" src="<?=$detail['song']?>"></audio></td>
+                                         <td><audio controls="controls" src="./<?=$detail['song']?>"></audio></td>
                                          <td>
                                         <form method="post">
                                             <button  class="btn btn-danger"  onclick="return confirm('Do You Really Want To Delete This?')" type="submit" name="delete" value="<?=$detail['id']?>">
@@ -242,13 +242,14 @@
                             <div class="form-group">
                                 <label>Audio File</label><br>  
                                 <button type="button" class="btn btn-success" onclick="$('#projectfile').click()"><i class="fa fa-plus"></i></button>
+                                <p id="fileName" style="width:90%"></p>
                             </div> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4" id="filesDiv"> 
                                  
-                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
+                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden" onchange="getFileData(this,'fileName');"/>
                         </div>
                     </div>
                    
@@ -291,14 +292,15 @@
                         <div class="col-md-12"> 
                             <div class="form-group">
                                 <label>Audio File</label><br>  
-                                <button type="button" class="btn btn-success" onclick="$('#projectfile').click()"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" onclick="$('#eprojectfile').click()"><i class="fa fa-plus"></i></button>
+                                <p id="efileName" style="width:90%"></p>
                             </div> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4" id="filesDiv"> 
                         <input type="hidden" id="eid" name="eid"/>
-                        <input   type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
+                        <input   type="file" id='eprojectfile' name="projectFile[]" class="form-control" style="visibility:hidden" onchange="getFileData(this,'efileName');"/>
                         </div>
                     </div>
                    
@@ -330,4 +332,11 @@
         $("#ename").val($("#name"+counter).html());
         $("#eid").val(id);
     }
+
+    
+    function getFileData(myFile,id){
+        var file = myFile.files[0];  
+        var filename = file.name;
+         $("#"+id).html(filename);
+}
 </script>

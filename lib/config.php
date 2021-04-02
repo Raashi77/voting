@@ -14,7 +14,7 @@ $password = "Kod#@}blaze245#~";
 $dbname = "voting";
 
 // $username = "root_dubuddy";
-// $password = "tnske1z}U6zR";
+$password = "";
 // $dbname = "voting_dubuddy";
 
 // Create connection
