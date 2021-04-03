@@ -842,16 +842,16 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
         foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
         {
             $file_name=$_FILES[$images]["name"][$key];
-            $file_tmp=$_FILES[$images]["tmp_name"][$key];
+           echo  $file_tmp=$_FILES[$images]["tmp_name"][$key];
             $ext=pathinfo($file_name,PATHINFO_EXTENSION);
         
             if(in_array(strtolower($ext),$extension)) 
             {
-                $filename=basename($file_name,$ext);
+                echo $filename=basename($file_name,$ext);
                 $newFileName=$filename.time().".".$ext;
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
-                     $sql="update $table set $column='$path/$newFileName' where $id_col=$id";
+                  echo    $sql="update $table set $column='$path/$newFileName' where $id_col=$id";
                     if($conn->query($sql)===true)
                     {
                         $status=true;
