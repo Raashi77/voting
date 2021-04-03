@@ -1,27 +1,30 @@
 <?php
 
-
+require_once '../lib/core.php';
 
 if(isset($_POST['add']))
 {
     $name=$_POST['name'];
-    $sql="insert into songs(name, status) values('$name', '1')";
+    $resMember =[];
+    $sql="insert into songs(name, status) values('$name','1')";
     if($conn->query($sql))
     {
         $insert_id = $conn->insert_id;
         if(upload_audio($_FILES,$conn,"songs","id","song",$insert_id,"projectFile","/uploads"))
         {
-            $resMember = "all_true";
+            $resMember['msg'] = "all_true";
         }else
         {
-            $resMember = "files_left";
+            $resMember['msg'] = "files_left";
         }
             
     }
     else
     {
-        $errorMember=$conn->error;
+        $resMember['msg'] = $conn->error;
     }
+
+    echo json_encode($resMember);
 }
 
 
@@ -35,17 +38,20 @@ if(isset($_POST['edit']))
     { 
         if(upload_audio($_FILES,$conn,"songs","id","song",$id,"projectFile","/uploads"))
         {
-            $resMember = "all_true";
+            $resMember['msg'] = "all_true";
         }else
         {
-            $resMember = "files_left";
+            $resMember['msg'] = "files_left";
         }
+            
             
     }
     else
     {
-        $errorMember=$conn->error;
+        $resMember['msg'] = $conn->error;
     }
+
+    echo json_encode($resMember);
 }
     
     

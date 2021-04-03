@@ -255,7 +255,7 @@
                    
                 </div>
                 <div class="modal-footer">
-                <button type="submit" name="add" class="btn btn-primary" style="margin-top:10" value="">Add</button>
+                <button type="button" name="add" class="btn btn-primary" onclick="uploadSong('add')" style="margin-top:10" value="">Add</button>
               
 
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
@@ -306,14 +306,11 @@
                    
                 </div>
                 <div class="modal-footer">
-                <button type="submit" name="edit" class="btn btn-primary" style="margin-top:10" value="">Add</button>
-              
-
+                    <button type="button" name="add" class="btn btn-primary" onclick="uploadSong('edit')" style="margin-top:10" value="">Add</button>  
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
                 </div>
             </form>
-        </div>
-
+        </div> 
     </div>
     <!-- /.modal-content -->
 </div>  
@@ -338,5 +335,53 @@
         var file = myFile.files[0];  
         var filename = file.name;
          $("#"+id).html(filename);
+}
+
+
+function uploadSong(mode)
+{
+    var formData = new FormData();
+    if(mode == "add")
+    {
+        formData.append("name",$("#name").val())
+        formData.append("add",true)
+        formData.append("projectFile[]",$("#projectfile").prop('files')[0]);
+    }else if(mode == "edit")
+    {
+        formData.append("ename",$("#name").val())
+        formData.append("eid",$("#eid").val())
+        formData.append("edit",true)
+        formData.append("projectFile[]",$("#eprojectfile").prop('files')[0]);
+    }
+    
+    $.ajax({
+        url:"upload_song_ajax.php",
+        type:"post",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data:formData,
+        xhr: function() {
+        var xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function(evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = (evt.loaded / evt.total) * 100;
+                console.log(percentComplete)
+            }
+       }, false);
+       return xhr;
+    },
+        success:function(data)
+        {   
+            console.log(data);
+
+        },
+        error:function(e)
+        {
+
+        }
+
+    })
+
 }
 </script>
