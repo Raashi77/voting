@@ -320,7 +320,7 @@ require_once 'js-links.php';
             formData.append("add", true)
             formData.append("projectFile[]", $("#projectfile").prop('files')[0]);
         } else if (mode == "edit") {
-            formData.append("ename", $("#name").val())
+            formData.append("name", $("#ename").val())
             formData.append("eid", $("#eid").val())
             formData.append("edit", true)
             formData.append("projectFile[]", $("#eprojectfile").prop('files')[0]);
