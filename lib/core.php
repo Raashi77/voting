@@ -835,7 +835,11 @@ function upload_images2($files,$conn,$table,$id_col,$column,$id,$images,$path)
     }
 }
 function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
-{
+
+
+
+{  print_r($_FILES);
+
 	if(isset($_FILES[$images]))
     {
         $extension=array("pcm","mp3","wav","gif","aiff","aac", "ogg", "wma", "flac", "alac", "wma");
