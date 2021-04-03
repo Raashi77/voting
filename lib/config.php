@@ -14,7 +14,7 @@ $password = "Kod#@}blaze245#~";
 $dbname = "voting";
 
 // $username = "root_dubuddy";
-$password = "";
+//$password = "";
 // $dbname = "voting_dubuddy";
 
 // Create connection
@@ -27,6 +27,6 @@ if($conn->connect_error)
     die("Connection failed: " . $conn->connect_error);
 }
 //website link
-$website_link="http://localhost/voting"; 
+$website_link="http://kodiblaze.com"; 
 //page value; 
 ?>

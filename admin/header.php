@@ -1,4 +1,5 @@
 <?php
+set_time_limit(600);
 ob_start();
 require_once '../lib/core.php';
 

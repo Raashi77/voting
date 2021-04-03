@@ -835,7 +835,7 @@ function upload_images2($files,$conn,$table,$id_col,$column,$id,$images,$path)
     }
 }
 function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
-{  
+{
 	if(isset($_FILES[$images]))
     {
         $extension=array("pcm","mp3","wav","gif","aiff","aac", "ogg", "wma", "flac", "alac", "wma");
@@ -845,7 +845,7 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
             $file_tmp=$_FILES[$images]["tmp_name"][$key];
             $ext=pathinfo($file_name,PATHINFO_EXTENSION);
         
-            if(in_array($ext,$extension)) 
+            if(in_array(strtolower($ext),$extension)) 
             {
                 $filename=basename($file_name,$ext);
                 $newFileName=$filename.time().".".$ext;
