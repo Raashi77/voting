@@ -31,9 +31,10 @@ if(isset($_POST['add']))
 
 if(isset($_POST['edit']))
 {
-    $name=$_POST['ename'];
+    
+    $name=$_POST['name'];
     $id = $_POST['eid'];
-    echo $sql="update  songs set  name='$name' where id='$id'";
+      $sql="update  songs set  name='$name' where id='$id'";
     if($conn->query($sql))
     { 
         if(upload_audio($_FILES,$conn,"songs","id","song",$id,"projectFile","/uploads"))
