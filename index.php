@@ -139,7 +139,7 @@ require_once "navbar.php";
                 ?>
             <div class="single-blog-slide">
                 <div class="images">
-                    <a href="<?=$data['video']?>"> <video src="<?=$data['video']?>" style="width:500px!important;height:300px!important"></video> </a>
+                    <a href="<?=$data['video']?>"> <video src="<?=$data['video']?>" ></video> </a>
                 </div>
             </div>
             <?php
