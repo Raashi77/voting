@@ -167,7 +167,9 @@ if($result =  $conn->query($sql))
                      ?> 
                                      <tr > 
                                          <td style=" text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td><?=$detail['name'];?><br><audio controls="controls" src="./admin/<?=$detail['song']?>"></audio></td>
+                                         <td><?=$detail['name'];?><br><audio controls="controls" src="./admin/<?=$detail['song']?>"></audio><br>
+                                         <a href="./admin/<?=$detail['song']?>" download="true" class="btn btn-danger " ><i class="fa fa-download"></i>Download</a>
+                                         </td>
                                     </tr>
                                  
                             <?php
