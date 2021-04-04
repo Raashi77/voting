@@ -42,6 +42,17 @@
         <script src="js/TimeCircles.js"></script>
         <!-- main js -->
         <script src="js/main.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("video").on("contextmenu",function(){
+                return false;
+                }); 
+                $("iframe").on("contextmenu",function(){
+                return false;
+                }); 
+            }); 
+        </script>
     </body>
 
  
