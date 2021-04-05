@@ -7,7 +7,6 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     $token=$_GET['token'];
     if(isset($_POST['add']))
     {
-   
         $sql="insert into videos(c_id, u_id, status) values('$token', '$USER_ID', 1)";
         if($result=$conn->query($sql))
         {
@@ -71,13 +70,15 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             }
         }
 
-        $sql="select count(id) as count from videos where c_id=$token and u_id='$USER_ID'";
+        $sql="select * from videos where c_id=$token and u_id='$USER_ID'";
         if($result=$conn->query($sql))
         {
             if($result->num_rows)
             {
-                $row=$result->fetch_assoc();
-                    $v_count = $row['count'];
+                while($row=$result->fetch_assoc())
+                {
+                    $v_count[] = $row;
+                }    
             }
         }
     
@@ -183,6 +184,7 @@ if($result =  $conn->query($sql))
         </div> 
         <h2>Videos</h2>
         <div class="box-body">
+        <div class="row">
         <?php
             if(isset($videos))
             {
@@ -190,6 +192,7 @@ if($result =  $conn->query($sql))
                 foreach($videos as $data)
                 {
         ?>
+                    <div class="col-md-4">
                     <div id="data<?=$counter?>">
                     <iframe class="vidcs" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <?php
@@ -200,13 +203,14 @@ if($result =  $conn->query($sql))
                     <?php
                     }
                     ?>
-                   
+                   </div>
                     </div>
         <?php
         $counter++;
                 }
             }
         ?>
+        </div>
         </div>
         <form method="post" enctype="multipart/form-data" id="video_form">
             <div class="row">
