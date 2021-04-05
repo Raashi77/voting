@@ -18,11 +18,14 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             {
                 $resSubject = "files_left";
             }
-            $sql="select count(id) from contest_users cu where cu.c_id='$token' and cu.u_id='$USER_ID'";
+            $sql="select * from contest_users cu where cu.c_id='$token' and cu.u_id='$USER_ID'";
             if($result=$conn->query($sql))
             {
-                $row=$result->fetch_assoc();
-                    $check = $row;
+                if($row->num_rows)
+                {
+                    $row=$result->fetch_assoc();
+                        $check = $row;
+                }
             }
             if(isset($check))
             {
