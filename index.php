@@ -80,7 +80,23 @@ require_once "navbar.php";
 
 
 <!-- Slider Area Start Here-->
-<div class="slider-area">
+
+<div class="container-fluid acurate">
+<?php
+                if(isset($slider))
+                {
+                    foreach($slider as $data)
+                 {
+                ?>
+                    <video autoplay   muted loop controls style="width:100%;height:50vw" id="mainVideo">
+                        <source src="admin/<?=$data['image']?>" >
+                    </video> 
+            <?php
+                    }
+                }
+                ?>
+</div>
+<!-- <div class="slider-area">
     <div class="bend niceties preview-2">
         <div id="ensign-nivoslider" class="slides">
             <?php
@@ -89,8 +105,8 @@ require_once "navbar.php";
                     foreach($slider as $data)
                  {
                 ?>
-                    <video autoplay  muted loop style="width:100%">
-                        <source src="admin/<?=$data['image']?>" type="<?=$data['file_type']?>">
+                    <video autoplay  muted loop controls style="width:100%;height:50vw">
+                        <source src="admin/<?=$data['image']?>" >
                     </video> 
             <?php
                     }
@@ -118,7 +134,7 @@ require_once "navbar.php";
                 }
                 ?>
     </div>
-</div>
+</div> -->
 <!-- Slider Area End Here-->
 
 <div class="fix home-blog-area pb-90 pt-90">
@@ -139,7 +155,11 @@ require_once "navbar.php";
                 ?>
             <div class="single-blog-slide">
                 <div class="images">
-                    <a href="<?=$data['video']?>"> <video src="<?=$data['video']?>" ></video> </a>
+                   
+                   <video width="100%" height="200" controls>
+                                    <source src="<?=$data['video']?>" > 
+                                    Your browser does not support HTML video.
+                    </video>
                 </div>
             </div>
             <?php
@@ -340,3 +360,5 @@ require_once "navbar.php";
       require_once "footer.php";
       require_once "js-links.php";
       ?>
+
+      
