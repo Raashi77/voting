@@ -156,8 +156,8 @@ require_once "navbar.php";
             <div class="single-blog-slide">
                 <div class="images">
                    
-                   <video width="100%" height="200" controls>
-                                    <source src="<?=$data['video']?>" > 
+                   <video width="100%" height="200" preload="metadata" controls>
+                                    <source src="<?=$data['video']?>#t=0.1" > 
                                     Your browser does not support HTML video.
                     </video>
                 </div>

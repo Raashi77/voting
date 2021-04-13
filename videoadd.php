@@ -197,7 +197,10 @@ if($result =  $conn->query($sql))
         ?>
                     <div class="col-md-4">
                     <div id="data<?=$counter?>">
-                    <iframe class="vidcs" height="315" src="<?=$data['video']?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <video   height="315" preload="metadata" controls>
+                                    <source src="<?=$data['video']?>#t=0.1" > 
+                                    Your browser does not support HTML video.
+                    </video>
                     <?php
                     if($v_count>1)
                     {
