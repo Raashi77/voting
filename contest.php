@@ -185,8 +185,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     ?> 
                         
                             <div class="item <?=$active_slide?>">
-                                <video width="100%" height="300" controls>
-                                    <source src="<?=$videos['video']?>"  > 
+                                <video width="100%" height="300"  preload="metadata" controls>
+                                    <source src="<?=$videos['video']?>#t=0.1"  > 
                                     Your browser does not support HTML video.
                                 </video>
                             </div>
