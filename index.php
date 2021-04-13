@@ -88,8 +88,8 @@ require_once "navbar.php";
                     foreach($slider as $data)
                  {
                 ?>
-                    <video autoplay  playsinline muted loop controls style="width:100%;height:50vw" id="mainVideo">
-                        <source src="admin/<?=$data['image']?>" type="video/mp4">
+                    <video autoplay  preload="metadata" muted loop controls style="width:100%;height:50vw" id="mainVideo">
+                        <source src="admin/<?=$data['image']?>#t=0.1">
                     </video> 
             <?php
                     }
