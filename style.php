@@ -1,3 +1,4 @@
+<style>
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css?family=Muli:400,600');
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
@@ -116,7 +117,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   text-decoration: none;
 }
 a:active,
@@ -133,18 +134,18 @@ ul {
   clear: both;
 }
 ::-moz-selection {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   text-shadow: none;
   color: #ffffff;
 }
 ::selection {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   text-shadow: none;
   color: #ffffff;
 }
 .browserupgrade {
   margin: 26px 0;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #333333;
   padding: 26px 0;
 }
@@ -245,7 +246,7 @@ ul {
   content: "";
   bottom: 0;
   margin: auto;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .section-title h2:before {
   position: absolute;
@@ -257,10 +258,10 @@ ul {
   content: "";
   bottom: 5px;
   margin: auto;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .section-title h2 span {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 400;
 }
 .section-title img {
@@ -280,12 +281,12 @@ ul {
 .view-more a {
   margin-top: 30px;
   display: inline-block;
-  border: 1px solid #d32f2f;
-  background: #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   font-size: 16px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   padding: 5px 25px;
 }
@@ -305,7 +306,7 @@ ul {
 2.Header area start here 
 ---------------------------------------*/
 .header-top-area {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   padding: 10px 0;
 }
 .header-top-area .header-top-left ul {
@@ -405,7 +406,7 @@ ul {
 .header-middle-area .logo-area a {
   font-weight: 900;
   font-size: 27px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   display: block;
   text-transform: lowercase;
   position: relative;
@@ -438,25 +439,25 @@ ul {
   color: #444444;
 }
 .header-middle-area .main-menu ul li.active a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .main-menu ul li.active a i {
   margin-left: 10px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .main-menu ul li.active a:hover a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .main-menu ul li.active a:hover a i {
   margin-left: 10px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .main-menu ul li:hover a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .main-menu ul li:hover a i {
   margin-left: 10px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .main-menu ul li ul {
   background: #ffffff;
@@ -493,7 +494,7 @@ ul {
 }
 .header-middle-area .main-menu ul li ul li a:hover {
   padding-left: 30px;
-  color: #d32f2f !important;
+  color: <?=$websiteBackgroudColor?> !important;
 }
 .header-middle-area .main-menu ul li:hover ul {
   opacity: 1;
@@ -518,15 +519,15 @@ ul {
   color: #ffffff;
   width: 30px;
   height: 30px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   text-align: center;
   border-radius: 50%;
 }
 .header-middle-area .cart-area a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .cart-area a:hover i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .header-middle-area .cart-area a i {
   text-align: center;
@@ -689,7 +690,7 @@ ul {
   line-height: 28px;
   color: #dddddd;
   background: #000000;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: right;
@@ -710,11 +711,11 @@ ul {
   -------------------------------------*/
 .slider-area .carousel .carousel-indicators li {
   background: #ffffff;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
 }
 .slider-area .carousel .carousel-indicators li.active {
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
 }
 .slider-area .carousel .carousel-inner .item.active img {
   width: 100%;
@@ -778,8 +779,8 @@ ul {
   margin-right: 30px;
 }
 .slider-area .carousel .carousel-inner .item.active .carousel-caption ul li .slider-content .button-area ul li:first-child a {
-  border: 1px solid #d32f2f;
-  background: #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   -webkit-animation: bounceInDown 2500ms ease-in-out;
   -moz-animation: bounceInDown 2500ms ease-in-out;
@@ -804,8 +805,8 @@ ul {
   padding: 10px 18px;
 }
 .slider-area .carousel .carousel-inner .item.active .carousel-caption ul li .slider-content .button-area ul li a:hover {
-  border: 1px solid #d32f2f;
-  background: #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  background: <?=$websiteBackgroudColor?>;
   color: #444444;
 }
 /* ------------------------------------
@@ -846,8 +847,8 @@ ul {
   padding: 17px 40px;
   color: #ffffff;
   transition: all 0.5s ease 0s;
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   font-weight: 700;
   text-transform: uppercase;
   -webkit-animation: bounceInDown 2500ms ease-in-out;
@@ -879,8 +880,8 @@ ul {
   margin-left: 10px;
 }
 .slider-area .slider-1 div.slider-botton ul li a:hover {
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .slider-area .slider-2 h1 {
@@ -918,8 +919,8 @@ ul {
   padding: 17px 40px;
   color: #ffffff;
   transition: all 0.5s ease 0s;
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   font-weight: 700;
   text-transform: uppercase;
   -webkit-animation: bounceInDown 2500ms ease-in-out;
@@ -951,9 +952,9 @@ ul {
   margin-left: 10px;
 }
 .slider-area .slider-2 div.slider-botton ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
 }
 /* ------------------------------------
 5.About Photo Contests Start Here 
@@ -982,7 +983,7 @@ ul {
   max-width: 530px;
 }
 .home-about-photo-contest-area .countdown-section .time_circles > div:nth-child(2) {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-about-photo-contest-area .countdown-section .time_circles > div:nth-child(3) {
   color: #ad38e2;
@@ -1017,11 +1018,11 @@ ul {
   color: #fff;
   display: inline-block;
   text-align: center;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   padding: 8px 25px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
-  border: 1px solid #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -ms-transition: 0.4s;
@@ -1033,13 +1034,13 @@ ul {
 }
 .home-about-photo-contest-area .link-section a.primary-btn.joni-btn {
   background: transparent;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   box-shadow: none;
 }
 .home-about-photo-contest-area .link-section a.primary-btn.joni-btn:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #fff;
-  border-color: #d32f2f;
+  border-color: <?=$websiteBackgroudColor?>;
 }
 .home-about-photo-contest-area .join-details {
   margin-bottom: 30px;
@@ -1091,7 +1092,7 @@ ul {
   bottom: 0;
   width: 60px;
   height: 60px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   padding: 2px;
   text-align: center;
@@ -1139,7 +1140,7 @@ ul {
   opacity: .9;
 }
 .home-gellary-area .single-gellary:hover .gellary-informations {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
@@ -1191,7 +1192,7 @@ ul {
   color: #333333;
 }
 .home-gellary-area .single-gellary .gellary-informations ul li h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-gellary-area .single-gellary .gellary-informations ul li h3 a span {
   display: block;
@@ -1201,7 +1202,7 @@ ul {
   margin-top: 10px;
 }
 .home-gellary-area .single-gellary .gellary-informations ul li i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
   margin-right: 10px;
 }
@@ -1221,7 +1222,7 @@ ul {
   margin-bottom: 30px;
 }
 .winner-area .single-winners .images:hover h3 a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .winner-area .single-winners .images:hover .overley {
   opacity: 1;
@@ -1306,7 +1307,7 @@ ul {
   text-transform: uppercase;
 }
 .winner-area .single-winners h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .winner-area .view-more {
   margin-top: 30px;
@@ -1332,10 +1333,10 @@ ul {
 }
 .home-banner-area .view-more a {
   margin-top: 15px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   padding: 10px 20px;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   background: #45456;
 }
 /* ------------------------------------
@@ -1373,12 +1374,12 @@ ul {
   padding: 0 0 6px 0;
 }
 .about-counter-list .fa {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   display: inline-block;
   font-size: 40px;
 }
 .about-counter-list .fa:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 /* ----------------------------------
   10.Home Blog Start Here 
@@ -1410,7 +1411,7 @@ ul {
   bottom: 0;
   width: 60px;
   height: 60px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   padding: 2px;
   text-align: center;
@@ -1467,7 +1468,7 @@ ul {
   margin-right: 0;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations ul li i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   margin-right: 5px;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details h3 {
@@ -1479,7 +1480,7 @@ ul {
   font-size: 18px;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details p {
   margin-bottom: 15px;
@@ -1498,7 +1499,7 @@ ul {
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details .read-more a:after {
   content: "\f101";
   font-family: fontawesome;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
   font-size: 16px;
   position: absolute;
@@ -1508,7 +1509,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details .read-more a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details .read-more a:hover:after {
   right: -30px;
@@ -1523,19 +1524,19 @@ ul {
   height: 35px;
   border-radius: 0;
   border-radius: 50%;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
 }
 .home-blog-area .blog-slider .owl-buttons div i {
   font-size: 30px;
   line-height: 28px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-blog-area .blog-slider .owl-buttons div.owl-prev {
   position: absolute;
   left: -5%;
 }
 .home-blog-area .blog-slider .owl-buttons div.owl-prev:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .home-blog-area .blog-slider .owl-buttons div.owl-prev:hover i {
@@ -1546,7 +1547,7 @@ ul {
   right: -5%;
 }
 .home-blog-area .blog-slider .owl-buttons div.owl-next:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .home-blog-area .blog-slider .owl-buttons div.owl-next:hover i {
@@ -1577,12 +1578,12 @@ ul {
   height: 35px;
   border-radius: 0;
   border-radius: 50%;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
 }
 .client-logo-area .owl-buttons div i {
   font-size: 30px;
   line-height: 30px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .client-logo-area .owl-buttons div.owl-prev {
   position: absolute;
@@ -1594,7 +1595,7 @@ ul {
   transform: translateY(-50%);
 }
 .client-logo-area .owl-buttons div.owl-prev:hover {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   color: #ffffff;
 }
 .client-logo-area .owl-buttons div.owl-prev:hover i {
@@ -1610,7 +1611,7 @@ ul {
   transform: translateY(-50%);
 }
 .client-logo-area .owl-buttons div.owl-next:hover {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   color: #ffffff;
 }
 .client-logo-area .owl-buttons div.owl-next:hover i {
@@ -1648,7 +1649,7 @@ ul {
   line-height: 28px;
   color: #dddddd;
   background: #000000;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
@@ -1657,8 +1658,8 @@ ul {
   -webkit-border-radius: 50%;
 }
 .footer-top-area .single-footer .footer-social-media-area ul li a:hover {
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid #c7aeae;
 }
 .footer-top-area .footer-two ul li {
   color: #999999;
@@ -1668,7 +1669,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .footer-top-area .footer-two ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .footer-top-area .footer-two ul li i {
   color: #2aacff;
@@ -1713,11 +1714,11 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .footer-top-area .footer-four ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .footer-top-area .footer-four ul li i {
   margin: 5px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .footer-bottom-area {
   background: #000000;
@@ -1730,7 +1731,7 @@ ul {
   font-weight: 300;
 }
 #scrollUp {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   bottom: 100px;
   color: #ffffff !important;
   display: block;
@@ -1765,7 +1766,7 @@ ul {
 }
 .preview-2 .nivo-directionNav a.nivo-prevNav:before,
 .preview-2 .nivo-directionNav a.nivo-nextNav:before {
-  border: 1px dashed #d32f2f !important;
+  border: 1px dashed <?=$websiteBackgroudColor?> !important;
   color: #ffffff !important;
   background: transparent;
   border-radius: 50% !important;
@@ -1774,7 +1775,7 @@ ul {
 }
 .preview-2 .nivo-directionNav a.nivo-prevNav:hover:before,
 .preview-2 .nivo-directionNav a.nivo-prevNav:hover:before {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
 }
 /* ------------------------------------
 13.Portfolio One Start Here 
@@ -1809,7 +1810,7 @@ ul {
   left: 50%;
   width: 50px;
   height: 1px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   bottom: 0;
   opacity: 0;
   -webkit-transform: translateX(-50%);
@@ -1818,7 +1819,7 @@ ul {
 }
 .portfolio-one-area .portfolio-menu ul li:hover,
 .portfolio-one-area .portfolio-menu ul li.active {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .portfolio-one-area .portfolio-menu ul li:hover::after,
 .portfolio-one-area .portfolio-menu ul li.active::after {
@@ -1899,7 +1900,7 @@ ul {
   border-radius: 50%;
 }
 .portfolio-one-area .single-portfolio .overley .photo-informations {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   height: 60px;
   padding: 18px 30px;
   color: #ffffff;
@@ -1988,14 +1989,14 @@ ul {
 }
 .inner-page-header .header-page-locator ul li {
   display: inline-block;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .inner-page-header .header-page-locator ul li a {
   color: #ffffff;
   transition: all 0.5s ease 0s;
 }
 .inner-page-header .header-page-locator ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 /* ------------------------------------
 15.About Team Start Here 
@@ -2026,13 +2027,13 @@ ul {
   width: 100%;
 }
 .home-team-area .total-team .single-team .team-details h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-team-area .total-team .single-team .team-details h3 a:after {
   display: none;
 }
 .home-team-area .total-team .single-team .team-details p {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   letter-spacing: 3px;
   margin-bottom: 20px;
 }
@@ -2052,7 +2053,7 @@ ul {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 /* ------------------------------------
 16.Winners Start Here 
@@ -2069,7 +2070,7 @@ ul {
   margin-bottom: 30px;
 }
 .winners-page-area .top-winners .images:hover h3 a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .winners-page-area .top-winners .images:hover .overley {
   opacity: 1;
@@ -2133,7 +2134,7 @@ ul {
   font-size: 40px;
 }
 .winners-page-area .top-winners .winners-informations h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .winners-page-area .top-winners .winners-informations span {
   font-weight: 600;
@@ -2168,7 +2169,7 @@ ul {
   margin-bottom: 50px;
 }
 .winners-page-area .top-winners .skill .progress-bar > span {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   float: right;
   font-size: 12px;
   margin-right: 10px;
@@ -2195,7 +2196,7 @@ ul {
   width: 0;
 }
 .winners-page-area .top-winners .skill .progress-bar > span:before {
-  border-top-color: #d32f2f;
+  border-top-color: <?=$websiteBackgroudColor?>;
   border-width: 5px;
   left: 50%;
   margin-left: -5px;
@@ -2206,16 +2207,16 @@ ul {
   margin-bottom: 25px;
 }
 .winners-page-area .top-winners .skill .progress:nth-child(1) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .winners-page-area .top-winners .skill .progress:nth-child(2) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .winners-page-area .top-winners .skill .progress:nth-child(3) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .winners-page-area .top-winners .skill .progress:nth-child(4) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .winners-page-area .social-media ul {
   text-align: left;
@@ -2229,18 +2230,18 @@ ul {
   width: 35px;
   height: 35px;
   line-height: 35px;
-  color: #d32f2f;
-  border: 1px solid #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
 }
 .winners-page-area .social-media ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 /* ------------------------------------
@@ -2279,7 +2280,7 @@ ul {
   margin-bottom: 30px;
 }
 .related-product-area .single-product-store .single-winners .images:hover h3 a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .related-product-area .single-product-store .single-winners .images:hover .overley {
   opacity: 1;
@@ -2370,7 +2371,7 @@ ul {
   text-transform: uppercase;
 }
 .related-product-area .single-product-store .single-winners h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .related-product-area .owl-buttons {
   right: 10px;
@@ -2378,7 +2379,7 @@ ul {
   top: -60px;
 }
 .related-product-area .owl-buttons div {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   width: 35px;
   height: 35px;
   border-radius: 0 !important;
@@ -2419,7 +2420,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .winner-page-list .single-product-area .product-content h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .winner-page-list .single-product-area .product-content ul li {
   display: inline-block;
@@ -2430,7 +2431,7 @@ ul {
 }
 .winner-page-list .single-product-area .product-content p {
   font-weight: bold;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .winner-page-list .single-product-area .single-product {
   position: relative;
@@ -2503,7 +2504,7 @@ ul {
   margin-right: 10px;
 }
 .winner-page-list .single-product-area .single-product .shop-overley .social-media-area ul li i:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 /* ------------------------------------
@@ -2519,7 +2520,7 @@ ul {
   display: inline-block;
 }
 .pagination-area ul li.active a {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .pagination-area ul li a {
@@ -2528,7 +2529,7 @@ ul {
   height: 40px;
   line-height: 40px;
   background: transparent;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #000000;
   font-size: 18px;
   text-decoration: none;
@@ -2536,7 +2537,7 @@ ul {
   text-align: center;
 }
 .pagination-area ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 /* ------------------------------------
@@ -2565,7 +2566,7 @@ ul {
   top: -60px;
 }
 .single-photo-contest-area .about-content ul.single-photo-slide2 .owl-buttons div {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   width: 35px;
   height: 35px;
   border-radius: 0 !important;
@@ -2586,7 +2587,7 @@ ul {
   top: -60px;
 }
 .single-photo-contest-area .about-content ul.home-single-slide .owl-buttons div {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   width: 35px;
   height: 35px;
   border-radius: 0 !important;
@@ -2615,7 +2616,7 @@ ul {
   text-align: center !important;
 }
 .single-photo-contest-area .about-content ul.home-single-slide.variation .countdown-section .CountDownTimer .time_circles div:nth-child(2) {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .single-photo-contest-area .about-content ul.home-single-slide.variation .countdown-section .CountDownTimer .time_circles div:nth-child(3) {
   color: #ad38e2;
@@ -2640,7 +2641,7 @@ ul {
   max-width: 530px;
 }
 .single-photo-contest-area .about-content ul.home-single-slide .countdown-section .time_circles > div:nth-child(2) {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .single-photo-contest-area .about-content ul.home-single-slide .countdown-section .time_circles > div:nth-child(3) {
   color: #ad38e2;
@@ -2670,7 +2671,7 @@ ul {
   top: -60px;
 }
 .single-photo-contest-area .about-content ul.single-photo-slide .owl-buttons div {
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   width: 35px;
   height: 35px;
   border-radius: 0 !important;
@@ -2700,7 +2701,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .single-photo-contest-area .about-text > h3 > a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .single-photo-contest-area .about-text .informatons h4 {
   margin-bottom: 5px;
@@ -2714,19 +2715,19 @@ ul {
 .single-photo-contest-area .about-text > a {
   margin-top: 70px;
   display: inline-block;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   font-size: 16px;
   color: #ffffff;
   transition: all 0.5s ease 0s;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border-radius: 30px;
   padding: 8px 18px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
 }
 .single-photo-contest-area .about-text > a:hover {
   background: transparent;
   box-shadow: none;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .single-photo-contest-area .about-image {
   width: 50%;
@@ -2823,7 +2824,7 @@ ul {
   bottom: 0;
   width: 60px;
   height: 60px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   padding: 2px;
   text-align: center;
@@ -2880,7 +2881,7 @@ ul {
   margin-right: 0;
 }
 .blog-page-area .single-blog-slide .blog-informations ul li i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   margin-right: 5px;
 }
 .blog-page-area .single-blog-slide .blog-informations .blog-details h3 {
@@ -2892,7 +2893,7 @@ ul {
   font-size: 18px;
 }
 .blog-page-area .single-blog-slide .blog-informations .blog-details h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .blog-page-area .single-blog-slide .blog-informations .blog-details p {
   margin-bottom: 15px;
@@ -2911,7 +2912,7 @@ ul {
 .blog-page-area .single-blog-slide .blog-informations .blog-details .read-more a:after {
   content: "\f101";
   font-family: fontawesome;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
   font-size: 16px;
   position: absolute;
@@ -2921,7 +2922,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .blog-page-area .single-blog-slide .blog-informations .blog-details .read-more a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .blog-page-area .single-blog-slide .blog-informations .blog-details .read-more a:hover:after {
   right: -30px;
@@ -2950,7 +2951,7 @@ ul {
   bottom: 0;
   width: 60px;
   height: 60px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   padding: 2px;
   text-align: center;
@@ -3012,7 +3013,7 @@ ul {
 }
 .others-photo-contester-area .single-others-contester ul li i {
   font-size: 16px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
   margin: 0 5px 0 2px;
 }
@@ -3047,7 +3048,7 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 55px;
   height: 65px;
   padding: 10px;
@@ -3079,7 +3080,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -3092,7 +3093,7 @@ ul {
   display: inline-block;
 }
 .single-blog-page-area .single-news-page ul li span {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
 }
 .single-blog-page-area .sidebar-area .single-sidebar .pull-left {
@@ -3139,18 +3140,18 @@ ul {
   width: 30px;
   height: 30px;
   line-height: 28px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 1px solid #c3c3c3;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
 }
 .single-blog-page-area .content-info .blog-content-share-social-icons ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
 }
 .single-blog-page-area .content-info .blog-content-share-social-icons ul li a:hover i {
   color: #ffffff;
@@ -3181,7 +3182,7 @@ ul {
   width: 100%;
 }
 .single-blog-page-area .author-post .single-author-post .box-grid .media-body h4.media-heading {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-size: 18px;
   font-weight: 600;
   position: relative;
@@ -3217,7 +3218,7 @@ ul {
   width: 100%;
 }
 .single-blog-page-area .author-comment .single-author-comment .author-post .media-body h4.media-heading {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-size: 18px;
   font-weight: 600;
   position: relative;
@@ -3235,7 +3236,7 @@ ul {
   float: right;
 }
 .single-blog-page-area .author-comment .single-author-comment .author-post .media-body ul li.right i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   margin-right: 5px;
 }
 .single-blog-page-area .leave-comments-area {
@@ -3277,7 +3278,7 @@ ul {
   box-shadow: none;
 }
 .single-blog-page-area .leave-comments-area fieldset .btn-send {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border: 0 none;
   color: #ffffff;
   display: block;
@@ -3285,7 +3286,7 @@ ul {
   font-weight: bold;
   padding: 15px 45px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   text-transform: uppercase;
   transition: all 0.5s ease 0s;
   margin-top: 10px;
@@ -3312,7 +3313,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -3329,7 +3330,7 @@ ul {
 .sidebar-area .single-sidebar .sidebar-search button {
   background: transparent;
   border: medium none;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   padding: 11px;
   position: absolute;
   right: 0;
@@ -3338,7 +3339,7 @@ ul {
   font-size: 20px;
 }
 .sidebar-area .single-sidebar .sidebar-category ul li {
-  border-bottom: 1px dotted #d32f2f;
+  border-bottom: 1px dotted <?=$websiteBackgroudColor?>;
   position: relative;
 }
 .sidebar-area .single-sidebar .sidebar-category ul li a {
@@ -3349,10 +3350,10 @@ ul {
   transition: all 0.3s ease 0s;
 }
 .sidebar-area .single-sidebar .sidebar-category ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .single-sidebar .sidebar-category ul li a:before {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   content: "\f105";
   font-family: FontAwesome;
   height: 15px;
@@ -3379,10 +3380,10 @@ ul {
   font-size: 20px;
 }
 .sidebar-area .single-sidebar .sidebar-recent-post .media-body h4 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .single-sidebar .sidebar-recent-post .media-body .posted-date a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
   transition: all 0.5s ease 0s;
 }
@@ -3395,8 +3396,8 @@ ul {
   margin: 2px;
 }
 .sidebar-area .single-sidebar .popular-tags ul li:hover {
-  border: 1px solid #d32f2f;
-  background: #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  background: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .single-sidebar .popular-tags ul li:hover a {
   color: #ffffff;
@@ -3424,7 +3425,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -3448,10 +3449,10 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .contact-us-page-area .contact-box .single-contact-box ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .contact-us-page-area .contact-box .single-contact-box ul li span i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 800;
   font-size: 20px;
   margin-right: 10px;
@@ -3476,7 +3477,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -3509,7 +3510,7 @@ ul {
   box-shadow: none;
 }
 .contact-us-page-area .leave-comments-area fieldset .btn-send {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border: 0 none;
   color: #ffffff;
   display: block;
@@ -3520,7 +3521,7 @@ ul {
   transition: all 0.5s ease 0s;
   margin-top: 10px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   cursor: pointer;
 }
 .contact-us-page-area .leave-comments-area fieldset .btn-send:hover {
@@ -3534,7 +3535,7 @@ ul {
   text-align: center;
 }
 .error-page-area .error-page {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   background-position: center center;
   background-size: cover;
   padding: 90px;
@@ -3561,10 +3562,10 @@ ul {
   text-decoration: none;
   font-size: 18px;
   color: #ffffff;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   padding: 15px 35px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
 }
 .error-page-area .error-page-message .home-page a:hover {
@@ -3590,7 +3591,7 @@ ul {
   text-transform: uppercase;
 }
 .loginregistration-area .login-area h2:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   content: "";
   height: 2px;
   left: 0;
@@ -3627,7 +3628,7 @@ ul {
   box-shadow: none;
 }
 .loginregistration-area .login-area fieldset .btn-send {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border: 0 none;
   color: #ffffff;
   display: block;
@@ -3635,7 +3636,7 @@ ul {
   font-weight: bold;
   padding: 20px 45px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   margin-top: 30px;
   width: 100%;
@@ -3677,7 +3678,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .loginregistration-area .login-area .checkbox p a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .loginregistration-area .registration-area {
   background: #f8f8f8;
@@ -3694,7 +3695,7 @@ ul {
   text-transform: uppercase;
 }
 .loginregistration-area .registration-area h2:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   content: "";
   height: 2px;
   left: 0;
@@ -3739,7 +3740,7 @@ ul {
   font-weight: bold;
   padding: 20px 45px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   margin-top: 30px;
   width: 100%;
@@ -3747,7 +3748,7 @@ ul {
   cursor: pointer;
 }
 .loginregistration-area .registration-area fieldset .btn-send:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   box-shadow: none;
 }
 /* ------------------------------------
@@ -3757,7 +3758,7 @@ ul {
   margin-bottom: 30px;
 }
 .photo-details-area .photo-details-slide .owl-buttons div {
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   height: 45px;
   opacity: 1;
   width: 45px;
@@ -3771,7 +3772,7 @@ ul {
 .photo-details-area .photo-details-slide .owl-buttons div i {
   font-size: 30px;
   line-height: 40px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .photo-details-area .photo-details-slide .owl-buttons div.owl-prev {
   position: absolute;
@@ -3782,7 +3783,7 @@ ul {
   right: 5%;
 }
 .photo-details-area .photo-details {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   margin-bottom: 30px;
 }
 .photo-details-area .photo-details ul {
@@ -3856,7 +3857,7 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 55px;
   height: 65px;
   padding: 10px;
@@ -3888,7 +3889,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -3901,7 +3902,7 @@ ul {
   display: inline-block;
 }
 .single-blog-page-area .single-news-page ul li span {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
 }
 .single-blog-page-area .single-blog-content {
@@ -3909,7 +3910,7 @@ ul {
   border-bottom: 1px solid #e1e1e1;
 }
 .single-blog-page-area .single-blog-content blockquote {
-  border-left: 2px solid #d32f2f;
+  border-left: 2px solid <?=$websiteBackgroudColor?>;
 }
 .single-blog-page-area .content-info .blog-content-tag {
   margin-top: 20px;
@@ -3943,18 +3944,18 @@ ul {
   width: 30px;
   height: 30px;
   line-height: 28px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 1px solid #c3c3c3;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
 }
 .single-blog-page-area .content-info .blog-content-share-social-icons ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
 }
 .single-blog-page-area .content-info .blog-content-share-social-icons ul li a:hover i {
   color: #ffffff;
@@ -3985,7 +3986,7 @@ ul {
   width: 100%;
 }
 .single-blog-page-area .author-post .single-author-post .box-grid .media-body h4.media-heading {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-size: 18px;
   font-weight: 600;
   position: relative;
@@ -4021,7 +4022,7 @@ ul {
   width: 100%;
 }
 .single-blog-page-area .author-comment .single-author-comment .media .media-body h4.media-heading {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-size: 18px;
   font-weight: 600;
   position: relative;
@@ -4039,7 +4040,7 @@ ul {
   float: right;
 }
 .single-blog-page-area .author-comment .single-author-comment .media .media-body ul li.right i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   margin-right: 5px;
 }
 .single-blog-page-area .leave-comments-area {
@@ -4083,7 +4084,7 @@ ul {
   box-shadow: none;
 }
 .single-blog-page-area .leave-comments-area fieldset .btn-send {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border: 0 none;
   color: #ffffff;
   display: block;
@@ -4091,7 +4092,7 @@ ul {
   font-weight: bold;
   padding: 15px 45px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   text-transform: uppercase;
   transition: all 0.5s ease 0s;
   margin-top: 10px;
@@ -4107,7 +4108,7 @@ ul {
   overflow: hidden;
 }
 .multistep-form .active {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .multistep-form fieldset {
@@ -4133,13 +4134,13 @@ ul {
   box-shadow: none;
 }
 .multistep-form fieldset input:focus {
-  -webkit-box-shadow: 0px 0px 1px 1px #d32f2f;
-  -moz-box-shadow: 0px 0px 1px 1px #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
-  border: 0px solid #d32f2f;
+  -webkit-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  -moz-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  border: 0px solid <?=$websiteBackgroudColor?>;
 }
 .multistep-form fieldset input[type="button"] {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   text-transform: uppercase;
   font-size: 16px;
@@ -4167,10 +4168,10 @@ ul {
   box-shadow: none;
 }
 .multistep-form fieldset select:focus {
-  -webkit-box-shadow: 0px 0px 1px 1px #d32f2f;
-  -moz-box-shadow: 0px 0px 1px 1px #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
-  border: 0px solid #d32f2f;
+  -webkit-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  -moz-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  border: 0px solid <?=$websiteBackgroudColor?>;
 }
 .multistep-form fieldset textarea {
   margin-bottom: 15px;
@@ -4185,10 +4186,10 @@ ul {
   box-shadow: none;
 }
 .multistep-form fieldset textarea:focus {
-  -webkit-box-shadow: 0px 0px 1px 1px #d32f2f;
-  -moz-box-shadow: 0px 0px 1px 1px #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
-  border: 0px solid #d32f2f;
+  -webkit-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  -moz-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  border: 0px solid <?=$websiteBackgroudColor?>;
 }
 .multistep-form fieldset ul#preview {
   margin: 0;
@@ -4237,20 +4238,20 @@ ul {
   box-shadow: none;
 }
 .multistep-form #first input:focus {
-  -webkit-box-shadow: 0px 0px 1px 1px #d32f2f;
-  -moz-box-shadow: 0px 0px 1px 1px #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
-  border: 0px solid #d32f2f;
+  -webkit-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  -moz-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  border: 0px solid <?=$websiteBackgroudColor?>;
 }
 .multistep-form #first input[type="button"] {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   text-transform: uppercase;
   font-size: 16px;
   transition: all 0.5s ease 0s;
   line-height: 20px;
   position: relative;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   border: 1px solid transparent;
   cursor: pointer;
 }
@@ -4281,10 +4282,10 @@ ul {
   box-shadow: none;
 }
 .multistep-form #first select:focus {
-  -webkit-box-shadow: 0px 0px 1px 1px #d32f2f;
-  -moz-box-shadow: 0px 0px 1px 1px #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
-  border: 0px solid #d32f2f;
+  -webkit-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  -moz-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  border: 0px solid <?=$websiteBackgroudColor?>;
 }
 .multistep-form #first textarea {
   margin-bottom: 15px;
@@ -4299,10 +4300,10 @@ ul {
   box-shadow: none;
 }
 .multistep-form #first textarea:focus {
-  -webkit-box-shadow: 0px 0px 1px 1px #d32f2f;
-  -moz-box-shadow: 0px 0px 1px 1px #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
-  border: 0px solid #d32f2f;
+  -webkit-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  -moz-box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
+  border: 0px solid <?=$websiteBackgroudColor?>;
 }
 .multistep-form #first ul#preview {
   margin: 0;
@@ -4334,12 +4335,12 @@ ul {
 .multistep-form ul#progressbar li {
   display: inline-block;
   margin: 0 15px;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   padding: 10px 20px;
   transition: all 0.5s ease 0s;
 }
 .multistep-form ul#progressbar li:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .page-sidebar-area {
@@ -4361,7 +4362,7 @@ ul {
   left: 0;
   top: 40px;
   display: block;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 50px;
   height: 3px;
 }
@@ -4381,18 +4382,18 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .page-sidebar-area .single-sidebar ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .page-sidebar-area .single-sidebar ul li:last-child {
   border: none;
 }
 .page-sidebar-area .single-sidebar ul li i {
   margin-right: 15px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 600;
 }
 .page-sidebar-area .single-sidebar ul li:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .page-sidebar-area .single-sidebar ul li span {
   float: right;
@@ -4415,7 +4416,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -4436,7 +4437,7 @@ ul {
   padding: 16px 10px;
   text-decoration: none;
   font-size: 18px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   width: 100%;
   text-align: left;
@@ -4454,7 +4455,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .home-faq-area .faq-area .accordion .card .card-header h5.card-title button.collapsed:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .home-faq-area .faq-area .accordion .card .card-body {
@@ -4502,7 +4503,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -4526,7 +4527,7 @@ ul {
   margin-bottom: 40px;
 }
 .home-about-area .about-content-area h2 span {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-about-area .about-content-area p {
   padding-right: 20px;
@@ -4540,9 +4541,9 @@ ul {
   padding: 12px 30px;
   color: #ffffff;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .home-about-area .about-content-area .botton-area a i {
   margin-left: 10px;
@@ -4587,7 +4588,7 @@ ul {
   left: 0;
   right: 0;
   margin: auto;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   height: 2px;
   content: "\f0d7";
   width: 31px;
@@ -4601,8 +4602,8 @@ ul {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  border: 1px solid #d32f2f;
-  box-shadow: 0px 0px 1px 1px #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  box-shadow: 0px 0px 1px 1px <?=$websiteBackgroudColor?>;
 }
 .testimonial .testimonial-area .single-testimonial .testimonial-top .details {
   display: inline-block;
@@ -4617,7 +4618,7 @@ ul {
   font-size: 14px;
 }
 .testimonial .testimonial-area .single-testimonial .customer-comment {
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   border-radius: 30px;
 }
 .testimonial .testimonial-area .single-testimonial .customer-comment p {
@@ -4635,7 +4636,7 @@ ul {
   height: 10px;
 }
 .testimonial .testimonial-area .owl-controls .owl-pagination .owl-page span {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 10px;
   height: 10px;
   -webkit-border-radius: 50%;
@@ -4696,7 +4697,7 @@ ul {
   transform: rotate(360deg);
 }
 .home-page-core-activities-area .home-activities-area .single-activities:hover .media .media-body h4.media-heading a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-page-core-activities-area .home-activities-area .single-activities .media .pull-left {
   margin-right: 10px;
@@ -4704,7 +4705,7 @@ ul {
 .home-page-core-activities-area .home-activities-area .single-activities .media .pull-left a {
   width: 70px;
   height: 70px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -4748,20 +4749,20 @@ ul {
 .rs-services-3 .common .icon-part {
   font-size: 40px;
   text-align: center;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .rs-services-3 .common .text h4 {
   margin: 0 auto;
   margin-bottom: 14px;
   font-weight: 600;
   font-size: 20px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .rs-services-3 .common .text p {
   margin-bottom: 0;
 }
 .rs-services-3 .common:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .rs-services-3 .common:hover .icon-part {
   color: #fff;
@@ -4786,7 +4787,7 @@ ul {
   margin-bottom: 30px;
 }
 .home-shop .home-ralated .single-winners .images:hover h3 a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-shop .home-ralated .single-winners .images:hover .overley {
   opacity: 1;
@@ -4884,7 +4885,7 @@ ul {
   margin: 0;
 }
 .home-shop .home-ralated .single-winners h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-shop .home-ralated .single-winners .price-details ul {
   margin: 0;
@@ -4925,7 +4926,7 @@ ul {
   margin-bottom: 30px;
 }
 .home-shop .single-shop-area .single-winners .images:hover h3 a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-shop .single-shop-area .single-winners .images:hover .overley {
   opacity: 1;
@@ -5015,7 +5016,7 @@ ul {
   text-transform: uppercase;
 }
 .home-shop .single-shop-area .single-winners h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-shop .single-shop-area .owl-buttons .owl-next {
   background: transparent;
@@ -5028,10 +5029,10 @@ ul {
   position: absolute;
   top: 35%;
   border-radius: 50%;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
 }
 .home-shop .single-shop-area .owl-buttons .owl-next:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .home-shop .single-shop-area .owl-buttons .owl-next:hover i {
@@ -5041,7 +5042,7 @@ ul {
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-shop .single-shop-area .owl-buttons .owl-prev {
   background: transparent;
@@ -5054,10 +5055,10 @@ ul {
   position: absolute;
   top: 35%;
   border-radius: 50%;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
 }
 .home-shop .single-shop-area .owl-buttons .owl-prev:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .home-shop .single-shop-area .owl-buttons .owl-prev:hover i {
@@ -5067,7 +5068,7 @@ ul {
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 /*-------------------------------------
 29.Slider Bottom area start  here 
@@ -5097,19 +5098,19 @@ ul {
 }
 .slider-bottom-area .slider-bottom .total-business .single-business i {
   font-size: 30px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   margin-bottom: 30px;
   transition: all 0.5s ease 0s;
   width: 60px;
   height: 60px;
   line-height: 60px;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
 }
 .slider-bottom-area .slider-bottom .total-business .single-business i:hover {
   width: 60px;
   height: 60px;
   line-height: 60px;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
   border-radius: 30px;
 }
 .slider-bottom-area .slider-bottom .total-business .single-business h3 {
@@ -5122,7 +5123,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .slider-bottom-area .slider-bottom .total-business .single-business h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .slider-bottom-area .slider-bottom .total-business .single-business .read-more {
   display: block;
@@ -5138,7 +5139,7 @@ ul {
 .slider-bottom-area .slider-bottom .total-business .single-business .read-more a:after {
   content: "\f101";
   font-family: fontawesome;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-weight: 500;
   font-size: 16px;
   position: absolute;
@@ -5148,7 +5149,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .slider-bottom-area .slider-bottom .total-business .single-business .read-more a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .slider-bottom-area .slider-bottom .total-business .single-business .read-more a:hover:after {
   right: -30px;
@@ -5162,17 +5163,17 @@ ul {
   height: 40px;
   line-height: 30px;
   font-size: 25px;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
   background: transparent;
   color: #ffffff;
   opacity: 1;
   transition: all 0.5s ease 0s;
 }
 .slider-bottom-area .slider-bottom .total-business .owl-buttons .owl-prev i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .slider-bottom-area .slider-bottom .total-business .owl-buttons .owl-prev:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .slider-bottom-area .slider-bottom .total-business .owl-buttons .owl-prev:hover i {
@@ -5186,17 +5187,17 @@ ul {
   height: 40px;
   line-height: 30px;
   font-size: 25px;
-  border: 1px dashed #d32f2f;
+  border: 1px dashed <?=$websiteBackgroudColor?>;
   background: transparent;
   color: #ffffff;
   opacity: 1;
   transition: all 0.5s ease 0s;
 }
 .slider-bottom-area .slider-bottom .total-business .owl-buttons .owl-next i {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .slider-bottom-area .slider-bottom .total-business .owl-buttons .owl-next:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .slider-bottom-area .slider-bottom .total-business .owl-buttons .owl-next:hover i {
@@ -5219,13 +5220,13 @@ ul {
   font-size: 40px;
 }
 .home-about-area .about-content h3 span {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-about-area .about-content .about-content-list {
   margin-top: 50px;
 }
 .home-about-area .about-content .about-content-list .single-list:hover .media .media-body h4.media-heading a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-about-area .about-content .about-content-list .single-list .media .pull-left {
   margin-right: 20px;
@@ -5238,7 +5239,7 @@ ul {
   color: #ffffff;
   width: 50px;
   height: 50px;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   position: relative;
   text-align: center;
   line-height: 50px;
@@ -5259,7 +5260,7 @@ ul {
   font-weight: 500;
 }
 .home-about-area .about-content .about-content-list .single-list .media .media-body h4.media-heading a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .home-about-area .about-featured-image a {
   display: block;
@@ -5281,13 +5282,13 @@ ul {
   padding: 30px;
 }
 .home-two-services-area ul li:nth-child(1) {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .home-two-services-area ul li:nth-child(2) {
   background: #b52929;
 }
 .home-two-services-area ul li:nth-child(3) {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .home-two-services-area ul li:nth-child(4) {
   background: #b52929;
@@ -5545,7 +5546,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .portfolio-details-area .portfolio-informations h3:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   content: "";
   height: 3px;
   left: 0;
@@ -5566,8 +5567,8 @@ ul {
   margin: 30px 0 0;
 }
 .portfolio-details-area .portfolio-informations .visit-project a {
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #ffffff;
   border-radius: 0px;
   display: block;
@@ -5575,7 +5576,7 @@ ul {
   font-weight: 600;
   padding: 10px 60px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
 }
 .portfolio-details-area .portfolio-informations .visit-project a:hover {
@@ -5597,7 +5598,7 @@ ul {
   margin-bottom: 35px;
 }
 .portfolio-details-area .project-description h3:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   content: "";
   height: 3px;
   left: 0;
@@ -5614,7 +5615,7 @@ ul {
   margin-bottom: 40px;
 }
 .portfolio-details-area .related-project h3:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   content: "";
   height: 3px;
   left: 0;
@@ -5678,7 +5679,7 @@ ul {
   font-weight: 600;
 }
 .portfolio-details-area .related-project .single-portfolio .overley .portfolio-details h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .portfolio-details-area .related-project .single-portfolio .overley .portfolio-details span {
   color: #ffffff;
@@ -5697,7 +5698,7 @@ ul {
   margin-bottom: 30px;
 }
 .shop-page-area .single-details .images:hover h3 a {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .shop-page-area .single-details .images:hover .overley {
   opacity: 1;
@@ -5795,7 +5796,7 @@ ul {
   margin: 0;
 }
 .shop-page-area .single-details h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .shop-page-area .single-details .price-details ul {
   margin: 0;
@@ -5861,7 +5862,7 @@ ul {
   bottom: -20px;
   left: 0;
   content: "";
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 60px;
   height: 3px;
 }
@@ -5893,7 +5894,7 @@ ul {
 }
 .sidebar-area .widget .services-tab ul.nav.nav-tabs li.active a {
   background: transparent;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 0px;
 }
 .sidebar-area .widget .services-tab ul.nav.nav-tabs li a {
@@ -5905,7 +5906,7 @@ ul {
 }
 .sidebar-area .widget .services-tab ul.nav.nav-tabs li a:hover {
   background: transparent;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 0px;
 }
 .sidebar-area .widget .recent-project ul {
@@ -5955,7 +5956,7 @@ ul {
   text-transform: uppercase;
 }
 .sidebar-area .widget.widget_categories ul li a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .widget.widget_categories ul li a span.count {
   float: right;
@@ -5966,7 +5967,7 @@ ul {
   top: 0px;
   font-size: 12px;
   font-weight: 300;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   content: "\f105";
   font-family: FontAwesome;
 }
@@ -6006,14 +6007,14 @@ ul {
   border: 0px solid #ffffff;
 }
 .sidebar-area .widget .price-area a {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   display: block;
   font-size: 14px;
   font-weight: 500;
   padding: 7px 50px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.5s ease 0s;
@@ -6029,7 +6030,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .sidebar-area .widget .posted-date a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .widget .price a {
   color: #444444;
@@ -6037,7 +6038,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .sidebar-area .widget .price a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .widget .popular-tags ul li {
   display: inline-block;
@@ -6048,8 +6049,8 @@ ul {
   border-radius: 5px;
 }
 .sidebar-area .widget .popular-tags ul li:hover {
-  border: 1px solid #d32f2f;
-  background: #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  background: <?=$websiteBackgroudColor?>;
 }
 .sidebar-area .widget .popular-tags ul li:hover a {
   color: #ffffff;
@@ -6115,7 +6116,7 @@ ul {
   left: -5px;
   position: absolute;
   top: 28%;
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   width: 30px;
   height: 30px;
   border-radius: 0 !important;
@@ -6130,7 +6131,7 @@ ul {
   right: -5px;
   position: absolute;
   top: 28%;
-  background: #d32f2f !important;
+  background: <?=$websiteBackgroudColor?> !important;
   width: 30px;
   height: 30px;
   border-radius: 0 !important;
@@ -6156,7 +6157,7 @@ ul {
   text-transform: uppercase;
 }
 .single-product-area .product-details h3:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   bottom: -20px;
   content: "";
   height: 3px;
@@ -6215,8 +6216,8 @@ ul {
   display: block;
 }
 .single-product-area .product-details .product-cart-area ul li a:hover {
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #ffffff;
   -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
@@ -6234,7 +6235,7 @@ ul {
   margin-top: 10px;
 }
 .single-product-area .add-cart a {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
   display: block;
   font-size: 14px;
@@ -6271,12 +6272,12 @@ ul {
 }
 .product-description ul.nav.nav-tabs li.active {
   background: transparent;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 0px;
 }
 .product-description ul.nav.nav-tabs li.active a {
   background: transparent;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 0px;
 }
 .product-description ul.nav.nav-tabs li a {
@@ -6290,7 +6291,7 @@ ul {
 }
 .product-description ul.nav.nav-tabs li a:hover {
   background: transparent;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   border: 0px;
 }
 .product-description .tab-content {
@@ -6328,7 +6329,7 @@ ul {
   position: relative;
 }
 .related-product-area h3:after {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   bottom: -20px;
   content: "";
   height: 3px;
@@ -6367,7 +6368,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .related-product-area .single-product-store .product-content h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .related-product-area .single-product-store .product-content ul li {
   display: inline-block;
@@ -6378,7 +6379,7 @@ ul {
 }
 .related-product-area .single-product-store .product-content p {
   font-weight: bold;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .related-product-area .single-product-store .single-product {
   position: relative;
@@ -6445,7 +6446,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .related-product-area .single-product-store .single-product .shop-overley .social-media-area ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .related-product-area .single-product-store .owl-buttons {
@@ -6454,7 +6455,7 @@ ul {
   top: -60px;
 }
 .related-product-area .single-product-store .owl-buttons div {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 35px;
   height: 35px;
   border-radius: 0;
@@ -6576,7 +6577,7 @@ ul {
   font-style: normal;
 }
 .about-me-area .about-me .my-infos h3 a:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .about-me-area .about-me .my-infos span {
   font-weight: 600;
@@ -6588,12 +6589,12 @@ ul {
 }
 .about-me-area .about-me .my-infos blockquote {
   font-size: 15px;
-  border-left: 5px solid #d32f2f;
+  border-left: 5px solid <?=$websiteBackgroudColor?>;
   padding: 10px 20px;
   margin: 0 0 20px;
 }
 .about-me-area .about-me .my-infos .portfolio-btn {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border: 0 none;
   color: #ffffff;
   display: block;
@@ -6605,14 +6606,14 @@ ul {
   text-transform: uppercase;
   transition: all 0.5s ease 0s;
   text-align: center;
-  border: 2px solid #d32f2f;
+  border: 2px solid <?=$websiteBackgroudColor?>;
 }
 .about-me-area .about-me .my-infos .portfolio-btn:hover {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   background: transparent;
 }
 .about-me-area .about-me .my-infos .hire-btn {
-  border: 2px solid #d32f2f;
+  border: 2px solid <?=$websiteBackgroudColor?>;
   display: block;
   font-size: 18px;
   font-weight: bold;
@@ -6622,10 +6623,10 @@ ul {
   text-transform: uppercase;
   transition: all 0.5s ease 0s;
   text-align: center;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .about-me-area .about-me .my-infos .hire-btn:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .about-me-area .about-me .holax-shop h3,
@@ -6664,7 +6665,7 @@ ul {
   margin-bottom: 0px;
 }
 .skill-bar-area .skill-content-3 .skill .progress-bar > span {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   width: 44px;
   left: 90%;
   font-size: 12px;
@@ -6687,27 +6688,27 @@ ul {
   width: 0;
 }
 .skill-bar-area .skill-content-3 .skill .progress-bar > span:before {
-  border-top-color: #d32f2f;
+  border-top-color: <?=$websiteBackgroudColor?>;
   border-width: 5px;
   left: 50%;
   margin-left: -5px;
 }
 .skill-bar-area .skill-content-3 .skill .progress:nth-child(1) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .skill-bar-area .skill-content-3 .skill .progress:nth-child(2) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .skill-bar-area .skill-content-3 .skill .progress:nth-child(3) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .skill-bar-area .skill-content-3 .skill .progress:nth-child(4) .progress-bar {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
 }
 .skill-bar-area .skill-info {
   padding: 50px;
   color: #fff;
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   position: relative;
   margin-right: 60px;
   border-radius: 30px;
@@ -6722,7 +6723,7 @@ ul {
   position: absolute;
   pointer-events: none;
   border-color: rgba(136, 183, 213, 0);
-  border-left-color: #d32f2f;
+  border-left-color: <?=$websiteBackgroudColor?>;
   border-width: 50px;
   margin-top: -50px;
 }
@@ -6736,7 +6737,7 @@ ul {
 }
 .contact-me-area .call-info .contact-box {
   padding: 40px 15px;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
@@ -6747,7 +6748,7 @@ ul {
 .contact-me-area .call-info .contact-box i {
   display: block;
   font-size: 50px;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
 }
 .contact-me-area .call-info .contact-box span {
   margin-top: 15px;
@@ -6757,8 +6758,8 @@ ul {
   color: #333333;
 }
 .contact-me-area .call-info .contact-box:hover {
-  background: #d32f2f;
-  border: 1px solid #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 .contact-me-area .call-info .contact-box:hover i {
@@ -6783,19 +6784,19 @@ ul {
   width: 64px;
   height: 64px;
   line-height: 64px;
-  color: #d32f2f;
-  border: 1px solid #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
   font-size: 20px;
 }
 .follow-me-area .social-media ul li a:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   color: #ffffff;
 }
 /*===========================================
@@ -6858,7 +6859,7 @@ ul {
   width: 100%;
   height: 100%;
   z-index: 999999;
-  background: linear-gradient(99deg, #d32f2f, #a92b2b, #a92b2b);
+  background: linear-gradient(99deg, <?=$websiteBackgroudColor?>, #a92b2b, #a92b2b);
   background-size: 600% 600%;
   -webkit-animation: AnimationName 4s ease infinite;
   -moz-animation: AnimationName 4s ease infinite;
@@ -6982,7 +6983,7 @@ ul {
   font-size: 18px;
 }
 .shipping-area .button-area ul li.active a {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #fff;
 }
 .shipping-area .product-list table {
@@ -7083,7 +7084,7 @@ ul {
   right: 20px;
 }
 .shipping-area .product-list table tr td .prize {
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   font-size: 20px;
   font-weight: 700;
   padding-right: 50px;
@@ -7100,7 +7101,7 @@ ul {
   color: #ccc;
 }
 .shipping-area .product-list table tr td i:hover {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   color: #fff;
 }
 .shipping-area .product-list .total span {
@@ -7116,14 +7117,14 @@ ul {
 }
 .shipping-area .next-step button {
   padding: 10px 30px;
-  border: 1px solid #d32f2f;
-  background: #d32f2f !important;
+  border: 1px solid <?=$websiteBackgroudColor?>;
+  background: <?=$websiteBackgroudColor?> !important;
   color: #fff;
   text-transform: capitalize;
   font-size: 18px;
   background: transparent;
   margin-top: 25px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   cursor: pointer;
 }
 .shipping-area .next-step button:hover {
@@ -7248,7 +7249,7 @@ ul {
 .shipping-area .accordion .card .card-header .card-title button .checkbox label input[type="checkbox"] + .cr > .cr-icon {
   opacity: 1;
   display: block;
-  color: #d32f2f;
+  color: <?=$websiteBackgroudColor?>;
   width: 15px;
   height: 15px;
 }
@@ -7283,13 +7284,13 @@ ul {
   border: 1px solid #dedede;
 }
 .coupon-fields .apply-coupon {
-  background: #d32f2f;
+  background: <?=$websiteBackgroudColor?>;
   border: none;
   color: #fff;
   padding: 6px 20px;
-  border: 1px solid #d32f2f;
+  border: 1px solid <?=$websiteBackgroudColor?>;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px #d32f2f;
+  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
   cursor: pointer;
 }
 .coupon-fields .apply-coupon:hover {
@@ -7297,3 +7298,4 @@ ul {
   color: #000;
   box-shadow: none;
 }
+</style>

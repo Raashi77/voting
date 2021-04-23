@@ -51,7 +51,7 @@
                                     {
                                     ?>
                                         
-                                        <li><a href="#" class="btn btn-danger" style="color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
+                                        <li><a href="#" class="btn btn-danger" style="background-color: <?=$websiteBackgroudColor?>;color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
                                             <ul>
                                             <li><a href="my_contests">My Contests</a></li>
                                             <li><a href="logout">Log Out</a></li>
@@ -62,7 +62,7 @@
                                     else
                                     {
                                     ?>
-                                        <li> <a href="registration" class="btn btn-danger" style="color:white">Login</a></li>
+                                        <li> <a href="registration" class="btn btn-danger"  style="background-color:<?=$websiteBackgroudColor?>;color:white">Login</a></li>
                                     <?php
                                     }
                                     ?>
@@ -112,7 +112,7 @@
                                     {
                                     ?>
                                         
-                                        <li><a href="#" class="btn btn-danger" style="background-color:#d32f2f;color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
+                                        <li><a href="#" class="btn btn-danger" style="background-color:<?=$websiteBackgroudColor?>;color:white">Welcome! <?=$_SESSION['name']?><i class="fa fa-angle-down"></i></a>
                                             <ul>
                                             <li><a href="my_contests">My Contests</a></li>
                                             <li><a href="logout">Log Out</a></li>
@@ -123,7 +123,7 @@
                                     else
                                     {
                                     ?>
-                                        <li> <a href="registration" class="btn btn-danger" style="background-color:#d32f2f;color:white">Login</a></li>
+                                        <li> <a href="registration" class="btn btn-danger" style="background-color:<?=$websiteBackgroudColor?>;color:white">Login</a></li>
                                     <?php
                                     }
                                     ?>
