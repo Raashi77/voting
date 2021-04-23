@@ -94,7 +94,7 @@ if($result=$conn->query($sql))
 if(isset($_POST['change']))
 {
     $color=$_POST['color'];
-    $sql="update theme_color set color='$color' where id=1";
+    $sql="UPDATE theme_color set color='$color' where id=1";
     if($conn->query($sql))
     {
         $resMember=true;
@@ -105,13 +105,13 @@ if(isset($_POST['change']))
     }
 }
 
-$sql="SELECT *from theme_color where id=1";
+$sql="select * from theme_color where id=1";
 if($result=$conn->query($sql))
 {
     if($result->num_rows>0)
     {
-        $row=$result->fetch_assoc(); 
-            $theme = $row; 
+        $row=$result->fetch_assoc();
+            $theme=$row; 
     }
 }
 
@@ -136,56 +136,62 @@ if($result=$conn->query($sql))
 
     <section class="content">
         <div class="row">
-            <div class="col-md-6">
-                <a href="contest?token=1" style="background-color: white;">
-                    <div class="info-box mb-3 bg-green">
-                        <span class="info-box-icon"><i class="fa fa-tasks"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Contests</span>
-                            <span class="info-box-number"><?=$contest?></span>
-                        </div>
-                    </div>
-                </a>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info" style="background-color: #17a2b8">
+                <div class="inner">
+                    <h3><?=$contest?></h3>
+
+                    <p>Contests</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tasks"></i>
+                </div>
+                <a href="contest?token=1" class="small-box-footer">More info <i class="fa fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="col-md-6">
-                <a href="#" style="background-color: white;">
-                    <div class="info-box mb-3 bg-red">
-                        <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
-                        <div class="info-box-content" style="color: white;">
-                            <span class="info-box-text">Voters</span>
-                            <span class="info-box-number"><?=$voters?></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </a>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning" style="background-color: #ffc107">
+                <div class="inner">
+                    <h3><?=$users?></h3>
+
+                    <p>Users</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-building"></i>
+                </div>
+                <a href="users?token=1" class="small-box-footer">More info <i class="fa fa-arrow-right"></i></a>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <a href="users?token=1" style="background-color: white;">
-                    <div class="info-box mb-3 bg-blue">
-                        <span class="info-box-icon"><i class="fa fa-building"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Users</span>
-                            <span class="info-box-number"><?=$users?></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </a>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger" style="background-color: #dc3545">
+                <div class="inner">
+                    <h3><?=$c_users?></h3>
+
+                    <p>Contest Users</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="contestusers?token=1" class="small-box-footer">More info <i class="fa fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="col-md-6">
-                <a href="contestusers?token=1" style="background-color: white;">
-                    <div class="info-box mb-3 bg-yellow">
-                        <span class="info-box-icon"><i class="fa fa-building"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Contest Users</span>
-                            <span class="info-box-number"><?=$c_users?></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </a>
+            <div class="col-lg-3 col-6" >
+                <!-- small box -->
+                <div class="small-box bg-danger" style="background-color: <?=$theme['color']?>">
+                <div class="inner">
+                    <h3>.</h3>
+
+                    <p>Theme Color</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-paint-brush"></i>
+                </div>
+                <a href="#" onclick="thememodal()" class="small-box-footer">Change Color <i class="fa fa-arrow-right"></i></a>
+                </div>
             </div>
-            
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -243,12 +249,44 @@ if($result=$conn->query($sql))
         <div class="row" style="margin-top: 20px;">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header" style=" background-color: black;color:white;border-radius:10px;">
-                            <h3 class="card-title">Change Theme Color</h3>
+                        <div class="card-header" style="background-color: black; color:white;">
+                            <h3 class="card-title">Winners</h3>
                         </div>
-                        <div class="card-body" style="background-color: <?=$theme['color']?>;border:1px solid transparent; border-radius:20px; height: 120px">
-                           <center><button title="" style="margin-top: 20px" class="btn btn-secondary" data-toggle="modal" data-target="#modal-default"><i
-                            class="fa fa-edit"></i>Change Color</button></center>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Contest</th>
+                                <th>Winner</th>
+                                <th style="width: 40px">Votes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                    if(isset($winners))
+                                    {
+                                        $i=1;
+                                        foreach($winners as $data)
+                                        {
+                                ?>
+                                                            
+                                            <tr>
+                                            <td><?=$i?></td>
+                                            <td><?=$data['cname']?></td>
+                                            <td>
+                                                <?=$data['name']?>
+                                            </td>
+                                            <td><?=$data['votes']?></td>
+                                            </tr>
+                                <?php
+                                        $i++;    
+                                        }
+                                    }
+                                ?>
+                                
+                            </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -279,7 +317,7 @@ if($result=$conn->query($sql))
         </div>
     </section>
 </div>
-
+<button title="" id="modalcolor" style="display: none;" class="btn btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i></button>
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -287,7 +325,7 @@ if($result=$conn->query($sql))
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Edit Theme Color</h4>
+                <h4 class="modal-title">Change Theme Color</h4>
             </div>
             <form method="post">
                 <div class="modal-body">
@@ -295,7 +333,7 @@ if($result=$conn->query($sql))
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Color</label><br>
-                                <input type="color" id="color" name="color" value="<?=$theme['color']?>" class="form-control">
+                                <input type="color" id="color" name="color" value="<?=$theme['color']?>"  class="form-control">
                             </div>
                         </div>
                     </div>
@@ -306,14 +344,15 @@ if($result=$conn->query($sql))
                 </div>
             </form>
         </div>
-
     </div>
-    <!-- /.modal-content -->
 </div>
-
-
-
 <div class="control-sidebar-bg"></div>
 <?php
 require_once 'js-links.php';
 ?>
+<script>
+    function thememodal()
+    {
+        $("#modalcolor").trigger("click");
+    }
+</script>
