@@ -1,3 +1,4 @@
+
 <?php
 require_once "header.php";
 require_once "navbar.php";
@@ -10,7 +11,7 @@ if(isset($_POST['vote']))
     {
         $token=$_GET['token'];
     }
-    $sql="select * from voters where cu_id='$cu_id' and c_id='$token' and ip_address='$ip_address'";
+  $sql="select * from voters where c_id='$token' and ip_address='$ip_address'";
     if($result =  $conn->query($sql))
     {
         if($result->num_rows>0)
@@ -19,7 +20,7 @@ if(isset($_POST['vote']))
         }
         else
         {
-            $sql="insert into voters(email, ip_address, c_id, cu_id, status) values('$email', '$ip_address', '$token', '$cu_id', 1)";
+           $sql="insert into voters(email, ip_address, c_id, cu_id, status) values('$email', '$ip_address', '$token', '$cu_id', 1)";
             if($conn->query($sql))
             {
                 $resMember = true;
