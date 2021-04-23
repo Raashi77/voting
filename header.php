@@ -29,10 +29,19 @@
     }
     $USER_ID=$user_details['id'];
 
+    $sql="SELECT *from theme_color where id=1";
+    if($result=$conn->query($sql))
+    {
+        if($result->num_rows>0)
+        {
+            $row=$result->fetch_assoc(); 
+                $theme = $row; 
+        }
+    }
 
 
     // $websiteBackgroudColor="#d32f2f"; 
-    $websiteBackgroudColor="#d32fdf"; 
+    $websiteBackgroudColor=$theme['color']; 
 ?>
 <!DOCTYPE html>
 <html lang="zxx">

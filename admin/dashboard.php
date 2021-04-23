@@ -91,7 +91,29 @@ if($result=$conn->query($sql))
     }
 }
 
+if(isset($_POST['change']))
+{
+    $color=$_POST['color'];
+    $sql="update theme_color set color='$color' where id=1";
+    if($conn->query($sql))
+    {
+        $resMember=true;
+    }
+    else
+    {
+        $errorMember=$conn->error;
+    }
+}
 
+$sql="SELECT *from theme_color where id=1";
+if($result=$conn->query($sql))
+{
+    if($result->num_rows>0)
+    {
+        $row=$result->fetch_assoc(); 
+            $theme = $row; 
+    }
+}
 
 
 
@@ -221,44 +243,12 @@ if($result=$conn->query($sql))
         <div class="row" style="margin-top: 20px;">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header" style="background-color: black; color:white;">
-                            <h3 class="card-title">Winners</h3>
+                        <div class="card-header" style=" background-color: black;color:white;border-radius:10px;">
+                            <h3 class="card-title">Change Theme Color</h3>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Contest</th>
-                                <th>Winner</th>
-                                <th style="width: 40px">Votes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                                    if(isset($winners))
-                                    {
-                                        $i=1;
-                                        foreach($winners as $data)
-                                        {
-                                ?>
-                                                            
-                                            <tr>
-                                            <td><?=$i?></td>
-                                            <td><?=$data['cname']?></td>
-                                            <td>
-                                                <?=$data['name']?>
-                                            </td>
-                                            <td><?=$data['votes']?></td>
-                                            </tr>
-                                <?php
-                                        $i++;    
-                                        }
-                                    }
-                                ?>
-                                
-                            </tbody>
-                            </table>
+                        <div class="card-body" style="background-color: <?=$theme['color']?>;border:1px solid transparent; border-radius:20px; height: 120px">
+                           <center><button title="" style="margin-top: 20px" class="btn btn-secondary" data-toggle="modal" data-target="#modal-default"><i
+                            class="fa fa-edit"></i>Change Color</button></center>
                         </div>
                     </div>
                 </div>
@@ -289,6 +279,39 @@ if($result=$conn->query($sql))
         </div>
     </section>
 </div>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Edit Theme Color</h4>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Color</label><br>
+                                <input type="color" id="color" name="color" value="<?=$theme['color']?>" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" name="change" class="btn btn-primary" value="">Change</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
+
+
 
 <div class="control-sidebar-bg"></div>
 <?php
