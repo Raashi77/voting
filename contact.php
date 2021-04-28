@@ -71,15 +71,15 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="single-contact-box">
                     <ul>
-                        <li><span><i class="fa fa-map-marker"></i></span> <?=$web_config['address']?></li>
+                        <li style="color: <?=$otherTextColor?>"><span><i class="fa fa-map-marker" style="color: <?=$iconColor?>"></i></span> <?=$web_config['address']?></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="single-contact-box">
                     <ul>
-                        <li><span><i class="fa fa-phone"></i></span><a
-                                href="tel:<?=$web_config['phn']?>"><?=$web_config['phn']?></a></li>
+                        <li><span><i class="fa fa-phone" style="color: <?=$iconColor?>"></i></span><a
+                                href="tel:<?=$web_config['phn']?>" style="color: <?=$otherTextColor?>"><?=$web_config['phn']?></a></li>
 
                     </ul>
                 </div>
@@ -87,8 +87,8 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="single-contact-box">
                     <ul>
-                        <li><span><i class="fa fa-envelope-o"></i></span><a
-                                href="mailto:<?=$web_config['email']?>"><?=$web_config['email']?></a></li>
+                        <li><span><i class="fa fa-envelope-o" style="color: <?=$iconColor?>"></i></span><a
+                                href="mailto:<?=$web_config['email']?>" style="color: <?=$otherTextColor?>"><?=$web_config['email']?></a></li>
 
                     </ul>
                 </div>

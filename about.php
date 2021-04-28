@@ -79,7 +79,7 @@ $sql="select * from features";
         <!-- Home About End Here -->
 
         <!-- home page core services start here -->
-        <div class="container-fluid acurate" style="margin-bottom:20px">
+        <div class="container-fluid acurate">
             <div class="home-page-core-activities-area">
                 <div class="row acurate">
                     <div class="col-lg-6 col-md-12 acurate">

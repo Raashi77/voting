@@ -150,7 +150,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 foreach($users as $data)
                 {
         ?>
-            <div class="col-md-4 col-sm-4 col-xs-12" id="foodModel_card">
+            <div class="col-md-4 col-sm-4 col-xs-12" id="foodModel_card" style="background-color: white;">
                 
                 <div id="myCarousel" class="carousel slide " data-ride="carousel" data-interval="3000" data-pause="hover">
                     <!-- Indicators -->

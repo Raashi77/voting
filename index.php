@@ -142,7 +142,7 @@ require_once "navbar.php";
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="section-title">
-                    <h2>Video<span>Gallery</span></h2>
+                    <h2>Video<span> Gallery</span></h2>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@ require_once "navbar.php";
             <div class="single-blog-slide">
                 <div class="images">
                    
-                   <video width="100%" height="200" preload="metadata" controls>
+                   <video style="background-color:white" width="100%" height="200" preload="metadata" controls>
                                     <source src="<?=$data['video']?>#t=0.1" > 
                                     Your browser does not support HTML video.
                     </video>
@@ -205,7 +205,6 @@ require_once "navbar.php";
                         <h2>Our Running <span>Contests</span></h2>
                     </div>
                     <div class="about-content">
-                        <h2>Running Contests</h2>
                         <ul class="home-single-slide variation">
                             <?php
                                 if(isset($on_contest))

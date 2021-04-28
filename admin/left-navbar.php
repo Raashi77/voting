@@ -142,6 +142,11 @@
             </a>
          </li>
          <li>
+            <a href="colors">
+            <i class="fa fa-image" aria-hidden="true"></i> <span>Website Colors</span>
+            </a>
+         </li>
+         <li>
            <a href="logout">
                 <i class="fa fa-sign-out"></i><span>Logout</span>
             </a>

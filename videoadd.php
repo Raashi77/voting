@@ -197,7 +197,7 @@ if($result =  $conn->query($sql))
         ?>
                     <div class="col-md-4">
                     <div id="data<?=$counter?>">
-                    <video   height="315" preload="metadata" controls>
+                    <video  style="background-color:white" height="315" preload="metadata" controls>
                                     <source src="<?=$data['video']?>#t=0.1" > 
                                     Your browser does not support HTML video.
                     </video>

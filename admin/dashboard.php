@@ -94,7 +94,7 @@ if($result=$conn->query($sql))
 if(isset($_POST['change']))
 {
     $color=$_POST['color'];
-    $sql="UPDATE theme_color set color='$color' where id=1";
+    $sql="UPDATE theme_color set base_color='$color' where id=1";
     if($conn->query($sql))
     {
         $resMember=true;
@@ -180,11 +180,11 @@ if($result=$conn->query($sql))
             </div>
             <div class="col-lg-3 col-6" >
                 <!-- small box -->
-                <div class="small-box bg-danger" style="background-color: <?=$theme['color']?>">
+                <div class="small-box bg-danger" style="background-color: <?=$theme['base_color']?>">
                 <div class="inner">
-                    <h3>.</h3>
+                    <h3 style="color: <?=$theme['base_color']?>">.</h3>
 
-                    <p>Theme Color</p>
+                    <p>Loader Color</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-paint-brush"></i>

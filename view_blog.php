@@ -70,6 +70,14 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 			n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
 		}(window, document);
 	</script> 
+	<style>
+	h2, h5{
+		color: <?=$headingTextColorFirst?>;
+	}
+	p{
+		color: <?=$otherTextColor?>;
+	}
+	</style>
  
 	<div class="page-wrapper">
 		<!-- <div class="subscribe-popup">
@@ -140,11 +148,11 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 								<div class="post-rich-text w-richtext">
 								<?php echo html_entity_decode($blog['long_description']); ?>
 								</div>
-								<div class="post-bottom-info">
+								<div class="post-bottom-info" style="color: <?=$otherTextColor?>" >
 									<div>Posted </div>
 									<div><?php $date=date_create($blog['timestamp']);
                                                 echo date_format($date,"M d Y"); ?></div>
-									<div> in </div><a href="blog_categories?cat=<?=$blog['bc_category']?>" class="post-bottom-category"><?=$blog['bc_category']?></a>
+									<div> in </div><a style="color: <?=$headingTextColorFirst?>" href="blog_categories?cat=<?=$blog['bc_category']?>" class="post-bottom-category"><?=$blog['bc_category']?></a>
 									<div> category</div>
 								</div>
 								<div class="post-about">
