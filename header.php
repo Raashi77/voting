@@ -29,7 +29,7 @@
     }
     $USER_ID=$user_details['id'];
 
-    $sql="SELECT *from theme_color where id=1";
+    $sql="SELECT * from theme_color where id=1";
     if($result=$conn->query($sql))
     {
         if($result->num_rows>0)
@@ -41,7 +41,21 @@
 
 
     // $websiteBackgroudColor="#d32f2f"; 
-    $websiteBackgroudColor=$theme['color']; 
+    $headingTextColorFirst=$theme['title_first_color'];
+    $otherTextColor=$theme['other_text_color'];
+    $headingTextColorSecond=$theme['title_second_color'];
+    $websiteBackgroudColor=$theme['base_color']; 
+    $headTopColor=$theme['top_header_color'];
+    $headTopTextColor = $theme['head_text_color'];
+    $headMiddle=$theme['bottom_header_color'];
+    $videogalleryBackgroundColor=$theme['vg_bg_color'];
+    $contestBackgroundColor=$theme['c_bg_color'];
+    $contestButtonColor=$theme['c_button_color'];
+    $contestButtonTextColor=$theme['c_button_text_color'];
+    $footerBackgroundColor=$theme['f_bg_color'];
+    $iconColor=$theme['icon_color'];
+    $iconBackgroundColor=$theme['icon_bg_color'];
+    $iconBorderColor=$theme['icon_border_color'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">

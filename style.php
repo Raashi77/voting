@@ -60,7 +60,7 @@ html,
 body {
   height: 100%;
   font-size: 14px;
-  color: #333333;
+  color: <?=$headingTextColorFirst?>;
   font-family: 'Muli', sans-serif;
   vertical-align: baseline;
   line-height: 26px;
@@ -261,7 +261,7 @@ ul {
   background: <?=$websiteBackgroudColor?>;
 }
 .section-title h2 span {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headingTextColorSecond?>;
   font-weight: 400;
 }
 .section-title img {
@@ -306,7 +306,7 @@ ul {
 2.Header area start here 
 ---------------------------------------*/
 .header-top-area {
-  background: <?=$websiteBackgroudColor?>;
+  background: <?=$headTopColor?>;
   padding: 10px 0;
 }
 .header-top-area .header-top-left ul {
@@ -323,14 +323,14 @@ ul {
   font-weight: 600;
   font-size: 14px;
   margin-right: 10px;
-  color: #ffffff;
+  color: <?=$iconColor?> !important;
 }
 .header-top-area .header-top-left ul li a {
   transition: all 0.5s ease 0s;
-  color: #ffffff;
+  color: <?=$headTopTextColor?> !important;
 }
 .header-top-area .header-top-left ul li a:hover {
-  color: #e6e6e6;
+  color: <?=$headTopTextColor?> !important;
 }
 .header-top-area .social-media-area {
   display: inline-block;
@@ -345,12 +345,12 @@ ul {
   width: 20px;
   height: 20px;
   line-height: 20px;
-  color: #ffffff;
+  color: <?=$iconColor?> !important;
   transition: all 0.5s ease 0s;
   text-decoration: none;
 }
 .header-top-area .social-media-area ul li a:hover {
-  color: #e6e6e6;
+  color: <?=$iconColor?> !important;
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -388,7 +388,7 @@ ul {
   color: #ffffff;
 }
 .header-middle-area {
-  background: #ffffff;
+  background: <?=$headMiddle?> !important;
   position: absolute;
   left: 0;
   right: 0;
@@ -439,25 +439,25 @@ ul {
   color: #444444;
 }
 .header-middle-area .main-menu ul li.active a {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headTopColor?>;
 }
 .header-middle-area .main-menu ul li.active a i {
   margin-left: 10px;
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headTopColor?>;
 }
 .header-middle-area .main-menu ul li.active a:hover a {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headTopColor?>;
 }
 .header-middle-area .main-menu ul li.active a:hover a i {
   margin-left: 10px;
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headTopColor?>;
 }
 .header-middle-area .main-menu ul li:hover a {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headTopColor?> !important;;
 }
 .header-middle-area .main-menu ul li:hover a i {
   margin-left: 10px;
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headTopColor?> !important;;
 }
 .header-middle-area .main-menu ul li ul {
   background: #ffffff;
@@ -494,7 +494,7 @@ ul {
 }
 .header-middle-area .main-menu ul li ul li a:hover {
   padding-left: 30px;
-  color: <?=$websiteBackgroudColor?> !important;
+  color: <?=$headTopColor?> !important;
 }
 .header-middle-area .main-menu ul li:hover ul {
   opacity: 1;
@@ -519,12 +519,12 @@ ul {
   color: #ffffff;
   width: 30px;
   height: 30px;
-  background: <?=$websiteBackgroudColor?>;
+  background: <?=$headTopColor?>;
   text-align: center;
   border-radius: 50%;
 }
 .header-middle-area .cart-area a:hover {
-  color: <?=$websiteBackgroudColor?>;
+  color: pink !important;;
 }
 .header-middle-area .cart-area a:hover i {
   color: <?=$websiteBackgroudColor?>;
@@ -583,6 +583,11 @@ ul {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.container-fluid
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
 }
 /* ------------------------------------
   3.Slide Menu Section Start Here 
@@ -973,7 +978,7 @@ ul {
   display: inline-block;
   text-transform: uppercase;
   font-size: 14px;
-  color: #666666;
+  color: <?=$otherTextColor?>;
   padding-right: 10px;
 }
 .home-about-photo-contest-area ul#meta-text li i {
@@ -1009,19 +1014,36 @@ ul {
 }
 .home-about-photo-contest-area p.des {
   font-size: 15px;
-  color: #666666;
+  color: <?=$otherTextColor?>;
   margin: 10px 0 26px;
+}
+.home-about-area
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
+}
+.home
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
+}
+.read-btn .joni-btn
+{
+  background-color: <?=$contestButtonColor?>;
+  color: <?=$contestButtonTextColor?>;
+}
+.loginregistration-area 
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
 }
 .home-about-photo-contest-area .link-section a.primary-btn {
   font-size: 15px;
   text-transform: uppercase;
-  color: #fff;
+  color: <?=$contestButtonTextColor?>;
   display: inline-block;
   text-align: center;
-  background: <?=$websiteBackgroudColor?>;
+  background: <?=$contestButtonColor?>;
   padding: 8px 25px;
   border-radius: 30px;
-  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
+  box-shadow: 2px 0px 11px -2px <?=$contestButtonColor?>;
   border: 1px solid <?=$websiteBackgroudColor?>;
   transition: 0.4s;
   -webkit-transition: 0.4s;
@@ -1033,14 +1055,26 @@ ul {
   box-shadow: none;
 }
 .home-about-photo-contest-area .link-section a.primary-btn.joni-btn {
-  background: transparent;
-  color: <?=$websiteBackgroudColor?>;
+  background: <?=$contestButtonColor?> ;
+  color: <?=$contestButtonTextColor?>;
   box-shadow: none;
 }
 .home-about-photo-contest-area .link-section a.primary-btn.joni-btn:hover {
-  background: <?=$websiteBackgroudColor?>;
-  color: #fff;
+  background: <?=$contestButtonColor?> ;
+  color: <?=$contestButtonTextColor?>;
   border-color: <?=$websiteBackgroudColor?>;
+}
+.post-card 
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
+}
+.post-v3-content
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
+}
+.post-info 
+{
+  color: <?=$otherTextColor?> !important;
 }
 .home-about-photo-contest-area .join-details {
   margin-bottom: 30px;
@@ -1206,6 +1240,13 @@ ul {
   font-weight: 600;
   margin-right: 10px;
 }
+
+
+/* .fix
+{
+   background-color: <?=$videogalleryBackgroundColor?> !important;
+} */
+
 /* ------------------------------------
 7.Winner Start Here 
 ---------------------------------------*/
@@ -1475,7 +1516,7 @@ ul {
   margin-bottom: 20px;
 }
 .home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details h3 a {
-  color: #333333;
+  color: <?=$otherTextColor?>;
   transition: all 0.5s ease 0s;
   font-size: 18px;
 }
@@ -1553,6 +1594,13 @@ ul {
 .home-blog-area .blog-slider .owl-buttons div.owl-next:hover i {
   color: #ffffff;
 }
+
+.home-single-contest 
+{
+  background-color: <?=$contestBackgroundColor?> !important;
+}
+
+
 /* ------------------------------------
 11.Client Logo Area 
 ---------------------------------------*/
@@ -1621,7 +1669,7 @@ ul {
 12.Footer Area Section Start Here 
 ---------------------------------------*/
 .footer-top-area {
-  background: #1c1c1c;
+  background: <?=$footerBackgroundColor?>;
   background-size: cover;
   background-position: center center;
   padding: 80px 0;
@@ -1647,9 +1695,9 @@ ul {
   width: 30px;
   height: 30px;
   line-height: 28px;
-  color: #dddddd;
-  background: #000000;
-  border: 1px solid <?=$websiteBackgroudColor?>;
+  color: <?=$iconColor?>;
+  background: <?=$iconBackgroundColor?>;
+  border: 1px solid <?=$iconBorderColor?>;
   transition: all 0.5s ease 0s;
   text-decoration: none;
   text-align: center;
@@ -1714,11 +1762,11 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .footer-top-area .footer-four ul li a:hover {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$iconColor?>
 }
 .footer-top-area .footer-four ul li i {
   margin: 5px;
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$iconColor?>
 }
 .footer-bottom-area {
   background: #000000;
@@ -1731,7 +1779,7 @@ ul {
   font-weight: 300;
 }
 #scrollUp {
-  background: <?=$websiteBackgroudColor?>;
+  background: black;
   bottom: 100px;
   color: #ffffff !important;
   display: block;
@@ -1762,7 +1810,7 @@ ul {
   border-radius: 30px;
 }
 #scrollUp:hover {
-  background: #b52929;
+  background: black;
 }
 .preview-2 .nivo-directionNav a.nivo-prevNav:before,
 .preview-2 .nivo-directionNav a.nivo-nextNav:before {
@@ -2544,11 +2592,17 @@ ul {
 19.Single Photo Contest Start Here 
 ---------------------------------------*/
 .single-photo-contest-area .about-content h2 {
-  color: #382d44;
+  color: <?=$otherTextColor?>;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   position: relative;
 }
+
+.home-about-photo-contest-area
+{
+  background-color: <?=$videogalleryBackgroundColor?> !important;
+}
+
 .single-photo-contest-area .about-content h2:after {
   background: #e1e1e1 none repeat scroll 0 0;
   content: "";
@@ -2697,7 +2751,7 @@ ul {
 }
 .single-photo-contest-area .about-text > h3 > a {
   display: block;
-  color: #333333;
+  color: <?=$headingTextColorFirst?>;
   transition: all 0.5s ease 0s;
 }
 .single-photo-contest-area .about-text > h3 > a:hover {
@@ -2715,19 +2769,19 @@ ul {
 .single-photo-contest-area .about-text > a {
   margin-top: 70px;
   display: inline-block;
-  border: 1px solid <?=$websiteBackgroudColor?>;
+  border: 1px solid <?=$contestButtonColor?>;
   font-size: 16px;
-  color: #ffffff;
+  color: <?=$contestButtonTextColor?>;
   transition: all 0.5s ease 0s;
-  background: <?=$websiteBackgroudColor?>;
+  background: <?=$contestButtonColor?>;
   border-radius: 30px;
   padding: 8px 18px;
-  box-shadow: 2px 0px 11px -2px <?=$websiteBackgroudColor?>;
+  box-shadow: 2px 0px 11px -2px <?=$contestButtonColor?>;
 }
 .single-photo-contest-area .about-text > a:hover {
   background: transparent;
   box-shadow: none;
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$contestButtonTextColor?>;
 }
 .single-photo-contest-area .about-image {
   width: 50%;
@@ -4697,7 +4751,7 @@ ul {
   transform: rotate(360deg);
 }
 .home-page-core-activities-area .home-activities-area .single-activities:hover .media .media-body h4.media-heading a {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$iconColor?>;
 }
 .home-page-core-activities-area .home-activities-area .single-activities .media .pull-left {
   margin-right: 10px;
@@ -4705,7 +4759,7 @@ ul {
 .home-page-core-activities-area .home-activities-area .single-activities .media .pull-left a {
   width: 70px;
   height: 70px;
-  background: <?=$websiteBackgroudColor?>;
+  background: <?=$iconBackgroundColor?>;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -4716,7 +4770,7 @@ ul {
   transition: all 0.5s ease 0s;
 }
 .home-page-core-activities-area .home-activities-area .single-activities .media .pull-left a i {
-  color: #ffffff;
+  color: <?=$iconColor?>;
 }
 .home-page-core-activities-area .home-activities-area .single-activities .media .media-body h4.media-heading a {
   font-size: 20px;
@@ -5215,13 +5269,46 @@ ul {
   background: #f5f5f5;
 }
 .home-about-area .about-content h3 {
-  color: #000000;
+  color: <?=$headingTextColorFirst?>;
   font-weight: 700;
   font-size: 40px;
 }
 .home-about-area .about-content h3 span {
-  color: <?=$websiteBackgroudColor?>;
+  color: <?=$headingTextColorSecond?>;
 }
+.post-heading-medium
+{
+  color: <?=$headingTextColorFirst?>;
+}
+.header-block
+{
+  color: <?=$headingTextColorFirst?>;
+}
+.sidebar-category-name
+{
+  color: <?=$otherTextColor?>
+}
+.contact-us-page-area .contact-us-page h2 {
+ color: <?=$headingTextColorFirst?>;
+}
+.contact-us-page-area .leave-comments-area h4 {
+  color: <?=$headingTextColorFirst?>;
+}
+.post-v3-heading
+{
+  color: <?=$headingTextColorFirst?>;
+}
+.home-about-photo-contest-area h3.headding-title {
+  color: <?=$headingTextColorFirst?>;
+}
+.home-blog-area .blog-slider .single-blog-slide .blog-informations .blog-details .read-more a
+{
+  color: <?=$otherTextColor?>;
+}
+.contact-us-page-area .contact-box .single-contact-box ul li a {
+  color: <?=$otherTextColor?>;
+}
+
 .home-about-area .about-content .about-content-list {
   margin-top: 50px;
 }
