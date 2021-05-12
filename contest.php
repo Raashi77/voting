@@ -10,6 +10,7 @@ if(isset($_POST['vote']))
     if(isset($_GET['token'])&&!empty($_GET['token']))
     {
         $token=$_GET['token'];
+        // echo $token;
     }
   $sql="select * from voters where c_id='$token' and ip_address='$ip_address'";
     if($result =  $conn->query($sql))
@@ -45,6 +46,7 @@ if(isset($_POST['vote']))
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
     $token=$_GET['token'];
+    // echo $token;
     $sql="select cu.*,u.id as u_id ,u.name from contest_users cu, users u where cu.c_id='$token' and cu.u_id=u.id";
     $result =  $conn->query($sql);
     if($result->num_rows)
@@ -55,7 +57,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             $uid = $row['u_id'];
             $users[$cid] = $row;
 
-              $sql = "select video,file_type from videos v where v.u_id =$uid and v.c_id='$token'";
+              $sql = "select id as video_id,video,file_type from videos v where v.u_id =$uid and v.c_id='$token'";
             $res =$conn->query($sql);
             if($res->num_rows)
             {
@@ -190,6 +192,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                                     <source src="<?=$videos['video']?>#t=0.1"  > 
                                     Your browser does not support HTML video.
                                 </video>
+                                <input type="hidden" value="<?=$videos['video_id']?>">
                             </div>
                     <?php
                             $counter++;
@@ -232,9 +235,13 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     <button id="foodModel_cardButton" type="submit" name="vote"
                         class=" foodModel_cardButton form-control" value="<?=$data['id']?>"
                         style="background-color:<?=$changes['btn_color']?>">Vote</button>
+                    <button id="foodModel_cardButton" type="button" onclick="{window.location.href='viewcontest?token=<?=$videos['video_id']?>'}" name="vote"
+                        class=" foodModel_cardButton form-control" value="<?=$videos['video_id']?>"
+                        style="background-color:<?=$changes['btn_color']?>">View</button>
                 </form>
             </div>
         </div>
+        <!-- </a> -->
         <?php
                 $i++;
                 }
