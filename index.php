@@ -77,7 +77,12 @@ require_once "navbar.php";
     
 ?>
 
-
+<style>
+    #mainVideo
+    {
+        background-color:white;
+    }
+</style>
 
 <!-- Slider Area Start Here-->
 
