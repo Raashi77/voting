@@ -20,8 +20,9 @@
         $icon_color=$_POST['icon_color'];
         $icon_bg_color=$_POST['icon_bg_color'];
         $icon_border_color=$_POST['icon_border_color'];
+        $comment_color=$_POST['comment_color'];
 
-        $sql="update theme_color set icon_border_color='$icon_border_color', base_color='$base_color', head_text_color='$head_text_color', top_header_color='$top_header_color', title_first_color='$title_first_color', bottom_header_color='$bottom_header_color', vg_bg_color='$vg_bg_color', c_bg_color='$c_bg_color', c_button_color='$c_button_color', c_button_text_color='$c_button_text_color', f_bg_color='$f_bg_color', icon_color='$icon_color', icon_bg_color='$icon_bg_color', title_second_color='$title_second_color', other_text_color='$other_text_color'";
+        $sql="update theme_color set icon_border_color='$icon_border_color',comment_color='$comment_color', base_color='$base_color', head_text_color='$head_text_color', top_header_color='$top_header_color', title_first_color='$title_first_color', bottom_header_color='$bottom_header_color', vg_bg_color='$vg_bg_color', c_bg_color='$c_bg_color', c_button_color='$c_button_color', c_button_text_color='$c_button_text_color', f_bg_color='$f_bg_color', icon_color='$icon_color', icon_bg_color='$icon_bg_color', title_second_color='$title_second_color', other_text_color='$other_text_color'";
         if($conn->query($sql))
         {
             $resMember=true;
@@ -180,7 +181,12 @@
                                 <input type="color"  id="icon_border_color" name="icon_border_color" class="form-control" value="<?=$colors['icon_border_color']?>" required>  
                             </div> 
                         </div>
-                        
+                        <div class="col-md-5"> 
+                            <div class="form-group">
+                                <label>Comment Box Color</label><br> 
+                                <input type="color"  id="comment_color" name="comment_color" class="form-control" value="<?=$colors['comment_color']?>" required>  
+                            </div> 
+                        </div>                        
                     </div>
 
                     <button type="submit" name="change" class="btn btn-primary" style="margin-top:10" value="">Save Changes</button>

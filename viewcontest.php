@@ -7,12 +7,13 @@ if(isset($_POST['vote']))
     $cu_id=$_POST['vote'];
     $email=$_POST['email'];
     $ip_address=get_client_ip();
-    if(isset($_GET['token'])&&!empty($_GET['token']))
-    {
-        $token=$_GET['token'];
-        // echo $token;
-    }
-  $sql="select * from voters where c_id='$token' and ip_address='$ip_address'";
+    // if(isset($_GET['token'])&&!empty($_GET['token']))
+    // {
+    //     $token=$_GET['token'];
+    //     // echo $token;
+    // }
+    $con_id = $_POST['contest_id'];
+    $sql="select * from voters where c_id='$con_id' and ip_address='$ip_address'";
     if($result =  $conn->query($sql))
     {
         if($result->num_rows>0)
@@ -21,7 +22,7 @@ if(isset($_POST['vote']))
         }
         else
         {
-           $sql="insert into voters(email, ip_address, c_id, cu_id, status) values('$email', '$ip_address', '$token', '$cu_id', 1)";
+           $sql="insert into voters(email, ip_address, c_id, cu_id, status) values('$email', '$ip_address', '$con_id', '$cu_id', 1)";
             if($conn->query($sql))
             {
                 $resMember = true;
@@ -30,7 +31,7 @@ if(isset($_POST['vote']))
             {
                 $errorMember=$conn->error;
             }
-            $sql="update contest_users set votes=votes+1 where c_id='$token' and id='$cu_id'";
+            $sql="update contest_users set votes=votes+1 where c_id='$con_id' and id='$cu_id'";
             if($conn->query($sql))
             {
                 $resMember = true;
@@ -57,7 +58,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             $uid = $row['u_id'];
             $details = $row;
             $contest_id = $row['c_id'];
-            echo $sql = "select * from users where id='$uid'";
+            $sql = "select * from users where id='$uid'";
             $res =$conn->query($sql);
             if($res->num_rows)
             {
@@ -65,11 +66,12 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     $users = $res->fetch_assoc();
                
             }
-            $sql = "select votes from contest_users where c_id='$contest_id' and u_id='$uid'";
+            $sql = "select votes, id from contest_users where c_id='$contest_id' and u_id='$uid'";
             $res =$conn->query($sql);
             if($res->num_rows)
             {
-                $votes = $res->fetch_assoc();
+                $row = $res->fetch_assoc();
+                $votes=$row;
                
             }
         }
@@ -144,15 +146,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
  
     <div class="fix home-blog-area pb-90 pt-90" style="padding-bottom:0">
         
-        <?php
-            if(isset($errorMember))
-            {
-        ?>
-        <div class="alert alert-danger"><?=$errorMember?></div>
-        <?php
-                    
-                }
-        ?>
+        
         <div id="foodModel_heading_Div" class="fix home-blog-area pb-90 pt-90" >
             <h5 id="foodModel_heading_h5" style="color:<?=$changes['title_color']?>;"> <?=$changes['title']?></h5>
             <p id="foodModel_heading_p" style="color:<?=$changes['subtitle_color']?>;"><?=$changes['subtitle']?></p>
@@ -164,7 +158,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     {
     ?>
 
-        <div class="container" >
+        <div class="container" style="margin-top:40px">
         <div id="shareonlaptop">
             
             
@@ -183,6 +177,15 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 <a href="http://www.twitter.com/share?url=<?=$url?>" class="btn btn-info " target="_blank" id="twitter"><i class="bi bi-twitter"></i></a>
                 <p id="p2" style="color:white;margin-top:10px" ></p>
             </center>
+            <?php
+                if(isset($errorMember))
+                {
+            ?>
+            <div class="alert alert-danger"><?=$errorMember?></div>
+            <?php
+                        
+                    }
+            ?>
         </div>
 
         <h6 id="foodModel_heading2" style="color:<?=$changes['body_title_color']?>"><?=$changes['body_title']?></h6>
@@ -236,21 +239,23 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     <b class="foodModel_cardHeading" style="color: <?=$changes['name_color']?>"><?=$data['name']?></b>
                 </h6>
                 <p id="foodModel_cardPara"  ><?=$data['description']?></p>
-                <div class="row">
-                    <div class="col-6">
-                        <h4 id="foodModel_cardVotes" class="votecolor"
-                            style="color:<?=$changes['vote_color']?>;">
-                            Total Votes : 
-                            <?=$votes['votes']?>
-                        </h4>
+                <form method="post">
+                    <div class="row">             
+                        <div class="col-6">
+                            <input type="hidden" value="<?=$contest_id?>" name="contest_id">
+                            <!-- <input type="hidden" value="<?=$votes['id']?>" name="cu_id"> -->
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Email"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button id="foodModel_cardButton" type="submit" name="vote"
+                                class=" foodModel_cardButton form-control" value="<?=$votes['id']?>"
+                                style="background-color:<?=$changes['btn_color']?>">Vote</button>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <h4 id="foodModel_cardVotes" class="votecolor"
-                            style="color:<?=$changes['vote_color']?>;">
-                            By : <?=$users['name']?>
-                        </h4>
-                    </div>
-                </div>
+                </form>
                 
                 <form method="post">
 
@@ -394,7 +399,7 @@ require_once 'footer.php';
                     }
                     if(comment.msg.trim()=="no_data")
                     {
-                        $("#spaceforcomment").append(`<div class="alert alert-primary" role="alert" id="alert12" data-closable>
+                        $("#aforapple").append(`<div class="alert alert-primary" role="alert" id="alert12" data-closable>
                                                         No Comments Found!
                                                         
                                                     </div>`);
@@ -441,7 +446,7 @@ require_once 'footer.php';
                                                         Your Comment has been added succesfully!
                                                         <span class="float-right" style="cursor:pointer;" onclick='remover(1344)'>x</span>
                                                     </div>`);
-                        $("#spaceforcomment").append(`<li class='dashboard-wraper' style=' background: linear-gradient(to bottom, #adebad 0%, #ffffff 100%);'>
+                        $("#spaceforcomment").append(`<li class='dashboard-wraper' style=' background: linear-gradient(to bottom, <?=$comment_color?> 0%, #ffffff 100%);'>
                                                             <span style='margin-bottom:0px' id='readcomment$com_id'>${comm} </span>
                                                             <p style='align-items:flex-end;display:flex;flex:1;justify-content:flex-end;margin-bottom:0px'>
                                                                 Today &nbsp;<i class='bi bi-clock'></i> &emsp;By ${username}
@@ -476,7 +481,9 @@ require_once 'footer.php';
     function replied(c_id)
     {
         var reply = $("#yehhaireply"+c_id).val();
-        $.ajax(
+        if(reply != "")
+        {
+            $.ajax(
             {
                 url:"view_ajax.php",
                 type:"post",
@@ -521,6 +528,12 @@ require_once 'footer.php';
                 error:
                 function(err){}
             });
+        }
+        else
+        {
+            alert("Please write something to reply!")
+        }
+        
 
     }
 

@@ -57,6 +57,7 @@
     $iconColor=$theme['icon_color'];
     $iconBackgroundColor=$theme['icon_bg_color'];
     $iconBorderColor=$theme['icon_border_color'];
+    $comment_color=$theme['comment_color']
 ?>
 <!DOCTYPE html>
 <html lang="zxx">

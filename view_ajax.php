@@ -3,7 +3,16 @@
 require_once './lib/core.php';
 
 
-
+    $sql="SELECT * from theme_color where id=1";
+    if($result=$conn->query($sql))
+    {
+        if($result->num_rows>0)
+        {
+            $row=$result->fetch_assoc(); 
+                $theme = $row; 
+        }
+    }   
+    $com_color = $theme['comment_color']; 
 
     if(isset($_POST['comm']) && isset($_POST['id']))
     {
@@ -31,9 +40,9 @@ require_once './lib/core.php';
         {
             $addcomment = "<div class='col-lg-12 col-md-12'>
                                 <div class='input-group mb-3'>
-                                    <textarea class='form-control' placeholder='Add a Comment ...' id='yehhaicomment' aria-describedby='basic-addon2'></textarea>
+                                    <textarea class='form-control'  placeholder='Add a Comment ...' id='yehhaicomment' aria-describedby='basic-addon2' ></textarea>
                                     <div class='input-group-append'>
-                                        <button class='btn btn-outline-primary' onclick ='addComment($id)' type='button'>Add</button>
+                                        <button class='btn btn-primary' onclick ='addComment($id)' type='button'>Add</button>
                                     </div>
                                 </div>
                             </div>";
@@ -158,15 +167,15 @@ require_once './lib/core.php';
                                                     </div>
                                                 </div>
                                             </div>";
-                            $replybutton="<a href='javascript:void();' onclick='replycomment($com_id)' id='replyoption$com_id' class='reinput' style='align-items:flex-end;display:flex;flex:1;justify-content:flex-start;margin-bottom:0px'>Reply</a>";
+                            $replybutton="<a href='javascript:void();' onclick='replycomment($com_id)' id='replyoption$com_id' class='reinput' style='align-items:flex-end;display:flex;flex:1;justify-content:flex-start;margin-bottom:0px;margin-right:20px'>Reply</a>";
                         }
                         else
                         {
                             $replycomment = "";
                             $replybutton="";
                         }
-                                                                                                                        // #F0F8FF
-                        $inhtml .="<li class='dashboard-wraper' style=' background: linear-gradient(to bottom, #adebad 0%, #ffffff 100%);'>
+                                                                                                                        // #F0F8FF #adebad
+                        $inhtml .="<li class='dashboard-wraper' style=' background: linear-gradient(to bottom, $com_color 0%, #ffffff 100%);'>
                                         <span style='margin-bottom:0px' id='readcomment$com_id'>$comments </span>$anchor
                                         <p style='align-items:flex-end;display:flex;flex:1;justify-content:flex-end;margin-bottom:0px'>
                                         $replybutton
@@ -177,11 +186,11 @@ require_once './lib/core.php';
                                         <div class='row repliessss' style='display:none;' id='replyinput$com_id' >
                                             <div class='col-lg-1 col-md-1'>
                                             </div>
-                                            <div class='col-lg-11 col-md-11'>
+                                            <div class='col-lg-10 col-md-10'>
                                                 <div class='input-group mb-3'>
-                                                    <textarea class='form-control' placeholder='Reply To $username ...' id='yehhaireply$com_id' aria-describedby='basic-addon2'></textarea>
+                                                    <textarea  class='form-control' placeholder='Reply To $username ...' id='yehhaireply$com_id' aria-describedby='basic-addon2'></textarea>
                                                     <div class='input-group-append'>
-                                                        <button class='btn btn-outline-primary' onclick ='replied($com_id)' type='button'>Reply</button>
+                                                        <button class='btn btn-primary' style='hwight:200%' onclick ='replied($com_id)' type='button'>Reply</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,7 +201,7 @@ require_once './lib/core.php';
                                             <div class='col-lg-11 col-md-11'>
                                                 <ul style='background: linear-gradient();'>
                                                     <li>
-                                                        <h4>Replies</h4>
+                                                        <h4 style='color:darkblue;font-weight:500;text-decoration:underline'>Replies</h4>
                                                     </li>
                                                     <div id='prependreply$com_id'>
                                                         $options
@@ -215,7 +224,7 @@ require_once './lib/core.php';
                 }
                 else
                 {
-                    $res['msg']="no_data"; 
+                    $res['msg']="ok"; 
                     echo json_encode($res);
                 }
                 
