@@ -76,17 +76,7 @@ $sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_
                                         $pay = "";
                                     }
                         ?>             
-                                     <!-- <tr> 
-                                         <td style=" text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td ><?=$detail['name'];?><br><br>
-                                         </td>
-                                         <td>
-                                            
-                                         </td>
-                                         <td>
-                                            
-                                        </td>
-                                    </tr> -->
+                                     
                                     <div class="col-lg-4" style="margin-bottom:20px">
                                         <div class="card" >
                                             <div class="card-body">
