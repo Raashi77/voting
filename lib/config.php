@@ -30,5 +30,20 @@ if($conn->connect_error)
 //website link
 
 $website_link="http://kodiblaze.com";
+
+
+$paypalConfig = [
+    'email' => 'vansh10patpatia@gmail.com',
+    'return_url' => 'http://localhost/voting/payment-successful.php',
+    'cancel_url' => 'http://localhost/voting/payment-cancelled.php',
+    'notify_url' => 'http://localhost/voting/payments.php'
+];
+
+$enableSandbox = true;
+
+$paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
+
+
+
 //page value; 
 ?>

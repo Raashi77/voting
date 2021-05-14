@@ -1,4 +1,28 @@
  <!--Header area start here-->
+ <style>
+     .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+ </style>
  <header>
             <div class="header-top-area hidden-sm">
                 <div class="container">
@@ -42,8 +66,26 @@
                                         <li><a href="index">Home</a> </li>
                                         <li><a href="contest-list">Contests</a></li>
                                          <li><a href="about">About</a></li>
-                                       
-                                        
+                                        <?php
+                                        if(isset($_SESSION['signed_in']))
+                                        {
+                                        ?>
+                                            
+                                            <li><a href="#">Songs</a>
+                                                <ul>
+                                                <li><a href="allsongs">All songs</a></li>
+                                                <li><a href="yoursongs">My songs</a></li>
+                                                </ul>
+                                            </li>
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                        ?>
+                                            <li><a href="allsongs">Songs</a></li>
+                                        <?php
+                                        }
+                                        ?>
                                         <li><a href="blog_home">Blog</a></li>
                                         <li><a href="contact">Contact Us</a></li>
                                     <?php

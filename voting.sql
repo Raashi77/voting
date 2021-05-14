@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2021 at 08:53 PM
+-- Generation Time: May 14, 2021 at 04:59 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -91,7 +91,8 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id`, `vid_id`, `c_id`, `comments`, `user`, `time_stamp`) VALUES
 (1, 90, 17, 'This is a good laptop\r\n', 17, '2021-05-12 16:56:08'),
-(2, 90, NULL, 'Good Laptop please share the link to buy!', 22, '2021-05-12 18:47:47');
+(2, 90, NULL, 'Good Laptop please share the link to buy!', 22, '2021-05-12 18:47:47'),
+(3, 92, NULL, 'Nice Song Man', 22, '2021-05-13 08:54:38');
 
 -- --------------------------------------------------------
 
@@ -209,16 +210,7 @@ CREATE TABLE `gallery` (
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `category` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id`, `u_id`, `image`, `time_stamp`, `category`) VALUES
-(1, 1, 'uploads/1615285879.jpg', '2021-03-09 10:31:19', 'Blogs'),
-(30, 3, 'http://localhost/DuBuddy/staff/intern/uploads/1613378003.png', '2021-02-15 08:33:23', 'Blogs'),
-(32, 1, 'http://localhost/DuBuddy/admin/uploads/1613379696.png', '2021-02-15 09:01:36', 'Blogs'),
-(33, 1, 'http://localhost/voting/admin/uploads/1615287383.jpg', '2021-03-09 10:56:23', 'Blogs');
+-- Error reading data for table voting.gallery: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `voting`.`gallery`' at line 1
 
 -- --------------------------------------------------------
 
@@ -319,6 +311,32 @@ INSERT INTO `master_admin` (`id`, `name`, `email`, `password`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` bigint(20) NOT NULL,
+  `song_id` bigint(20) DEFAULT NULL,
+  `gateway_ref` bigint(20) DEFAULT NULL,
+  `price` bigint(20) DEFAULT NULL,
+  `user` bigint(20) DEFAULT NULL,
+  `status` text DEFAULT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `payment_ref` text DEFAULT NULL,
+  `email` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`, `time_stamp`, `payment_ref`, `email`) VALUES
+(1, 19, 4244150, 15, 22, 'successful', '2021-05-13 17:28:21', '123422', 'vansh10patpatia@gmail.com'),
+(2, 15, NULL, 20, 22, NULL, '2021-05-13 19:40:21', '2DH4V00', 'vansh10patpatia@gmail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reply`
 --
 
@@ -348,16 +366,20 @@ CREATE TABLE `songs` (
   `id` bigint(50) NOT NULL,
   `name` text DEFAULT NULL,
   `song` text DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
+  `status` int(11) DEFAULT NULL,
+  `price` bigint(20) DEFAULT NULL,
+  `downloads` bigint(20) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `songs`
 --
 
-INSERT INTO `songs` (`id`, `name`, `song`, `status`) VALUES
-(15, 'Popo ', '/uploads/Popoo.1617469107.WAV', 1),
-(17, 'Style ', '/uploads/Style .1617470455.WAV', 1);
+INSERT INTO `songs` (`id`, `name`, `song`, `status`, `price`, `downloads`) VALUES
+(15, 'Popo ', '/uploads/Popoo.1617469107.WAV', 1, 20, 0),
+(17, 'Style ', '/uploads/Style .1617470455.WAV', 1, 10, 0),
+(18, 'Dark', '/uploads/Dark.1617461722.wav', 1, 10, 0),
+(19, 'Mehndi', '/uploads/Mehndi.mp3', 1, 15, 0);
 
 -- --------------------------------------------------------
 
@@ -381,15 +403,16 @@ CREATE TABLE `theme_color` (
   `icon_color` text NOT NULL,
   `icon_border_color` text NOT NULL,
   `icon_bg_color` text NOT NULL,
-  `other_text_color` text NOT NULL
+  `other_text_color` text NOT NULL,
+  `comment_color` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `theme_color`
 --
 
-INSERT INTO `theme_color` (`id`, `base_color`, `head_text_color`, `top_header_color`, `title_first_color`, `title_second_color`, `bottom_header_color`, `vg_bg_color`, `c_bg_color`, `c_button_color`, `c_button_text_color`, `f_bg_color`, `icon_color`, `icon_border_color`, `icon_bg_color`, `other_text_color`) VALUES
-(1, '#294417', '#f9fcf8', '#131711', '#f87630', '#ff740a', '#062d15', '#2e2d2d', '#2e2d2d', '#fb8537', '#ffffff', '#141c12', '#fafafa', '#f2f3f3', '#0c0d0c', '#eaece4');
+INSERT INTO `theme_color` (`id`, `base_color`, `head_text_color`, `top_header_color`, `title_first_color`, `title_second_color`, `bottom_header_color`, `vg_bg_color`, `c_bg_color`, `c_button_color`, `c_button_text_color`, `f_bg_color`, `icon_color`, `icon_border_color`, `icon_bg_color`, `other_text_color`, `comment_color`) VALUES
+(1, '#294417', '#f9fcf8', '#131711', '#f87630', '#ff740a', '#062d15', '#2e2d2d', '#2e2d2d', '#fb8537', '#ffffff', '#141c12', '#fafafa', '#f2f3f3', '#0c0d0c', '#eaece4', '#84db84');
 
 -- --------------------------------------------------------
 
@@ -661,6 +684,12 @@ ALTER TABLE `master_admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reply`
 --
 ALTER TABLE `reply`
@@ -734,7 +763,7 @@ ALTER TABLE `blog_categories`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `contest`
@@ -779,6 +808,12 @@ ALTER TABLE `index_changes`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
@@ -788,7 +823,7 @@ ALTER TABLE `reply`
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `theme_color`

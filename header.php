@@ -29,6 +29,7 @@
     }
     $USER_ID=$user_details['id'];
     $USERNAME = $user_details['name'];
+    $EMAIL = $user_details['email'];
 
     $sql="SELECT * from theme_color where id=1";
     if($result=$conn->query($sql))

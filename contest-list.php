@@ -87,18 +87,27 @@ if($result =  $conn->query($sql))
                                     <?php
                                         if(isset($_SESSION['signed_in']))
                                         {
-                                            if(in_array($contest['id'], $joined_contest))
+                                            if(isset($joined_contest))
                                             {
-                                    ?> 
-                                                <a href="videoadd?token=<?=$contest['id']?>" class="joni-btn primary-btn">Add Videos</a>     
-                                    <?php
+                                                if(in_array($contest['id'], $joined_contest))
+                                                {
+                                        ?> 
+                                                    <a href="videoadd?token=<?=$contest['id']?>" class="joni-btn primary-btn">Add Videos</a>     
+                                        <?php
+                                                }
+                                                else 
+                                                {
+                                        ?>
+                                                    <a href="videoadd?token=<?=$contest['id']?>" class="joni-btn primary-btn">Join For Free</a>
+                                                    
+                                        <?php
+                                                }
                                             }
-                                            else 
+                                            else
                                             {
-                                    ?>
+                                        ?>
                                                 <a href="videoadd?token=<?=$contest['id']?>" class="joni-btn primary-btn">Join For Free</a>
-                                                   
-                                    <?php
+                                        <?php
                                             }
                                         } 
                                         else
@@ -108,6 +117,7 @@ if($result =  $conn->query($sql))
                                                    
                                     <?php
                                         }
+                                    
                                     ?>
                                      
                                     </div>
