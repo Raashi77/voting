@@ -69,6 +69,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                 while($row=$result->fetch_assoc())
                 {
                     $mySongs[] = $row;
+                    $mySongsId[]=$row['id'];
                 }
             }
         }
@@ -246,6 +247,8 @@ if($result =  $conn->query($sql))
                                     {
                                         $downloadhref="<a href='registration'>Login to buy and download the song!</a>";
                                     }
+                                    if(!in_array($detail['id'],$mySongsId))
+                                    {
                         ?>             
                                     <div class="col-lg-4" style="margin-bottom:20px">
                                         <div class="card" >
@@ -272,9 +275,11 @@ if($result =  $conn->query($sql))
                                             </div>
                                         </div>
                                     </div>
+                                   
                                     
                                 
                             <?php
+                                    }
                                 $i++;             
                                 }
                             } 
