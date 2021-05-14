@@ -397,7 +397,56 @@ if($result =  $conn->query($sql))
     require_once 'js-links.php';
   ?>
 
-<script>
+<script src="https://www.paypal.com/sdk/js?client-id=AVD9ZGSM4bsCuPWbHu_WWeZjwY5KeN-XZSvD8hBW1w4aFcyQE7mcpQnFRk_dJ8TW20LnKgOnG1c5kBgc&locale=en_US&currency=INR&debug=true"></script>
+  <script>
+    function pay(songId,user,email,price,cont)
+    {
+
+
+        $(".pay").show();
+        $("#paydollar"+songId).hide();
+        paypalbutton(price,cont)
+        // $.ajax({
+        //     url: "payment.php",
+        //     type: "POST",
+        //     data: {
+        //         payment: true,
+        //         songId: songId,
+        //         user: user,
+        //         email:email,
+        //         price:price,
+        //     },
+        //     success: function(response) 
+        //     {
+        //         var obj = JSON.parse(response);
+        //         console.log(obj);
+                
+        //     }
+        // });
+    }
+
+    function paypalbutton(amount,container)
+    {
+        $(".payButton").each(function(){$(this).empty()});
+        paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: amount
+              }
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Transaction completed by ' + details.payer.name.given_name);
+          });
+        }
+      }).render('#'+container); // Display payment options on your web page
+    }
+
+
     var videoCounter = parseInt('<?=$counter?>');
     var counter=1;
     var event;
