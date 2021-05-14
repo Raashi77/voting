@@ -324,20 +324,27 @@ require_once "navbar.php";
                                         {
                                             if(isset($joined_contest))
                                             {
-                                            if(in_array($data['id'], $joined_contest)) 
+                                                if(in_array($data['id'], $joined_contest)) 
+                                                {
+                                        ?> 
+                                                    <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Add Videos</a>     
+                                        <?php
+                                                }
+                                                else 
+                                                {
+                                        ?>
+                                                    <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Join For Free</a>
+                                                    
+                                        <?php
+                                                }
+                                            } 
+                                            else
                                             {
-                                    ?> 
-                                                <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Add Videos</a>     
-                                    <?php
+                                        ?>
+                                                <a href="videoadd?token=<?=$contest['id']?>" class="joni-btn primary-btn">Join For Free</a>
+                                        <?php
                                             }
-                                            else 
-                                            {
-                                    ?>
-                                                <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Join For Free</a>
-                                                   
-                                    <?php
-                                            }
-                                        } 
+                                        }
                                         else
                                         {
                                     ?>
@@ -345,7 +352,6 @@ require_once "navbar.php";
                                                    
                                     <?php
                                         }
-                                    }
                                     ?>
                                        <!-- thanks! -->
                                     </div>

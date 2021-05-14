@@ -13,6 +13,7 @@ $sql="select * from  songs  ";
             }
         }
     }
+    // print_r($contest_songs);
 ?>
 <style>
     .vidcs
@@ -51,58 +52,98 @@ $sql="select * from  songs  ";
             </h2>
         </center>
             <div class="container">
-              <div class="row">
-                <!-- <table id="example2" class="table table-bordered table-hover" style="color:white">
-                    <thead style="background-color: #212529; color: white;">
-                        <tr>
-                             <th>S.No.</th>
-                             <th>Song</th>
-                             <th>Buy</th>
-                             <th>Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>  -->
- 
+                <div class="row" style="margin-bottom:20px">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <div class="dashboard-wraper" style="border-radius:50px;padding-bottom: 0.5px;padding-left: 15px;padding-top: 11px;padding-right: 15px;">
+                            <div class="input-group mb-3">
+                                <input type="text" id="searchText" style="border:0;border-top-left-radius: 30px;padding:25px;border-bottom-left-radius: 30px;" class="form-control" placeholder="Search a song" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" onclick="searchSong()" type="button" style="border-top-right-radius: 30px;border-bottom-right-radius: 30px;">Search</button>
+                                </div>
+                                
+                            </div>
+                            <!-- <button class="btn btn-outline-secondary" style="border:0" type="button">Clear seaches</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;align-items:center;justify-content:center">
+                    <button class="btn btn-secondary" id="clear" onclick="clearsearch()" type="button" style="display:none;background-color:white;color:black;border-radius:30px;"><i class="bi bi-trash"></i>Clear Search</button>
+                </div>
+                <div class="row" id="searchmaterial">
                     
+                </div>
+                <div class="row" id="aforapple">
+                
                         <?php 
                             if (isset($contest_songs)) 
                             {   
                                 // print_r($contest_songs);
                                 $i = 1;
                                 foreach ($contest_songs as $detail) 
-                                {     
+                                {   
                                     $downloadhref = '';
+                                    $pay="";
+                                    $disp="";
                                     $songadd = $detail['song'];
                                     $price = $detail['price'];
+                                    $id = $detail['id'];
                                     if(isset($_SESSION['signed_in']))
                                     {
-                                        $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
-                                        $pay = "<a href='#' class='btn btn-primary'>Pay $ $price</a>";
+                                        $sql = "SELECT * from payment where song_id='$id' and user='$USER_ID'";
+                                        if($result=$conn->query($sql))
+                                        {
+                                            if($result->num_rows > 0)
+                                            {
+                                                $row = $result->fetch_assoc();
+                                                if($row['status'] == "successful")
+                                                {
+                                                    $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
+                                                    $pay = "";
+                                                    $disp = "none";
+                                                }
+                                                else
+                                                {
+                                                    $downloadhref = "";
+                                                    $pay = "pay('$id','$USER_ID','$EMAIL','$price','paypal-button-container$i')";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                $downloadhref = "";
+                                                $pay = "pay('$id','$USER_ID','$EMAIL','$price','paypal-button-container$i')";
+                                            }                                            
+                                        }
+                                        else
+                                        {
+                                            $error = $conn->error;
+                                        }
                                     }
                                     else
                                     {
                                         $downloadhref="<a href='registration'>Login to buy and download the song!</a>";
-                                        $pay = "";
                                     }
                         ?>             
-                                     <!-- <tr> 
-                                         <td style=" text-align: center; " id="serialNo<?=$i?>"><?=$i?></td> 
-                                         <td ><?=$detail['name'];?><br><br>
-                                         </td>
-                                         <td>
-                                            
-                                         </td>
-                                         <td>
-                                            
-                                        </td>
-                                    </tr> -->
                                     <div class="col-lg-4" style="margin-bottom:20px">
                                         <div class="card" >
                                             <div class="card-body">
                                                 <h5 class="card-title"><?=$detail['name'];?></h5>
                                                 <h6 class="card-subtitle mb-2 text-muted"><audio style="width:100%" controls="controls" controlsList="nodownload" src="./admin/<?=$detail['song']?>"></audio></h6>
                                                 <center>
-                                                    <a href="#" class="card-link"><?=$pay?></a>
+                                                <?php
+                                                    if(isset($_SESSION['signed_in']))
+                                                    {
+                                                        ?>
+                                                            <div id="paypal-button-container<?=$i?>" class="payButton"></div>
+                                                            <button onclick="<?=$pay?>" style="display:<?=$disp?>" id="paydollor<?=$id?>" class='btn btn-primary pay'>Pay $ <?=$price?></button>
+                                                        <?php
+                                                    }
+                                                    else
+                                                    {
+                                                        
+                                                    }
+                                                ?>
+                                                    
                                                     <a href="#" class="card-link"><?=$downloadhref?></a>
                                                 </center>
                                             </div>
@@ -115,43 +156,11 @@ $sql="select * from  songs  ";
                                 }
                             } 
                          ?>
-          
-                    <!-- </tbody>
-                </table> -->
                        
-            </div>
+                </div>
             <!-- /.box-footer-->
         </div> 
-        
-        <!-- <form method="post" enctype="multipart/form-data" id="video_form">
-            <div class="row">
-                <div class="col-md-12"> 
-                    <div class="form-group">
-                        
-                        <center><button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button></center> 
-                        <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
-                        <input type="hidden" name ="add" value="dsbhvfs"/>
-                     </div> 
-                </div>
-            </div>
-            <div class="row"  id="formatError" style="display:none">
-                <div class="col-md-12"> 
-                    <div class="form-group"> 
-                         <div class="alert alert-danger">
-                             We suport Mp4 Videos , your video  does not have valid Extension. <button  type="button" onclick="continueUpload()" class="btn btn-primary" >Click Here To convert Video</button>
-                         </div>
-                </div>
-            </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4" id="filesDiv"> 
-                            
-                        
-                </div>
-            </div>
-            
-            <button type="submit" name="add" class="btn btn-primary">Add</button> 
-        </form> -->
+    
     </section>
   </div>
   <div class="control-sidebar-bg"></div>
@@ -159,3 +168,117 @@ $sql="select * from  songs  ";
   <?php
     require_once 'js-links.php';
   ?>
+  <script src="https://www.paypal.com/sdk/js?client-id=AVD9ZGSM4bsCuPWbHu_WWeZjwY5KeN-XZSvD8hBW1w4aFcyQE7mcpQnFRk_dJ8TW20LnKgOnG1c5kBgc&locale=en_US&currency=INR&debug=true"></script>
+  <script>
+    function pay(songId,user,email,price,cont)
+    {
+
+
+        $(".pay").show();
+        $("#paydollar"+songId).hide();
+        paypalbutton(price,cont)
+        // $.ajax({
+        //     url: "payment.php",
+        //     type: "POST",
+        //     data: {
+        //         payment: true,
+        //         songId: songId,
+        //         user: user,
+        //         email:email,
+        //         price:price,
+        //     },
+        //     success: function(response) 
+        //     {
+        //         var obj = JSON.parse(response);
+        //         console.log(obj);
+                
+        //     }
+        // });
+    }
+
+    function paypalbutton(amount,container)
+    {
+        $(".payButton").each(function(){$(this).empty()});
+        paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: amount
+              }
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Transaction completed by ' + details.payer.name.given_name);
+          });
+        }
+      }).render('#'+container); // Display payment options on your web page
+    }
+
+    function clearsearch()
+    {
+    
+        $("#clear").hide();
+        $("#searchText").val('');
+        $("#searchmaterial").html('');
+        $("#aforapple").show();
+    }
+
+    var user = '<?=$USER_ID?>';
+    var email = '<?=$EMAIL?>';
+    function searchSong()
+    {
+        var search = $("#searchText").val();
+        if(search == '')
+        {
+            alert("First Type Song Name you want to search")
+        }
+        else
+        {
+            // console.log(searching);
+            $.ajax(
+                    {
+                        url:"search_ajax.php",
+                        type:"post",
+                        data:{ fetch_search:true,
+                                search:search,
+                                user:user,
+                                email:email,
+                            },
+                        dataType: "html" ,    
+                        success : function(data)
+                        {
+                            var sea = JSON.parse(data);
+                            if(sea.msg.trim()=="ok")
+                            {   
+                                $("#clear").show();
+                                $("#searchmaterial").html('');
+                                $("#searchmaterial").show();
+                                $("#aforapple").hide();
+                                $("#searchmaterial").append(sea.html);
+                               
+
+                            }
+                            if(sea.msg.trim()=="no_data")
+                            {
+                                $("#clear").show();
+                                $("#searchmaterial").show();
+                                $("#aforapple").hide();
+                                $("#searchmaterial").html('');
+                                $("#searchmaterial").append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                                Nothing found according to your search!!
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>`);
+                            }
+                            
+                        },
+                        error:
+                        function(err){}
+                    })
+        }
+    }
+  </script>
