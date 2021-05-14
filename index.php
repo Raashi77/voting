@@ -12,6 +12,10 @@ require_once "navbar.php";
             }
         }
     }
+    else
+    {
+        echo $conn->error;
+    }
    
     $sql="select * from videos order by time_stamp desc limit 6";
     if($result =  $conn->query($sql))
@@ -23,20 +27,28 @@ require_once "navbar.php";
                 $videos[] = $row;
             }
         }
+    }    
+    else
+    {
+        echo $conn->error;
     }
+
     $sql="select c_id from videos v where v.u_id='$USER_ID'";
     if($result =  $conn->query($sql))
     {
         if($result->num_rows)
         {
-            while($row = $result->fetch_assoc())
+            while($row = $result->fetch_assoc());
             {
-                $joined_contest[] = $row['c_id'];
+               $joined_contest[] = $row['c_id'];
             }
             
         }
     }
-
+    else
+    {
+        echo $conn->error;
+    }
     $sql="select * from features";
     if($result =  $conn->query($sql))
     {
@@ -59,6 +71,10 @@ require_once "navbar.php";
             }
         }
     }
+    else
+    {
+        echo $conn->error;
+    }
     $date=date('Y-m-d');
     $time = date('H:i');
     $sql="SELECT c.*, i.header_image from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id limit 4";
@@ -72,8 +88,23 @@ require_once "navbar.php";
             }
         }
     }
+    else
+    {
+        echo $conn->error;
+    }
 
-
+    
+    $sql="select * from  songs  ";
+    if($result=$conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            while($row=$result->fetch_assoc())
+            {
+                $songs[] = $row;
+            }
+        }
+    }
     
 ?>
 
@@ -176,6 +207,64 @@ require_once "navbar.php";
     </div>
 </div>
 
+<div class="fix home-blog-area " style="padding-bottom:34px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="section-title">
+                    <h2>Song<span> Gallery</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="section-title" style="text-align:end">
+                    <a href="allsongs"><h6>View <span>All Songs</span></h6></a>
+                </div>
+            </div>
+        </div>
+        <div class="blog-slider">
+            <?php
+                if(isset($songs))
+                {
+                    foreach($songs as $data)
+                    {
+                ?>
+            <div class="single-blog-slide">
+                <div class="images">
+                    <div class="card" >
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$data['name'];?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><audio style="width:100%" controls="controls" controlsList="nodownload" src="./admin/<?=$data['song']?>"></audio></h6>
+                            <!-- <center>
+                                <a href="#" class="card-link"><?=$pay?></a>
+                                <a href="#" class="card-link"><?=$downloadhref?></a>
+                            </center> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+                    }
+                }
+                ?>
+
+        </div>
+            <?php
+                if(isset($_SESSION['signed_in']))
+                {
+                    ?>
+                        <div class="section-title" style="text-align:start">
+                            <a href="yoursongs"><h6>View <span>Your Songs</span></h6></a>
+                        </div>
+                    <?php
+                }
+            
+            ?>
+            
+    </div>
+</div>
+
 
 
 
@@ -233,7 +322,9 @@ require_once "navbar.php";
                                         <?php
                                         if(isset($_SESSION['signed_in']))
                                         {
-                                            if(in_array($data['id'], $joined_contest))
+                                            if(isset($joined_contest))
+                                            {
+                                            if(in_array($data['id'], $joined_contest)) 
                                             {
                                     ?> 
                                                 <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Add Videos</a>     
@@ -254,8 +345,9 @@ require_once "navbar.php";
                                                    
                                     <?php
                                         }
+                                    }
                                     ?>
-                                       
+                                       <!-- thanks! -->
                                     </div>
                                 </div>
                             </li>

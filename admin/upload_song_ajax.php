@@ -6,7 +6,8 @@ if(isset($_POST['add']))
 {
     $name=$_POST['name'];
     $resMember =[];
-    $sql="insert into songs(name, status) values('$name','1')";
+    $price = $_POST['price'];
+    $sql="insert into songs(name, status,price) values('$name','1','$price')";
     if($conn->query($sql))
     {
         $insert_id = $conn->insert_id;
@@ -34,7 +35,8 @@ if(isset($_POST['edit']))
     
     $name=$_POST['name'];
     $id = $_POST['eid'];
-      $sql="update  songs set  name='$name' where id='$id'";
+    $price = $_POST['price'];
+    $sql="update  songs set  name='$name',price='$price' where id='$id'";
     if($conn->query($sql))
     { 
         if(upload_audio($_FILES,$conn,"songs","id","song",$id,"projectFile","/uploads"))
@@ -56,4 +58,4 @@ if(isset($_POST['edit']))
 }
     
     
-    ?>
+?>

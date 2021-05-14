@@ -28,6 +28,7 @@
         }
     }
     $USER_ID=$user_details['id'];
+    $USERNAME = $user_details['name'];
 
     $sql="SELECT * from theme_color where id=1";
     if($result=$conn->query($sql))
@@ -56,6 +57,7 @@
     $iconColor=$theme['icon_color'];
     $iconBackgroundColor=$theme['icon_bg_color'];
     $iconBorderColor=$theme['icon_border_color'];
+    $comment_color=$theme['comment_color']
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -67,6 +69,7 @@
         <!-- responsive tag -->
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <!-- favicon -->
         <link rel="apple-touch-icon" href="apple-touch-icon.html">
         <link rel="shortcut icon" type="image/x-icon" href="images/fav.png">
@@ -91,6 +94,8 @@
         <link rel="stylesheet" type="text/css" href="css/lightbox.min.css">
 		<!-- TimeCircles css -->
         <link rel="stylesheet" type="text/css" href="css/TimeCircles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <script src="https://kit.fontawesome.com/f662a74373.js" crossorigin="anonymous"></script>
         <!-- style css -->
         <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
         <?php

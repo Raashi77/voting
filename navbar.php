@@ -16,9 +16,9 @@
                             <div class="right-side-tool text-right">
                                 <div class="social-media-area">
                                     <ul>
-                                        <li><a href="<?=$web_config['facebook']?>"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="<?=$web_config['twitter']?>"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="<?=$web_config['instagram']?>"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="https://www.facebook.com/kodi.blaze.7"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/kodiblaze?lang=en"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="https://www.instagram.com/kodiblaze/?hl=en"><i class="fa fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
                                  

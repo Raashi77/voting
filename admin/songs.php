@@ -126,6 +126,8 @@ if ($result =  $conn->query($sql)) {
                             <th>S.No.</th>
                             <th>Name</th>
                             <th>Song</th>
+                            <th>Price</th>
+                            <th>Downloads</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -140,13 +142,15 @@ if ($result =  $conn->query($sql)) {
                                 <tr>
                                     <td style="  text-align: center; " id="serialNo<?= $i ?>"><?= $i ?></td>
                                     <td style="  text-align: center; " id="name<?= $i ?>"><?= $detail['name']; ?></td>
-                                    <td><audio controls="controls" src="./<?= $detail['song'] ?>"></audio></td>
+                                    <td><audio controls="controls" src="./<?= $detail['song']?>"></audio></td>
+                                    <td>$ <?=$detail['price']?></td>
+                                    <td><?=$detail['downloads']?></td>
                                     <td>
                                         <form method="post">
                                             <button class="btn btn-danger" onclick="return confirm('Do You Really Want To Delete This?')" type="submit" name="delete" value="<?= $detail['id'] ?>">
                                                 <i class="fa fa-trash-o"></i> Delete
                                             </button>
-                                            <button class="btn btn-success" onclick="setEditValues(<?= $detail['id'] ?>,<?= $i ?>)" type="button" data-toggle="modal" data-target="#modal-edit">
+                                            <button class="btn btn-success" onclick="setEditValues(<?= $detail['id'] ?>,<?= $i ?>,'<?=$detail['price']?>')" type="button" data-toggle="modal" data-target="#modal-edit">
                                                 <i class="fa fa-edit"></i> Edit
                                             </button>
 
@@ -195,7 +199,12 @@ if ($result =  $conn->query($sql)) {
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                         </div>
-
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Price</label><br>
+                                <input type="text" id="price" name="price" class="form-control" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-md-12">
@@ -254,6 +263,12 @@ if ($result =  $conn->query($sql)) {
                                 <input type="text" id="ename" name="ename" class="form-control" required>
                             </div>
                         </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Price</label><br>
+                                <input type="text" id="eprice" name="eprice" class="form-control" required>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="row" style="margin-bottom:20px">
@@ -300,9 +315,10 @@ require_once 'js-links.php';
 ?>
 
 <script type="text/javascript">
-    function setEditValues(id, counter) {
+    function setEditValues(id, counter,price) {
         $("#ename").val($("#name" + counter).html());
         $("#eid").val(id);
+        $("#eprice").val(price);
     }
 
 
@@ -318,10 +334,12 @@ require_once 'js-links.php';
         if (mode == "add") {
             formData.append("name", $("#name").val())
             formData.append("add", true)
+            formData.append("price",$("#price").val())
             formData.append("projectFile[]", $("#projectfile").prop('files')[0]);
         } else if (mode == "edit") {
             formData.append("name", $("#ename").val())
             formData.append("eid", $("#eid").val())
+            formData.append("price",$("#eprice").val())
             formData.append("edit", true)
             formData.append("projectFile[]", $("#eprojectfile").prop('files')[0]);
         }
