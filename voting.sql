@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2021 at 04:59 PM
+-- Generation Time: May 15, 2021 at 07:42 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -210,7 +210,16 @@ CREATE TABLE `gallery` (
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `category` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table voting.gallery: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `voting`.`gallery`' at line 1
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `u_id`, `image`, `time_stamp`, `category`) VALUES
+(1, 1, 'uploads/1615285879.jpg', '2021-03-09 10:31:19', 'Blogs'),
+(30, 3, 'http://localhost/DuBuddy/staff/intern/uploads/1613378003.png', '2021-02-15 08:33:23', 'Blogs'),
+(32, 1, 'http://localhost/DuBuddy/admin/uploads/1613379696.png', '2021-02-15 09:01:36', 'Blogs'),
+(33, 1, 'http://localhost/voting/admin/uploads/1615287383.jpg', '2021-03-09 10:56:23', 'Blogs');
 
 -- --------------------------------------------------------
 
