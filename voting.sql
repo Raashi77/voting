@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2021 at 07:42 PM
+-- Generation Time: May 15, 2021 at 09:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -326,22 +326,23 @@ INSERT INTO `master_admin` (`id`, `name`, `email`, `password`, `status`) VALUES
 CREATE TABLE `payment` (
   `id` bigint(20) NOT NULL,
   `song_id` bigint(20) DEFAULT NULL,
-  `gateway_ref` bigint(20) DEFAULT NULL,
+  `gateway_ref` text DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
   `user` bigint(20) DEFAULT NULL,
   `status` text DEFAULT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `payment_ref` text DEFAULT NULL,
-  `email` text DEFAULT NULL
+  `email` text DEFAULT NULL,
+  `payer_id` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`, `time_stamp`, `payment_ref`, `email`) VALUES
-(1, 19, 4244150, 15, 22, 'successful', '2021-05-13 17:28:21', '123422', 'vansh10patpatia@gmail.com'),
-(2, 15, NULL, 20, 22, NULL, '2021-05-13 19:40:21', '2DH4V00', 'vansh10patpatia@gmail.com');
+INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`, `time_stamp`, `payment_ref`, `email`, `payer_id`) VALUES
+(1, 19, '4244150', 15, 22, 'successful', '2021-05-13 17:28:21', '123422', 'vansh10patpatia@gmail.com', NULL),
+(24, 15, '7F086988A4226590Y', 20, 22, 'successful', '2021-05-15 19:50:48', '243J51E5', 'sb-x3xtd6230055@personal.example.com', '33YCPHEF45GZ2');
 
 -- --------------------------------------------------------
 
@@ -820,7 +821,7 @@ ALTER TABLE `index_changes`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `reply`

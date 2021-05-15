@@ -170,33 +170,47 @@ $sql="select * from  songs  ";
   ?>
   <script src="https://www.paypal.com/sdk/js?client-id=AVD9ZGSM4bsCuPWbHu_WWeZjwY5KeN-XZSvD8hBW1w4aFcyQE7mcpQnFRk_dJ8TW20LnKgOnG1c5kBgc&locale=en_US&currency=USD&debug=true"></script>
   <script>
+    
     function pay(songId,user,email,price,cont)
     {
 
 
-        $(".pay").show();
-        $("#paydollar"+songId).hide();
-        paypalbutton(price,cont)
-        // $.ajax({
-        //     url: "payment.php",
-        //     type: "POST",
-        //     data: {
-        //         payment: true,
-        //         songId: songId,
-        //         user: user,
-        //         email:email,
-        //         price:price,
-        //     },
-        //     success: function(response) 
-        //     {
-        //         var obj = JSON.parse(response);
-        //         console.log(obj);
+        // $(".pay").show();
+        // $("#paydollar"+songId).hide();
+        var amount;
+        var id;
+        $.ajax({
+            url: "payment.php",
+            type: "POST",
+            data: {
+                payment: true,
+                songId: songId,
+                user: user,
+                email:email,
+                price:price,
+            },
+            success: function(data) 
+            {
+                console.log(data);
+                var obj = JSON.parse(data);
+                // console.log(obj.msg);
+                if(obj.msg.trim()=="ok")
+                {
+                    amount=obj.amount;
+                    id=obj.id;
+                    paypalbutton(price,cont,amount,id)
+                }
+                else
+                {
+                    alert("Some error Occured!")
+                }
+               
                 
-        //     }
-        // });
+            }
+        });
     }
 
-    function paypalbutton(amount,container)
+    function paypalbutton(price,container,amount,id)
     {
         $(".payButton").each(function(){$(this).empty()});
         paypal.Buttons({
@@ -211,8 +225,29 @@ $sql="select * from  songs  ";
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            alert('Transaction completed by ' + details.payer.name.given_name);
-            
+            console.log(details.id);
+            console.log(details.payer.email_address);
+            console.log(details.payer.payer_id);
+            $.ajax({
+                url: "payment.php",
+                type: "POST",
+                data: {
+                    update: true,
+                    id: id,
+                    gateway: details.id,
+                    email : details.payer.email_address,
+                    payer_id : details.payer.payer_id,
+                },
+                success: function(data) 
+                {
+                    if(data.trim()=="ok")
+                    {
+                        alert('Transaction completed by ' + details.payer.name.given_name);
+                        window.location.href="allsongs.php";
+                    }
+                    
+                }
+            });
           });
         }
       }).render('#'+container); // Display payment options on your web page

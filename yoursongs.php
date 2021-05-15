@@ -2,7 +2,7 @@
 require_once "header.php";
 require_once "navbar.php";
 
-$sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_ID'  ";
+$sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_ID' and p.status='successful'  ";
     if($result=$conn->query($sql))
     {
         if($result->num_rows)
