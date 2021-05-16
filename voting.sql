@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 15, 2021 at 09:54 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.1
+-- Host: localhost
+-- Generation Time: May 16, 2021 at 07:07 AM
+-- Server version: 5.7.33-0ubuntu0.16.04.1
+-- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,17 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `blogs` (
   `id` bigint(50) NOT NULL,
-  `name` text DEFAULT NULL,
-  `image` text DEFAULT NULL,
-  `title` text DEFAULT NULL,
-  `long_description` text DEFAULT NULL,
-  `short_des` text DEFAULT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `tags` text DEFAULT NULL,
+  `name` text,
+  `image` text,
+  `title` text,
+  `long_description` text,
+  `short_des` text,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tags` text,
   `category` bigint(50) NOT NULL,
   `status` int(11) NOT NULL,
   `writer_type` int(11) NOT NULL,
-  `reason` text DEFAULT NULL,
+  `reason` text,
   `alloted_to` bigint(50) NOT NULL,
   `written_by` bigint(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -49,7 +48,7 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `name`, `image`, `title`, `long_description`, `short_des`, `timestamp`, `tags`, `category`, `status`, `writer_type`, `reason`, `alloted_to`, `written_by`) VALUES
-(18, 'AYUSH', 'http://localhost/voting/admin/uploads/1615287383.jpg', 'test', '<h2><img src=\"http://localhost/voting/admin/uploads/1615287383.jpg\" style=\"display:block; margin:10px auto 20px; max-height:400px; width:auto\" />What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>\r\n\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n\r\n<h2>Where can I get some?</h2>\r\n\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n', 'test', '2021-03-30 14:15:38', 'gsha', 9, 1, 2, '', 0, 3);
+(18, 'AYUSH', 'http://localhost/voting/admin/uploads/1615287383.jpg', 'test', '<h2><img src="http://localhost/voting/admin/uploads/1615287383.jpg" style="display:block; margin:10px auto 20px; max-height:400px; width:auto" />What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>\r\n\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n\r\n<h2>Where can I get some?</h2>\r\n\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n', 'test', '2021-03-30 14:15:38', 'gsha', 9, 1, 2, '', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -59,8 +58,8 @@ INSERT INTO `blogs` (`id`, `name`, `image`, `title`, `long_description`, `short_
 
 CREATE TABLE `blog_categories` (
   `id` bigint(50) NOT NULL,
-  `category` text DEFAULT NULL,
-  `color` text DEFAULT NULL
+  `category` text,
+  `color` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -80,9 +79,9 @@ CREATE TABLE `comment` (
   `id` bigint(20) NOT NULL,
   `vid_id` bigint(20) DEFAULT NULL,
   `c_id` bigint(20) DEFAULT NULL,
-  `comments` text DEFAULT NULL,
+  `comments` text,
   `user` bigint(20) DEFAULT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -102,13 +101,13 @@ INSERT INTO `comment` (`id`, `vid_id`, `c_id`, `comments`, `user`, `time_stamp`)
 
 CREATE TABLE `contest` (
   `id` bigint(50) NOT NULL,
-  `name` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `start_date` text DEFAULT NULL,
-  `start_time` text DEFAULT NULL,
-  `end_date` text DEFAULT NULL,
-  `end_time` text DEFAULT NULL,
-  `prize` text DEFAULT NULL,
+  `name` text,
+  `description` text,
+  `start_date` text,
+  `start_time` text,
+  `end_date` text,
+  `end_time` text,
+  `prize` text,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -155,8 +154,8 @@ CREATE TABLE `contest_users` (
   `id` bigint(50) NOT NULL,
   `c_id` bigint(50) NOT NULL,
   `u_id` bigint(50) NOT NULL,
-  `description` text DEFAULT NULL,
-  `votes` bigint(50) DEFAULT 0,
+  `description` text,
+  `votes` bigint(50) DEFAULT '0',
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -183,9 +182,9 @@ INSERT INTO `contest_users` (`id`, `c_id`, `u_id`, `description`, `votes`, `stat
 
 CREATE TABLE `features` (
   `id` bigint(20) NOT NULL,
-  `name` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `icon` text DEFAULT NULL
+  `name` text,
+  `description` text,
+  `icon` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -206,9 +205,9 @@ INSERT INTO `features` (`id`, `name`, `description`, `icon`) VALUES
 CREATE TABLE `gallery` (
   `id` bigint(50) NOT NULL,
   `u_id` bigint(50) NOT NULL,
-  `image` text DEFAULT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `category` text DEFAULT NULL
+  `image` text,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `category` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -229,13 +228,13 @@ INSERT INTO `gallery` (`id`, `u_id`, `image`, `time_stamp`, `category`) VALUES
 
 CREATE TABLE `home_slider` (
   `id` bigint(20) NOT NULL,
-  `heading` text DEFAULT NULL,
-  `sub_heading` text DEFAULT NULL,
-  `image` text DEFAULT NULL,
-  `link` text DEFAULT NULL,
-  `color` text DEFAULT NULL,
+  `heading` text,
+  `sub_heading` text,
+  `image` text,
+  `link` text,
+  `color` text,
   `sort_order` int(11) NOT NULL,
-  `file_type` text DEFAULT NULL
+  `file_type` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -264,18 +263,18 @@ CREATE TABLE `index` (
 CREATE TABLE `index_changes` (
   `id` bigint(50) NOT NULL,
   `c_id` int(11) NOT NULL,
-  `title` text DEFAULT NULL,
-  `title_color` text DEFAULT NULL,
-  `subtitle` text DEFAULT NULL,
-  `subtitle_color` text DEFAULT NULL,
-  `header_image` text DEFAULT NULL,
-  `body_title` text DEFAULT NULL,
-  `body_title_color` text DEFAULT NULL,
-  `body_subtitle` text DEFAULT NULL,
-  `body_subtitle_color` text DEFAULT NULL,
-  `btn_color` text DEFAULT NULL,
-  `name_color` text DEFAULT NULL,
-  `votes_color` text DEFAULT NULL,
+  `title` text,
+  `title_color` text,
+  `subtitle` text,
+  `subtitle_color` text,
+  `header_image` text,
+  `body_title` text,
+  `body_title_color` text,
+  `body_subtitle` text,
+  `body_subtitle_color` text,
+  `btn_color` text,
+  `name_color` text,
+  `votes_color` text,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -304,9 +303,9 @@ INSERT INTO `index_changes` (`id`, `c_id`, `title`, `title_color`, `subtitle`, `
 
 CREATE TABLE `master_admin` (
   `id` bigint(50) NOT NULL,
-  `name` text DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `password` text DEFAULT NULL,
+  `name` text,
+  `email` text,
+  `password` text,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -326,14 +325,14 @@ INSERT INTO `master_admin` (`id`, `name`, `email`, `password`, `status`) VALUES
 CREATE TABLE `payment` (
   `id` bigint(20) NOT NULL,
   `song_id` bigint(20) DEFAULT NULL,
-  `gateway_ref` text DEFAULT NULL,
+  `gateway_ref` text,
   `price` bigint(20) DEFAULT NULL,
   `user` bigint(20) DEFAULT NULL,
-  `status` text DEFAULT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `payment_ref` text DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `payer_id` text DEFAULT NULL
+  `status` text,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `payment_ref` text,
+  `email` text,
+  `payer_id` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -342,7 +341,11 @@ CREATE TABLE `payment` (
 
 INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`, `time_stamp`, `payment_ref`, `email`, `payer_id`) VALUES
 (1, 19, '4244150', 15, 22, 'successful', '2021-05-13 17:28:21', '123422', 'vansh10patpatia@gmail.com', NULL),
-(24, 15, '7F086988A4226590Y', 20, 22, 'successful', '2021-05-15 19:50:48', '243J51E5', 'sb-x3xtd6230055@personal.example.com', '33YCPHEF45GZ2');
+(24, 15, '7F086988A4226590Y', 20, 22, 'successful', '2021-05-15 19:50:48', '243J51E5', 'sb-x3xtd6230055@personal.example.com', '33YCPHEF45GZ2'),
+(25, 17, '0HB93402X59872502', 10, 22, 'successful', '2021-05-16 11:06:13', '25Q1V03E', 'sb-gcx7d6236846@personal.example.com', 'QNWFMB7VP6ABU'),
+(26, 18, NULL, 10, 22, NULL, '2021-05-16 11:07:34', '269CE1S8', 'vansh10patpatia@gmail.com', NULL),
+(27, 18, NULL, 20, 22, NULL, '2021-05-16 11:07:34', '270M2Q4B', 'vansh10patpatia@gmail.com', NULL),
+(28, 18, NULL, 0, 22, NULL, '2021-05-16 11:07:34', '288B6U7R', 'vansh10patpatia@gmail.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -353,9 +356,9 @@ INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`
 CREATE TABLE `reply` (
   `id` bigint(20) NOT NULL,
   `com_id` bigint(20) DEFAULT NULL,
-  `reply` text DEFAULT NULL,
+  `reply` text,
   `user` bigint(20) DEFAULT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -374,11 +377,11 @@ INSERT INTO `reply` (`id`, `com_id`, `reply`, `user`, `time_stamp`) VALUES
 
 CREATE TABLE `songs` (
   `id` bigint(50) NOT NULL,
-  `name` text DEFAULT NULL,
-  `song` text DEFAULT NULL,
+  `name` text,
+  `song` text,
   `status` int(11) DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
-  `downloads` bigint(20) DEFAULT 0
+  `downloads` bigint(20) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -386,7 +389,7 @@ CREATE TABLE `songs` (
 --
 
 INSERT INTO `songs` (`id`, `name`, `song`, `status`, `price`, `downloads`) VALUES
-(15, 'Popo ', '/uploads/Popoo.1617469107.WAV', 1, 20, 0),
+(15, 'Popo ', '/uploads/Popoo.1617469107.WAV', 1, 10, 0),
 (17, 'Style ', '/uploads/Style .1617470455.WAV', 1, 10, 0),
 (18, 'Dark', '/uploads/Dark.1617461722.wav', 1, 10, 0),
 (19, 'Mehndi', '/uploads/Mehndi.mp3', 1, 15, 0);
@@ -414,7 +417,7 @@ CREATE TABLE `theme_color` (
   `icon_border_color` text NOT NULL,
   `icon_bg_color` text NOT NULL,
   `other_text_color` text NOT NULL,
-  `comment_color` text DEFAULT NULL
+  `comment_color` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -432,11 +435,11 @@ INSERT INTO `theme_color` (`id`, `base_color`, `head_text_color`, `top_header_co
 
 CREATE TABLE `users` (
   `id` bigint(50) NOT NULL,
-  `name` text DEFAULT NULL,
-  `mobile` text DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `password` text DEFAULT NULL,
-  `ip_address` text DEFAULT NULL,
+  `name` text,
+  `mobile` text,
+  `email` text,
+  `password` text,
+  `ip_address` text,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -473,11 +476,11 @@ INSERT INTO `users` (`id`, `name`, `mobile`, `email`, `password`, `ip_address`, 
 
 CREATE TABLE `user_queries` (
   `id` int(11) NOT NULL,
-  `name` text DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `phone` text DEFAULT NULL,
-  `subject` text DEFAULT NULL,
-  `message` text DEFAULT NULL
+  `name` text,
+  `email` text,
+  `phone` text,
+  `subject` text,
+  `message` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -489,7 +492,7 @@ INSERT INTO `user_queries` (`id`, `name`, `email`, `phone`, `subject`, `message`
 (2, 'Eric Jones', 'eric.jones.z.mail@gmail.com', '555-555-1212', 'Turn Surf-Surf-Surf into Talk Talk Talk', 'Hello, my nameâ€™s Eric and I just ran across your website at kodiblaze.com...\r\n\r\nI found it after a quick search, so your SEOâ€™s working outâ€¦\r\n\r\nContent looks pretty goodâ€¦\r\n\r\nOne thingâ€™s missing thoughâ€¦\r\n\r\nA QUICK, EASY way to connect with you NOW.\r\n\r\nBecause studies show that a web lead like me will only hang out a few seconds â€“ 7 out of 10 disappear almost instantly, Surf Surf Surfâ€¦ then gone forever.\r\n\r\nI have the solution:\r\n\r\nTalk With Web Visitor is a software widget thatâ€™s works on your site, ready to capture any visitorâ€™s Name, Email address and Phone Number.  Youâ€™ll know immediately theyâ€™re interested and you can call them directly to TALK with them - literally while theyâ€™re still on the web looking at your site.\r\n\r\nCLICK HERE https://talkwithwebvisitors.com to try out a Live Demo with Talk With Web Visitor now to see exactly how it works and even give it a tryâ€¦ it could be huge for your business.\r\n\r\nPlus, now that youâ€™ve got that phone number, with our new SMS Text With Lead feature, you can automatically start a text (SMS) conversation prontoâ€¦ which is so powerful, because connecting with someone within the first 5 minutes is 100 times more effective than waiting 30 minutes or more later.\r\n\r\nThe new text messaging feature lets you follow up regularly with new offers, content links, even just follow up notes to build a relationship.\r\n\r\nEverything Iâ€™ve just described is extremely simple to implement, cost-effective, and profitable.\r\n \r\nCLICK HERE https://talkwithwebvisitors.com to discover what Talk With Web Visitor can do for your business, potentially converting up to 100X more eyeballs into leads today!\r\n\r\nEric\r\nPS: Talk With Web Visitor offers a FREE 14 days trial â€“ and it even includes International Long Distance Calling. \r\nYou have customers waiting to talk with you right nowâ€¦ donâ€™t keep them waiting. \r\nCLICK HERE https://talkwithwebvisitors.com to try Talk With Web Visitor now.\r\n\r\nIf you\'d like to unsubscribe click here http://talkwithwebvisitors.com/unsubscribe.aspx?d=kodiblaze.com\r\n'),
 (3, 'Eric Jones', 'eric.jones.z.mail@gmail.com', '555-555-1212', 'how to turn eyeballs into phone calls', 'Hi, Eric here with a quick thought about your website frst.group...\r\n\r\nIâ€™m on the internet a lot and I look at a lot of business websites.\r\n\r\nLike yours, many of them have great content. \r\n\r\nBut all too often, they come up short when it comes to engaging and connecting with anyone who visits.\r\n\r\nI get it â€“ itâ€™s hard.  Studies show 7 out of 10 people who land on a site, abandon it in moments without leaving even a trace.  You got the eyeball, but nothing else.\r\n\r\nHereâ€™s a solution for youâ€¦\r\n\r\nTalk With Web Visitor is a software widget thatâ€™s works on your site, ready to capture any visitorâ€™s Name, Email address and Phone Number.  Youâ€™ll know immediately theyâ€™re interested and you can call them directly to talk with them literally while theyâ€™re still on the web looking at your site.\r\n\r\nCLICK HERE https://talkwithwebvisitors.com to try out a Live Demo with Talk With Web Visitor now to see exactly how it works.\r\n\r\nIt could be huge for your business â€“ and because youâ€™ve got that phone number, with our new SMS Text With Lead feature, you can automatically start a text (SMS) conversation â€“ immediatelyâ€¦ and contacting someone in that 5 minute window is 100 times more powerful than reaching out 30 minutes or more later.\r\n\r\nPlus, with text messaging you can follow up later with new offers, content links, even just follow up notes to keep the conversation going.\r\n\r\nEverything Iâ€™ve just described is extremely simple to implement, cost-effective, and profitable. \r\n \r\nCLICK HERE https://talkwithwebvisitors.com to discover what Talk With Web Visitor can do for your business.\r\n\r\nYou could be converting up to 100X more eyeballs into leads today!\r\n\r\nEric\r\nPS: Talk With Web Visitor offers a FREE 14 days trial â€“ and it even includes International Long Distance Calling. \r\nYou have customers waiting to talk with you right nowâ€¦ donâ€™t keep them waiting. \r\nCLICK HERE https://talkwithwebvisitors.com to try Talk With Web Visitor now.\r\n\r\nIf you\'d like to unsubscribe click here http://talkwithwebvisitors.com/unsubscribe.aspx?d=frst.group\r\n'),
 (4, 'Eric Jones', 'eric.jones.z.mail@gmail.com', '555-555-1212', 'Cool website!', 'Cool website!\r\n\r\nMy nameâ€™s Eric, and I just found your site - kodiblaze.com - while surfing the net. You showed up at the top of the search results, so I checked you out. Looks like what youâ€™re doing is pretty cool.\r\n \r\nBut if you donâ€™t mind me asking â€“ after someone like me stumbles across kodiblaze.com, what usually happens?\r\n\r\nIs your site generating leads for your business? \r\n \r\nIâ€™m guessing some, but I also bet youâ€™d like moreâ€¦ studies show that 7 out 10 who land on a site wind up leaving without a trace.\r\n\r\nNot good.\r\n\r\nHereâ€™s a thought â€“ what if there was an easy way for every visitor to â€œraise their handâ€ to get a phone call from you INSTANTLYâ€¦ the second they hit your site and said, â€œcall me now.â€\r\n\r\nYou can â€“\r\n  \r\nTalk With Web Visitor is a software widget thatâ€™s works on your site, ready to capture any visitorâ€™s Name, Email address and Phone Number.  It lets you know IMMEDIATELY â€“ so that you can talk to that lead while theyâ€™re literally looking over your site.\r\n\r\nCLICK HERE http://talkwithcustomer.com to try out a Live Demo with Talk With Web Visitor now to see exactly how it works.\r\n\r\nTime is money when it comes to connecting with leads â€“ the difference between contacting someone within 5 minutes versus 30 minutes later can be huge â€“ like 100 times better!\r\n\r\nThatâ€™s why we built out our new SMS Text With Lead featureâ€¦ because once youâ€™ve captured the visitorâ€™s phone number, you can automatically start a text message (SMS) conversation.\r\n  \r\nThink about the possibilities â€“ even if you donâ€™t close a deal then and there, you can follow up with text messages for new offers, content links, even just â€œhow you doing?â€ notes to build a relationship.\r\n\r\nWouldnâ€™t that be cool?\r\n\r\nCLICK HERE http://talkwithcustomer.com to discover what Talk With Web Visitor can do for your business.\r\n\r\nYou could be converting up to 100X more leads today!\r\nEric\r\n\r\nPS: Talk With Web Visitor offers a FREE 14 days trial â€“ and it even includes International Long Distance Calling. \r\nYou have customers waiting to talk with you right nowâ€¦ donâ€™t keep them waiting. \r\nCLICK HERE http://talkwithcustomer.com to try Talk With Web Visitor now.\r\n\r\nIf you\'d like to unsubscribe click here http://talkwithcustomer.com/unsubscribe.aspx?d=kodiblaze.com\r\n'),
-(5, 'Ash', 'ash@techknowspace.com', '888-938-8893', '', 'Hello,\r\n\r\nMy Name is Ash and I Run Tech Know Space https://techknowspace.com We are your Premium GO-TO Service Centre for All Logic Board & Mainboard Repair\r\n\r\nWhen other shops say \"it can\'t be fixed\" WE CAN HELP!\r\n\r\nALL iPHONE 8 & NEWER\r\nBACK GLASS REPAIR - 1 HOUR\r\n\r\nDevices We Repair\r\nAudio Devices Audio Device Repair\r\n\r\nBluetooth Speakers - Headphones - iPod Touch\r\nComputers All Computer Repair\r\n\r\nAll Brands & Models - Custom Built - PC & Mac\r\nGame Consoles Game Console Repair\r\n\r\nPS4 - XBox One - Nintendo Switch\r\nLaptops All Laptop Repair\r\n\r\nAll Brands & Models - Acer, Asus, Compaq, Dell, HP, Lenovo, Toshiba\r\nMacBooks All MacBook Repair\r\n\r\nAll Series & Models - Air, Classic, Pro\r\nPhones All Phone Repair\r\n\r\nAll Brands & Models - BlackBerry, Huawei, iPhone, LG, OnePlus, Samsung, Sony\r\nSmart Watches Apple Watch Repair\r\n\r\nApple Watch - Samsung Gear - Moto 360\r\nTablets All Tablet Repair\r\n\r\nAll Brands & Models - iPad, Lenovo Yoga, Microsoft Surface, Samsung Tab\r\n\r\nDrone Repair\r\n\r\nCall us and tell us your issues today!\r\n\r\nToll Free: (888) 938-8893\r\nhttps://techknowspace.com\r\n\r\nAsh Mansukhani\r\nash@techknowspace.com\r\n<img src=\"https://yt3.ggpht.com/ytc/AAUvwnhUhkYdWNeEvgk0Kb1HPFRGjLlXdAKaAXUhwNjC=s900-c-k-c0x00ffffff-no-rj\" alt=\"Ash Mansukhani\" width=\"500\" height=\"600\"> \r\n'),
+(5, 'Ash', 'ash@techknowspace.com', '888-938-8893', '', 'Hello,\r\n\r\nMy Name is Ash and I Run Tech Know Space https://techknowspace.com We are your Premium GO-TO Service Centre for All Logic Board & Mainboard Repair\r\n\r\nWhen other shops say "it can\'t be fixed" WE CAN HELP!\r\n\r\nALL iPHONE 8 & NEWER\r\nBACK GLASS REPAIR - 1 HOUR\r\n\r\nDevices We Repair\r\nAudio Devices Audio Device Repair\r\n\r\nBluetooth Speakers - Headphones - iPod Touch\r\nComputers All Computer Repair\r\n\r\nAll Brands & Models - Custom Built - PC & Mac\r\nGame Consoles Game Console Repair\r\n\r\nPS4 - XBox One - Nintendo Switch\r\nLaptops All Laptop Repair\r\n\r\nAll Brands & Models - Acer, Asus, Compaq, Dell, HP, Lenovo, Toshiba\r\nMacBooks All MacBook Repair\r\n\r\nAll Series & Models - Air, Classic, Pro\r\nPhones All Phone Repair\r\n\r\nAll Brands & Models - BlackBerry, Huawei, iPhone, LG, OnePlus, Samsung, Sony\r\nSmart Watches Apple Watch Repair\r\n\r\nApple Watch - Samsung Gear - Moto 360\r\nTablets All Tablet Repair\r\n\r\nAll Brands & Models - iPad, Lenovo Yoga, Microsoft Surface, Samsung Tab\r\n\r\nDrone Repair\r\n\r\nCall us and tell us your issues today!\r\n\r\nToll Free: (888) 938-8893\r\nhttps://techknowspace.com\r\n\r\nAsh Mansukhani\r\nash@techknowspace.com\r\n<img src="https://yt3.ggpht.com/ytc/AAUvwnhUhkYdWNeEvgk0Kb1HPFRGjLlXdAKaAXUhwNjC=s900-c-k-c0x00ffffff-no-rj" alt="Ash Mansukhani" width="500" height="600"> \r\n'),
 (6, 'Den', 'info@orderdomains.com', '+16898593423', 'ATTENTION', 'DOMAIN kodiblaze.com IMMEDIATE TERMINATION\r\nInvoice#: 576833\r\nDate: 2021-05-05\r\n\r\nINSTANT ATTENTION REQUIRED IN REGARDS TO YOUR DOMAIN kodiblaze.com\r\n\r\nYOUR DOMAIN kodiblaze.com WILL BE TERMINATED WITHIN 12 HOURS\r\n\r\nWe have not received your payment for the renewal of your domain kodiblaze.com\r\n\r\nWe have tried to reach you by phone several times, to inform you in regards of the TERMINATION of your domain kodiblaze.com\r\n\r\nCLICK HERE FOR SECURE ONLINE PAYMENT: https://united-domains.ga/?n=kodiblaze.com&r=a&t=1620105345&p=v8\r\n\r\nIF WE DO NOT RECEIVE YOUR PAYMENT WITHIN 12 HOURS, YOUR DOMAIN kodiblaze.com WILL BE TERMINATED!\r\n\r\nCLICK HERE FOR SECURE ONLINE PAYMENT: https://united-domains.ga/?n=kodiblaze.com&r=a&t=1620105345&p=v8\r\n\r\nYOUR IMMEDIATE ATTENTION IS ABSOLUTELY NECESSARY IN ORDER TO KEEP YOUR DOMAIN kodiblaze.com\r\n\r\nThis important notification for kodiblaze.com will EXPIRE WITHIN 12 HOURS after you have received this email!'),
 (7, 'Donaldflilt', 'no-replyEnduch@gmail.com', '83145136141', 'A new method of email distribution.', 'Good day!  kodiblaze.com \r\n \r\nDid you know that it is possible to send commercial offer entirely lawfully? \r\nWe providing a new method of sending proposal through feedback forms. Such forms are located on many sites. \r\nWhen such letters are sent, no personal data is used, and messages are sent to forms specifically designed to receive messages and appeals. \r\nalso, messages sent through feedback Forms do not get into spam because such messages are considered important. \r\nWe offer you to test our service for free. We will send up to 50,000 messages for you. \r\nThe cost of sending one million messages is 49 USD. \r\n \r\nThis message is created automatically. Please use the contact details below to contact us. \r\n \r\nContact us. \r\nTelegram - @FeedbackMessages \r\nSkype  live:contactform_18 \r\nWhatsApp - +375259112693 \r\n \r\nWe only use chat.'),
 (8, 'Eric Jones', 'eric.jones.z.mail@gmail.com', '555-555-1212', 'Turn Surf-Surf-Surf into Talk Talk Talk', 'Hello, my nameâ€™s Eric and I just ran across your website at kodiblaze.com...\r\n\r\nI found it after a quick search, so your SEOâ€™s working outâ€¦\r\n\r\nContent looks pretty goodâ€¦\r\n\r\nOne thingâ€™s missing thoughâ€¦\r\n\r\nA QUICK, EASY way to connect with you NOW.\r\n\r\nBecause studies show that a web lead like me will only hang out a few seconds â€“ 7 out of 10 disappear almost instantly, Surf Surf Surfâ€¦ then gone forever.\r\n\r\nI have the solution:\r\n\r\nTalk With Web Visitor is a software widget thatâ€™s works on your site, ready to capture any visitorâ€™s Name, Email address and Phone Number.  Youâ€™ll know immediately theyâ€™re interested and you can call them directly to TALK with them - literally while theyâ€™re still on the web looking at your site.\r\n\r\nCLICK HERE https://talkwithwebvisitors.com to try out a Live Demo with Talk With Web Visitor now to see exactly how it works and even give it a tryâ€¦ it could be huge for your business.\r\n\r\nPlus, now that youâ€™ve got that phone number, with our new SMS Text With Lead feature, you can automatically start a text (SMS) conversation prontoâ€¦ which is so powerful, because connecting with someone within the first 5 minutes is 100 times more effective than waiting 30 minutes or more later.\r\n\r\nThe new text messaging feature lets you follow up regularly with new offers, content links, even just follow up notes to build a relationship.\r\n\r\nEverything Iâ€™ve just described is extremely simple to implement, cost-effective, and profitable.\r\n \r\nCLICK HERE https://talkwithwebvisitors.com to discover what Talk With Web Visitor can do for your business, potentially converting up to 100X more eyeballs into leads today!\r\n\r\nEric\r\nPS: Talk With Web Visitor offers a FREE 14 days trial â€“ and it even includes International Long Distance Calling. \r\nYou have customers waiting to talk with you right nowâ€¦ donâ€™t keep them waiting. \r\nCLICK HERE https://talkwithwebvisitors.com to try Talk With Web Visitor now.\r\n\r\nIf you\'d like to unsubscribe click here http://talkwithwebvisitors.com/unsubscribe.aspx?d=kodiblaze.com\r\n'),
@@ -508,10 +511,10 @@ CREATE TABLE `videos` (
   `id` bigint(50) NOT NULL,
   `u_id` bigint(50) NOT NULL,
   `c_id` bigint(50) NOT NULL,
-  `video` text DEFAULT NULL,
+  `video` text,
   `status` int(11) DEFAULT NULL,
-  `file_type` text DEFAULT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `file_type` text,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -543,10 +546,10 @@ INSERT INTO `videos` (`id`, `u_id`, `c_id`, `video`, `status`, `file_type`, `tim
 
 CREATE TABLE `voters` (
   `id` bigint(50) NOT NULL,
-  `email` text DEFAULT NULL,
+  `email` text,
   `c_id` bigint(50) NOT NULL,
   `cu_id` bigint(50) NOT NULL,
-  `ip_address` text DEFAULT NULL,
+  `ip_address` text,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -587,20 +590,20 @@ INSERT INTO `voters` (`id`, `email`, `c_id`, `cu_id`, `ip_address`, `status`) VA
 
 CREATE TABLE `web_config` (
   `id` bigint(20) NOT NULL,
-  `email` text DEFAULT NULL,
-  `phn` text DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `location` text DEFAULT NULL,
-  `logo` text DEFAULT NULL,
-  `image` text DEFAULT NULL,
-  `feature_image` text DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `about` text DEFAULT NULL,
-  `about_us` text DEFAULT NULL,
-  `facebook` text DEFAULT NULL,
-  `instagram` text DEFAULT NULL,
-  `twitter` text DEFAULT NULL,
-  `web_title` text DEFAULT NULL
+  `email` text,
+  `phn` text,
+  `address` text,
+  `location` text,
+  `logo` text,
+  `image` text,
+  `feature_image` text,
+  `message` text,
+  `about` text,
+  `about_us` text,
+  `facebook` text,
+  `instagram` text,
+  `twitter` text,
+  `web_title` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -762,122 +765,101 @@ ALTER TABLE `winner`
 --
 ALTER TABLE `blogs`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `blog_categories`
 --
 ALTER TABLE `blog_categories`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `contest`
 --
 ALTER TABLE `contest`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
 -- AUTO_INCREMENT for table `contest_songs`
 --
 ALTER TABLE `contest_songs`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `contest_users`
 --
 ALTER TABLE `contest_users`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
-
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
 --
 -- AUTO_INCREMENT for table `home_slider`
 --
 ALTER TABLE `home_slider`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `index_changes`
 --
 ALTER TABLE `index_changes`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `theme_color`
 --
 ALTER TABLE `theme_color`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
 --
 -- AUTO_INCREMENT for table `user_queries`
 --
 ALTER TABLE `user_queries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
-
 --
 -- AUTO_INCREMENT for table `voters`
 --
 ALTER TABLE `voters`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
 -- AUTO_INCREMENT for table `web_config`
 --
 ALTER TABLE `web_config`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `winner`
 --
 ALTER TABLE `winner`
   MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

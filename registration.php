@@ -121,9 +121,9 @@
                                     <div class="form-group">
                                         <div class="connected-area">
                                             <div class="checkbox">
-                                                <label>
+                                                <!-- <label>
                                                     <input type="checkbox"> Remember me
-                                                </label>
+                                                </label> -->
                                                 <p><a href="#">Lost your password?</a></p>
                                             </div>
                                         </div>

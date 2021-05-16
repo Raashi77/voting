@@ -81,8 +81,10 @@
         $email = $conn->real_escape_string($_POST['email']);
         $payer_id = $conn->real_escape_string($_POST['payer_id']);
         $response=[];
+        $song = $conn->real_escape_string($_POST['song']);
         $sql = "UPDATE payment set gateway_ref='$gateway' , email='$email' , payer_id='$payer_id' ,status='successful' where id='$id'";
-        if($conn->query($sql))
+        $up = "UPDATE songs set downloads=downloads+1 where id='$song'";
+        if($conn->query($sql) && $conn->query($up))
         {
             echo "ok";
         }

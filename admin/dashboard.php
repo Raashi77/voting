@@ -78,6 +78,16 @@ if($result=$conn->query($sql))
     }
 }
 
+$sql = "SELECT sum(price) as earning from payment where status = 'successful'";
+if($result=$conn->query($sql))
+{
+    if($result->num_rows>0)
+    {
+        $earn =$result->fetch_assoc();
+    }
+}
+
+
 $sql="select c.name as cname, cu.votes, u.name from contest c, contest_users cu, users u, winner w where w.u_id=u.id and w.u_id=cu.u_id and w.c_id=c.id order by w.id desc limit 5";
 if($result=$conn->query($sql))
 {
@@ -115,6 +125,17 @@ if($result=$conn->query($sql))
     }
 }
 
+$sql = "SELECT p.*,u.name from payment price,users u where p.status='succesful' limit 5";
+if($result=$conn->query($sql))
+{
+    if($result->num_rows>0)
+    {
+        while($row=$result->fetch_assoc())
+        {
+            $transaction[] = $row;
+        }
+    }
+}
 
 
 ?>
@@ -180,16 +201,16 @@ if($result=$conn->query($sql))
             </div>
             <div class="col-lg-3 col-6" >
                 <!-- small box -->
-                <div class="small-box bg-danger" style="background-color: <?=$theme['base_color']?>">
+                <div class="small-box bg-danger" style="background-color: #00C851">
                 <div class="inner">
-                    <h3 style="color: <?=$theme['base_color']?>">.</h3>
+                    <h3 ><?=$earn['earning']?></h3>
 
-                    <p>Loader Color</p>
+                    <p>Total Earning</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-paint-brush"></i>
+                    <i class="fa fa-dollar"></i>
                 </div>
-                <a href="#" onclick="thememodal()" class="small-box-footer">Change Color <i class="fa fa-arrow-right"></i></a>
+                <a href="#"  class="small-box-footer">View Transactions <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -313,6 +334,51 @@ if($result=$conn->query($sql))
                         <!-- /.info-box-content -->
                     </div>
                 </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="card">
+                        <div class="card-header" style="background-color: black; color:white;">
+                            <h3 class="card-title">Winners</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Contest</th>
+                                <th>Winner</th>
+                                <th style="width: 40px">Votes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                    if(isset($winners))
+                                    {
+                                        $i=1;
+                                        foreach($winners as $data)
+                                        {
+                                ?>
+                                                            
+                                            <tr>
+                                            <td><?=$i?></td>
+                                            <td><?=$data['cname']?></td>
+                                            <td>
+                                                <?=$data['name']?>
+                                            </td>
+                                            <td><?=$data['votes']?></td>
+                                            </tr>
+                                <?php
+                                        $i++;    
+                                        }
+                                    }
+                                ?>
+                                
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>

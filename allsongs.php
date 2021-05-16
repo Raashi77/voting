@@ -70,8 +70,10 @@ $sql="select * from  songs  ";
                 <div class="row" style="margin-bottom:10px;align-items:center;justify-content:center">
                     <button class="btn btn-secondary" id="clear" onclick="clearsearch()" type="button" style="display:none;background-color:white;color:black;border-radius:30px;"><i class="bi bi-trash"></i>Clear Search</button>
                 </div>
-                <div class="row" id="searchmaterial">
-                    
+                <div class="row" id="searchmaterial" style="margin-bottom:10px;align-items:center;justify-content:center">
+                    <center>
+                        <div id="searchloader" ></div>
+                    </center>
                 </div>
                 <div class="row" id="aforapple">
                 
@@ -198,7 +200,7 @@ $sql="select * from  songs  ";
                 {
                     amount=obj.amount;
                     id=obj.id;
-                    paypalbutton(price,cont,amount,id)
+                    paypalbutton(price,cont,amount,id,songId)
                 }
                 else
                 {
@@ -210,7 +212,7 @@ $sql="select * from  songs  ";
         });
     }
 
-    function paypalbutton(price,container,amount,id)
+    function paypalbutton(price,container,amount,id,song)
     {
         $(".payButton").each(function(){$(this).empty()});
         paypal.Buttons({
@@ -237,12 +239,13 @@ $sql="select * from  songs  ";
                     gateway: details.id,
                     email : details.payer.email_address,
                     payer_id : details.payer.payer_id,
+                    song:song,
                 },
                 success: function(data) 
                 {
                     if(data.trim()=="ok")
                     {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
+                        // alert('Transaction completed by ' + details.payer.name.given_name);
                         window.location.href="allsongs.php";
                     }
                     
@@ -274,6 +277,12 @@ $sql="select * from  songs  ";
         else
         {
             // console.log(searching);
+            $("#aforapple").hide();
+            // $("#searchloader").html(`<center>
+            //                                 <div class='spinner-border text-light' role='status' style="margin-bottom:10px;align-items:center;justify-content:center">
+            //                                     <span class='sr-only'>Loading...</span>
+            //                                 </div>
+            //                             </center>`);
             $.ajax(
                     {
                         url:"search_ajax.php",
@@ -292,7 +301,6 @@ $sql="select * from  songs  ";
                                 $("#clear").show();
                                 $("#searchmaterial").html('');
                                 $("#searchmaterial").show();
-                                $("#aforapple").hide();
                                 $("#searchmaterial").append(sea.html);
                                
 
