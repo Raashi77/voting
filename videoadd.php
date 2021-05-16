@@ -61,6 +61,18 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             }
         }
 
+        $sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_ID'  ";
+        if($result=$conn->query($sql))
+        {
+            if($result->num_rows)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                    $mySongs[] = $row;
+                }
+            }
+        }
+
         $sql="select * from videos where c_id=$token and u_id='$USER_ID'";
         if($result=$conn->query($sql))
         {
@@ -144,12 +156,14 @@ if($result =  $conn->query($sql))
 						</div>
 					</div>
         </div>
+        <center>
         <h2>
         Songs
         </h2>
+        </center>
          <div class="box">
               <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <!-- <table id="example2" class="table table-bordered table-hover">
                     <thead style="background-color: #212529; color: white;">
                         <tr>
                              <th>S.No.</th>
@@ -180,9 +194,137 @@ if($result =  $conn->query($sql))
                          ?>
           
                     </tbody>
-                </table>
-                       
+                </table> -->
             </div>
+            <div class="container">
+                <div class="row">
+                    <?php 
+                            if (isset($contest_songs)) 
+                            {   
+                                // print_r($contest_songs);
+                                $i = 1;
+                                foreach ($contest_songs as $detail) 
+                                {   
+                                    $downloadhref = '';
+                                    $pay="";
+                                    $disp="";
+                                    $songadd = $detail['song'];
+                                    $price = $detail['price'];
+                                    $id = $detail['id'];
+                                    if(isset($_SESSION['signed_in']))
+                                    {
+                                        $sql = "SELECT * from payment where song_id='$id' and user='$USER_ID'";
+                                        if($result=$conn->query($sql))
+                                        {
+                                            if($result->num_rows > 0)
+                                            {
+                                                $row = $result->fetch_assoc();
+                                                if($row['status'] == "successful")
+                                                {
+                                                    $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
+                                                    $pay = "";
+                                                    $disp = "none";
+                                                }
+                                                else
+                                                {
+                                                    $downloadhref = "";
+                                                    $pay = "pay('$id','$USER_ID','$EMAIL','$price','paypal-button-container$i')";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                $downloadhref = "";
+                                                $pay = "pay('$id','$USER_ID','$EMAIL','$price','paypal-button-container$i')";
+                                            }                                            
+                                        }
+                                        else
+                                        {
+                                            $error = $conn->error;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        $downloadhref="<a href='registration'>Login to buy and download the song!</a>";
+                                    }
+                        ?>             
+                                    <div class="col-lg-4" style="margin-bottom:20px">
+                                        <div class="card" >
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?=$detail['name'];?></h5>
+                                                <h6 class="card-subtitle mb-2 text-muted"><audio style="width:100%" controls="controls" controlsList="nodownload" src="./admin/<?=$detail['song']?>"></audio></h6>
+                                                <center>
+                                                <?php
+                                                    if(isset($_SESSION['signed_in']))
+                                                    {
+                                                        ?>
+                                                            <div id="paypal-button-container<?=$i?>" class="payButton"></div>
+                                                            <button onclick="<?=$pay?>" style="display:<?=$disp?>" id="paydollor<?=$id?>" class='btn btn-primary pay'>Pay $ <?=$price?></button>
+                                                        <?php
+                                                    }
+                                                    else
+                                                    {
+                                                        
+                                                    }
+                                                ?>
+                                                    
+                                                    <a href="#" class="card-link"><?=$downloadhref?></a>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                            <?php
+                                $i++;             
+                                }
+                            } 
+                        ?>
+                        <?php 
+                            if (isset($mySongs)) 
+                            {   
+                                // print_r($contest_songs);
+                                $i = 1;
+                                foreach ($mySongs as $mysong) 
+                                {     
+                                    $downloadhref = '';
+                                    $songadd = $mysong['song'];
+                                    $price = $mysong['price'];
+                                    if(isset($_SESSION['signed_in']))
+                                    {
+                                        $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>Download</a>";
+                                        $pay = "<a href='#' class='btn btn-primary'>Pay $ $price</a>";
+                                    }
+                                    else
+                                    {
+                                        $downloadhref="<a href='registration'>Login to buy and download the song!</a>";
+                                        $pay = "";
+                                    }
+                        ?>             
+                                     
+                                    <div class="col-lg-4" style="margin-bottom:20px">
+                                        <div class="card" >
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?=$mysong['name'];?></h5>
+                                                <h6 class="card-subtitle mb-2 text-muted"><audio style="width:100%" controls="controls" controlsList="nodownload" src="./admin/<?=$mysong['song']?>"></audio></h6>
+                                                <center>
+                                                    <a href="#" class="card-link"><?=$downloadhref?></a>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                 
+                            <?php
+                                $i++;             
+                                }
+                            } 
+                         ?>
+          
+                </div>
+            </div>
+               
+                       
+            
             <!-- /.box-footer-->
         </div> 
         <h2>Videos</h2>
