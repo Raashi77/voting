@@ -125,16 +125,22 @@ if($result=$conn->query($sql))
     }
 }
 
-$sql = "SELECT p.*,u.name from payment price,users u where p.status='succesful' limit 5";
+$sql = "SELECT p.*,u.name from payment p,users u where p.status='successful' and p.user=u.id  order by p.id desc limit 5";
 if($result=$conn->query($sql))
 {
+    // echo "hello";
     if($result->num_rows>0)
     {
+        // echo "hellpo";
         while($row=$result->fetch_assoc())
         {
             $transaction[] = $row;
         }
     }
+}
+else
+{
+    $error =  $conn->error;
 }
 
 
@@ -339,35 +345,46 @@ if($result=$conn->query($sql))
         <div class="row">
             <div class="col-lg-12">
             <div class="card">
-                        <div class="card-header" style="background-color: black; color:white;">
-                            <h3 class="card-title">Winners</h3>
+                        <div class="card-header" style="background-color:gray; color:white;">
+                            <h3 class="card-title">Transactions</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Contest</th>
-                                <th>Winner</th>
-                                <th style="width: 40px">Votes</th>
+                                <th >#</th>
+                                <th>Transaction ID</th>
+                                <th>Song</th>
+                                <th>User</th>
+                                <th >Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                    if(isset($winners))
+                                    if(isset($transaction))
                                     {
                                         $i=1;
-                                        foreach($winners as $data)
+                                        foreach($transaction as $data)
                                         {
+                                            $song = $data['song_id'];
+                                            $sql = "SELECT * from songs where id='$song'";
+                                            if($result=$conn->query($sql))
+                                            {
+                                                if($result->num_rows>0)
+                                                {
+                                                    $name = $result->fetch_assoc();
+                                                }
+                                            }
                                 ?>
                                                             
                                             <tr>
                                             <td><?=$i?></td>
-                                            <td><?=$data['cname']?></td>
+                                            <td><?=$data['gateway_ref']?></td>
+                                            <td><?=$name['name']?></td>
                                             <td>
                                                 <?=$data['name']?>
                                             </td>
-                                            <td><?=$data['votes']?></td>
+                                            <td>$ <?=$data['price']?></td>
                                             </tr>
                                 <?php
                                         $i++;    

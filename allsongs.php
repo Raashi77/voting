@@ -278,11 +278,11 @@ $sql="select * from  songs  ";
         {
             // console.log(searching);
             $("#aforapple").hide();
-            // $("#searchloader").html(`<center>
-            //                                 <div class='spinner-border text-light' role='status' style="margin-bottom:10px;align-items:center;justify-content:center">
-            //                                     <span class='sr-only'>Loading...</span>
-            //                                 </div>
-            //                             </center>`);
+            $("#searchloader").html(`<center>
+                                            <div class='spinner-border text-light' role='status' style="margin-bottom:10px;align-items:center;justify-content:center">
+                                                <span class='sr-only'>Loading...</span>
+                                            </div>
+                                        </center>`);
             $.ajax(
                     {
                         url:"search_ajax.php",

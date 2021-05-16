@@ -31,23 +31,23 @@
                     // print_r($row);
                     if(isset($_SESSION['signed_in']))
                     {
-                        $sql = "SELECT * from payment where song_id='$id' and user='$user' and status='successful'";
-                        if($result=$conn->query($sql))
+                        $sql = "SELECT * from payment where song_id='$id' and user='$user'";
+                        if($data=$conn->query($sql))
                         {
-                            if($result->num_rows > 0)
+                            if($data->num_rows > 0)
                             {
-                                $row = $result->fetch_assoc();
-                                // if($row['status'] == "successful")
-                                // {
+                                $row2 = $data->fetch_assoc();
+                                if($row2['status'] == "successful")
+                                {
                                     $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
                                     $pay = "";
                                     $disp = "none";
-                                // }
-                                // else
-                                // {
-                                //     $downloadhref = "";
-                                //     $pay = "pay(`$id`,`$user`,`$EMAIL`,`$price`,`paypal-button-container$i`)";
-                                // }
+                                }
+                                else 
+                                {
+                                    $downloadhref = "";
+                                    $pay = "pay(`$id`,`$user`,`$EMAIL`,`$price`,`paypal-button-container$i`)";
+                                }
                             }
                             else
                             {
@@ -86,7 +86,8 @@
                   $res['dat']=$search;
                   $res['html']=  $inhtml;
                 //   echo $inhtml;
-                  echo json_encode($res);
+                echo json_encode($res);
+                 
                    
             }
             else
@@ -104,6 +105,8 @@
             $res['error']=$conn->error; 
             echo json_encode($res);
         }
+        // echo json_encode($res);
+
     }
 
     
