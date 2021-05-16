@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2021 at 04:59 PM
+-- Generation Time: May 15, 2021 at 09:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -210,7 +210,16 @@ CREATE TABLE `gallery` (
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `category` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table voting.gallery: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `voting`.`gallery`' at line 1
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `u_id`, `image`, `time_stamp`, `category`) VALUES
+(1, 1, 'uploads/1615285879.jpg', '2021-03-09 10:31:19', 'Blogs'),
+(30, 3, 'http://localhost/DuBuddy/staff/intern/uploads/1613378003.png', '2021-02-15 08:33:23', 'Blogs'),
+(32, 1, 'http://localhost/DuBuddy/admin/uploads/1613379696.png', '2021-02-15 09:01:36', 'Blogs'),
+(33, 1, 'http://localhost/voting/admin/uploads/1615287383.jpg', '2021-03-09 10:56:23', 'Blogs');
 
 -- --------------------------------------------------------
 
@@ -317,22 +326,23 @@ INSERT INTO `master_admin` (`id`, `name`, `email`, `password`, `status`) VALUES
 CREATE TABLE `payment` (
   `id` bigint(20) NOT NULL,
   `song_id` bigint(20) DEFAULT NULL,
-  `gateway_ref` bigint(20) DEFAULT NULL,
+  `gateway_ref` text DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
   `user` bigint(20) DEFAULT NULL,
   `status` text DEFAULT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `payment_ref` text DEFAULT NULL,
-  `email` text DEFAULT NULL
+  `email` text DEFAULT NULL,
+  `payer_id` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`, `time_stamp`, `payment_ref`, `email`) VALUES
-(1, 19, 4244150, 15, 22, 'successful', '2021-05-13 17:28:21', '123422', 'vansh10patpatia@gmail.com'),
-(2, 15, NULL, 20, 22, NULL, '2021-05-13 19:40:21', '2DH4V00', 'vansh10patpatia@gmail.com');
+INSERT INTO `payment` (`id`, `song_id`, `gateway_ref`, `price`, `user`, `status`, `time_stamp`, `payment_ref`, `email`, `payer_id`) VALUES
+(1, 19, '4244150', 15, 22, 'successful', '2021-05-13 17:28:21', '123422', 'vansh10patpatia@gmail.com', NULL),
+(24, 15, '7F086988A4226590Y', 20, 22, 'successful', '2021-05-15 19:50:48', '243J51E5', 'sb-x3xtd6230055@personal.example.com', '33YCPHEF45GZ2');
 
 -- --------------------------------------------------------
 
@@ -811,7 +821,7 @@ ALTER TABLE `index_changes`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `reply`
