@@ -113,7 +113,7 @@
         
         
     </head>
-    <body class="home">
+    <body class="home" style="overflow-x:hidden">
         <!--Preview area start here-->
             <div class="template-preloader-rapper">
                 <div class="spinner">

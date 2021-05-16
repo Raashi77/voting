@@ -61,7 +61,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
             }
         }
 
-        $sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_ID'  ";
+        $sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_ID' and p.status='successful' ";
         if($result=$conn->query($sql))
         {
             if($result->num_rows)
@@ -206,7 +206,7 @@ if($result =  $conn->query($sql))
                                 $i = 1;
                                 foreach ($contest_songs as $detail) 
                                 {   
-                                    $downloadhref = '';
+                                    $downloadhref = "";
                                     $pay="";
                                     $disp="";
                                     $songadd = $detail['song'];
@@ -214,7 +214,7 @@ if($result =  $conn->query($sql))
                                     $id = $detail['id'];
                                     if(isset($_SESSION['signed_in']))
                                     {
-                                        $sql = "SELECT * from payment where song_id='$id' and user='$USER_ID'";
+                                        $sql = "SELECT * from payment where song_id='$id' and user='$USER_ID' and payment.status='successful'";
                                         if($result=$conn->query($sql))
                                         {
                                             if($result->num_rows > 0)
@@ -222,7 +222,7 @@ if($result =  $conn->query($sql))
                                                 $row = $result->fetch_assoc();
                                                 if($row['status'] == "successful")
                                                 {
-                                                    $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
+                                                    $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger'><i class='bi bi-download'></i>&nbsp; Download</a>";
                                                     $pay = "";
                                                     $disp = "none";
                                                 }
@@ -247,7 +247,7 @@ if($result =  $conn->query($sql))
                                     {
                                         $downloadhref="<a href='registration'>Login to buy and download the song!</a>";
                                     }
-                                    if(!in_array($detail['id'],$mySongsId))
+                                    if(!in_array($detail['id'],$mySongsId) )
                                     {
                         ?>             
                                     <div class="col-lg-4" style="margin-bottom:20px">
@@ -270,7 +270,7 @@ if($result =  $conn->query($sql))
                                                     }
                                                 ?>
                                                     
-                                                    <a href="#" class="card-link"><?=$downloadhref?></a>
+                                                    <?=$downloadhref?>
                                                 </center>
                                             </div>
                                         </div>
@@ -296,7 +296,7 @@ if($result =  $conn->query($sql))
                                     $price = $mysong['price'];
                                     if(isset($_SESSION['signed_in']))
                                     {
-                                        $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>Download</a>";
+                                        $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
                                         $pay = "<a href='#' class='btn btn-primary'>Pay $ $price</a>";
                                     }
                                     else

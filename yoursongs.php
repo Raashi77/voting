@@ -67,7 +67,7 @@ $sql="select s.* from  songs s,payment p where p.song_id=s.id and p.user='$USER_
                                     $price = $detail['price'];
                                     if(isset($_SESSION['signed_in']))
                                     {
-                                        $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>Download</a>";
+                                        $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp;&nbsp;Download</a>";
                                         $pay = "<a href='#' class='btn btn-primary'>Pay $ $price</a>";
                                     }
                                     else

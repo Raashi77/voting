@@ -336,7 +336,7 @@ require_once "navbar.php";
                                             else
                                             {
                                         ?>
-                                                <a href="videoadd?token=<?=$contest['id']?>" class="joni-btn primary-btn">Join For Free</a>
+                                                <a href="videoadd?token=<?=$data['id']?>" class="joni-btn primary-btn">Join For Free</a>
                                         <?php
                                             }
                                         }

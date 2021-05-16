@@ -15,6 +15,8 @@
             {
                 $inhtml = "";
                 $i=1;
+                // echo $result->num_rows();
+                // $res['row']= mysqli_num_rows($result);
                 while($row = $result->fetch_assoc())
                 {
                     $id= $row['id'];
@@ -25,25 +27,27 @@
                     $disp = "";
                     $song = $row['song'];
                     $buttons = "";
+                    $songadd = $row['song'];
+                    // print_r($row);
                     if(isset($_SESSION['signed_in']))
                     {
-                        $sql = "SELECT * from payment where song_id='$id' and user='$user'";
+                        $sql = "SELECT * from payment where song_id='$id' and user='$user' and status='successful'";
                         if($result=$conn->query($sql))
                         {
                             if($result->num_rows > 0)
                             {
                                 $row = $result->fetch_assoc();
-                                if($row['status'] == "successful")
-                                {
+                                // if($row['status'] == "successful")
+                                // {
                                     $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
                                     $pay = "";
                                     $disp = "none";
-                                }
-                                else
-                                {
-                                    $downloadhref = "";
-                                    $pay = "pay(`$id`,`$user`,`$EMAIL`,`$price`,`paypal-button-container$i`)";
-                                }
+                                // }
+                                // else
+                                // {
+                                //     $downloadhref = "";
+                                //     $pay = "pay(`$id`,`$user`,`$EMAIL`,`$price`,`paypal-button-container$i`)";
+                                // }
                             }
                             else
                             {
@@ -81,6 +85,7 @@
                   $res['msg']="ok";
                   $res['dat']=$search;
                   $res['html']=  $inhtml;
+                //   echo $inhtml;
                   echo json_encode($res);
                    
             }
