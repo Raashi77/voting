@@ -318,7 +318,7 @@ else
                     </div>
                 </div>
                 <div class="col-md-5">
-                <a href="users?token=1" style="background-color: white;">
+                <a href="contest?token=3" style="background-color: white;">
                     <div class="info-box mb-3 bg-blue">
                         <span class="info-box-icon"><i class="fa fa-building"></i></span>
                         <div class="info-box-content">

@@ -35,7 +35,7 @@ else
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="font-weight: 900;">
-            Songs
+            Transactions
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -232,79 +232,4 @@ require_once 'js-links.php';
         $("#payerid").val(payerid);
     }
 
-
-    function getFileData(myFile, id) {
-        var file = myFile.files[0];
-        var filename = file.name;
-        $("#" + id).html(filename);
-    }
-
-
-    function uploadSong(mode) {
-        var formData = new FormData();
-        if (mode == "add") {
-            formData.append("name", $("#name").val())
-            formData.append("add", true)
-            formData.append("price",$("#price").val())
-            formData.append("projectFile[]", $("#projectfile").prop('files')[0]);
-        } else if (mode == "edit") {
-            formData.append("name", $("#ename").val())
-            formData.append("eid", $("#eid").val())
-            formData.append("price",$("#eprice").val())
-            formData.append("edit", true)
-            formData.append("projectFile[]", $("#eprojectfile").prop('files')[0]);
-        }
-
-        $.ajax({
-            url: "upload_song_ajax.php",
-            type: "post",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
-            xhr: function() {
-                var xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener("progress", function(evt) {
-                    if (evt.lengthComputable) {
-                        var percentComplete = (evt.loaded / evt.total) * 100;
-                        console.log(percentComplete)
-                        if (mode == "add") {
-                            $("#progressBarSong").css("width", percentComplete + "%");
-                        } else if (mode == "edit") {
-                            $("#eprogressBarSong").css("width", percentComplete + "%");
-                        }
-                    }
-                }, false);
-                return xhr;
-            },
-            beforeSend: function() {
-                if (mode == "add") {
-                    $("#progressDivSong").show();
-                } else if (mode == "edit") {
-                    $("#eprogressDivSong").show();
-                }
-
-            },
-            success: function(data) {
-                console.log(data);
-                var obj = JSON.parse(data);
-                if (obj.msg = "all_true") {
-                    window.location.reload();
-
-                } else {
-                    if (mode == "add") {
-                        $("#progresslabel").html("Error While Uploading Song");
-                    } else if (mode == "edit") {
-                        $("#eprogresslabel").html("Error While Uploading Song");
-                    }
-                }
-
-            },
-            error: function(e) {
-
-            }
-
-        })
-
-    }
 </script>

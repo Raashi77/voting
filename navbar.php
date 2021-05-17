@@ -64,7 +64,12 @@
                                 <nav>
                                     <ul>
                                         <li><a href="index">Home</a> </li>
-                                        <li><a href="contest-list">Contests</a></li>
+                                        <li><a href="#">Contests</a>
+                                            <ul>
+                                            <li><a href="contest-list">Ongoing</a></li>
+                                            <li><a href="upcoming">Upcoming</a></li>
+                                            </ul>
+                                        </li>
                                          <li><a href="about">About</a></li>
                                         <?php
                                         if(isset($_SESSION['signed_in']))
