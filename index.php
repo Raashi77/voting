@@ -108,11 +108,24 @@ require_once "navbar.php";
     
 ?>
 
-
+<style>
+    #webtitle{margin-top:25vh}
+    @media only screen and (max-width: 600px) {
+        #webtitle{margin-top:8vh}
+}
+</style>
 
 <!-- Slider Area Start Here-->
 
 <div class="container-fluid acurate">
+<div class="row" style='padding-left:10px;padding-right:10px'>
+    <div class="COL-LG-3 col-md-3 col-sm-3 col-xs-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style='padding-bottom:10px;'>
+        <div class="section-title" style='padding-left:10px;padding-right:10px;' id="webtitle">
+            <h4><?=$web_config['home_title']?></h4>
+        </div>
+</div>
+</div>
 <?php
                 if(isset($slider))
                 {
@@ -170,7 +183,7 @@ require_once "navbar.php";
 
 <div class="fix home-blog-area pb-90 pt-90">
     <div class="container">
-        <div class="row">
+        <div class="row" style='padding-bottom:10px'>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="section-title">
                     <h2>Video<span> Gallery</span></h2>
