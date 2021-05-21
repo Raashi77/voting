@@ -110,6 +110,7 @@ require_once "navbar.php";
 
 <style>
     #webtitle{margin-top:25vh}
+    #indexmenu{margin-top:-51px !important}
     @media only screen and (max-width: 600px) {
         #webtitle{margin-top:8vh}
 }
@@ -121,9 +122,7 @@ require_once "navbar.php";
 <div class="row" style='padding-left:10px;padding-right:10px'>
     <div class="COL-LG-3 col-md-3 col-sm-3 col-xs-3"></div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style='padding-bottom:10px;'>
-        <div class="section-title" style='padding-left:10px;padding-right:10px;' id="webtitle">
-            <h4><?=$web_config['home_title']?></h4>
-        </div>
+       
 </div>
 </div>
 <?php

@@ -14,7 +14,7 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
+/* #indexmenu{padding-right:20px} */
 /* Links inside the dropdown */
 .dropdown-content a {
   color: black;
@@ -22,6 +22,8 @@
   text-decoration: none;
   display: block;
 }
+.meanmenu-reveal{margin-top:-64px}
+/* .mean-bar{display:none} */
  </style>
  <header>
             <div class="header-top-area hidden-sm">
@@ -121,17 +123,49 @@
                 </div>
             </div>
                <!-- Slide Menu Section Start Here -->
-               <div class="mobile-menu-area">
+               <div class="mobile-menu-area" id="indexmenu" >
+                    <div class="section-title" style='padding-left:10px;padding-right:10px;padding-top:10px' id="webtitle">
+                        <h4 style=""><?=$web_config['home_title']?></h4>
+                    </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
+                            
                             <div class="mobile-menu">
-                                <nav id="dropdown">
-                                <ul>
+                                
+                                <nav id="dropdown" style="position:relative;top:-57px">
+                                <ul >
                                         <li><a href="index">Home</a> </li>
-                                        <li><a href="contest-list">Contests</a></li>
+                                        <li><a href="#">Contests</a>
+                                            <ul>
+                                            <li><a href="contest-list">Ongoing</a></li>
+                                            <li><a href="upcoming">Upcoming</a></li>
+                                            </ul>
+                                        </li>
                                          <li><a href="about">About</a></li>
-                                       
+                                        <?php
+                                        if(isset($_SESSION['signed_in']))
+                                        {
+                                        ?>
+                                            
+                                            <li><a href="#">Songs</a>
+                                                <ul>
+                                                <li><a href="allsongs">All songs</a></li>
+                                                <li><a href="yoursongs">My songs</a></li>
+                                                </ul>
+                                            </li>
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                        ?>
+                                            <li><a href="allsongs">Songs</a></li>
+                                        <?php
+                                        }
+                                        ?>
+                                        <li><a href="blog_home">Blog</a></li>
+                                        <li><a href="contact">Contact Us</a></li>
+                                     
                                         <!-- <li class="active"><a href="#">Pages <i class="fa fa-angle-down"></i></a>
                                             <ul>
                                                 <li><a href="shop.html">Shop</a></li>
@@ -150,9 +184,9 @@
                                                 <li><a href="404.html">Error Page</a></li>
                                             </ul>
                                         </li> -->
-                                        <li><a href="blog_home">Blog</a></li>
+                                        <!-- <li><a href="blog_home">Blog</a></li>
                                         <li><a href="contact">Contact Us</a></li>
-                                      
+                                       -->
                                         
                                     <?php
                                     if(isset($_SESSION['signed_in']))
