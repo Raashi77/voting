@@ -110,9 +110,30 @@ require_once "navbar.php";
 
 <style>
     #webtitle{margin-top:25vh}
-    #indexmenu{margin-top:-51px !important}
-    @media only screen and (max-width: 600px) {
+    #indexmenu{margin-top:-185px !important}
+    @media only screen and (min-height:768px) {
+        #indexmenu{margin-top:-270px !important}
+
+        }
+        @media only screen and (max-height:730px) {
+        #indexmenu{margin-top:-165px !important}
+            
+        }
+        @media only screen and (max-height:600px) {
+        #indexmenu{margin-top:-148px !important}
+            
+        }
+        @media only screen and (max-height:540px) {
+        #indexmenu{margin-top:-130px !important}
+            
+        }
+    @media only screen and (max-width: 600px)  {
+
         #webtitle{margin-top:8vh}
+        #indexmenu{margin-top:-58px !important}
+        #headnavbar{width:108vw !important}
+        
+
 }
 </style>
 

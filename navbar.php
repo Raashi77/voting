@@ -22,10 +22,11 @@
   text-decoration: none;
   display: block;
 }
-.meanmenu-reveal{margin-top:-64px}
+.mean-bar{margin-top:-61px}
+#headnavbar{width:107%}
 /* .mean-bar{display:none} */
  </style>
- <header>
+ <header id="headnavbar">
             <div class="header-top-area hidden-sm">
                 <div class="container">
                     <div class="row">
