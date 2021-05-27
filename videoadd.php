@@ -122,6 +122,7 @@ if($result =  $conn->query($sql))
     }
     .vjs-default-skin{width:100% !important}
     #modal-record{margin-top: 50px;}
+    #myVideo{width:100%}
     @media screen and (max-width: 750px) 
     {
         #modal-record{margin-top: 0px;}
