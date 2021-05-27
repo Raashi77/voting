@@ -491,7 +491,8 @@ var videoBLob=null;
         else
         {
             $("#modal-body").hide();
-            $("#myVideo").show();
+            $(".video-js").show();
+            $(".vjs-tech").show();
             audio = new Audio("http://localhost/voting/admin"+selectedSong);
             console.log(audio)
         }
