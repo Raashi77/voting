@@ -118,6 +118,11 @@ if($result =  $conn->query($sql))
         width: min(400, 100%) !important;
     }
 </style>
+<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+
+ 
+<link rel="stylesheet" href="//unpkg.com/videojs-record/dist/css/videojs.record.min.css">
+
 <div class="content-wrapper" style="margin-left:20px;">
 
     <!-- Main content -->
@@ -371,6 +376,7 @@ if($result =  $conn->query($sql))
                     <div class="form-group">
                         
                         <center><button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button></center> 
+                        <center><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="upldBtn">Record Video </button></center> 
                         <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
                         <input type="hidden" name ="add" value="dsbhvfs"/>
                      </div> 
@@ -398,12 +404,160 @@ if($result =  $conn->query($sql))
   </div>
   <div class="control-sidebar-bg"></div>
     
+  <div class="modal fade" id="modal-record">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Edit Song</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+                    
+                    <video id="myVideo"  class="video-js vjs-default-skin"></video>
+                    <div class="col-12" style="display:none" id="previewDiv">
+                        <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>
+                        <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>
+                        <button class="btn btn-primary" onclick="recordAgain()">Record Again</button>
+                        <button class="btn btn-primary" onclick="uploadBlob()">Upload</button>
+                        <video id="myVideo1"  onpause="OnStop()"></video>
+                    </div>
+                    
+        
+         
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+
   <?php
     require_once 'js-links.php';
   ?>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AVD9ZGSM4bsCuPWbHu_WWeZjwY5KeN-XZSvD8hBW1w4aFcyQE7mcpQnFRk_dJ8TW20LnKgOnG1c5kBgc&locale=en_US&currency=INR&debug=true"></script>
+    <!-- Load video.js -->
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+    <!-- Load RecordRTC core and adapter -->
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+    <!-- Load VideoJS Record Extension -->
+    <script src="//unpkg.com/videojs-record/dist/videojs.record.min.js"></script>
+
   <script>
+   var videoMaxLengthInSeconds = 120;
+
+// Inialize the video player
+var audio = new Audio("http://localhost/voting/admin/uploads/Popoo.1617469107.WAV");
+var videoBLob=null;
+var player = videojs("myVideo", {
+    controls: true,
+    width: 720,
+    height: 480,
+    fluid: false,
+    plugins: {
+        record: {
+            audio: true,
+            video: true,
+            maxLength: videoMaxLengthInSeconds,
+            debug: true,
+            videoMimeType: "video/webm;codecs=H264"
+        }
+    }
+}, function(){
+    // print version information at startup
+    videojs.log(
+        'Using video.js', videojs.VERSION,
+        'with videojs-record', videojs.getPluginVersion('record'),
+        'and recordrtc', RecordRTC.version
+    );
+});
+
+// error handling for getUserMedia
+player.on('deviceError', function() {
+    console.log('device error:', player.deviceErrorCode);
+});
+
+// Handle error events of the video player
+player.on('error', function(error) {
+    console.log('error:', error);
+});
+
+// user clicked the record button and started recording !
+player.on('startRecord', function() {
+    console.log('started recording! Do whatever you need to');
+    audio.play();
+});
+
+// user completed recording and stream is available
+// Upload the Blob to your server or download it locally !
+player.on('finishRecord', function() {
+    audio.pause();
+    audio.currentTime=0;
+    // the blob object contains the recorded data that
+    // can be downloaded by the user, stored on server etc.
+    videoBlob = player.recordedData; 
+
+    $("#myVideo1").attr("src", URL.createObjectURL(videoBlob))
+    $('#previewDiv').show();
+    $("#myVideo").hide();
+      
+});
+
+    function uploadBlob()
+    {
+        console.log(videoBlob);
+        if(videoBlob)
+        {
+                var data = new FormData();
+                data.append("video",videoBlob)
+                $.ajax({
+                    url:'uploadVideo_ajax.php',
+                    type:'post',
+                    data:data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data)
+                    {
+                        console.log(data);
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                })
+        }else
+        {
+            alert('Video Blob Not Present Record Again');
+        }
+        
+    }
+    function recordAgain()
+    {
+        $('#previewDiv').hide();
+        $("#myVideo").show();
+        audio.currentTime=0;
+    }
+    function playPreviewVideo(element)
+    {
+        element[0].play();
+        console.log(element[0].currentTime)
+        audio.currentTime = element[0].currentTime;
+        audio.play();
+    }
+    function stopPreviewVideo(element)
+    {
+        element[0].pause();
+        audio.pause();
+    }
+
+    function OnStop(){
+         
+        stopPreviewVideo($("#myVideo1"))
+    }
     function pay(songId,user,email,price,cont)
     {
 
