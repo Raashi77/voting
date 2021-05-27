@@ -112,22 +112,28 @@ if($result =  $conn->query($sql))
 } 
          
 ?>
+<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" /> 
+<link rel="stylesheet" href="//unpkg.com/videojs-record/dist/css/videojs.record.min.css">
+
 <style>
     .vidcs
     {
         width: min(400, 100%) !important;
     }
+    .vjs-default-skin{width:100% !important}
+    #modal-record{margin-top: 50px;}
+    #myVideo{width:100%}
+    @media screen and (max-width: 750px) 
+    {
+        #modal-record{margin-top: 0px;}
+        #fullSection{margin-bottom:20px}
+    }
 </style>
-<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-
- 
-<link rel="stylesheet" href="//unpkg.com/videojs-record/dist/css/videojs.record.min.css">
-
 <div class="content-wrapper" style="margin-left:20px;">
 
     <!-- Main content -->
       <br>
-    <section class="content">
+    <section class="content" >
         <?php
             if(isset($resSubject))
             {
@@ -214,6 +220,7 @@ if($result =  $conn->query($sql))
                                     $downloadhref = "";
                                     $pay="";
                                     $disp="";
+                                    $record="";
                                     $songadd = $detail['song'];
                                     $price = $detail['price'];
                                     $id = $detail['id'];
@@ -229,6 +236,7 @@ if($result =  $conn->query($sql))
                                                 {
                                                     $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger'><i class='bi bi-download'></i>&nbsp; Download</a>";
                                                     $pay = "";
+                                                    $record="<button type='button' class='btn btn-danger'  data-toggle='modal' data-target='#modal-record' id='upldBtn'>Record Video </button>";
                                                     $disp = "none";
                                                 }
                                                 else
@@ -371,12 +379,13 @@ if($result =  $conn->query($sql))
         </div>
         </div>
         <form method="post" enctype="multipart/form-data" id="video_form">
-            <div class="row">
+            <div class="row" id="fullSection">
                 <div class="col-md-12"> 
                     <div class="form-group">
                         
-                        <center><button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button></center> 
-                        <center><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="upldBtn">Record Video </button></center> 
+                        <center>
+                            <button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button>
+                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="recordBtn">Record Video </button></center> 
                         <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
                         <input type="hidden" name ="add" value="dsbhvfs"/>
                      </div> 
@@ -404,18 +413,37 @@ if($result =  $conn->query($sql))
   </div>
   <div class="control-sidebar-bg"></div>
     
-  <div class="modal fade" id="modal-record">
+  <div class="modal fade" id="modal-record" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><strong>Edit Song</strong></h4>
+                <h4 class="modal-title"><strong>Record Video</strong></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
+            <div class="modal-body" id="modal-body" >
+                <select class="form-control" onchange="$('#proceed').attr('disabled',false);" id="selectSong">
+                    <option value="0">Select Song</option>
+                    <?php
+                        if(isset($mySongs))
+                        {
+                            foreach($mySongs as $song)
+                            {
+                                ?>
+                                    <option value="<?=$song['song']?>"><?=$song['name']?></option>                                
+                                <?php
+                            }
+                        }
+                    ?>
+                </select>
+                <br>
+                <center>
+                    <button style="flex:1;display:flex;justify-content:center" id="proceed" onclick="proceed()" class="btn btn-primary" disabled>Proceed</button>
+                </center>
+            </div>
                     
-                    <video id="myVideo"  class="video-js vjs-default-skin"></video>
+                    <video id="myVideo"  class="video-js vjs-default-skin" style="display:none"></video>
                     <div class="col-12" style="display:none" id="previewDiv">
                         <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>
                         <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>
@@ -453,6 +481,22 @@ if($result =  $conn->query($sql))
 // Inialize the video player
 var audio = new Audio("http://localhost/voting/admin/uploads/Popoo.1617469107.WAV");
 var videoBLob=null;
+    function proceed()
+    {
+        var selectedSong=$("#selectSong").val();
+        if(selectedSong == 0)
+        {
+            alert("Please select a song!");
+        }
+        else
+        {
+            $("#modal-body").hide();
+            $("#myVideo").show();
+            audio = new Audio("http://localhost/voting/admin"+selectedSong);
+            console.log(audio)
+        }
+        
+    }
 var player = videojs("myVideo", {
     controls: true,
     width: 720,
@@ -479,11 +523,14 @@ var player = videojs("myVideo", {
 // error handling for getUserMedia
 player.on('deviceError', function() {
     console.log('device error:', player.deviceErrorCode);
+    console.log(player.deviceErrorCode);
+    alert("Error occured while recording!");
 });
 
 // Handle error events of the video player
 player.on('error', function(error) {
     console.log('error:', error);
+    alert("Error occured while recording!");
 });
 
 // user clicked the record button and started recording !
@@ -558,33 +605,47 @@ player.on('finishRecord', function() {
          
         stopPreviewVideo($("#myVideo1"))
     }
+   
+
     function pay(songId,user,email,price,cont)
     {
 
 
-        $(".pay").show();
-        $("#paydollar"+songId).hide();
-        paypalbutton(price,cont)
-        // $.ajax({
-        //     url: "payment.php",
-        //     type: "POST",
-        //     data: {
-        //         payment: true,
-        //         songId: songId,
-        //         user: user,
-        //         email:email,
-        //         price:price,
-        //     },
-        //     success: function(response) 
-        //     {
-        //         var obj = JSON.parse(response);
-        //         console.log(obj);
+        // $(".pay").show();
+        // $("#paydollar"+songId).hide();
+        var amount;
+        var id;
+        $.ajax({
+            url: "payment.php",
+            type: "POST",
+            data: {
+                payment: true,
+                songId: songId,
+                user: user,
+                email:email,
+                price:price,
+            },
+            success: function(data) 
+            {
+                console.log(data);
+                var obj = JSON.parse(data);
+                // console.log(obj.msg);
+                if(obj.msg.trim()=="ok")
+                {
+                    amount=obj.amount;
+                    id=obj.id;
+                    paypalbutton(price,cont,amount,id,songId)
+                }
+                else
+                {
+                    alert("Some error Occured!")
+                }
+               
                 
-        //     }
-        // });
+            }
+        });
     }
-
-    function paypalbutton(amount,container)
+    function paypalbutton(price,container,amount,id,song)
     {
         $(".payButton").each(function(){$(this).empty()});
         paypal.Buttons({
@@ -599,11 +660,35 @@ player.on('finishRecord', function() {
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            alert('Transaction completed by ' + details.payer.name.given_name);
+            console.log(details.id);
+            console.log(details.payer.email_address);
+            console.log(details.payer.payer_id);
+            $.ajax({
+                url: "payment.php",
+                type: "POST",
+                data: {
+                    update: true,
+                    id: id,
+                    gateway: details.id,
+                    email : details.payer.email_address,
+                    payer_id : details.payer.payer_id,
+                    song:song,
+                },
+                success: function(data) 
+                {
+                    if(data.trim()=="ok")
+                    {
+                        // alert('Transaction completed by ' + details.payer.name.given_name);
+                        window.location.href="videoadd.php";
+                    }
+                    
+                }
+            });
           });
         }
       }).render('#'+container); // Display payment options on your web page
     }
+   
 
 
     var videoCounter = parseInt('<?=$counter?>');
