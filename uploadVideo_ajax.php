@@ -1,6 +1,7 @@
 <?php
 require_once 'lib/core.php';
- 
+ print_r($_POST);
+ print_r($_FILES);
     if(isset($_POST['add']))
     {
         $msg =[]; 

@@ -29,21 +29,21 @@
                     if(isset($_SESSION['signed_in']))
                     {
                         $sql = "SELECT * from payment where song_id='$id' and user='$user'";
-                        if($resu=$conn->query($sql))
+                        if($data=$conn->query($sql))
                         {
-                            if($resu->num_rows > 0)
+                            if($data->num_rows > 0)
                             {
-                                $row2 = $resu->fetch_assoc();
+                                $row2 = $data->fetch_assoc();
                                 if($row2['status'] == "successful")
                                 {
                                     $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger ' ><i class='fa fa-download'></i>&nbsp; Download</a>";
                                     $pay = "";
                                     $disp = "none";
                                 }
-                                else
+                                else 
                                 {
                                     $downloadhref = "";
-                                    $pay = "pay($id,$user,$EMAIL,$price,paypal-button-container$i)";
+                                    $pay = "pay(`$id`,`$user`,`$EMAIL`,`$price`,`paypal-button-container$i`)";
                                 }
                             }
                             else
@@ -82,7 +82,9 @@
                   $res['msg']="ok";
                   $res['dat']=$search;
                   $res['html']=  $inhtml;
-                  
+                //   echo $inhtml;
+                echo json_encode($res);
+                 
                    
             }
             else
@@ -98,7 +100,6 @@
             $res['msg']="error";
             $res['error']=$conn->error; 
         }
-        echo json_encode($res);
     }
 
     

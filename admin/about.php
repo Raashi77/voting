@@ -14,11 +14,12 @@
         $about_us=$conn->real_escape_string($_POST['about_us']);
         $facebook=$conn->real_escape_string($_POST['facebook']);
         $twitter=$conn->real_escape_string($_POST['twitter']);
+        $home_title=$conn->real_escape_string($_POST['home_title']);
         $insta=$conn->real_escape_string($_POST['instagram']);
         $img=upload_image2($_FILES['images'],$conn,"web_config","logo","1",'images');
         $image=upload_image2($_FILES['img'],$conn,"web_config","image","1",'img');
         $feature_image=upload_image2($_FILES['f_img'],$conn,"web_config","feature_image","1",'f_img');
-          $sql="update web_config set email='$email',phn='$phn',address='$ad',location='$loc',message='$msg',about='$about_text',about_us='$about_us', facebook='$facebook',twitter='$twitter',instagram='$insta',web_title='$web_title'";
+        $sql="update web_config set email='$email',phn='$phn',home_title='$home_title',address='$ad',location='$loc',message='$msg',about='$about_text',about_us='$about_us', facebook='$facebook',twitter='$twitter',instagram='$insta',web_title='$web_title'";
    
         if($conn->query($sql))
         {
@@ -111,6 +112,10 @@
                             <label>Instagram Handle :</label>
                             <input type="text" class="form-control" id="" name="instagram" value="<?=$about['instagram']?>">
 
+                        </div>
+                        <div class="col-sm-12">
+                            <label>Home Page Title</label>
+                            <input type="text" class="form-control" id="" name="home_title" value="<?=$about['home_title']?>">
                         </div>
                         <div class="col-sm-12"><br>
                             <label>Message from Admin :</label><br>

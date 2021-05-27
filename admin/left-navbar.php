@@ -127,6 +127,11 @@
             </a>
          </li>
          <li>
+           <a href="transactions">
+                <i class="fa fa-dollar"></i><span>Transactions</span>
+            </a>
+         </li>
+         <li>
             <a href="about">
             <i class="fa fa-info-circle" aria-hidden="true"></i> <span>About</span>
             </a>
