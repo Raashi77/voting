@@ -158,21 +158,25 @@
                                 </div>
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                <br>
-                                    <button class="btn btn-primary" type="button"
-                                        onclick="featureImage()">Choose Feature
-                                        Image</button>
-                                        <input type="file" id="featureImageInsert" name="featureImageInsert" style="display: none"/>
-
+                                    <div class="col-md-6 col-sm-3 col-xs-6">
+                                        <label>Feature Image</label><br>
+                                        <img src="<?=$image_src;?>" alt="uploads/noimage.jpg" id="fimagePreview"
+                                            style="height:100px;width:200px;" />
+                                    </div>
+                                    <div class="col-md-6 col-sm-3 col-xs-6">
                                         <br>
-                                        <a href="#" target="_blank"><img src="<?=$website_details['logo']?>" width="100px" height="100px" id="featureImg" style="display: none"/></a>
+                                        <button class="btn btn-primary" type="button" data-toggle="modal"
+                                            onclick="setLibFunction(setFeatureImage)"
+                                            data-target="#image-pc-library">Choose Image</button>
+                                    </div>
+                                    <input type="hidden" name="fimage" id="fimage" value="<?=$image_src?>"/>
+
                                 </div>
                                 <div class="col-md-12">
                                     <br>
-                                    <button class="btn btn-primary" type="button"
-                                        onclick="InsertImage()">Insert
+                                    <button class="btn btn-primary" type="button" data-toggle="modal"
+                                        onclick="setLibFunction(embbedImage)" data-target="#image-pc-library">Insert
                                         Image</button>
-                                    <input type="file" id="imageInsert" name="imageInsert" style="display: none"/>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
@@ -274,43 +278,6 @@ $("#cat").val('<?=$cat?>');
 <?php
         }
     ?>
-
-$(function()
-{
-    $("#featureImageInsert").change(function(evt)
-    {
-        var tgt = evt.target || window.event.srcElement,
-            files = tgt.files;
-
-        // FileReader support
-        if (FileReader && files && files.length) {
-            var fr = new FileReader();
-            fr.onload = function () {
-                document.getElementById("featureImg").src = fr.result;
-                
-                $("#featureImg").show()
-            }
-            fr.readAsDataURL(files[0]);
-        }
-
-        // Not supported
-        else {
-            // fallback -- perhaps submit the input to an iframe and temporarily store
-            // them on the server until the user's session ends.
-        } 
-    })
-});
-
-
-function InsertImage()
-{
-    $("#imageInsert").trigger('click');
-}
-function featureImage()
-{
-    $("#featureImageInsert").trigger('click');
-}
-
 
 CKEDITOR.replace('long_description');
 CKEDITOR.config.autoParagraph = false;
