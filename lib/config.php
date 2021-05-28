@@ -30,7 +30,7 @@ if($conn->connect_error)
 }
 //website link
 
-$website_link="http://kodiblaze.com";
+$website_link="https://kodiblaze.com";
 
 
 $paypalConfig = [

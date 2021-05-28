@@ -157,7 +157,7 @@ if($result =  $conn->query($sql))
 							</div>
 							<h3 class="headding-title"><?=$on_contest['name']?></h3> 
 							<div class="countdown-section">
-								<div class="row">
+2								<div class="row">
 									<div class="offset-md-3 offset-sm-3 col-sm-6">
 										<div class="CountDownTimer" data-date="<?php
                                             echo $on_contest['end_date']." ".$on_contest['end_time'].":00"; 
@@ -494,8 +494,8 @@ var audioname=null;
             $("#modal-body").hide();
             $(".video-js").show();
             $(".vjs-tech").show();
-            audio = new Audio("http://localhost/voting/admin"+selectedSong);
-            audioname="http://localhost/voting/admin"+selectedSong;
+            audio = new Audio('<?=$website_link?>'+selectedSong);
+            audioname="<?=$website_link?>"+selectedSong;
             console.log(audio)
             console.log(audioname)
         }
