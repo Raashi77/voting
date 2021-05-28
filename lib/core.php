@@ -909,7 +909,7 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                      
                         $type = $_FILES[$images]["type"][$key];
                         $sql="update $table set  $column='uploads/$mp4name.mp4',file_type='$type' where $id_col=$id ";
-                        if($filename=='recordedandUploaded5am')
+                        if($filename=='recordedandUploaded5am.')
                         {
                             $sql="update $table set  $column='uploads/merged$mp4name.mp4',file_type='$type' where $id_col=$id ";
                         }
