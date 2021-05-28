@@ -42,12 +42,12 @@ function mergeVideoAudio($video,$audio,$filename)
     $error ='';
     echo $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/merged$filename'";
 
-    if(shell_exec($cmd))
-    {
+    exec($cmd,$error);
+    
         echo "running";
         unlink("uploads/$video");
         rename("/uploads/merged$filename","/uploads/$filename");
-    }
+    
     
     print_r($error);
     
