@@ -15,8 +15,6 @@
             {
                 $inhtml = "";
                 $i=1;
-                // echo $result->num_rows();
-                // $res['row']= mysqli_num_rows($result);
                 while($row = $result->fetch_assoc())
                 {
                     $id= $row['id'];
@@ -28,7 +26,6 @@
                     $song = $row['song'];
                     $buttons = "";
                     $songadd = $row['song'];
-                    // print_r($row);
                     if(isset($_SESSION['signed_in']))
                     {
                         $sql = "SELECT * from payment where song_id='$id' and user='$user'";
@@ -52,7 +49,7 @@
                             else
                             {
                                 $downloadhref = "";
-                                $pay = "pay(`$id`,`$user`,`$EMAIL`,`$price`,`paypal-button-container$i`)";
+                                $pay = "pay($id,$user,$EMAIL,$price,paypal-button-container$i)";
                             }                                            
                         }
                         else
@@ -66,7 +63,7 @@
                     {
                         $downloadhref="<a href='registration'>Login to buy and download the song!</a>";
                     }
-                    $inhtml .="<div class='col-lg-4' style='margin-bottom:20px'>
+                    $inhtml.="<div class='col-lg-4' style='margin-bottom:20px'>
                     <div class='card' >
                         <div class='card-body'>
                             <h5 class='card-title'>$songName</h5>
@@ -78,10 +75,10 @@
                             </center>
                         </div>
                     </div>
-                </div>
-                                    ";
+                </div>";
+                
+                $i++;
                 }
-                  $i++;
                   $res['msg']="ok";
                   $res['dat']=$search;
                   $res['html']=  $inhtml;
@@ -94,7 +91,6 @@
             {
                 $res['msg']="no_data"; 
                 $res['dat']=$sql;
-                echo json_encode($res);
             }
                     
                     
@@ -103,10 +99,7 @@
         {
             $res['msg']="error";
             $res['error']=$conn->error; 
-            echo json_encode($res);
         }
-        // echo json_encode($res);
-
     }
 
     

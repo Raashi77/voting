@@ -64,7 +64,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" name="redistribute" class="btn btn-primary" value="">Insert</button>
+                    <!-- <button type="submit" name="redistribute" class="btn btn-primary" value="">Insert</button> -->
                 </div>
             </form>
         </div>

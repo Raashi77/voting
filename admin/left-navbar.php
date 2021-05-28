@@ -42,26 +42,12 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li>
-                        <a href="blog?token=1">
-                            <i class="fa fa-circle"></i>Pending Blogs
-                        </a>
-                    </li>
+                    
                     <li>
                         <a href="blog?token=2">
                             <i class="fa fa-circle"></i>Verified Blogs
                         </a>
-                    </li>
-                    <li>
-                        <a href="blog?token=3">
-                            <i class="fa fa-circle"></i>Blocked Blogs
-                        </a>
-                    </li>
-                    <li>
-                        <a href="blog?token=4">
-                            <i class="fa fa-circle"></i>Rejected Blogs
-                        </a>
-                    </li>
+                    </li> 
                     <li>
                         <a href="blog?token=5">
                             <i class="fa fa-circle"></i>Archived Blogs

@@ -112,17 +112,28 @@ if($result =  $conn->query($sql))
 } 
          
 ?>
+<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" /> 
+<link rel="stylesheet" href="//unpkg.com/videojs-record/dist/css/videojs.record.min.css">
+
 <style>
     .vidcs
     {
         width: min(400, 100%) !important;
+    }
+    .vjs-default-skin{width:100% !important}
+    #modal-record{margin-top: 50px;}
+    #myVideo{width:100%}
+    @media screen and (max-width: 750px) 
+    {
+        #modal-record{margin-top: 0px;}
+        #fullSection{margin-bottom:20px}
     }
 </style>
 <div class="content-wrapper" style="margin-left:20px;">
 
     <!-- Main content -->
       <br>
-    <section class="content">
+    <section class="content" >
         <?php
             if(isset($resSubject))
             {
@@ -209,6 +220,7 @@ if($result =  $conn->query($sql))
                                     $downloadhref = "";
                                     $pay="";
                                     $disp="";
+                                    $record="";
                                     $songadd = $detail['song'];
                                     $price = $detail['price'];
                                     $id = $detail['id'];
@@ -224,6 +236,7 @@ if($result =  $conn->query($sql))
                                                 {
                                                     $downloadhref = "<a href='./admin$songadd' download='true' class='btn btn-danger'><i class='bi bi-download'></i>&nbsp; Download</a>";
                                                     $pay = "";
+                                                    $record="<button type='button' class='btn btn-danger'  data-toggle='modal' data-target='#modal-record' id='upldBtn'>Record Video </button>";
                                                     $disp = "none";
                                                 }
                                                 else
@@ -366,11 +379,13 @@ if($result =  $conn->query($sql))
         </div>
         </div>
         <form method="post" enctype="multipart/form-data" id="video_form">
-            <div class="row">
+            <div class="row" id="fullSection">
                 <div class="col-md-12"> 
                     <div class="form-group">
                         
-                        <center><button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button></center> 
+                        <center>
+                            <button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button>
+                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="recordBtn">Record Video </button></center> 
                         <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
                         <input type="hidden" name ="add" value="dsbhvfs"/>
                      </div> 
@@ -398,39 +413,250 @@ if($result =  $conn->query($sql))
   </div>
   <div class="control-sidebar-bg"></div>
     
+  <div class="modal fade" id="modal-record" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Record Video</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body" >
+                <select class="form-control" onchange="$('#proceed').attr('disabled',false);" id="selectSong">
+                    <option value="0">Select Song</option>
+                    <?php
+                        if(isset($mySongs))
+                        {
+                            foreach($mySongs as $song)
+                            {
+                                ?>
+                                    <option value="<?=$song['song']?>"><?=$song['name']?></option>                                
+                                <?php
+                            }
+                        }
+                    ?>
+                </select>
+                <br>
+                <center>
+                    <button style="flex:1;display:flex;justify-content:center" id="proceed" onclick="proceed()" class="btn btn-primary" disabled>Proceed</button>
+                </center>
+            </div>
+                    
+                    <video id="myVideo"  class="video-js vjs-default-skin" style="display:none"></video>
+                    <div class="col-12" style="display:none" id="previewDiv">
+                        <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>
+                        <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>
+                        <button class="btn btn-primary" onclick="recordAgain()">Record Again</button>
+                        <button class="btn btn-primary" onclick="uploadBlob()">Upload</button>
+                        <video id="myVideo1"  onpause="OnStop()"></video>
+                    </div>
+                    
+        
+         
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+
   <?php
     require_once 'js-links.php';
   ?>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AVD9ZGSM4bsCuPWbHu_WWeZjwY5KeN-XZSvD8hBW1w4aFcyQE7mcpQnFRk_dJ8TW20LnKgOnG1c5kBgc&locale=en_US&currency=INR&debug=true"></script>
+    <!-- Load video.js -->
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+    <!-- Load RecordRTC core and adapter -->
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+    <!-- Load VideoJS Record Extension -->
+    <script src="//unpkg.com/videojs-record/dist/videojs.record.min.js"></script>
+
   <script>
+   var videoMaxLengthInSeconds = 120;
+
+// Inialize the video player
+// var audio = new Audio("http://localhost/voting/admin/uploads/Popoo.1617469107.WAV");
+var videoBLob=null;
+var audioname=null;
+    function proceed()
+    {
+        var selectedSong=$("#selectSong").val();
+        if(selectedSong == 0)
+        {
+            alert("Please select a song!");
+        }
+        else
+        {
+            $("#modal-body").hide();
+            $(".video-js").show();
+            $(".vjs-tech").show();
+            audio = new Audio("http://localhost/voting/admin"+selectedSong);
+            audioname="http://localhost/voting/admin"+selectedSong;
+            console.log(audio)
+            console.log(audioname)
+        }
+        
+    }
+var player = videojs("myVideo", {
+    controls: true,
+    width: 720,
+    height: 480,
+    fluid: false,
+    plugins: {
+        record: {
+            audio: true,
+            video: true,
+            maxLength: videoMaxLengthInSeconds,
+            debug: true,
+            videoMimeType: "video/webm;codecs=H264"
+        }
+    }
+}, function(){
+    // print version information at startup
+    videojs.log(
+        'Using video.js', videojs.VERSION,
+        'with videojs-record', videojs.getPluginVersion('record'),
+        'and recordrtc', RecordRTC.version
+    );
+});
+
+// error handling for getUserMedia
+player.on('deviceError', function() {
+    console.log('device error:', player.deviceErrorCode);
+    console.log(player.deviceErrorCode);
+    alert("Error occured while recording!");
+});
+
+// Handle error events of the video player
+player.on('error', function(error) {
+    console.log('error:', error);
+    alert("Error occured while recording!");
+});
+
+// user clicked the record button and started recording !
+player.on('startRecord', function() {
+    console.log('started recording! Do whatever you need to');
+    audio.play();
+});
+
+// user completed recording and stream is available
+// Upload the Blob to your server or download it locally !
+player.on('finishRecord', function() {
+    audio.pause();
+    audio.currentTime=0;
+    // the blob object contains the recorded data that
+    // can be downloaded by the user, stored on server etc.
+    videoBlob = player.recordedData; 
+
+    $("#myVideo1").attr("src", URL.createObjectURL(videoBlob))
+    $('#previewDiv').show();
+    $("#myVideo").hide();
+      
+});
+
+    function uploadBlob()
+    {
+        console.log("shjxzk")
+        console.log(audioname)
+        console.log(videoBlob);
+        if(videoBlob)
+        {
+                console.log("check")
+                var data = new FormData();
+                data.append("video[]",videoBlob,'video.webm')
+                data.append("audio",audioname)
+                data.append("token",'<?=$token?>');
+                data.append("user_id",'<?=$USER_ID?>')
+                data.append("videoAudioMerge",true)
+                $.ajax({
+                    url:'uploadVideo_ajax.php',
+                    type:'post',
+                    data:data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data)
+                    {
+                        console.log(data);
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                })
+        }else
+        {
+            alert('Video Blob Not Present Record Again');
+        }
+        
+    }
+    function recordAgain()
+    {
+        $('#previewDiv').hide();
+        $("#myVideo").show();
+        audio.currentTime=0;
+    }
+    function playPreviewVideo(element)
+    {
+        element[0].play();
+        console.log(element[0].currentTime)
+        audio.currentTime = element[0].currentTime;
+        audio.play();
+    }
+    function stopPreviewVideo(element)
+    {
+        element[0].pause();
+        audio.pause();
+    }
+
+    function OnStop(){
+         
+        stopPreviewVideo($("#myVideo1"))
+    }
+   
+
     function pay(songId,user,email,price,cont)
     {
 
 
-        $(".pay").show();
-        $("#paydollar"+songId).hide();
-        paypalbutton(price,cont)
-        // $.ajax({
-        //     url: "payment.php",
-        //     type: "POST",
-        //     data: {
-        //         payment: true,
-        //         songId: songId,
-        //         user: user,
-        //         email:email,
-        //         price:price,
-        //     },
-        //     success: function(response) 
-        //     {
-        //         var obj = JSON.parse(response);
-        //         console.log(obj);
+        // $(".pay").show();
+        // $("#paydollar"+songId).hide();
+        var amount;
+        var id;
+        $.ajax({
+            url: "payment.php",
+            type: "POST",
+            data: {
+                payment: true,
+                songId: songId,
+                user: user,
+                email:email,
+                price:price,
+            },
+            success: function(data) 
+            {
+                console.log(data);
+                var obj = JSON.parse(data);
+                // console.log(obj.msg);
+                if(obj.msg.trim()=="ok")
+                {
+                    amount=obj.amount;
+                    id=obj.id;
+                    paypalbutton(price,cont,amount,id,songId)
+                }
+                else
+                {
+                    alert("Some error Occured!")
+                }
+               
                 
-        //     }
-        // });
+            }
+        });
     }
-
-    function paypalbutton(amount,container)
+    function paypalbutton(price,container,amount,id,song)
     {
         $(".payButton").each(function(){$(this).empty()});
         paypal.Buttons({
@@ -445,11 +671,35 @@ if($result =  $conn->query($sql))
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            alert('Transaction completed by ' + details.payer.name.given_name);
+            console.log(details.id);
+            console.log(details.payer.email_address);
+            console.log(details.payer.payer_id);
+            $.ajax({
+                url: "payment.php",
+                type: "POST",
+                data: {
+                    update: true,
+                    id: id,
+                    gateway: details.id,
+                    email : details.payer.email_address,
+                    payer_id : details.payer.payer_id,
+                    song:song,
+                },
+                success: function(data) 
+                {
+                    if(data.trim()=="ok")
+                    {
+                        // alert('Transaction completed by ' + details.payer.name.given_name);
+                        window.location.href="videoadd.php";
+                    }
+                    
+                }
+            });
           });
         }
       }).render('#'+container); // Display payment options on your web page
     }
+   
 
 
     var videoCounter = parseInt('<?=$counter?>');
