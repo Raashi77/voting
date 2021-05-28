@@ -45,7 +45,7 @@ function mergeVideoAudio($video,$audio,$filename)
     exec($cmd,$error);
     
         echo "running";
-        unlink("uploads/$video");
+        // unlink("uploads/$video");
         rename("/uploads/merged$filename","/uploads/$filename");
     
     
