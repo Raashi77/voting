@@ -127,6 +127,9 @@ if($result =  $conn->query($sql))
     {
         #modal-record{margin-top: 0px;}
         #fullSection{margin-bottom:20px}
+        video{width:60% !important}
+        #myVideo_html5_api, #myVideo1{width:100% !important}
+
     }
 </style>
 <div class="content-wrapper" style="margin-left:20px;">
@@ -497,8 +500,6 @@ var selectedSong =null;
             $(".vjs-tech").show();
             audio = new Audio('<?=$website_link?>/admin'+selectedSong);
             audioname="<?=$website_link?>/admin"+selectedSong;
-            console.log(audio)
-            console.log(audioname)
         }
         
     }
@@ -561,12 +562,8 @@ player.on('finishRecord', function() {
 
     function uploadBlob()
     {
-        console.log("shjxzk")
-        console.log(audioname)
-        console.log(videoBlob);
         if(videoBlob)
         {
-                console.log("check")
                 var data = new FormData();
                 data.append("video[]",videoBlob,'video.mp4')
                 data.append("audio",selectedSong)

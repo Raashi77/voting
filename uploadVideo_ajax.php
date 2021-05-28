@@ -50,7 +50,6 @@ require_once 'lib/core.php';
 
     if(isset($_POST['videoAudioMerge']))
     {
-        print_r($_FILES);
         $token = $_POST['token'];
         $USER_ID = $_POST['user_id'];
         $audio = $_POST['audio'];
