@@ -568,7 +568,7 @@ player.on('finishRecord', function() {
                 console.log("check")
                 var data = new FormData();
                 data.append("video[]",videoBlob,'video.mp4')
-                data.append("audio",audioname)
+                data.append("audio",selectedSong)
                 data.append("token",'<?=$token?>');
                 data.append("user_id",'<?=$USER_ID?>')
                 data.append("videoAudioMerge",true)
