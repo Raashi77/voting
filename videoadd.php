@@ -494,8 +494,8 @@ var audioname=null;
             $("#modal-body").hide();
             $(".video-js").show();
             $(".vjs-tech").show();
-            audio = new Audio('<?=$website_link?>'+selectedSong);
-            audioname="<?=$website_link?>"+selectedSong;
+            audio = new Audio('<?=$website_link?>/admin'+selectedSong);
+            audioname="<?=$website_link?>/admin"+selectedSong;
             console.log(audio)
             console.log(audioname)
         }
