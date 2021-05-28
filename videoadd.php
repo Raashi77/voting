@@ -482,9 +482,10 @@ if($result =  $conn->query($sql))
 // var audio = new Audio("http://localhost/voting/admin/uploads/Popoo.1617469107.WAV");
 var videoBLob=null;
 var audioname=null;
+var selectedSong =null;
     function proceed()
     {
-        var selectedSong=$("#selectSong").val();
+        selectedSong=$("#selectSong").val();
         if(selectedSong == 0)
         {
             alert("Please select a song!");
