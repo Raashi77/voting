@@ -10,6 +10,7 @@
                  $web_config = $row;
         }
     }
+
     if(isset($_SESSION['signed_in']))
     {
         $sql="select * from users where email='$email'";
