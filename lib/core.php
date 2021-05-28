@@ -885,7 +885,7 @@ function upload_audio($files,$conn,$table,$id_col,$column,$id,$images,$path)
 }
 function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 {   
-     print_r($_FILES);
+    
 	if(isset($_FILES[$images]))
     {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4", "webm");
@@ -899,7 +899,7 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                 $filename=basename($file_name,$ext);
                 $mp4name  = $filename.time();
                 $newFileName=$mp4name.".".$ext;
-                echo " ".$newFileName;
+                $newFileName;
 
                 if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
                 {
