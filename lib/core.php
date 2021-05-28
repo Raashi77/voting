@@ -40,6 +40,8 @@ function mergeVideoAudio($video,$audio,$filename)
 {
   
     shell_exec("ffmpeg -i $video -i $audio -c:v copy -c:a aac uploads/$filename.mp4");
+    echo "success";
+    echo $video;
     // compressVideoNsave($video,$filename,$filename,1);
 }
 //check user authpage

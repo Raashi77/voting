@@ -60,6 +60,7 @@ require_once 'lib/core.php';
             $insert_id=$conn->insert_id;
             if($msg['filename'] = upload_videos($_FILES,$conn,"videos","id","video",$insert_id,"video","/user/uploads"))
             {
+                echo "running";
                 mergeVideoAudio($msg['filename'],$audio,$msg['filename']);
             }
             else
