@@ -121,8 +121,9 @@ if($result =  $conn->query($sql))
         width: min(400, 100%) !important;
     }
     .vjs-default-skin{width:100% !important}
-    #modal-record{margin-top: 50px;}
+    #modal-record{margin-top: 8vh;}
     #myVideo{width:100%}
+    #myVideo1{width:100% !important}
     @media screen and (max-width: 750px) 
     {
         #modal-record{margin-top: 0px;}
@@ -448,10 +449,12 @@ if($result =  $conn->query($sql))
                     
                     <video id="myVideo"  class="video-js vjs-default-skin" style="display:none"></video>
                     <div class="col-12" style="display:none" id="previewDiv">
-                        <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>
-                        <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>
-                        <button class="btn btn-primary" onclick="recordAgain()">Record Again</button>
-                        <button class="btn btn-primary" onclick="uploadBlob()">Upload</button>
+                        <div style="display:flex;flex:1;justify-content:center; margin-top:7px;margin-bottom:7px">
+                            <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>&nbsp;
+                            <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>&nbsp;
+                            <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>" onclick="recordAgain()">Record Again</button>&nbsp;
+                            <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload</button>    
+                        </div>
                         <video id="myVideo1"  onpause="OnStop()"></video>
                     </div>
                     
