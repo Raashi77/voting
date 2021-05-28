@@ -568,7 +568,7 @@ player.on('finishRecord', function() {
         if(videoBlob)
         {
                 var data = new FormData();
-                data.append("video[]",videoBlob,'video.mp4')
+                data.append("video[]",videoBlob,'recordedandUploaded5am.mp4')
                 data.append("audio",selectedSong)
                 data.append("token",'<?=$token?>');
                 data.append("user_id",'<?=$USER_ID?>')
