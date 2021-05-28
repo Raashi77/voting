@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Kolkata');
 
 //for the databas
 $servername = "localhost";
-$username = "root_cyberflow";
+$username = "root";
 $password = "Kod#@}blaze245#~";
 //Kod#@}blaze245#~
 $dbname = "voting";
