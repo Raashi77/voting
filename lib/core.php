@@ -40,7 +40,8 @@ function mergeVideoAudio($video,$audio,$filename)
 {
   
     $error ='';
-     exec("ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/$filename.mp4'",$error);
+    echo $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/$filename.mp4'";
+     exec($cmd,$error);
     echo $error;
     
     // compressVideoNsave($video,$filename,$filename,1);
