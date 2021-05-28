@@ -39,9 +39,9 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 function mergeVideoAudio($video,$audio,$filename)
 {
   
-    shell_exec("ffmpeg -i $video -i $audio -c:v copy -c:a aac uploads/$filename.mp4");
+    shell_exec("ffmpeg -i uploads/$video -i $audio -c:v copy -c:a aac uploads/$filename.mp4");
     echo "success";
-    echo $video;
+    echo $audio;
     // compressVideoNsave($video,$filename,$filename,1);
 }
 //check user authpage
