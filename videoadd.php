@@ -479,8 +479,9 @@ if($result =  $conn->query($sql))
    var videoMaxLengthInSeconds = 120;
 
 // Inialize the video player
-var audio = new Audio("http://localhost/voting/admin/uploads/Popoo.1617469107.WAV");
+// var audio = new Audio("http://localhost/voting/admin/uploads/Popoo.1617469107.WAV");
 var videoBLob=null;
+var audioname=null;
     function proceed()
     {
         var selectedSong=$("#selectSong").val();
@@ -494,7 +495,9 @@ var videoBLob=null;
             $(".video-js").show();
             $(".vjs-tech").show();
             audio = new Audio("http://localhost/voting/admin"+selectedSong);
+            audioname="http://localhost/voting/admin"+selectedSong;
             console.log(audio)
+            console.log(audioname)
         }
         
     }
@@ -557,11 +560,18 @@ player.on('finishRecord', function() {
 
     function uploadBlob()
     {
+        console.log("shjxzk")
+        console.log(audioname)
         console.log(videoBlob);
         if(videoBlob)
         {
+                console.log("check")
                 var data = new FormData();
-                data.append("video",videoBlob)
+                data.append("video[]",videoBlob,'video.webm')
+                data.append("audio",audioname)
+                data.append("token",'<?=$token?>');
+                data.append("user_id",'<?=$USER_ID?>')
+                data.append("videoAudioMerge",true)
                 $.ajax({
                     url:'uploadVideo_ajax.php',
                     type:'post',
