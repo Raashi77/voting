@@ -512,7 +512,7 @@ var player = videojs("myVideo", {
             video: true,
             maxLength: videoMaxLengthInSeconds,
             debug: true,
-            videoMimeType: "video/webm;codecs=H264"
+            videoMimeType: "video/mp4"
         }
     }
 }, function(){
@@ -567,7 +567,7 @@ player.on('finishRecord', function() {
         {
                 console.log("check")
                 var data = new FormData();
-                data.append("video[]",videoBlob,'video.webm')
+                data.append("video[]",videoBlob,'video.mp4')
                 data.append("audio",audioname)
                 data.append("token",'<?=$token?>');
                 data.append("user_id",'<?=$USER_ID?>')
