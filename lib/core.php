@@ -38,6 +38,8 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 }
 function mergeVideoAudio($video,$audio,$filename)
 {
+    echo $video;
+    echo $audio;
     shell_exec("ffmpeg -i $video -i $audio -c:v copy -c:a aac $filename.mp4");
     // compressVideoNsave($video,$filename,$filename,1);
 }
