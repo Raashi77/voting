@@ -39,8 +39,8 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 function mergeVideoAudio($video,$audio,$filename)
 {
   
-    $error ='';
-    shell_exec("ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/$filename.mp4'",$error);
+    // $error ='';
+    $error = shell_exec("ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/$filename.mp4'");
     echo $error;
     
     // compressVideoNsave($video,$filename,$filename,1);
