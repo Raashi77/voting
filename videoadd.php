@@ -161,7 +161,7 @@ if($result =  $conn->query($sql))
 							</div>
 							<h3 class="headding-title"><?=$on_contest['name']?></h3> 
 							<div class="countdown-section">
-2								<div class="row">
+							    <div class="row">
 									<div class="offset-md-3 offset-sm-3 col-sm-6">
 										<div class="CountDownTimer" data-date="<?php
                                             echo $on_contest['end_date']." ".$on_contest['end_time'].":00"; 
@@ -388,8 +388,8 @@ if($result =  $conn->query($sql))
                     <div class="form-group">
                         
                         <center>
-                            <button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button>
-                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="recordBtn">Record Video </button></center> 
+                            <button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video <div id="uploadspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button>
+                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="recordBtn">Record Video <div id="recordspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button></center> 
                         <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
                         <input type="hidden" name ="add" value="dsbhvfs"/>
                      </div> 
@@ -453,7 +453,7 @@ if($result =  $conn->query($sql))
                             <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>&nbsp;
                             <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>&nbsp;
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>" onclick="recordAgain()">Record Again</button>&nbsp;
-                            <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload</button>    
+                            <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload <div id="spinspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button>    
                         </div>
                         <video id="myVideo1"  onpause="OnStop()"></video>
                     </div>
@@ -567,6 +567,7 @@ player.on('finishRecord', function() {
     {
         if(videoBlob)
         {
+                $("#spinspin").show()
                 var data = new FormData();
                 data.append("video[]",videoBlob,'recordedandUploaded5am.mp4')
                 data.append("audio",selectedSong)
@@ -583,6 +584,8 @@ player.on('finishRecord', function() {
                     success:function(data)
                     {
                         console.log(data);
+                        $("#spinspin").hide()
+                        window.location.href="videoadd?token=<?=$token?>";
                     },
                     error:function(data){
                         console.log(data);
@@ -691,7 +694,7 @@ player.on('finishRecord', function() {
                     if(data.trim()=="ok")
                     {
                         // alert('Transaction completed by ' + details.payer.name.given_name);
-                        window.location.href="videoadd.php";
+                        window.location.href="videoadd?token=<?=$token?>";
                     }
                     
                 }
