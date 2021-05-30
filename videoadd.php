@@ -455,6 +455,14 @@ if($result =  $conn->query($sql))
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>" onclick="recordAgain()">Record Again</button>&nbsp;
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload <div id="spinspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button>    
                         </div>
+                        <div class="row">
+                        <div class="col-md-12" id="progressDivSong" style="display:none">
+                            <label id="progresslabel">Uploading Song Please Wait ...</label>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBarSong" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
                         <video id="myVideo1"  onpause="OnStop()"></video>
                     </div>
                     
@@ -581,6 +589,23 @@ player.on('finishRecord', function() {
                     cache: false,
                     contentType: false,
                     processData: false,
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 100; 
+                                $("#progressBarSong").css("width", percentComplete + "%");
+                                
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    beforeSend: function() 
+                    {
+                        
+                            $("#progressDivSong").show();
+                         
+                    },
                     success:function(data)
                     {
                         console.log(data);
