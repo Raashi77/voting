@@ -417,7 +417,7 @@ if($result =  $conn->query($sql))
   </div>
   <div class="control-sidebar-bg"></div>
     
-  <div class="modal fade" id="modal-record" >
+  <div class="modal fade" id="modal-record"     data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -455,7 +455,7 @@ if($result =  $conn->query($sql))
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>" onclick="recordAgain()">Record Again</button>&nbsp;
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload</button>    
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-bottom:20px">
                         <div class="col-md-12" id="progressDivSong" style="display:none">
                             <label id="progresslabel">Uploading Video Please Wait ...</label>
                             <div class="progress">
