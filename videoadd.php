@@ -453,11 +453,11 @@ if($result =  $conn->query($sql))
                             <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>&nbsp;
                             <button class="btn btn-primary" onclick="stopPreviewVideo($('#myVideo1'))">Stop</button>&nbsp;
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>" onclick="recordAgain()">Record Again</button>&nbsp;
-                            <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload <div id="spinspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button>    
+                            <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload</button>    
                         </div>
                         <div class="row">
                         <div class="col-md-12" id="progressDivSong" style="display:none">
-                            <label id="progresslabel">Uploading Song Please Wait ...</label>
+                            <label id="progresslabel">Uploading Video Please Wait ...</label>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBarSong" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -575,7 +575,7 @@ player.on('finishRecord', function() {
     {
         if(videoBlob)
         {
-                $("#spinspin").show()
+              
                 var data = new FormData();
                 data.append("video[]",videoBlob,'recordedandUploaded5am.mp4')
                 data.append("audio",selectedSong)
@@ -595,7 +595,11 @@ player.on('finishRecord', function() {
                             if (evt.lengthComputable) {
                                 var percentComplete = (evt.loaded / evt.total) * 100; 
                                 $("#progressBarSong").css("width", percentComplete + "%");
-                                
+                                if(percentComplete==100)
+                                {
+                                    $("#progresslabel").html("Processing Video Please Wait...")
+
+                                }
                             }
                         }, false);
                         return xhr;
@@ -608,12 +612,12 @@ player.on('finishRecord', function() {
                     },
                     success:function(data)
                     {
-                        console.log(data);
-                        $("#spinspin").hide()
+                      
                         window.location.href="videoadd?token=<?=$token?>";
                     },
                     error:function(data){
-                        console.log(data);
+                        console.log(data);  
+                        $("#progresslabel").html("Something went Wrong While Uploading Video , Please try again ").css("color","red");
                     }
                 })
         }else
