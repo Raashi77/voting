@@ -763,7 +763,7 @@ player.on('finishRecord', function() {
         })
     }
 
-   function  disableVideoDelete(counter)
+    function  disableVideoDelete(counter)
     {
         if(counter==1)
         {

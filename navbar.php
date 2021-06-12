@@ -72,6 +72,7 @@
                                             <li><a href="contest-list">Ongoing</a></li>
                                             <li><a href="upcoming">Upcoming</a></li>
                                             </ul>
+                                            
                                         </li>
                                          <li><a href="about">About</a></li>
                                         <?php

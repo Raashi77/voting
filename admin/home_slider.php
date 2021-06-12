@@ -27,14 +27,15 @@
         $link=$_POST['elink'];
         $color=$_POST['ecolor'];
         $sort_order = $_POST['esort_order']; 
-        $sql="update home_slider set heading='$heading',sub_heading='$sub_heading',link='$link',sort_order='$sort_order', color='$color' where id='$id'"; 
+         $sql="update home_slider set heading='$heading',sub_heading='$sub_heading',link='$link',sort_order='$sort_order', color='$color' where id='$id'"; 
         if($conn->query($sql))
         {
             $resMember=true;   
-
-            if(upload_videos($_FILES,$conn,"home_slider","id","image",$id,"projectFile",""))
+            // $files,$conn,$table,$column,$id
+            if(upload_imageu($_FILES,$conn,"home_slider","image",$id))
             {
                 $resMember = "all_true";
+                // echo upload_imageu($_FILES,$conn,"home_slider","image",$id);
             }else
             {
                 $resMember = "files_left";
@@ -44,6 +45,7 @@
         {
             $errorMember=$conn->error;
         }
+        // echo $resMember;
     }
     $sql="select * from home_slider";
     $res= $conn->query($sql);
