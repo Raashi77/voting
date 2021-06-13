@@ -52,7 +52,7 @@
  		<section class="running_contest">
 
  		
- 			<div class="wallimg">
+ 			<div class="wallimg" style="background-image: url(./assets/image/wall.png);">
  				<img src="assets/image/shadowtriangle.png" class="img-fluid shadowtriangle" alt="Image">
  				<div class="contest_content">
  					<h2 class="text-light mr-5 pr-5">Our Running Contests</h2>
@@ -70,7 +70,7 @@
                            $id = $data['id'];
                 ?>
  				<div class="contest_right text-center">
-                    <h3><a href="contest.php?token=<?=$data['id']?>"><?=$data['name']?></a></h3>
+                    <h3><a href="contest.php?token=<?=$data['id']?>" target="_top"><?=$data['name']?></a></h3>
                     <p><?=$data['description']?></p>
  					<button class="primary_button" onclick="{window.location.href='contest<?=$id?>'}">View</button><br/>
                         <?php

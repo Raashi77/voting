@@ -82,6 +82,10 @@
                                                 console.log(time)
                                                 var minutes = Math.floor(time / 60);
                                                 var seconds = time - minutes * 60;
+												if(seconds < 10)
+												{
+													seconds = "0"+ seconds
+												}
                                                 $("#time"+id).html(minutes+":"+seconds);
                                             };
                                         }
@@ -93,17 +97,17 @@
  		               			    <div class="row">
  		               			    	<div class="col-6">
  		               			    		<i class="fas fa-plus"></i>
- 		               			    		<p id="currentTime<?=$song['id']?>">0:00</p>
+ 		               			    		<p id="currentTime<?=$song['id']?>" class="presentTime">0:00</p>
  		               			    	</div>
  		               			    	<div class="col-6 text-right">
  		               			    		<i class="fas fa-ellipsis-h"></i>
- 		               			    		<p id="time<?=$song['id']?>"></p>
+ 		               			    		<p id="time<?=$song['id']?>" class="totalTime">0:00</p>
  		               			    	</div>
  		               			    </div>
                                         
                                       <div class="text-center">
                                       <!-- /*onchange="mChange(<?=$song['id']?>)"*/ -->
- 		               			   	    <input id="dura<?=$song['id']?>" class="form-control" type="range" name="rng" min="0" step="0" value="0"   max="100" disabled>
+ 		               			   	    <input id="dura<?=$song['id']?>" class="form-control duraBar" type="range" name="rng" min="0" step="0" value="0"   max="100" disabled>
  		               			   </div>
 
 
@@ -213,7 +217,7 @@
 
  		               <div class="box1 box3">
  		               	<h2 class="text-light">Song Gallery</h2>
- 		               	<a href="allsongs" class="primary_button mt-3">All Songs</a>&nbsp;
+ 		               	<a href="allsongs" target="_top" class="primary_button mt-3" style="text-decoration:none!important">All Songs</a>&nbsp;
 						<?php
 							if(isset($_SESSION['signed_in']))
 							{
@@ -268,6 +272,7 @@
         audio.pause();
         $(".play_button").show();
         $(".pause_button").hide();
+		
     }
     function mChange(id)
     {
@@ -280,6 +285,9 @@
     function playAudio(path,id)
     {
         audio.pause();
+		$(".duraBar").val(0);
+		// $(".presentTime").html("0:00");
+		// $(".totalTime").html("0:00");
         audio = new Audio('admin'+path);
         audio.id = "mySong"+id;
         audio.preload = "metdata";
@@ -295,6 +303,19 @@
         $("#pauseButton"+id).show();
         // audio.currentTime=0;
         // mChange(id);
+		audio.preload="predata";
+		audio.onloadedmetadata = function() {
+			
+			var time = Math.round(audio.duration);
+			// console.log(time)
+			var minutes = Math.floor(time / 60);
+			var seconds = time - minutes * 60;
+			if(seconds < 10)
+			{
+				seconds = "0"+ seconds
+			}
+			$("#time"+id).html(minutes+":"+seconds);
+		};
         audio.addEventListener("timeupdate", function () {
 		var position = (100 / audio.duration) * audio.currentTime;
 		var current = audio.currentTime;
@@ -311,7 +332,7 @@
 		}
 		var currentLabel = currentMinute + ":" + currentSecond;
 		var indicatorLabel = currentLabel ;
-        $("#time"+id).html(durationLabel)
+        // $("#time"+id).html(durationLabel)
 		$("#dura"+id).attr("value", position-2 );
         // console.log(indicatorLabel);
 		$("#currentTime"+id).html(indicatorLabel);
@@ -320,6 +341,12 @@
 			$(".pause_button").hide();
 
 		});
+		// audio.addEventListener("pause", function () 
+		// {
+		// 	var currentLabel = currentMinute + ":" + currentSecond;
+		// 	var indicatorLabel = currentLabel ;
+		// 	$("#currentTime"+id).html(indicatorLabel);
+		// })
 	});
 
 

@@ -186,7 +186,7 @@
 
 
 	 section.running_contest .wallimg{
-	 	background-image: url(../assets/image/wall.png);
+	 	/* background-image: url('../assets/image/wall.jpeg'); */
 	 	    height: 650px;
 	 	    background-size: cover;
 	 	    background-repeat: no-repeat;
