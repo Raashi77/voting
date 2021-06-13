@@ -19,6 +19,7 @@
         {
             echo $conn->error;
         }
+		// print_r($songs);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,13 +120,16 @@
  		               			   	<div class="col-2">
  		               			   		<i class="fas fa-step-backward fontsize28"></i>
  		               			   	</div> -->
- 		               			   	<div class="col-4 play_button"  style="cursor:pointer" id="playButton<?=$song['id']?>"; onclick="playAudio('<?=$song['song']?>',<?=$song['id']?>)">
+ 		               			   	<!-- <div class="col-4 play_button"  style="cursor:pointer" id="playButton<?=$song['id']?>"; onclick="playAudio('<?=$song['song']?>',<?=$song['id']?>)">
  		               			   		<img src="assets/image/play_button.png" class="fontsize65" alt="Image">
  		               			   	</div>
                                     <div class="col-4 pause_button" style="cursor:pointer;display:none;" id="pauseButton<?=$song['id']?>" onclick="pauseAudio(<?=$song['id']?>)">
- 		               			   		<!-- <img src="assets/image/pause.png" class="fontsize65" alt="Image"> -->
                                         <i class="far fa-pause-circle " style="color:white;font-size:65px"></i>
- 		               			   	</div>
+ 		               			   	</div> -->
+									<center>
+										<i class="far fa-play-circle play_button" style="color:white;font-size:55px;cursor:pointer" id="playButton<?=$song['id']?>"; onclick="playAudio('<?=$song['song']?>',<?=$song['id']?>)"></i>
+										<i class="far fa-pause-circle pause_button" style="color:white;font-size:55px;cursor:pointer;display:none" id="pauseButton<?=$song['id']?>" onclick="pauseAudio(<?=$song['id']?>)"></i>	
+									</center>
  		               			   	<!-- <div class="col-2">
  		               			   		<i class="fas fa-step-forward fontsize28"></i>
  		               			   	</div>
