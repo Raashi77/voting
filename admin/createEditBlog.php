@@ -34,14 +34,14 @@
         $tags= $conn->real_escape_string($_POST["tags"]); 
         $cat = $conn->real_escape_string($_POST['cat']); 
         $fimage = $conn->real_escape_string($_POST['fimage']);
-        $sql="insert into blogs(name, title, image,long_description,short_des,tags,category,status) values('$name','$title','$fimage','$description','$short_des','$tags','$cat','1')";
+    echo    $sql="insert into blogs(name, title, image,long_description,short_des,tags,category,status) values('$name','$title','$fimage','$description','$short_des','$tags','$cat','1')";
         if($conn->query($sql))
         {
             $resBlog=true; 
         }
         else
         {
-            $errorBlog=true;
+            $errorBlog=$conn->error;
         }
         
     }       
@@ -135,7 +135,7 @@
             else if(isset($errorBlog))
             {
         ?>
-        <div class="alert alert-danger"><strong>Error! </strong>Due to some reason.</div>
+        <div class="alert alert-danger"><strong>Error! </strong><?=$errorBlog?></div>
         <?php
                 
             }

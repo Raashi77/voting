@@ -38,20 +38,10 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 }
 function mergeVideoAudio($video,$audio,$filename)
 {
-  
-    $error ='';
-    echo $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/merged$filename'";
-
-    if(shell_exec($cmd))
-    {
-        echo "running";
-        unlink("uploads/$video");
-        rename("/uploads/merged$filename","/uploads/$filename");
-    }
-    
-    print_r($error);
-    
-    // compressVideoNsave($video,$filename,$filename,1);
+   
+    $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/merged$filename'"; 
+    exec($cmd,$error); 
+    unlink("uploads/$video");  
 }
 //check user authpage
 function user_auth()
@@ -908,7 +898,8 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
             $ext=pathinfo($file_name,PATHINFO_EXTENSION); 
             if(in_array(strtolower($ext),$extension)) 
             {
-                $filename=basename($file_name,$ext);
+                echo $filename=basename($file_name,$ext);
+                
                 $mp4name  = $filename.time();
                 $newFileName=$mp4name.".".$ext;
                 $newFileName;
@@ -918,6 +909,11 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                      
                         $type = $_FILES[$images]["type"][$key];
                         $sql="update $table set  $column='uploads/$mp4name.mp4',file_type='$type' where $id_col=$id ";
+                        if($filename=='recordedandUploaded5am.')
+                        {
+                            $sql="update $table set  $column='uploads/merged$mp4name.mp4',file_type='$type' where $id_col=$id ";
+                        }
+                        
                       if($conn->query($sql)===true)
                       {
                           $status=$newFileName;

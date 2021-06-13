@@ -161,7 +161,7 @@ if($result =  $conn->query($sql))
 							</div>
 							<h3 class="headding-title"><?=$on_contest['name']?></h3> 
 							<div class="countdown-section">
-2								<div class="row">
+							    <div class="row">
 									<div class="offset-md-3 offset-sm-3 col-sm-6">
 										<div class="CountDownTimer" data-date="<?php
                                             echo $on_contest['end_date']." ".$on_contest['end_time'].":00"; 
@@ -388,8 +388,8 @@ if($result =  $conn->query($sql))
                     <div class="form-group">
                         
                         <center>
-                            <button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video </button>
-                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="recordBtn">Record Video </button></center> 
+                            <button type="button" class="btn btn-danger" onclick="$('#projectfile').click()" id="upldBtn">Upload Video <div id="uploadspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button>
+                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#modal-record" id="recordBtn">Record Video <div id="recordspin" style="display: none;" class="spinner-border" role="status"><span class="sr-only"></span></div></button></center> 
                         <input type="file" id='projectfile' name="projectFile[]" class="form-control" style="visibility:hidden"/>
                         <input type="hidden" name ="add" value="dsbhvfs"/>
                      </div> 
@@ -417,7 +417,7 @@ if($result =  $conn->query($sql))
   </div>
   <div class="control-sidebar-bg"></div>
     
-  <div class="modal fade" id="modal-record" >
+  <div class="modal fade" id="modal-record"     data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -455,6 +455,14 @@ if($result =  $conn->query($sql))
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>" onclick="recordAgain()">Record Again</button>&nbsp;
                             <button class="btn btn-primary" style="background-color:<?=$headingTextColorFirst?>;border-color:<?=$headingTextColorFirst?>"   onclick="uploadBlob()">Upload</button>    
                         </div>
+                        <div class="row" style="margin-bottom:20px">
+                        <div class="col-md-12" id="progressDivSong" style="display:none">
+                            <label id="progresslabel">Uploading Video Please Wait ...</label>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBarSong" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
                         <video id="myVideo1"  onpause="OnStop()"></video>
                     </div>
                     
@@ -567,8 +575,9 @@ player.on('finishRecord', function() {
     {
         if(videoBlob)
         {
+              
                 var data = new FormData();
-                data.append("video[]",videoBlob,'video.mp4')
+                data.append("video[]",videoBlob,'recordedandUploaded5am.mp4')
                 data.append("audio",selectedSong)
                 data.append("token",'<?=$token?>');
                 data.append("user_id",'<?=$USER_ID?>')
@@ -580,12 +589,35 @@ player.on('finishRecord', function() {
                     cache: false,
                     contentType: false,
                     processData: false,
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 100; 
+                                $("#progressBarSong").css("width", percentComplete + "%");
+                                if(percentComplete==100)
+                                {
+                                    $("#progresslabel").html("Processing Video Please Wait...")
+
+                                }
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    beforeSend: function() 
+                    {
+                        
+                            $("#progressDivSong").show();
+                         
+                    },
                     success:function(data)
                     {
-                        console.log(data);
+                      
+                        window.location.href="videoadd?token=<?=$token?>";
                     },
                     error:function(data){
-                        console.log(data);
+                        console.log(data);  
+                        $("#progresslabel").html("Something went Wrong While Uploading Video , Please try again ").css("color","red");
                     }
                 })
         }else
@@ -691,7 +723,7 @@ player.on('finishRecord', function() {
                     if(data.trim()=="ok")
                     {
                         // alert('Transaction completed by ' + details.payer.name.given_name);
-                        window.location.href="videoadd.php";
+                        window.location.href="videoadd?token=<?=$token?>";
                     }
                     
                 }

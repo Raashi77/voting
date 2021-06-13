@@ -71,13 +71,15 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 		}(window, document);
 	</script> 
 	<style>
-	h2, h5{
-		color: <?=$headingTextColorFirst?>;
-	}
-	p{
-		color: <?=$otherTextColor?>;
-	}
+		h2, h5{
+			color: <?=$headingTextColorFirst?>;
+		}
+		p
+		{
+			color: <?=$otherTextColor?>;
+		}
 	</style>
+
  
 	<div class="page-wrapper">
 		<!-- <div class="subscribe-popup">
