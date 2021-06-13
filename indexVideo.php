@@ -154,7 +154,7 @@
 							</div>
 						</div>
 						<div class='box1 box2'>
-							<img src='assets/image/triangle.png' height='280px;' width='110%' alt='Image'>
+							<img src='assets/image/shadowtriangle.png' height='280px;' width='110%' alt='Image'>
 						</div>
 						<div class='box1 box3'>
 							<h2 class='text-light'>Video Gallery</h2>
