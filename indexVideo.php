@@ -154,11 +154,11 @@
 							</div>
 						</div>
 						<div class='box1 box2'>
-							<img src='assets/image/shadowtriangle.png' height='560px;' width='110%' alt='Image'>
+							<img src='assets/image/shadowtriangle.png' height='100%' width='110%' alt='Image'>
 						</div>
 						<div class='box1 box3'>
 							<h2 class='text-light'>Video Gallery</h2>
-							<button class='primary_button mt-3'>View All</button>
+							<a href="videoGallery" target="_top" class='primary_button mt-3' style="text-decoration:none !important">View All</a>
 						</div>
 
 						<div class='box1 box3 text-center'>
@@ -198,7 +198,7 @@
 <script>
     
     
-    var video = $("#video"+75);
+    var video = null;
     function pauseVideo(id)
     {
         video[0].pause();
@@ -215,7 +215,10 @@
     }
     function playVideo(path,id)
     {
-        // video[0].pause();
+        if(video != null)
+		{
+			video[0].pause();
+		}
         video = $("#video"+id);
         video.preload = "metadata";
 		// console.log(video);
@@ -227,6 +230,19 @@
         $("#pauseButton"+id).show();
         // video.currentTime=0;
         // mChange(id);
+		video[0].preload="predata";
+		video[0].onloadedmetadata = function() {
+			
+			var time = Math.round(video[0].duration);
+			// console.log(time)
+			var minutes = Math.floor(time / 60);
+			var seconds = time - minutes * 60;
+			if(seconds < 10)
+			{
+				seconds = "0"+ seconds
+			}
+			$("#time"+id).html(minutes+":"+seconds);
+		};
         video[0].addEventListener("timeupdate", function () {
 		var position = (100 / video[0].duration) * video[0].currentTime;
 		var current = video[0].currentTime;
@@ -243,7 +259,7 @@
 		}
 		var currentLabel = currentMinute + ":" + currentSecond;
 		var indicatorLabel = currentLabel ;
-        $("#time"+id).html(durationLabel)
+        // $("#time"+id).html(durationLabel)
 		$("#dura"+id).attr("value", position-2 );
         // console.log(indicatorLabel);
 		$("#currentTime"+id).html(indicatorLabel);

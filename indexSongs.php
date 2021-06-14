@@ -227,7 +227,7 @@
 							{
 								?>
                                     <br><br>
-									<a href="yoursongs" class="primary_button mt-3">Your Songs</a>
+									<a href="yoursongs" target="_top" class="primary_button mt-3" style="text-decoration:none!important">Your Songs</a>
 								<?php
 							}
 						?>
