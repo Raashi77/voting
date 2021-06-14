@@ -12,6 +12,12 @@ require_once "navbar_new.php";
         <!-- video gallery -->
         <section class="">
             <section class="wrapperforvideo">
+                <!-- <div class='box1 box2'>
+                    <img src='assets/image/triangle.png' height='100%' width='110%' alt='Image'>
+                </div>
+                <div class='box1 box3'>
+                    <center><h2 class='text-light'>Video Gallery</h2></center>
+                </div> -->
                 <div class="box1">
                     <div class="row mb-4"  id="videosPlace">
                     </div>

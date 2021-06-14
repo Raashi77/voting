@@ -8,7 +8,8 @@ if(isset($_GET['fetch']))
     if(!isset($_GET['page']))
     {
         $page=1;
-    }else
+    }
+    else
     {
         $page = $_GET['page'];
     }
