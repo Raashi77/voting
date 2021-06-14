@@ -38,7 +38,7 @@
 	<!-- Shiv Style.css -->
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="icon" href="assets/image/logokb.png">
-	
+	<base target="_parent">
 	<style>
         #totop{display:none !important}
         .controls{bottom:-15px}
