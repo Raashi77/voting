@@ -520,7 +520,7 @@ var player = videojs("myVideo", {
     fluid: false,
     plugins: {
         record: {
-            audio: false,
+            audio: true,
             video: true,
             maxLength: videoMaxLengthInSeconds,
             debug: true,
@@ -793,7 +793,7 @@ player.on('finishRecord', function() {
         })
     }
 
-   function  disableVideoDelete(counter)
+    function  disableVideoDelete(counter)
     {
         if(counter==1)
         {
