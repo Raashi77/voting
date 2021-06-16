@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2021 at 09:36 PM
+-- Generation Time: Jun 16, 2021 at 06:30 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -62,13 +62,7 @@ CREATE TABLE `blog_categories` (
   `category` text DEFAULT NULL,
   `color` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `blog_categories`
---
-
-INSERT INTO `blog_categories` (`id`, `category`, `color`) VALUES
-(9, 'cat new', '#000000');
+-- Error reading data for table voting.blog_categories: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `voting`.`blog_categories`' at line 1
 
 -- --------------------------------------------------------
 
@@ -118,8 +112,8 @@ CREATE TABLE `contest` (
 
 INSERT INTO `contest` (`id`, `name`, `description`, `start_date`, `start_time`, `end_date`, `end_time`, `prize`, `status`) VALUES
 (17, 'ongoing', '   test test', '2021-05-20', '19:00', '2021-07-26', '20:00', '345', NULL),
-(24, 'BLAZE THE TRACK', '     rap your hardest \r\nthrow a hook the smartest \r\nwatch the ball grow ', '2021-04-29', '19:18', '2021-05-14', '21:30', '$500', 1),
-(25, 'test contest', 'test dscription   ', '2021-04-01', '00:59', '2021-06-01', '23:59', '30', 1);
+(24, 'BLAZE THE TRACK', '     rap your hardest \r\nthrow a hook the smartest \r\nwatch the ball grow ', '2021-04-29', '19:18', '2021-08-14', '21:30', '$500', 1),
+(25, 'test contest', 'test dscription   ', '2021-04-01', '00:59', '2021-08-01', '23:59', '30', 1);
 
 -- --------------------------------------------------------
 
@@ -523,10 +517,10 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`id`, `u_id`, `c_id`, `video`, `status`, `file_type`, `time_stamp`) VALUES
-(75, 9, 16, 'uploads/trim.C617E2B5-D792-4543-B7B4-77BD350DD5D5.1615861314.1615972453.1617134892.mp4', 1, 'video/mp4', '2021-03-30 20:08:12'),
+(75, 9, 16, 'uploads/vid1.mp4', 1, 'video/mp4', '2021-06-14 14:19:29'),
 (76, 9, 16, 'uploads/trim.C617E2B5-D792-4543-B7B4-77BD350DD5D5.1615861314.1617172885.mp4', 1, 'video/quicktime', '2021-03-31 06:41:25'),
 (77, 9, 16, 'uploads/trim.C617E2B5-D792-4543-B7B4-77BD350DD5D5.1615861314.1617172917.mp4', 1, 'video/quicktime', '2021-03-31 06:41:57'),
-(78, 11, 20, 'uploads/63916497978__4CF2BC9C-EBC6-47AD-B290-A8E83D737C19.1617472193.mp4', 1, 'video/quicktime', '2021-04-03 17:49:53'),
+(78, 11, 20, 'uploads/vid2.mp4', 1, 'video/quicktime', '2021-06-14 14:18:05'),
 (81, 14, 20, 'uploads/VID_63200605_102640_738.1617616152.mp4', 1, 'video/mp4', '2021-04-05 09:49:12'),
 (82, 14, 20, 'uploads/VID_63210504_080903_591.1617616754.mp4', 1, 'video/mp4', '2021-04-05 09:59:14'),
 (83, 13, 20, 'uploads/VID_78500917_052531_688.1617629408.mp4', 1, 'video/mp4', '2021-04-05 13:30:08'),
@@ -534,11 +528,10 @@ INSERT INTO `videos` (`id`, `u_id`, `c_id`, `video`, `status`, `file_type`, `tim
 (85, 13, 20, 'uploads/VID_78520412_114228_648.1617629480.mp4', 1, 'video/mp4', '2021-04-05 13:31:20'),
 (86, 15, 20, 'uploads/trim.56C97E7D-D2FF-46B1-89F2-BD372DCE3F85.1617731356.mp4', 1, 'video/quicktime', '2021-04-06 17:49:16'),
 (87, 16, 20, 'uploads/trim.3F316480-CA85-412D-9593-75C71A11C39E.1617733877.mp4', 1, 'video/quicktime', '2021-04-06 18:31:17'),
-(88, 17, 20, NULL, 1, NULL, '2021-04-10 02:39:57'),
 (90, 17, 17, 'uploads/64002952703__E120AA28-A128-433B-BCE6-7F0E4BB42826.1618336736.mp4', 1, 'video/quicktime', '2021-04-19 09:26:25'),
-(91, 19, 16, 'uploads/VID_63371020_150206_987.1618825245.mp4', 1, 'video/mp4', '2021-04-19 09:40:45'),
-(92, 20, 17, 'uploads/DEF64EFD-4B45-4CDD-9F7D-5D1574B81A37_2_0_a.1619756998.mp4', 1, 'video/quicktime', '2021-04-30 04:29:58'),
-(93, 22, 17, 'uploads/video.1622211560.mp4', 1, 'video/x-matroska', '2021-05-28 14:19:20');
+(91, 19, 16, 'uploads/vid2.mp4', 1, 'video/mp4', '2021-06-14 13:33:47'),
+(92, 20, 17, 'uploads/vid1.mp4', 1, 'video/quicktime', '2021-06-14 13:32:41'),
+(93, 22, 17, 'uploads/pancha1m.mp4', 1, 'video/x-matroska', '2021-06-14 13:32:09');
 
 -- --------------------------------------------------------
 

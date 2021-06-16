@@ -521,7 +521,7 @@ var player = videojs("myVideo", {
     fluid: false,
     plugins: {
         record: {
-            audio: false,
+            audio: true,
             video: true,
             maxLength: videoMaxLengthInSeconds,
             debug: true,
