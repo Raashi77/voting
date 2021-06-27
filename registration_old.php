@@ -1,6 +1,6 @@
 <?php
-        require_once "header_new.php";
-        require_once "navbar_new.php";
+  require_once "header.php";
+  require_once "navbar.php";
     
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
@@ -59,7 +59,7 @@
 ?> 
   
     <!-- Inner Page Header serction start here -->
-    <!-- <div class="inner-page-header">
+    <div class="inner-page-header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -76,29 +76,8 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- Inner Page Header serction end here -->
-
-
-                <!-- Registration wala triangle -->
-               <section class="wrapperforaudio" style="height:40vh;">
-                      
-                       <div class="box1 box2">
-                        <img src="assets/image/shadowtriangle.png" class="img-fluid" alt="Image">
-                       </div>
-
-                       <div class="box1 box3 mx-0 pl-lg-5 ml-lg-5">
-                            <h2 class="text-light p-5 mt-3">Login and Registration</h2>
-                            <!-- <button class="primary_button mt-3 ml-4">Ongoing</button> -->
-                       </div>
-
-                       
-                   </section>
-                   <!-- end registration wala trianagle -->
-
-
-
-
     <br>
 
 
@@ -106,10 +85,10 @@
     <div class="loginregistration-area pt-100 pb-100">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 mb-sm-30 mb-5">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-sm-30">
                     <div class="login-area">
                     
-                        <h2 style="font-family: Deadly;">Login</h2>
+                        <h2>Login</h2>
                         <?php
                             if(isset($resMember))
                             {
@@ -152,7 +131,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <button class="primary_button py-2 px-5" type="submit" name="login">Login</button>
+                                        <button class="btn-send" type="submit" name="login">Login</button>
                                     </div>
                                 </div>
                             </fieldset>
@@ -161,7 +140,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="registration-area">
-                        <h2 style="font-family: Deadly;">Registration</h2>
+                        <h2>Registration</h2>
                         <div class="alert alert-danger" id="pchange" style="display: none;"><strong>Error!
                             </strong>Password Mismatched</div>
                         <?php
@@ -208,7 +187,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <button class="primary_button py-2 px-5" name="sign_up" id="sign_up" onclick="passcheck()"
+                                        <button class="btn-send" name="sign_up" id="sign_up" onclick="passcheck()"
                                             type="button">Sign Up!</button>
                                     </div>
                                 </div>
@@ -221,10 +200,11 @@
     </div>
     <!-- Login and Registration End Here -->
 
-    <?php 
-            require_once "footer_new.php";
-            require_once "javascript.php";
-    ?>
+  <?php
+    require_once 'footer.php';
+    require_once 'js-links.php';
+  
+  ?>
 </html>
 
 <script>

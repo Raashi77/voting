@@ -9,15 +9,15 @@ error_reporting(1);
 date_default_timezone_set('Asia/Kolkata');
 
 //for the databas
-$servername = "localhost";
-$username = "root";
-$password = "Kod#@}blaze245#~";
-//Kod#@}blaze245#~
-$dbname = "voting";
+// $servername = "localhost";
+// $username = "root";
+// $password = "Kod#@}blaze245#~";
+// //Kod#@}blaze245#~
+// $dbname = "voting";
 
-// $username = "root_dubuddy";
-//$password = "";
-// $dbname = "voting_dubuddy";
+$username = "root";
+$password = "";
+$dbname = "cyberflow_voting";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

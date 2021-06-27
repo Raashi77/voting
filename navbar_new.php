@@ -31,9 +31,10 @@
 
 .dropdown-content a:hover {background-color: #ddd;}
 
-#contests:hover #contestsDown{display: block;}
+#contests:hover #contestsDown{display: block; z-index: 20;}
 #songs:hover #songsDown{display: block;}
 #login:hover #loginDown{display: block;}
+
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
  </style>
