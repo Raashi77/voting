@@ -40,13 +40,17 @@
 
 				
 
-
- 		
-
-
-<!-- http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4 -->
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base target="_parent">
+</head>
+<body>
+    
 
  	<!-- our running contest -->
  		<section class="running_contest">
@@ -134,4 +138,5 @@
  <?php 
  		require_once "javascript.php";
   ?>
-  
+  </body>
+</html>
