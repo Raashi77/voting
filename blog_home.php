@@ -1,6 +1,11 @@
 <?php
- require_once 'header.php';
- require_once 'navbar.php';  
+ // require_once 'header.php';
+ // require_once 'navbar.php';
+
+    require_once "header_new.php";
+    require_once "navbar_new.php";
+
+
 $sql = "select b.id,b.title,b.image,bc.category as bc_category,bc.color,b.timestamp from blogs as b,blog_categories bc where status=1 and featured=1 and b.category=bc.id order by b.timestamp limit 4";
 $result = $conn->query($sql);
 if ($result->num_rows) {
@@ -164,8 +169,10 @@ if($result->num_rows)
         </div> -->
         
         <?php
-        require_once 'header.php';
-        require_once 'navbar.php';  
+        // require_once 'header.php';
+        // require_once 'navbar.php';
+            require_once "header_new.php";
+            require_once "navbar_new.php"; 
          if (isset($featuredBlog)) {
         ?>
         <div class="section no-padding">
@@ -715,7 +722,10 @@ if($result->num_rows)
         <a href="#Navigation" class="up-button w-inline-block"></a>
     </div>
     <?php
-    require_once 'js-links.php';
+    // require_once 'js-links.php';
+
+        require_once "footer_new.php";
+        require_once "javascript.php";
     ?>
      
 </body>

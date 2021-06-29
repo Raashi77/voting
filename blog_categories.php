@@ -1,7 +1,10 @@
 <?php
 
-require_once 'header.php';
-require_once 'navbar.php';  
+// require_once 'header.php';
+// require_once 'navbar.php'; 
+
+    require_once "header_new.php";
+    require_once "navbar_new.php";
 
 
 
@@ -69,10 +72,10 @@ require_once 'navbar.php';
     <div class="page-wrapper">
         
         
-        <div id="Hero" class="section hero about-hero">
+        <div id="Hero" class="section hero about-hero py-5" style="background-color: #212529;">
             <div class="wrapper w-container">
-                <div class="page-intro">
-                    <h1 class="page-heading"><?=ucfirst($token)?></h1>
+                <div class="page-intro py-3">
+                    <h1 class="page-heading" style="font-family: Deadly;"><?=ucfirst($token)?></h1>
                     <!-- <h1 class="page-heading"> Category</h1> -->
                 </div>
             </div>
@@ -213,8 +216,11 @@ require_once 'navbar.php';
         </div> 
         <a href="#Navigation" class="up-button w-inline-block"></a>
     </div>
-    <?php
-        require_once 'js-links.php';
+
+    <?php 
+            // require_once 'js-links.php';
+            require_once "footer_new.php";
+            require_once "javascript.php";
     ?>
     </body>
  

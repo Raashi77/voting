@@ -62,8 +62,8 @@
       <li class="nav-item" id="contests">
         <a class="nav-link" href="#">Contests</a>
         <div class="dropdown-content" id="contestsDown">
-          <a href="contest-list">Ongoing</a>
-          <a href="upcoming">Upcoming</a>
+          <a href="contest-page?action=ongoing">Ongoing</a>
+          <a href="contest-page?action=upcoming">Upcoming</a>
         </div>
       </li>
       <li class="nav-item">
