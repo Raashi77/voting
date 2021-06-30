@@ -3,12 +3,7 @@
 require_once "header_new.php";
 require_once "navbar_new.php";
 
-
 ?>
-
-
-
-
         <!-- video gallery -->
         <section class="">
             <section class="wrapperforvideo">
@@ -24,14 +19,11 @@ require_once "navbar_new.php";
                     <div id="alert"></div>
                 </div>
             </section>
-           
         </section>
-            <!-- video gallery end -->
-
+        <!-- video gallery end -->
 <?php 
     require_once "javascript.php";
 ?>
-
 <script>
     var page = 1;
     var noRows = "do";

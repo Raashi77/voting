@@ -465,7 +465,6 @@ if($result =  $conn->query($sql))
                     </div>
                         <video id="myVideo1"  onpause="OnStop()"></video>
                     </div>
-                    
         
          
 
@@ -521,7 +520,7 @@ var player = videojs("myVideo", {
     fluid: false,
     plugins: {
         record: {
-            audio: false,
+            audio: true,
             video: true,
             maxLength: videoMaxLengthInSeconds,
             debug: true,
@@ -725,7 +724,6 @@ player.on('finishRecord', function() {
                         // alert('Transaction completed by ' + details.payer.name.given_name);
                         window.location.href="videoadd?token=<?=$token?>";
                     }
-                    
                 }
             });
           });

@@ -1,6 +1,6 @@
 <?php 
 
-	require_once "header_new.php";
+	require_once "./lib/core.php";
 
 	$date=date('Y-m-d');
     $time = date('H:i');
@@ -17,8 +17,21 @@
     }
     else
     {
-        echo $conn->error;
+        $error= $conn->error;
     }   
+    $sql="SELECT count(c.id) as ongoing from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id limit 6";
+    if($result =  $conn->query($sql))
+    {
+        if($result->num_rows)
+        {
+            $ongoing = $result->fetch_assoc();       
+        }
+    }
+    else
+    {
+        $error= $conn->error;
+    } 
+    // print_r($on_contest);
     $sql="select c_id from videos v where v.u_id='$USER_ID'";
     if($result =  $conn->query($sql))
     {
@@ -33,51 +46,92 @@
     }
     else
     {
-        echo $conn->error;
+        $error= $conn->error;
     }
+    $disp = "none";
  ?>
 
 
 				
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <base target="_parent">
-</head>
-<body>
-    
-
- 	<!-- our running contest -->
- 		<section class="running_contest">
 
  		
- 			<div class="wallimg" style="background-image: url(./assets/image/wall.png);">
- 				<img src="assets/image/shadowtriangle.png" class="img-fluid shadowtriangle" alt="Image">
- 				<div class="contest_content">
- 					<h2 class="text-light mr-5 pr-5">Our Running Contests</h2>
- 					<button class="primary_button mt-3" onclick="{window.location.href='contest-list.php'}">Ongoing</button>
- 				</div>
-                 <?php
+<!DOC   TYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kodi Blaze</title>
+
+
+	<!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	 	 <!-- Slick CSS -->
+	    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+	<!-- Shiv Style.css -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="icon" href="assets/image/logokb.png">
+	<base target="_parent">
+	<style>
+        #totop{display:none !important}
+        .controls{bottom:-15px}
+        @media only screen and (max-width: 600px)
+        {
+            .controls{bottom:30px}           
+        }
+    </style>
+</head>
+
+
+
+
+
+ <body style="overflow-y:hidden;overflow-x:hidden !important">
+
+
+<!-- http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4 -->
+
+
+
+ 	<!-- our running contest -->
+     <section class="wrapperforaudio">
+ 		           <div class="box1">
+ 		           	<div class="row audioslick mt-5 pt-5" style="margin-top:0 !important;padding-top:0 !important;">
+
+                        <?php
                    if(isset($on_contest))
                    {
+                       $disp = "";
+                       if($ongoing['ongoing'] == 1)
+                       {
+                           $col = 12;
+                           $disp = "none";
+                       }
+                       else if($ongoing['ongoing'] == 2)
+                       {
+                           $col = 6;
+                           $disp = "none";
+                       }
+                       else if($ongoing['ongoing'] == 3)
+                       {
+                           $col = 4;
+                           $disp = "none";
+                       }
+                       else if($ongoing['ongoing'] > 3)
+                        {
+                            $disp = "initial";
+                        }                       
+
                        foreach($on_contest as $data)
                        {
                            
-                           $date1 = $contest['start_date']." ".$contest['start_time'].":00";
-                           $date2 = $contest['end_date']." ".$contest['end_time'].":00"; 
-                           $diff = abs(strtotime($date2) - strtotime($date1));
+                           $date1 = date("M d Y",strtotime($data['start_date']))." ".$data['start_time'].":00";
+                           $date2 = date("M d Y",strtotime($data['end_date']))." ".$data['end_time'].":00"; 
+                        //    $diff = abs(strtotime($date2) - strtotime($date1));
                            $id = $data['id'];
-                ?>
- 				<div class="contest_right text-center">
-                    <h3><a href="contest.php?token=<?=$data['id']?>" target="_top"><?=$data['name']?></a></h3>
-                    <p><?=$data['description']?></p>
- 					<button class="primary_button" onclick="{window.location.href='contest<?=$id?>'}">View</button><br/>
-                        <?php
+                
                             if(isset($_SESSION['signed_in']))
                             {
                                 if(isset($joined_contest))
@@ -108,25 +162,69 @@
                                 $title = "Join For Free";
                         
                             }
+                        
                         ?>
-                    <button class="primary_button mt-3" onclick="{window.location.href='<?=$link?>'}"><?=$title?></button>
- 				</div>
 
- 				<div class="contest_bottom">
- 					<img src="assets/image/headphone.png" class="contest-img" alt="Image">
- 					<img src="assets/image/person_front.png" class="contest-img" alt="Image">
- 					<img src="assets/image/rocking_hand.png" class="contest-img"  alt="Image">
- 					<!-- <img src="assets/image/person_looking_right.png" class="contest-img" alt="Image"> -->
- 					<img src="assets/image/mic.png" class="contest-img" alt="Image">
- 				</div>
-                 <?php
-                       }
+ 		           	
+ 		           	<div class="col-lg-<?=$col?> mt-5">
+ 		           		<div class="p-4">
+
+ 		           			<div class="card" style="border-radius: 20px;">
+ 		           			  <img class="card-img-top p-2" src="<?=$data['header_image']?>" alt="Card image cap" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+ 		           			  <div class="card-body pb-0">
+ 		           			    <h3 class="card-title"><?=$data['name']?></h3>
+ 		           			    <div class="d-flex">
+ 		           			    	<p class="card-text mr-3"><small class="text-muted"><i class="far fa-calendar-check"></i> <?=$date1?></small></p>
+ 		           			    	<p class="card-text"><small class="text-muted"><i class="far fa-calendar-check"></i> <?=$date2?></small></p>
+ 		           			    </div>
+ 		           			    <p class="card-text"><?=$data['description']?></p>
+ 		           			  </div>
+ 		           			  <div class="text-center mb-2">
+ 		           			  	<button class="primary_button mt-3" style="font-size: 18px;cursor:pointer" onclick="{window.parent.location.href='contest<?=$id?>'}">View</button>
+ 		           			  	<button class="primary_button mt-3" style="font-size: 18px;cursor:pointer" onclick="{window.parent.location.href='<?=$link?>'}">Join For Free</button>
+ 		           			  </div>
+ 		           			</div>
+
+ 		           		</div>
+ 		           	</div>
+ 		           	<!-- lg-4 end -->
+                    <?php
+                        }
                     }
-                 ?>
- 			</div>
+                    ?>
+ 		           	</div>
+ 		           </div>
+ 		           <div class="box1 box2">
+ 		           	<img src="assets/image/shadowtriangle.png" class="img-fluid" alt="Image">
+ 		           </div>
 
+ 		           <div class="box1 box3">
+	 		           	<h2 class="text-light mr-5 pr-5">Our Running Contests</h2>
+	 		           	<button class="primary_button mt-3">Ongoing</button>
+ 		           </div>
 
- 		</section>
+ 		           
+ 		       </section>
+                <div style=" padding-bottom: 50px;padding-top:0 !important;margin-top:0 !important;display:<?=$disp?>">
+ 		        	<div class="container-fluid" style="position:  absolute; bottom: 0; background-color: #1b191e">
+ 		        		<div class="container audiocontroller">
+ 		        			<div class="row text-center text-light">
+ 		        				<div class="col-4 pt-2">
+ 		        					<i class="fas fa-chevron-left" style="font-size: 34px;"></i>
+ 		        				</div>
+ 		        				<div class="col-4">
+ 		        					<p style="font-size: 34px; font-weight: bolder;">|</p>
+ 		        				</div>
+ 		        				<div class="col-4 pt-2">
+ 		        						<i class="fas fa-chevron-right" style="font-size: 34px;"></i>
+ 		        				</div>
+ 		        			</div>
+ 		        		</div>
+ 		        	</div>
+ 		        </div>
+ 			
+                 
+                       
  	<!-- our running end -->
 
 

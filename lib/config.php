@@ -21,17 +21,15 @@ $password = "";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
  
 // Check connection
 if($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 }
+
 //website link
-
 $website_link="https://kodiblaze.com";
-
 
 $paypalConfig = [
     'email' => 'vansh10patpatia@gmail.com',
@@ -43,8 +41,6 @@ $paypalConfig = [
 $enableSandbox = true;
 
 $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
-
-
 
 //page value; 
 ?>
