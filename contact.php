@@ -43,7 +43,7 @@
 
 
          <!-- contact wala triangle -->
-        <section class="wrapperforaudio" style="height:50vh;">
+        <!-- <section class="wrapperforaudio" style="height:50vh;">
                
                 <div class="box1 box2">
                  <img src="assets/image/shadowtriangle.png" class="img-fluid" alt="Image">
@@ -51,17 +51,29 @@
 
                 <div class="box1 box3 mx-0 px-0">
                      <h2 class="text-light p-5 px-0 mx-0 mt-3">Contact Page</h2>
-                     <!-- <button class="primary_button mt-3 ml-4">Ongoing</button> -->
                 </div>
 
                 
-            </section>
+            </section> -->
             <!-- end contact wala trianagle -->
+
+
+            <!-- contest page header part -->
+
+            <div class="py-5" style="background-color: #212529">
+                <div class="text-center">
+                    <h1 class="text-light py-5" style="font-family: Deadly;">
+                       Contact Page
+                    </h1>
+                </div>
+            </div>
+
+            <!-- header title part end -->
 
 
 
 <!-- Contact Us page Start Here -->
-<div class="contact-us-page-area pt-100 pb-100">
+<div class="contact-us-page-area pb-100">
     <div class="container">
         <?php
             if(isset($success))

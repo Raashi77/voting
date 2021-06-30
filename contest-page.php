@@ -84,7 +84,7 @@
 
 
      <!-- Contest page wala triangle -->
-    <section class="wrapperforaudio" style="height:80vh;">
+   <!--  <section class="wrapperforaudio" style="height:80vh;">
            
             <div class="box1 box2">
              <img src="assets/image/shadowtriangle.png" class="img-fluid" alt="Image">
@@ -104,12 +104,34 @@
 
                       ?>
                  </h2>
-                 <!-- <button class="primary_button mt-3 ml-4">Ongoing</button> -->
             </div>
 
             
-        </section>
+        </section> -->
         <!-- end contest page wala trianagle -->
+
+
+        <!-- contest page header part -->
+
+        <div class="py-5" style="background-color: #212529">
+            <div class="text-center">
+                <h1 class="text-light py-5" style="font-family: Deadly;">
+                   <?php 
+
+                      if($action == "ongoing"){
+                          echo "Ongoing contest";
+                      } else if($action == "upcoming") {
+                          echo "Upcoming Contest";
+                      } else {
+                          echo "Not Valid Action!";
+                      }
+
+                    ?> 
+                </h1>
+            </div>
+        </div>
+
+        <!-- header title part end -->
 
 
         <!-- ongoing contest content start -->

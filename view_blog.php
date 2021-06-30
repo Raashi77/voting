@@ -144,7 +144,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 			</div>
 			<div class="post-hero-gradient"></div>
 		</div>
-		<div class="section">
+		<div class="section bg-dark">
 			<div class="wrapper w-container">
 				<div class="post-wrapper">
 					<div class="post-content">
