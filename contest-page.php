@@ -190,23 +190,7 @@
                                                         </div>
                                                        
                                                     </div>
-                                                    <!-- <section class="content" >
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-12 mb-50">
-                                                                <div class="single-section text-center">
-                                                                   <div class="countdown-section">
-                                                                        <div class="row">
-                                                                            <div class="offset-md-3 offset-sm-3 col-sm-6">
-                                                                                <div class="CountDownTimer" data-date="<?php
-                                                                                    echo $on_contest['end_date']." ".$on_contest['end_time'].":00"; 
-                                                                                ?>"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>     -->
+                                                    
                                                     <p class="des"><?=$contest['description']?></p>
                                                     <div class="link-section">
                                                         <a href="contest<?=$contest['id']?>" class="read-btn primary-btn mr-10">View</a>
