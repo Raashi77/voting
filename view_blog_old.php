@@ -1,10 +1,6 @@
 <?php
- // require_once 'header.php';
- // require_once 'navbar.php';
-
-	require_once "header_new.php";
-    require_once "navbar_new.php";
-
+ require_once 'header.php';
+ require_once 'navbar.php';  
 if(isset($_GET['token'])&&!empty($_GET['token']))
 {
 	$token=$_GET['token'];
@@ -107,9 +103,9 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 			</div>
 			<div data-w-id="8320a785-99cd-bbdc-fd84-db16e1cc82eb" class="popup-overlay"></div>
 		</div> -->
-		<!-- <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation" data-w-id="68906341-c776-5606-916e-b44fde4e642a" role="banner" class="nav-bar-v1 w-nav">
+		<div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation" data-w-id="68906341-c776-5606-916e-b44fde4e642a" role="banner" class="nav-bar-v1 w-nav">
 			<div class="wrapper nav-bar-v1-wrapper"><a href="#" class="nav-brand-v1 w-nav-brand"><img src="admin/<?=$web_config['logo']?>" alt="" class="nav-logo" />
-					
+					<!-- <div class="nav-logo-text">DU Buddy</div> -->
 				</a>
 				<nav role="navigation" class="nav-menu-v1 w-nav-menu">
 					<div data-hover="1" data-delay="400" class="dropdown w-dropdown">
@@ -126,7 +122,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<div id="Hero" style="background-image:url(<?=$blog['image']?>)" class="section post-hero-section">
 			<div class="wrapper">
 				<div class="post-hero-content"><a style="background-color:<?=$blog['color']?>" href="blog_categories?cat=<?=$blog['bc_category']?>" class="badge"><?=$blog['bc_category']?></a>
@@ -276,12 +272,9 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 			</div>
 		</div>
 	</div>
-
 	<?php
-		// require_once "js-links.php";
-        require_once "footer_new.php";
-        require_once "javascript.php";
-?>
+		require_once "js-links.php";
+	?>
 	<!-- <script src="./js/blog_new.js" type="text/javascript"></script> -->
 </body>
 </html>

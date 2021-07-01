@@ -1,6 +1,6 @@
 <?php
-    require_once "header_new.php";
-    require_once "navbar_new.php";
+require_once "header.php";
+require_once "navbar.php";
 
 $sql="select * from  songs  ";
     if($result=$conn->query($sql))
@@ -47,7 +47,7 @@ $sql="select * from  songs  ";
             </div>
         </div>
         <center>
-            <h2 class="text-light">
+            <h2>
             All Songs
             </h2>
         </center>
@@ -167,9 +167,8 @@ $sql="select * from  songs  ";
   </div>
   <div class="control-sidebar-bg"></div>
     
-  <?php 
-        require_once "footer_new.php";
-        require_once "javascript.php";
+  <?php
+    require_once 'js-links.php';
   ?>
   <script src="https://www.paypal.com/sdk/js?client-id=AVD9ZGSM4bsCuPWbHu_WWeZjwY5KeN-XZSvD8hBW1w4aFcyQE7mcpQnFRk_dJ8TW20LnKgOnG1c5kBgc&locale=en_US&currency=USD&debug=true"></script>
   <script>

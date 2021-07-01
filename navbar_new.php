@@ -31,9 +31,10 @@
 
 .dropdown-content a:hover {background-color: #ddd;}
 
-#contests:hover #contestsDown{display: block;}
+#contests:hover #contestsDown{display: block; z-index: 20;}
 #songs:hover #songsDown{display: block;}
 #login:hover #loginDown{display: block;}
+
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
  </style>
@@ -61,8 +62,8 @@
       <li class="nav-item" id="contests">
         <a class="nav-link" href="#">Contests</a>
         <div class="dropdown-content" id="contestsDown">
-          <a href="contest-list">Ongoing</a>
-          <a href="upcoming">Upcoming</a>
+          <a href="contest-page?action=ongoing">Ongoing</a>
+          <a href="contest-page?action=upcoming">Upcoming</a>
         </div>
       </li>
       <li class="nav-item">

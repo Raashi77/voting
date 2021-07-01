@@ -1,6 +1,6 @@
 <?php
-    require_once "header_new.php";
-    require_once "navbar_new.php";
+     require_once 'header.php';
+     require_once 'navbar.php';  
 
 
      if(isset($_POST['query']))
@@ -21,7 +21,7 @@
 
      }
 ?>
-<!-- <div class="inner-page-header">
+<div class="inner-page-header">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -38,27 +38,8 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- Inner Page Header serction end here -->
-
-
-         <!-- contact wala triangle -->
-        <section class="wrapperforaudio" style="height:50vh;">
-               
-                <div class="box1 box2">
-                 <img src="assets/image/shadowtriangle.png" class="img-fluid" alt="Image">
-                </div>
-
-                <div class="box1 box3 mx-0 px-0">
-                     <h2 class="text-light p-5 px-0 mx-0 mt-3">Contact Page</h2>
-                     <!-- <button class="primary_button mt-3 ml-4">Ongoing</button> -->
-                </div>
-
-                
-            </section>
-            <!-- end contact wala trianagle -->
-
-
 
 <!-- Contact Us page Start Here -->
 <div class="contact-us-page-area pt-100 pb-100">
@@ -77,14 +58,14 @@
         <?php
                 }
         ?>
-       <!--  <div class="row">
+        <div class="row">
 
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="contact-us-page">
                     <h2>Contact Information</h2>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="row contact-box">
             <div class="col-lg-4 col-md-4 col-sm-12">
@@ -116,7 +97,7 @@
 
         <div class="contact-section">
             <div class="leave-comments-area">
-                <h2 class="text-light" style="font-family: Deadly;">Contact Us</h2>
+                <h4>Contact Us</h4>
                 <div id="form-messages"></div>
                 <form id="contact-form" method="post">
                     <fieldset>
@@ -151,8 +132,8 @@
                                         class="textarea form-control" placeholder="Your Message"></textarea>
                                 </div>
                             </div>
-                            <div class="col-lg-12 mt-3">
-                                <button class="primary_button py-3 px-3" name="query" form="contact-form" type="submit">Send Message <i
+                            <div class="col-lg-12">
+                                <button class="btn-send" name="query" form="contact-form" type="submit">Send Message <i
                                         class="fa fa-angle-right"></i> </button>
                             </div>
                         </div>
@@ -164,7 +145,7 @@
 </div>
 <!-- Contact Us page end Here -->
 
-<?php 
-        require_once "footer_new.php";
-        require_once "javascript.php";
+<?php
+      require_once "footer.php";
+      require_once "js-links.php";
 ?>
