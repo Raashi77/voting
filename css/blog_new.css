@@ -3089,11 +3089,11 @@ figcaption {
   background-color: #ff6852;
 }
 
-.nav-logo {
+/*.nav-logo {
   height: 40px;
-}
+}*/
 
-.nav-link {
+/*.nav-link {
   z-index: 1;
   margin-right: 0px;
   margin-left: 0px;
@@ -3104,7 +3104,7 @@ figcaption {
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-}
+}*/
 
 /*.nav-link:hover {
   background-color: #f6f6f6;

@@ -1,7 +1,8 @@
 
 <?php
-require_once "header.php";
-require_once "navbar.php";
+require_once "header_new.php";
+require_once "navbar_new.php";
+
 if(isset($_POST['vote']))
 {
     $cu_id=$_POST['vote'];
@@ -112,7 +113,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
  
-    <div class="fix home-blog-area pb-90 pt-90">
+    <div class="fix home-blog-area pb-90" style="background-color: #212529; margin-top: -20px;">
         
         <img id="foodModel_headingImg" src="<?=$changes['header_image']?>">
         <?php
@@ -124,8 +125,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
                     
                 }
         ?>
-        <div id="foodModel_heading_Div" class="fix home-blog-area pb-90 pt-90" >
-            <h5 id="foodModel_heading_h5" style="color:<?=$changes['title_color']?>;"> <?=$changes['title']?></h5>
+        <div id="foodModel_heading_Div" class="fix home-blog-area pb-90"  style="margin-top: 100px;">
+            <h5 id="foodModel_heading_h5" style="color:<?=$changes['title_color']?>; font-family: Deadly;"> <?=$changes['title']?></h5>
             <p id="foodModel_heading_p" style="color:<?=$changes['subtitle_color']?>;"><?=$changes['subtitle']?></p>
 
         </div>
@@ -135,7 +136,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     {
     ?>
 
-        <div class="container" style="margin-top:30px">
+        <div class="container" style="margin-top:30px; ">
 
         <h6 id="foodModel_heading2" style="color:<?=$changes['body_title_color']?>"><?=$changes['body_title']?></h6>
         <div class="container" style="margin-bottom:30px;">
@@ -272,6 +273,7 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 
 </html>
 <?php
-
+require_once "footer_new.php";
 require_once "js-links.php";
+require_once "javascript.php";
 ?>
