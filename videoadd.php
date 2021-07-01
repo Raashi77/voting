@@ -136,7 +136,7 @@ if($result =  $conn->query($sql))
 .textDiv_Hours{position:absolute;top:41px;left:180px!important}
 .textDiv_Minutes{position:absolute;top:41px;left:340px!important}
 .textDiv_Seconds{position:absolute;top:41px;left:500px!important}
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 600px) {
   
     .textDiv_Days{position:absolute;top:35px;left:15px!important}
     .textDiv_Hours{position:absolute;top:35px;left:100px!important}
