@@ -73,7 +73,7 @@
 
 									<div class="card" style="background-color: #1c1d31; min-height: 500px; color: white;">
 									<video  class=""  id="video<?=$vid['id']?>" style="max-height:58vh !important">
-											<source src = "<?=$vid['video']?>" type = "video/mp4">
+											<source src = "<?=$vid['video']?>#t=0.1" type = "video/mp4">
 											This browser doesn't support video tag.
 									</video>
 									<script type="text/javascript">
