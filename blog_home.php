@@ -235,7 +235,7 @@ if($result->num_rows)
 
             
         ?>
-        <div class="section">
+        <div class="section" style="background-color: #2e2d2d;">
             <div class="wrapper w-container">
                 <div class="header-block side-margins">
                     <h3 class="header">Recent Posts</h3>
@@ -319,7 +319,7 @@ if($result->num_rows)
         ?>
          
        
-        <div class="section">
+        <div class="section" style="background-color: #2e2d2d;">
             <div class="wrapper w-container">
                 <div class="content-with-sidebar">
                     <div class="sidebar left">

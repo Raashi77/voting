@@ -1,7 +1,7 @@
 
 <?php
-require_once "header.php";
-require_once "navbar.php";
+require_once "header_new.php";
+require_once "navbar_new.php";
 if(isset($_POST['vote']))
 {
     $cu_id=$_POST['vote'];
@@ -141,10 +141,11 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
         @media only screen and (max-width: 600px) {
            #comments{margin-left:27px;width:82%;}
            #whatsapp{display:initial;}
+
         }
     </style>
  
-    <div class="fix home-blog-area pb-90 pt-90" style="padding-bottom:0">
+    <div class="fix home-blog-area pb-90 pt-90" style="padding-bottom:0; margin-top: -26px; background-color: #212529">
         
         
         <div id="foodModel_heading_Div" class="fix home-blog-area pb-90 pt-90" >
@@ -158,8 +159,8 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
     {
     ?>
 
-        <div class="container" style="margin-top:40px">
-        <div id="shareonlaptop">
+        <div class="container-fluid" style="background-color: #212529;">
+        <div id="container shareonlaptop">
             
             
             <center>
@@ -301,10 +302,10 @@ if(isset($_GET['token'])&&!empty($_GET['token']))
 </body>
 
 </html>
-<?php
 
-require_once "js-links.php";
-require_once 'footer.php';
+<?php 
+        require_once "footer_new.php";
+        require_once "javascript.php";
 ?>
 <script>
     function Copy() 

@@ -49,7 +49,7 @@ require_once './lib/core.php';
         }
         else
         {
-            $addcomment = "<div class='alert alert-secondary' style='display:flex;flex:1;justify-content:center;'>
+            $addcomment = "<div class='alert alert-secondary mt-5 mx-4' style='display:flex;flex:1;justify-content:center;'>
                                     <a href='registration'>Login to reply or add a comment</a>
                             </div>";
         }    
@@ -57,10 +57,10 @@ require_once './lib/core.php';
                                 <div class='d-navigation'>
                                     <ul  style='font-family:'Muli',sans-serif;' id='commenthaiyeh'>
                                         <li>
-                                        <h3>Comments</h3>
+                                        <h3 class='text-light'>Comments</h3>
                                         <div id='commentkijagah'></div>
                                         </li>
-                                                <div id='spaceforcomment' class='dashboard'>
+                                                <div id='spaceforcomment' class='dashboard px-4'>
                                                     
                                                 </div>
                                         <li>
@@ -175,7 +175,7 @@ require_once './lib/core.php';
                             $replybutton="";
                         }
                                                                                                                         // #F0F8FF #adebad
-                        $inhtml .="<li class='dashboard-wraper' style=' background: linear-gradient(to bottom, $com_color 0%, #ffffff 100%);'>
+                        $inhtml .="<li class='dashboard-wraper px-4 my-3' style=' background: linear-gradient(to bottom, $com_color 0%, #ffffff 100%);'>
                                         <span style='margin-bottom:0px' id='readcomment$com_id'>$comments </span>$anchor
                                         <p style='align-items:flex-end;display:flex;flex:1;justify-content:flex-end;margin-bottom:0px'>
                                         $replybutton

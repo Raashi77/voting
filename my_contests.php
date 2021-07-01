@@ -1,6 +1,7 @@
 <?php
-require_once "header.php";
-require_once "navbar.php";
+    require_once "header_new.php";
+    require_once "navbar_new.php";
+
 $date=date('Y-m-d');
 $time = date('H:i');
 $sql="SELECT c.*, i.header_image from contest c, index_changes i,contest_users cu where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id and c.id=cu.c_id and cu.u_id='$USER_ID'";
@@ -31,7 +32,7 @@ if($result =  $conn->query($sql))
        
 
         <!-- Inner Page Header serction start here -->
-        <div class="inner-page-header">
+        <!-- <div class="inner-page-header">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -41,8 +42,24 @@ if($result =  $conn->query($sql))
                     </div> 
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Inner Page Header serction end here -->
+
+
+
+        <!-- contest page header part -->
+
+        <div class="py-5" style="background-color: #212529">
+            <div class="text-center">
+                <h1 class="text-light py-5" style="font-family: Deadly;">
+                   Contests
+                </h1>
+            </div>
+        </div>
+
+        <!-- header title part end -->
+
+
 
         <!-- Photo Contests Liata Start Here -->
         <div class="home-about-photo-contest-area pt-100 pb-100">
@@ -125,7 +142,7 @@ if($result =  $conn->query($sql))
  
          
          
-      <?php
-      require_once "footer.php";
-      require_once "js-links.php";
-      ?>
+ <?php 
+         require_once "footer_new.php";
+         require_once "javascript.php";
+ ?>

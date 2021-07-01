@@ -37,7 +37,7 @@ $sql="select * from features";
 
 
              <!-- about us wala triangle -->
-            <section class="wrapperforaudio" style="height:40vh;">
+            <!-- <section class="wrapperforaudio" style="height:40vh;">
                    
                     <div class="box1 box2">
                      <img src="assets/image/shadowtriangle.png" class="img-fluid" alt="Image">
@@ -45,11 +45,10 @@ $sql="select * from features";
 
                     <div class="box1 box3">
                          <h2 class="text-light mt-5 ml-4 mr-5 pr-5">About Us</h2>
-                         <!-- <button class="primary_button mt-3 ml-4">Ongoing</button> -->
                     </div>
 
                     
-                </section>
+                </section> -->
                 <!-- about us wala trianagle -->
 
 

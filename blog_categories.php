@@ -69,7 +69,7 @@
         }(window, document);
     </script>
  
-    <div class="page-wrapper">
+    <div class="page-wrapper" style="background-color: #2e2d2d;">
         
         
         <div id="Hero" class="section hero about-hero py-5" style="background-color: #212529;">
