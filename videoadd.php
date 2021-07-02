@@ -132,6 +132,17 @@ if($result =  $conn->query($sql))
         #myVideo_html5_api, #myVideo1{width:100% !important}
 
     }
+.textDiv_Days{position:absolute;top:41px;left:15px!important}
+.textDiv_Hours{position:absolute;top:41px;left:180px!important}
+.textDiv_Minutes{position:absolute;top:41px;left:340px!important}
+.textDiv_Seconds{position:absolute;top:41px;left:500px!important}
+@media only screen and (max-width: 600px) {
+  
+    .textDiv_Days{position:absolute;top:35px;left:15px!important}
+    .textDiv_Hours{position:absolute;top:35px;left:100px!important}
+    .textDiv_Minutes{position:absolute;top:35px;left:185px!important}
+    .textDiv_Seconds{position:absolute;top:35px;left:270px!important}
+}
 </style>
 <div class="content-wrapper" style="margin-left:20px;">
 

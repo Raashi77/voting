@@ -85,7 +85,7 @@
 .textDiv_Hours{position:absolute;top:41px;left:185px!important}
 .textDiv_Minutes{position:absolute;top:41px;left:300px!important}
 .textDiv_Seconds{position:absolute;top:41px;left:430px!important}
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 600px) {
   
     .textDiv_Days{position:absolute;top:35px;left:45px!important}
     .textDiv_Hours{position:absolute;top:35px;left:130px!important}
@@ -190,23 +190,7 @@
                                                         </div>
                                                        
                                                     </div>
-                                                    <!-- <section class="content" >
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-12 mb-50">
-                                                                <div class="single-section text-center">
-                                                                   <div class="countdown-section">
-                                                                        <div class="row">
-                                                                            <div class="offset-md-3 offset-sm-3 col-sm-6">
-                                                                                <div class="CountDownTimer" data-date="<?php
-                                                                                    echo $on_contest['end_date']." ".$on_contest['end_time'].":00"; 
-                                                                                ?>"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>     -->
+                                                    
                                                     <p class="des"><?=$contest['description']?></p>
                                                     <div class="link-section">
                                                         <a href="contest<?=$contest['id']?>" class="read-btn primary-btn mr-10">View</a>
