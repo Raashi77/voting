@@ -13,7 +13,7 @@
 						$vidSrc = $row['video'];
 						$videos .="<div class=''>
 										<video  class='' controls>
-												<source src = '$vidSrc' type = 'video/mp4'>
+												<source src = '$vidSrc#t=0.1' type = 'video/mp4'>
 												This browser doesn't support video tag.
 										</video>
 									</div>";
@@ -72,7 +72,7 @@
 								<div class="p-4">
 
 									<div class="card" style="background-color: #1c1d31; min-height: 500px; color: white;">
-									<video  class=""  id="video<?=$vid['id']?>" style="max-height:58vh !important">
+									<video  class=""  id="video<?=$vid['id']?>" style="max-height:58vh !important" playsinline>
 											<source src = "<?=$vid['video']?>#t=0.1" type = "video/mp4">
 											This browser doesn't support video tag.
 									</video>
