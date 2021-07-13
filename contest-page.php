@@ -90,7 +90,7 @@
     .textDiv_Days{position:absolute;top:35px;left:7vh!important}
     .textDiv_Hours{position:absolute;top:35px;left:20.5vh!important}
     .textDiv_Minutes{position:absolute;top:35px;left:32.5vh!important}
-    .textDiv_Seconds{position:absolute;top:35px;left:290px!important}
+    .textDiv_Seconds{position:absolute;top:35px;left:45.5vh!important}
 }
 </style>
 
