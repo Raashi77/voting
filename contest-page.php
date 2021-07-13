@@ -87,9 +87,9 @@
 .textDiv_Seconds{position:absolute;top:41px;left:430px!important}
 @media only screen and (max-width: 600px) {
   
-    .textDiv_Days{position:absolute;top:35px;left:45px!important}
-    .textDiv_Hours{position:absolute;top:35px;left:130px!important}
-    .textDiv_Minutes{position:absolute;top:35px;left:210px!important}
+    .textDiv_Days{position:absolute;top:35px;left:7vh!important}
+    .textDiv_Hours{position:absolute;top:35px;left:20.5vh!important}
+    .textDiv_Minutes{position:absolute;top:35px;left:32.5vh!important}
     .textDiv_Seconds{position:absolute;top:35px;left:290px!important}
 }
 </style>
