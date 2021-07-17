@@ -39,7 +39,7 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 function mergeVideoAudio($video,$audio,$filename)
 {
    
-    $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'  -shortest -strict -2 'uploads/merged$filename'"; 
+    $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'     -shortest -strict  -filter_complex '[0:a][1:a]amerge,pan=stereo|c0<c0+c2|c1<c1+c3[out]' -map 1:v -map '[out]' -c:v    -2 'uploads/merged$filename'"; 
     exec($cmd,$error); 
     unlink("uploads/$video");  
 }
