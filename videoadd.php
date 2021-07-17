@@ -133,15 +133,15 @@ if($result =  $conn->query($sql))
 
     }
 .textDiv_Days{position:absolute;top:41px;left:15px!important}
-.textDiv_Hours{position:absolute;top:41px;left:180px!important}
-.textDiv_Minutes{position:absolute;top:41px;left:340px!important}
-.textDiv_Seconds{position:absolute;top:41px;left:500px!important}
+.textDiv_Hours{position:absolute;top:41px;left:160px!important}
+.textDiv_Minutes{position:absolute;top:41px;left:310px!important}
+.textDiv_Seconds{position:absolute;top:41px;left:450px!important}
 @media only screen and (max-width: 600px) {
   
-    .textDiv_Days{position:absolute;top:35px;left:12vw!important}
-    .textDiv_Hours{position:absolute;top:35px;left:36.5vw!important}
-    .textDiv_Minutes{position:absolute;top:35px;left:58vw!important}
-    .textDiv_Seconds{position:absolute;top:35px;left:81vw!important}
+    .textDiv_Days{position:absolute;top:35px;left:4vw!important}
+    .textDiv_Hours{position:absolute;top:35px;left:28.5vw!important}
+    .textDiv_Minutes{position:absolute;top:35px;left:52vw!important}
+    .textDiv_Seconds{position:absolute;top:35px;left:75vw!important}
 }
 </style>
 <div class="content-wrapper" style="margin-left:20px;">

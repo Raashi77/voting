@@ -88,7 +88,7 @@
 @media only screen and (max-width: 600px) {
   
     .textDiv_Days{position:absolute;top:35px;left:12vw!important}
-    .textDiv_Hours{position:absolute;top:35px;left:36vw!important}
+    .textDiv_Hours{position:absolute;top:35px;left:36.5vw!important}
     .textDiv_Minutes{position:absolute;top:35px;left:58vw!important}
     .textDiv_Seconds{position:absolute;top:35px;left:81vw!important}
 }
