@@ -133,9 +133,9 @@ if($result =  $conn->query($sql))
 
     }
 .textDiv_Days{position:absolute;top:41px;left:15px!important}
-.textDiv_Hours{position:absolute;top:41px;left:160px!important}
-.textDiv_Minutes{position:absolute;top:41px;left:310px!important}
-.textDiv_Seconds{position:absolute;top:41px;left:450px!important}
+.textDiv_Hours{position:absolute;top:41px;left:180px!important}
+.textDiv_Minutes{position:absolute;top:41px;left:340px!important}
+.textDiv_Seconds{position:absolute;top:41px;left:500px!important}
 @media only screen and (max-width: 600px) {
   
     .textDiv_Days{position:absolute;top:35px;left:4vw!important}
@@ -143,6 +143,29 @@ if($result =  $conn->query($sql))
     .textDiv_Minutes{position:absolute;top:35px;left:52vw!important}
     .textDiv_Seconds{position:absolute;top:35px;left:75vw!important}
 }
+.video-js .vjs-big-play-button {
+    left: 40% !important;
+    top: 40% !important;
+    width: 20%;
+    height: 20%;
+}
+
+.video-js .vjs-play-control:before {
+    top:20% !important;
+    content: '\f101';
+    font-size: 48px;
+}
+.vjs-default-skin .vjs-big-play-button {
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%);
+            width: 80px!important;
+            height: 80px!important;
+            -webkit-border-radius: 0.8em!important;
+            -moz-border-radius: 0.8em!important;
+            border-radius: 1.9em!important;
+        }
+        .vjs-record .vjs-device-button.vjs-control{display:none!important}
 </style>
 <div class="content-wrapper" style="margin-left:20px;">
 
@@ -457,8 +480,8 @@ if($result =  $conn->query($sql))
                     <button style="flex:1;display:flex;justify-content:center" id="proceed" onclick="proceed()" class="btn btn-primary" disabled>Proceed</button>
                 </center>
             </div>
-                    
-                    <video id="myVideo"  class="video-js vjs-default-skin" style="display:none"></video>
+                    <i class="far fa-play-circle play_button" style="color:white;font-size:55px;cursor:pointer;position:absolute;z-index:10;left:45%;top:50%;display:none" id="recordVideoButton" onclick="startRecording()"></i>
+                    <video id="myVideo"  class="video-js vjs-default-skin " style="display:none"></video>
                     <div class="col-12" style="display:none" id="previewDiv">
                         <div style="display:flex;flex:1;justify-content:center; margin-top:7px;margin-bottom:7px">
                             <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>&nbsp;
@@ -509,6 +532,22 @@ if($result =  $conn->query($sql))
 var videoBLob=null;
 var audioname=null;
 var selectedSong =null;
+function startRecording()
+{
+    this.player.record().getDevice();
+    this.player.on('deviceReady', () => {
+        console.log('device is ready!');
+        this.player.record().start(); // <-- IMPORTANT*
+      });
+    // this.player.record().start();
+    $("#recordVideoButton").hide();
+}
+$(".vjs-icon-av-prem::before").click(function(){
+    // console.log("hello")
+    // sleep(5);
+    // $(".vjs-icon-record-start::before").click();
+    this.player.record().getDevice();
+})
     function proceed()
     {
         selectedSong=$("#selectSong").val();
@@ -521,6 +560,7 @@ var selectedSong =null;
             $("#modal-body").hide();
             $(".video-js").show();
             $(".vjs-tech").show();
+            $("#recordVideoButton").show();
             audio = new Audio('<?=$website_link?>/admin'+selectedSong);
             audioname="<?=$website_link?>/admin"+selectedSong;
         }
@@ -547,6 +587,7 @@ var player = videojs("myVideo", {
         'with videojs-record', videojs.getPluginVersion('record'),
         'and recordrtc', RecordRTC.version
     );
+    
 });
 
 // error handling for getUserMedia
