@@ -143,6 +143,7 @@ if($result =  $conn->query($sql))
     .textDiv_Minutes{position:absolute;top:35px;left:52vw!important}
     .textDiv_Seconds{position:absolute;top:35px;left:75vw!important}
 }
+#myVideo{height:100vh}
 .video-js .vjs-big-play-button {
     left: 40% !important;
     top: 40% !important;
@@ -454,7 +455,7 @@ if($result =  $conn->query($sql))
   <div class="modal fade" id="modal-record"     data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" id="modalHead">
                 <h4 class="modal-title"><strong>Record Video</strong></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -480,7 +481,11 @@ if($result =  $conn->query($sql))
                     <button style="flex:1;display:flex;justify-content:center" id="proceed" onclick="proceed()" class="btn btn-primary" disabled>Proceed</button>
                 </center>
             </div>
-                    <i class="far fa-play-circle play_button" style="color:white;font-size:55px;cursor:pointer;position:absolute;z-index:10;left:45%;top:50%;display:none" id="recordVideoButton" onclick="startRecording()"></i>
+                    <!-- <i class="far fa-play-circle play_button" style="color:white;font-size:55px;cursor:pointer;position:absolute;z-index:10;left:45%;top:50%;display:none" id="recordVideoButton" onclick="startRecording()"></i> -->
+                    <div>
+                        
+                    </div>
+                    <img src="./img/next.png" style="color:white;height:55px;cursor:pointer;position:absolute;z-index:10;bottom:10%;left:36%;display:none" id="recordVideoButton" onclick="startRecording()" />
                     <video id="myVideo"  class="video-js vjs-default-skin " style="display:none"></video>
                     <div class="col-12" style="display:none" id="previewDiv">
                         <div style="display:flex;flex:1;justify-content:center; margin-top:7px;margin-bottom:7px">
@@ -540,7 +545,23 @@ function startRecording()
         this.player.record().start(); // <-- IMPORTANT*
       });
     // this.player.record().start();
-    $("#recordVideoButton").hide();
+    // $("#recordVideoButton").hide();
+    $("#recordVideoButton").attr('onclick','stoprecording()')
+    $(".vjs-record-indicator").hide();
+    pulse();
+    
+}
+function stoprecording()
+{
+    // this.player.record().getDevice();
+    // this.player.on('deviceReady', () => {
+    //     console.log('device is ready!');
+    //     this.player.record().stop(); // <-- IMPORTANT*
+    //   });
+      this.player.record().stop();
+    $("#recordVideoButton").hide(); 
+    $("#recordVideoButton").stop();
+    $("#recordVideoButton").attr('onclick','startRecording()')
 }
 $(".vjs-icon-av-prem::before").click(function(){
     // console.log("hello")
@@ -550,21 +571,30 @@ $(".vjs-icon-av-prem::before").click(function(){
 })
     function proceed()
     {
-        selectedSong=$("#selectSong").val();
-        if(selectedSong == 0)
-        {
-            alert("Please select a song!");
+        if($(window).width()<=700){
+            selectedSong=$("#selectSong").val();
+            if(selectedSong == 0)
+            {
+                alert("Please select a song!");
+            }
+            else
+            {
+                $("#modal-body").hide();
+                $(".video-js").show();
+                $(".vjs-tech").show();
+                $("#recordVideoButton").show();
+                audio = new Audio('<?=$website_link?>/admin'+selectedSong);
+                audioname="<?=$website_link?>/admin"+selectedSong;
+                $("#modalHead").hide();
+                $(".vjs-control-bar").hide();
+            }
+            
         }
         else
         {
-            $("#modal-body").hide();
-            $(".video-js").show();
-            $(".vjs-tech").show();
-            $("#recordVideoButton").show();
-            audio = new Audio('<?=$website_link?>/admin'+selectedSong);
-            audioname="<?=$website_link?>/admin"+selectedSong;
+            alert("Recording Feature is only available on mobile!");
         }
-        
+       
     }
 var player = videojs("myVideo", {
     controls: true,
@@ -621,6 +651,7 @@ player.on('finishRecord', function() {
     $("#myVideo1").attr("src", URL.createObjectURL(videoBlob))
     $('#previewDiv').show();
     $("#myVideo").hide();
+    $("#modalHead").show();
       
 });
 
@@ -684,7 +715,27 @@ player.on('finishRecord', function() {
         $('#previewDiv').hide();
         $("#myVideo").show();
         audio.currentTime=0;
+        $("#modalHead").hide();
+        $(".vjs-control-bar").hide();
+        $("#recordVideoButton").show();
+
     }
+    function pulse() 
+    {
+        $('#recordVideoButton').animate({
+             height: 55, // sets the base height and width
+            opacity: 0.8
+        }, 700, function() {
+            $('#recordVideoButton').animate({
+                height: 65, // sets the alternative height and width
+                opacity: 1,
+                left:'34%',
+            }, 700, function() {
+                pulse();
+            });
+        }); 
+    };
+
     function playPreviewVideo(element)
     {
         element[0].play();
