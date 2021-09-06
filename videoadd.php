@@ -528,7 +528,7 @@ var selectedSong =null;
     }
 var player = videojs("myVideo", {
     controls: true,
-    width: 720,
+    width: 640,
     height: 480,
     fluid: false,
     plugins: {
@@ -577,7 +577,9 @@ player.on('finishRecord', function() {
     // can be downloaded by the user, stored on server etc.
     videoBlob = player.recordedData; 
 
-    $("#myVideo1").attr("src", URL.createObjectURL(videoBlob))
+    $("#myVideo1").attr("src", URL.createObjectURL(videoBlob)) 
+    var player = $("#myVideo1");
+    player.currentTime=10;
     $('#previewDiv').show();
     $("#myVideo").hide();
       
