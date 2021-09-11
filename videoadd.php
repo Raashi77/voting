@@ -649,8 +649,8 @@ player.on('finishRecord', function() {
     videoBlob = player.recordedData; 
 
     $("#myVideo1").attr("src", URL.createObjectURL(videoBlob)) 
-    var player = $("#myVideo1");
-    player.currentTime=10;
+    // var player = $("#myVideo1");
+    // player.currentTime=10;
     $('#previewDiv').show();
     $("#myVideo").hide();
     $("#modalHead").show();
