@@ -486,7 +486,7 @@ if($result =  $conn->query($sql))
                         
                     </div>
                     <img src="./img/next.png" style="color:white;height:55px;cursor:pointer;position:absolute;z-index:10;bottom:10%;left:36%;display:none" id="recordVideoButton" onclick="startRecording()" />
-                    <video id="myVideo"  class="video-js vjs-default-skin " style="display:none"></video>
+                    <video id="myVideo"  class="video-js vjs-default-skin "></video>
                     <div class="col-12" style="display:none" id="previewDiv">
                         <div style="display:flex;flex:1;justify-content:center; margin-top:7px;margin-bottom:7px">
                             <button class="btn btn-primary" onclick="playPreviewVideo($('#myVideo1'))">Play</button>&nbsp;
