@@ -42,5 +42,19 @@ $enableSandbox = true;
 
 $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
 
+// $mail = new PHPMailer(); 
+// $mail->SMTPDebug = false;               // Enable verbose debug output
+// $mail->isSMTP();                                      // Set mailer to use SMTP
+// $mail->Host = 'mail.kodiblaze.com';  // Specify main and backup SMTP servers
+// $mail->SMTPAuth = true;                               // Enable SMTP authentication
+// $mail->Username = 'info@kodiblaze.com';                 // SMTP username
+// // $mail->Password = '${ZULymF5Ur+';                            // SMTP password
+// $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+// $mail->Port = 465;                                    // TCP port to connect to
+
+// $mail->setFrom('info@kodiblaze.com', 'KodiBlaze');
+// // $mail->addReplyTo('No Reply Please', 'Information');
+
+//    // Optional name
 //page value; 
 ?>
