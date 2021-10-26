@@ -1,6 +1,6 @@
 <?php
     session_start();
-    // require_once 'PHPMailer/PHPMailerAutoload.php';
+    require_once 'PHPMailer/PHPMailerAutoload.php';
     // require_once 'ffmpeg/vendor/autoload.php';
     require_once 'config.php';   
 
@@ -18,6 +18,49 @@ function check_page($id,$conn)
     }
 }
  
+
+function uploadImage($files)
+{
+
+    $uploadedFile = 'err';
+    if(!empty($_FILES['images']["type"]))
+    {
+        $fileName = time().'_'.$_FILES['images']['name'];
+        $valid_extensions = array("jpeg", "jpg", "png","pdf","bmp","JPG");
+        $temporary = explode(".", $_FILES['images']["name"]);
+        $file_extension = end($temporary);
+        if((($_FILES['images']["type"] == "image/png") || ($_FILES['images']["type"] == "application/pdf") || ($_FILES['images']["type"] == "image/bmp") || ($_FILES['images']["type"] == "image/jpg") || ($_FILES['images']["type"] == "image/JPG") || ($_FILES['images']["type"] == "image/jpeg")) && in_array($file_extension, $valid_extensions))
+        {
+            $sourcePath = $_FILES['images']['tmp_name'];
+            $targetPath = "../uploads/".$fileName;
+            if(move_uploaded_file($sourcePath,$targetPath))
+            {
+                $uploadedFile = $fileName;
+                return $uploadedFile;
+            }
+            else
+            {
+                $uploadedFile="uploaderr";
+                return $uploadedFile;
+            }
+        }
+        else
+        {
+            $uploadedFile="typeerr";
+            return $uploadedFile;
+        }
+    }
+    else
+    {
+        $uploadedFile="iferr";
+        return $uploadedFile;
+    }
+
+}
+
+
+
+
 function convertVideoNsave($vidAddr,$filename)
 {
      shell_exec("ffmpeg -i $vidAddr -codec copy uploads/$filename.mp4"); 
@@ -35,6 +78,15 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
         unlink($vidAddr);
     }
     
+}
+function sendMail($mail,$altBody,$email,$subject,$isHtml,$body)
+{
+    $mail->AltBody =$altBody;
+    $mail->AddAddress($email);                                           // set email format to HTML
+    $mail->Subject = $subject; 
+    $mail->isHtml($isHtml);
+    $mail->Body =$body;
+    return true;
 }
 function mergeVideoAudio($video,$audio,$filename)
 {

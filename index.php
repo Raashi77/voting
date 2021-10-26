@@ -2,7 +2,6 @@
 
 		require_once "header_new.php";
 		require_once "navbar_new.php";
-
 		
 	?>
 

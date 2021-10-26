@@ -57,4 +57,10 @@
         echo json_encode($response);
     }
 
+    if(isset($_POST['fetchAllBlogs']) && isset($_POST['type']))
+    {
+        $type = $conn->real_escape_string($_POST['type']);
+        
+    }
+
 ?>

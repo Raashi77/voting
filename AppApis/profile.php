@@ -62,7 +62,7 @@
     {
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
-        $sql = "SELECT s.name,s.song,p.email FROM songs s,payment p where p.user='$userId' and s.id = p.song_id";
+        $sql = "SELECT s.id as songId,s.name,s.song,p.email,s.price,s.downloads FROM songs s,payment p where p.user='$userId' and s.id = p.song_id";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
@@ -88,7 +88,7 @@
         echo json_encode($response);
 
     }
-    if(isset($_POST['userContests']))
+    if(isset($_POST['userVideos']))
     {
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
@@ -118,7 +118,10 @@
         echo json_encode($response);
 
     }
-    if(isset($_POST['latestVideos']))
+
+    
+    
+    if(isset($_POST['userContests']))
     {
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
@@ -147,6 +150,31 @@
         }
         echo json_encode($response);
 
+    }
+
+    if(isset($_POST['uploadPhoto']))
+    {
+        $response['msg'] = "error";
+        $response['files'] = $_FILES;
+        $imageName = uploadImage($_FILES);
+        $u_id=$_POST['userId'];
+        // echo $imageName;
+        $response['imageName'] = $imageName;
+        if($imageName != 'err')
+        {
+            $sql = "UPDATE users set profilePic='uploads/$imageName' where id='$u_id'";
+            if($conn->query($sql))
+            {
+                $response['msg'] = 'ok';
+                $response['image'] = $imageName;
+            }
+            else
+            {
+                $response['msg'] = 'error';
+                $response['error'] = $conn->error;
+            }
+        }
+        echo json_encode($response);
     }
 
 ?>

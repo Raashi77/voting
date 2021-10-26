@@ -8,7 +8,7 @@ error_reporting(1);
 //select time zone
 date_default_timezone_set('Asia/Kolkata');
 
-//for the databas
+//for the database
 $servername = "localhost";
 $username = "root";
 $password = "Kod#@}blaze245#~";
@@ -56,5 +56,21 @@ $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 
 // // $mail->addReplyTo('No Reply Please', 'Information');
 
 //    // Optional name
-//page value; 
+//page value;
+
+
+$mail = new PHPMailer(); 
+$mail->SMTPDebug = true;               // Enable verbose debug output
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'mail.tattbooking.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'info@tattbooking.com';                 // SMTP username
+$mail->Password = '${ZULymF5Ur+';                            // SMTP password
+$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 465;                                    // TCP port to connect to
+
+
+
+
+$mail->setFrom('info@tattbooking.com', 'Tatt Book');
 ?>
