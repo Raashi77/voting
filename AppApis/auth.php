@@ -27,6 +27,76 @@
         echo json_encode($response);
     }
 
+    if(isset($_POST['googleSignIn']))
+    {
+        $response = [];
+        $email = $conn->real_escape_string($_POST['email']);
+        $username = $conn->real_escape_string($_POST['username']);
+        $profilePic = $conn->real_escape_string($_POST['profilePic']);
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))   
+        {
+            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        //whether ip is from proxy
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
+        {
+            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        //whether ip is from remote address
+        else
+        {
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+        }
+        $sql = "INSERT into users(name, email,ip_address,status,profilePic,loginType) VALUES ('$username', '$email','$ip_address',1,'$profilePic','google')";
+        if($conn->query($sql))
+        {
+            $ins_id = $conn->insert_id;
+            $response['msg'] = "success";
+            $data = [];
+            $data['id'] = $ins_id;
+            $data['mobile'] = null;
+            $data['name'] = $name;
+            $data['ip_address'] = $ip_address;
+            $data['status'] = 1;
+            $data['profilePic'] = $profilePic;
+            $response['data'] = $data ;          
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }
+
+    if(isset($_POST['googleLogin']))
+    {
+        $response = [];
+        $email = $conn->real_escape_string($_POST['email']);
+        $type = $conn->real_escape_string($_POST['type']);
+        $sql = "SELECT * from users where email='$email' and loginType='$type'";
+        if($result =  $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+            {
+                $response['msg'] = "success";
+                $response['data'] = $result->fetch_assoc();
+            }
+            else
+            {
+                $response['msg'] = "invalid";
+            }
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }
+
     if(isset($_POST['signIn']))
     {
         $response = [];
