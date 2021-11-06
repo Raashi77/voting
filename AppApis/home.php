@@ -100,7 +100,7 @@
                 {
                     $banner[] = $row;
                 }
-                $response['banner'] = $banner;
+                $response['songs'] = $banner;
             }
             else
             {

@@ -16,7 +16,7 @@ $password = "Kod#@}blaze245#~";
 $dbname = "voting";
 
 // $username = "root_dubuddy";
-// $password = "";
+$password = "";
 // $dbname = "voting_dubuddy";
 
 // Create connection
@@ -29,6 +29,7 @@ if($conn->connect_error)
 }
 
 //website link
+
 $website_link="https://kodiblaze.com";
 
 $paypalConfig = [

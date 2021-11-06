@@ -62,7 +62,7 @@
     {
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
-        $sql = "SELECT s.id as songId,s.name,s.song,p.email,s.price,s.downloads FROM songs s,payment p where p.user='$userId' and s.id = p.song_id";
+        $sql = "SELECT s.id as songId,s.name,s.song,p.email,s.price,s.downloads FROM songs s,payment p where p.user='$userId' and s.id = p.song_id and p.status = 'successful'";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
