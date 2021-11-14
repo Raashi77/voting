@@ -49,6 +49,38 @@
         echo json_encode($response);
     }
 
+    if(isset($_POST['fetchOngoingContest']))
+    {
+        $response = [];
+        $date=date('Y-m-d');
+        $time = date('H:i');
+        $sql="SELECT c.*, i.header_image from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id ";
+        if($result = $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+            {
+                $response['msg'] = "success";
+                while($row = $result->fetch_assoc())
+                {
+                    $contests[] = $row;
+                }
+                $response['contests'] = $contests;
+            }
+            else
+            {
+                $response['msg'] = "notFound";
+            }
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }
+
+
     if(isset($_POST['voteParticipant']))
     {
         $response=[];

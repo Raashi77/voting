@@ -49,4 +49,50 @@
         echo json_encode($response);
     }
 
+
+    if(isset($_POST['uploadVideo']))
+    {
+        $response = [];
+        $userId = $conn->real_escape_string($_POST['userId']);
+        $contestId = $conn->real_escape_string($_POST['contestId']);
+        $sql="insert into videos(c_id, u_id, status) values('$token', '$USER_ID', 1)";
+        if($result=$conn->query($sql))
+        {
+            $insert_id=$conn->insert_id;
+            if( $response['filename'] = upload_videos($_FILES,$conn,"videos","id","video",$insert_id,"projectFile","/admin/uploads"))
+            {
+                $response['msg'] = "all_true";
+            }else
+            {
+                $response['msg'] = "files_left";
+            }
+            $sql="select * from contest_users cu where cu.c_id='$token' and cu.u_id='$USER_ID'";
+            if($result=$conn->query($sql))
+            {
+                if($result->num_rows)
+                {
+                    $row=$result->fetch_assoc();
+                    $check = $row;
+                }
+            }
+            if(!isset($check))
+            { 
+                $sql = "insert into contest_users(c_id, u_id, status) values('$token', '$USER_ID', 1)";
+                if($conn->query($sql))
+                {
+                    $resMember=true;   
+                }
+                else
+                {
+                    $errorMember=$conn->error;
+                }
+            }
+        }
+        else
+        {
+            $errorSubject=$conn->error;
+        } 
+
+        echo json_encode($response);
+    }
 ?>
