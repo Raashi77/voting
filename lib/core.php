@@ -942,6 +942,71 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
     
 	if(isset($_FILES[$images]))
     {
+        // return pathinfo($_FILES[$images]["name"],PATHINFO_EXTENSION);
+        // echo $_FILES[$images]["tmp_name"];
+        $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4", "webm");
+        foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
+        {
+            // echo "hello";
+            $file_name=$_FILES[$images]["name"][$key];
+            $file_tmp=$_FILES[$images]["tmp_name"][$key];
+            $ext=pathinfo($file_name,PATHINFO_EXTENSION); 
+            if(in_array(strtolower($ext),$extension)) 
+            {
+                $filename=basename($file_name,$ext);
+                $mp4name  = $filename.time();
+                $newFileName=$mp4name.".".$ext;
+                $newFileName;
+
+                if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
+                {
+                     
+                        $type = $_FILES[$images]["type"][$key];
+                        $sql="update $table set  $column='uploads/$mp4name.mp4',file_type='$type' where $id_col=$id ";
+                        if($filename=='recordedandUploaded5am.')
+                        {
+                            $sql="update $table set  $column='uploads/merged$mp4name.mp4',file_type='$type' where $id_col=$id ";
+                        }
+                        
+                      if($conn->query($sql)===true)
+                      {
+                          $status=$newFileName;
+                      }
+                      else
+                      {
+                            
+                          $status=false;
+                          break;
+                      }
+                      if($ext!='mp4')
+                     {
+                        convertVideoNsave("uploads/$newFileName",$mp4name);
+                     }else
+                     {
+                        compressVideoNsave("uploads/$newFileName",$newFileName,$mp4name, 1);
+                     }
+                     $status=$newFileName;
+                    
+                }
+                else
+                {
+                    $status=false;
+                    break;
+                }
+            }
+            else 
+            {
+                array_push($error,"$file_name, ");
+            }
+        }
+        return $status;
+    }
+}
+function upload_single_video($files,$conn,$table,$id_col,$column,$id,$images,$url)
+{   
+    
+	if(isset($_FILES[$images]))
+    {
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4", "webm");
         foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
         {
