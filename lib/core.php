@@ -943,11 +943,10 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 	if(isset($_FILES[$images]))
     {
         // return pathinfo($_FILES[$images]["name"],PATHINFO_EXTENSION);
-        // echo $_FILES[$images]["tmp_name"];
+        print_r ($_FILES);
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4", "webm");
         foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
         {
-            // echo "hello";
             $file_name=$_FILES[$images]["name"][$key];
             $file_tmp=$_FILES[$images]["tmp_name"][$key];
             $ext=pathinfo($file_name,PATHINFO_EXTENSION); 
@@ -958,7 +957,7 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                 $newFileName=$mp4name.".".$ext;
                 $newFileName;
 
-                if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"uploads/".$newFileName))
+                if(move_uploaded_file($file_tmp=$_FILES[$images]["tmp_name"][$key],"../uploads/".$newFileName))
                 {
                      
                         $type = $_FILES[$images]["type"][$key];
