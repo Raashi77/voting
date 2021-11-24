@@ -2,10 +2,59 @@
 
     require_once '../lib/core.php';
 
+    if(isset($_POST['fetchAllVideos']))
+    {
+        $response = [];
+        $filter = $conn->real_escape_string($_POST['filter']);
+        $sql = "SELECT v.*,c.name,u.name as username from videos v , contest c ,users u where v.c_id = c.id and v.u_id = u.id ";
+        switch ($filter)
+        {
+            case 'default';
+                $sql = $sql." order by v.id desc";
+                break;
+
+            case 'latest';
+                $sql = $sql." order by v.id desc";
+                break;
+
+            case 'random';
+                $sql = $sql." order by rand()";
+                break;
+
+            case 'oldest':
+                $sql = $sql." order by v.id asc";
+                break;
+        }
+        if($result = $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+            {
+                $response['msg'] = "success";
+                while($row = $result->fetch_assoc())
+                {
+                    $videos[] = $row;
+                }
+                $response['videos'] = $videos;
+            }
+            else
+            {
+                $response['msg'] = "notFound";
+            }
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }
+
+
     if(isset($_POST['fetchSingleVideo']))
     {
         $videoId = $conn->real_escape_string($_POST['videoId']);
-        $sql = "SELECT * from videos where id = '$videoId'";
+        $sql = "SELECT v.*,c.name,u.name as username from videos v , contest c ,users u where v.c_id = c.id and v.u_id = u.id and v.id = '$videoId'";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
@@ -25,7 +74,7 @@
                     }
                     else
                     {
-                        $response['comments'] = "notFound";
+                        $response['comments'] = false;
                     }
                 }
                 else
@@ -61,7 +110,7 @@
             $insert_id=$conn->insert_id;
             if( $response['filename'] = upload_videos($_FILES,$conn,"videos","id","video",$insert_id,"video","/admin/uploads"))         
             {
-                $response['msg'] = "all_true";
+                $response['msg'] = "success";
             }else
             {
                 $response['msg'] = "files_left";
@@ -93,6 +142,26 @@
             $response['error1'] = $errorSubject=$conn->error;
         } 
 
+        echo json_encode($response);
+    }
+
+    if(isset($_POST['addComment']))
+    {
+        $response = [];
+        $userId = $conn->real_escape_string($_POST['userId']);
+        $contestId = $conn->real_escape_string($_POST['contestId']);
+        $videoId = $conn->real_escape_string($_POST['videoId']);
+        $comment = $conn->real_escape_string($_POST['comment']);
+        $sql = "insert into comment (vid_id,c_id,comments,user) values('$videoId','$contestId','$comment','$userId')";
+        if($conn->query($sql))
+        {
+            $response['msg'] = "success";
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+        }
         echo json_encode($response);
     }
 ?>

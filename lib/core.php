@@ -943,7 +943,6 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
 	if(isset($_FILES[$images]))
     {
         // return pathinfo($_FILES[$images]["name"],PATHINFO_EXTENSION);
-        print_r ($_FILES);
         $extension=array("mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf", "mkv","mp4", "webm");
         foreach($_FILES[$images]["tmp_name"] as $key=>$tmp_name) 
         {
