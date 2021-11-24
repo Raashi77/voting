@@ -7,7 +7,7 @@
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
         $contestId = $conn->real_escape_string($_POST['contestId']);
-        $response['sql'] = $sql = "SELECT * FROM contest_users where c_id='$contestId' and u_id='$userId'";
+        $sql = "SELECT * FROM contest_users where c_id='$contestId' and u_id='$userId'";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
