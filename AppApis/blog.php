@@ -6,7 +6,7 @@
     {
         $response = [];
         $blogId = $conn->real_escape_string($_POST['blogId']);
-        $sql = "SELECT * from blogs WHERE id='$blogId'";
+        $sql = "SELECT b.*,bc.category from blogs b ,blog_categories bc WHERE b.id='$blogId' and b.category = bc.id";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
