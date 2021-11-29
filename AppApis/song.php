@@ -31,6 +31,31 @@
         echo json_encode($response);
     }
 
+    if(isset($_POST['checkUserSong']))
+    {
+        $userId = $conn->real_escape_string($_POST['userId']);
+        $songId = $conn->real_escape_string($_POST['songId']);
+        $sql = "SELECT * from payment where song_id='$songId' and user='$userId'";
+        if($result = $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+            {
+                $response['msg'] = "success";
+            }
+            else
+            {
+                $response['msg'] = "notFound";
+            }
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }
+
     if(isset($_POST['fetchUserSongsForVideo']))
     {
         $response = [];

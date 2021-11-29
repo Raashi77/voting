@@ -206,8 +206,6 @@ $sql="select * from  songs  ";
                 {
                     alert("Some error Occured!")
                 }
-               
-                
             }
         });
     }
