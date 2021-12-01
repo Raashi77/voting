@@ -584,7 +584,7 @@ $(".vjs-icon-av-prem::before").click(function(){
                 $(".vjs-tech").show();
                 $("#recordVideoButton").show();
                 audio = new Audio('<?=$website_link?>/admin'+selectedSong);
-                audioname="<?=$website_link?>/admin"+selectedSong;
+                audioname = "<?=$website_link?>/admin"+selectedSong;
                 $("#modalHead").hide();
                 $(".vjs-control-bar").hide();
             }
@@ -666,8 +666,8 @@ player.on('finishRecord', function() {
                 data.append("video[]",videoBlob,'recordedandUploaded5am.mp4')
                 data.append("audio",selectedSong)
                 data.append("token",'<?=$token?>');
-                data.append("user_id",'<?=$USER_ID?>')
-                data.append("videoAudioMerge",true)
+                data.append("user_id",'<?=$USER_ID?>');
+                data.append("videoAudioMerge",true);
                 $.ajax({
                     url:'uploadVideo_ajax.php',
                     type:'post',

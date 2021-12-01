@@ -74,7 +74,6 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
     
     if($file_name!=$newfilename && $mode == 0)
     {
-         
         unlink($vidAddr);
     }
     
@@ -82,7 +81,7 @@ function compressVideoNsave($vidAddr,$file_name,$newfilename, $mode)
 function sendMail($mail,$altBody,$email,$subject,$isHtml,$body)
 {
     $mail->AltBody =$altBody;
-    $mail->AddAddress($email);                                           // set email format to HTML
+    $mail->AddAddress($email);  // set email format to HTML
     $mail->Subject = $subject; 
     $mail->isHtml($isHtml);
     $mail->Body =$body;
@@ -90,7 +89,6 @@ function sendMail($mail,$altBody,$email,$subject,$isHtml,$body)
 }
 function mergeVideoAudio($video,$audio,$filename)
 {
-   
     $cmd = "ffmpeg -i 'uploads/$video' -i 'admin$audio'     -shortest -strict  -filter_complex '[0:a][1:a]amerge,pan=stereo|c0<c0+c2|c1<c1+c3[out]' -map 1:v -map '[out]' -c:v    -2 'uploads/merged$filename'"; 
     exec($cmd,$error); 
     unlink("uploads/$video");  
@@ -965,7 +963,6 @@ function upload_videos($files,$conn,$table,$id_col,$column,$id,$images,$url)
                         {
                             $sql="update $table set  $column='uploads/merged$mp4name.mp4',file_type='$type' where $id_col=$id ";
                         }
-                        
                       if($conn->query($sql)===true)
                       {
                           $status=$newFileName;

@@ -104,6 +104,7 @@
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
         $contestId = (int)$conn->real_escape_string($_POST['contestId']);
+        $platform = $conn->real_escape_string($_POST['platform']);
         $sql="insert into videos(c_id, u_id, status) values('$contestId', '$userId', 1)";
         if($result=$conn->query($sql))
         {
