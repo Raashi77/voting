@@ -6,7 +6,7 @@
     {
         $response = [];
         $blogId = $conn->real_escape_string($_POST['blogId']);
-        $sql = "SELECT * from blogs WHERE id='$blogId'";
+        $sql = "SELECT b.*,bc.category from blogs b ,blog_categories bc WHERE b.id='$blogId' and b.category = bc.id";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
@@ -57,10 +57,53 @@
         echo json_encode($response);
     }
 
-    if(isset($_POST['fetchAllBlogs']) && isset($_POST['type']))
+    if(isset($_POST['fetchAllBlogs']))
     {
-        $type = $conn->real_escape_string($_POST['type']);
-        
+        $response = [];
+        $filter = $conn->real_escape_string($_POST['filter']);
+        $sql = "SELECT * FROM blogs ";
+        switch ($filter)
+        {
+            case 'default';
+                $sql = $sql." order by id desc";
+                break;
+
+            case 'latest';
+                $sql = $sql." order by id desc";
+                break;
+
+            case 'random';
+                $sql = $sql." order by rand()";
+                break;
+
+            case 'oldest':
+                $sql = $sql." order by id asc";
+                break;
+        }
+        if($result = $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+            {
+                $response['msg'] = "success";
+                while($row = $result->fetch_assoc())
+                {
+                    $blogs[] = $row;
+                }
+                $response['blogs'] = $blogs;
+            }
+            else
+            {
+                $response['msg'] = "notFound";
+            }
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    
     }
 
 ?>

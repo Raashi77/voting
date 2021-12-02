@@ -125,7 +125,7 @@
     {
         $response = [];
         $userId = $conn->real_escape_string($_POST['userId']);
-        $sql = "SELECT c.* FROM contest c,contest_users cu where cu.u_id='$userId' and c.id = cu.c_id";
+        $sql = "SELECT c.*,i.header_image FROM contest c,contest_users cu,index_changes i where cu.u_id='$userId' and c.id = cu.c_id and c.id=i.c_id";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)

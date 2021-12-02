@@ -48,6 +48,7 @@
                     else
                     {
                         $response['msg']="error";
+                        $response['sql'] = $sql;
                         echo json_encode($response);
 
                     }

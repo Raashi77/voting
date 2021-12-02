@@ -2,10 +2,32 @@
 
     require_once '../lib/core.php';
     
+    if(isset($_POST['checkContestant']))
+    {
+        $response = [];
+        $userId = $conn->real_escape_string($_POST['userId']);
+        $contestId = $conn->real_escape_string($_POST['contestId']);
+        $sql = "SELECT * FROM contest_users where c_id='$contestId' and u_id='$userId'";
+        if($result = $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+                $response['msg']="found";
+            else
+                $response['msg']="notFound";
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }   
+
     if(isset($_POST['fetchSingleContest']))
     {
         $contestId = $conn->real_escape_string($_POST['contestId']);
-        $sql = "SELECT * from contest where id  = '$contestId'";
+        $sql = "SELECT c.*,i.header_image from contest c, index_changes i where c.id  = '$contestId' and c.id=i.c_id";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
@@ -17,9 +39,12 @@
                 {
                     if($res->num_rows > 0)
                     {
+                        $i = 0;
                         while($row=$res->fetch_assoc())
                         {
+                            $i++;
                             $contestants[] = $row;
+                            // $contestants[] = $row['i'] = $i;
                         }
                         $response['contestants'] = $contestants;
                     }
@@ -80,13 +105,53 @@
         echo json_encode($response);
     }
 
+    if(isset($_POST['fetchAllContest']))
+    {
+        $response = [];
+        $filter = $conn->real_escape_string($_POST['filter']);
+        $date=date('Y-m-d');
+        $time = date('H:i');
+        switch ($filter) {
+            case 'ongoing':
+                $sql="SELECT c.*, i.header_image from contest c, index_changes i where ((c.start_date = '$date' and c.start_time <= '$time') or (c.start_date < '$date' and c.end_date > '$date') or (c.end_date = '$date' and c.end_time >= '$time')) and c.id=i.c_id ";
+                break;
+
+            case 'upcoming':
+                $sql="SELECT c.*, i.header_image from contest c, index_changes i where (c.start_date > '2021-11-23' ) and c.id=i.c_id";
+                break;
+        }
+        // $response['sql'] = $sql;
+        if($result = $conn->query($sql))
+        {
+            if($result->num_rows > 0)
+            {
+                $response['msg'] = "success";
+                while($row = $result->fetch_assoc())
+                {
+                    $contests[] = $row;
+                }
+                $response['contests'] = $contests;
+            }
+            else
+            {
+                $response['msg'] = "notFound";
+            }
+        }
+        else
+        {
+            $response['msg'] = "error";
+            $response['error'] = $conn->error;
+            $response['query'] = $sql;
+        }
+        echo json_encode($response);
+    }
 
     if(isset($_POST['voteParticipant']))
     {
         $response=[];
         $email = $conn->real_escape_string($_POST['email']);
         $contestId = $conn->real_escape_string($_POST['contestId']);
-        $contestantsId = $conn->real_escape_string($_POST['contestantsId']);
+        $contestantsId = $conn->real_escape_string($_POST['contestantId']);
         if (!empty($_SERVER['HTTP_CLIENT_IP']))   
         {
             $ip_address = $_SERVER['HTTP_CLIENT_IP'];
@@ -101,7 +166,7 @@
         {
             $ip_address = $_SERVER['REMOTE_ADDR'];
         }
-        $sql = "SELECT * FROM voters where ip_address='$ip_address' and c_id='$contestId'";
+        $sql = "SELECT * FROM voters where (ip_address='$ip_address' or email='$email') and c_id='$contestId'";
         if($result = $conn->query($sql))
         {
             if($result->num_rows > 0)
