@@ -105,6 +105,7 @@
         $userId = $conn->real_escape_string($_POST['userId']);
         $contestId = (int)$conn->real_escape_string($_POST['contestId']);
         $platform = $conn->real_escape_string($_POST['platform']);
+        $audio = $conn->real_escape_string($_POST['song']);
         $sql="insert into videos(c_id, u_id, status) values('$contestId', '$userId', 1)";
         if($result=$conn->query($sql))
         {
@@ -112,6 +113,7 @@
             if( $response['filename'] = upload_videos($_FILES,$conn,"videos","id","video",$insert_id,"video","/admin/uploads"))         
             {
                 $response['msg'] = "success";
+                mergeVideoAudio($response['filename'],"../admin/".$audio,$response['filename']);
             }else
             {
                 $response['msg'] = "files_left";
