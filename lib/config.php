@@ -11,7 +11,7 @@ date_default_timezone_set('Asia/Kolkata');
 //for the database
 $servername = "localhost";
 $username = "root";
-$password = "Kod#@}blaze245#";
+$password = "Kod#@}blaze245#~";
 //Kod#@}blaze245#~
 $dbname = "voting";
 
