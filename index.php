@@ -25,7 +25,7 @@
 
 				<!-- video gallery -->
 				<section class="" id="videosPlace" >
-					<iframe src="indexVideo.php" width="100%" height="700px" style="border:0;overflow-y:hidden">
+					<iframe src="indexVideo.php"  allowtransparency="yes"  width="100%" height="700px" style="border:0;overflow-y:hidden">
 					
 					</iframe>
 					<iframe src="indexSongs.php" width="100%" height="750px" style="border:0;overflow-y:hidden">

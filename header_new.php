@@ -99,5 +99,6 @@
 	?>
 	<style>#totop{display:none !important}</style>
 </head>
-<body style="overflow-x:hidden !important">
+<body style="overflow-x:hidden !important ;background-image: url('./assets/back.gif');
+    background-size: cover;">
 	
